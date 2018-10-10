@@ -1,0 +1,62 @@
+/* Typography */
+$base-font  : "Montserrat", sans-serif;
+
+/* Font sizes */
+$h1 : 42px;
+$h2 : 42px;
+$h3 : 34px;
+
+$default-size : 21px;
+
+/* Colors */
+$blue           : #3c81e8;
+$pink           : #D92B4C;
+$green          : #5cb85c;
+$light-blue     : #5bc0de;
+$orange         : #fda100;
+$red            : #ce2020;
+$purple         : #664893;
+$default-black  : #0e1430;
+$hover          : #a1d5d2;
+$default-bg     : #f1f4f5;
+$gray           : rgba(0,0,0,.54);
+$grey           : #72777a;
+$text-color     : #858585;
+$button-bg      : #a1d5d2;
+$ap-blue        : #56A9F9;
+$ap-green       : #5BDB87;
+$ap-pink        : #FD546F;
+
+/* Media Queries */
+
+/* Device type */
+$mobile       : "(min-width: 320px) and (max-width: 767px)";
+$sm-tablet    : "(min-width: 768px) and (max-width: 1023px)";
+$lg-tablet    : "(min-width: 1024px) and (max-width: 1200px)";
+$desktop      : "(min-width: 1201px) and (max-width: 1300px)";
+$extra        : "(min-width: 1301px) and (max-width: 1408px)";
+$big          : "(min-width: 1409px)";
+
+/* Breakpoints */
+$w480         : "only screen and (max-width: 480px)";
+$w640         : "only screen and (max-width: 640px)";
+$w767         : "only screen and (max-width: 767px)";
+$w991         : "only screen and (max-width: 991px)";
+$w1023        : "only screen and (max-width: 1023px)";
+$w1100        : "only screen and (max-width: 1100px)";
+$w1200        : "only screen and (max-width: 1200px)";
+$w1366        : "only screen and (min-width: 1366px)";
+
+/* Orientation */
+$landscape    : "orientation: landscape";
+$portrait     : "orientation: portrait";
+
+/* Example Using
+
+@media #{$mobile} {
+  .example {
+    color: #FFF;
+  }
+}
+
+*/

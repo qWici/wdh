@@ -1,0 +1,30 @@
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.38);
+  background-image: linear-gradient(to left, #423a6f 0%, #272c5a 100%);
+  .box {
+    height: 80px;
+    padding: 0 40px;
+    align-items: center;
+    nav ul {
+      display: flex;
+      li {
+        float: left;
+        margin-right: 30px;
+        a {
+          color: rgba(255,255,255,.8);
+          font-weight: bold;
+          &:hover {
+            color: #FD7FB6;
+          }
+          &.router-link-exact-active {
+            color: #FFF;
+          }
+        }
+      }
+    }
+  }
+}

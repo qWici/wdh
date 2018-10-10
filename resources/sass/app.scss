@@ -1,0 +1,46 @@
+@import 'vars';
+@import "helpers";
+@import "reset";
+
+#app, .main-layout {
+  width: 100vw;
+  height: 100vh;
+}
+
+main {
+  height: 100%;
+  padding-top: 80px;
+}
+
+body {
+  font-size: 16px;
+  min-width: 320px;
+  position: relative;
+  line-height: 1.6;
+  font-family: $base-font;
+  overflow-x: hidden;
+  opacity: 1;
+  background: linear-gradient(-45deg, #312b54 0%, #191d3b 100%);
+  color: $text-color;
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: "pnum";
+  -moz-font-feature-settings: "pnum";
+  font-feature-settings: "pnum";
+  font-variant-numeric: proportional-nums;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700&subset=cyrillic-ext');
+
+@import 'elements/card';
+@import 'elements/header';
+@import 'elements/buttons';
+@import 'elements/transitions';
+@import '~sweetalert2/src/sweetalert2';
+@import "../css/bulma.min.css";
+
+
