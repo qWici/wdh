@@ -11,6 +11,7 @@
                     <fa icon="sign-out-alt" fixed-width/>
                     {{ $t('logout') }}
                 </a>
+                <locale-dropdown/>
             </nav>
 
             <nav v-else>
@@ -31,6 +32,7 @@
                         </router-link>
                     </li>
                 </ul>
+                <locale-dropdown/>
             </nav>
         </div>
     </header>
@@ -38,9 +40,12 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import LocaleDropdown from './LocaleDropdown'
 
   export default {
-    components: {},
+    components: {
+      LocaleDropdown
+    },
     data: () => ({}),
 
     computed: mapGetters({

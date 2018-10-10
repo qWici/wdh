@@ -9,19 +9,22 @@ header {
     height: 80px;
     padding: 0 40px;
     align-items: center;
-    nav ul {
+    nav {
       display: flex;
-      li {
-        float: left;
-        margin-right: 30px;
-        a {
-          color: rgba(255,255,255,.8);
-          font-weight: bold;
-          &:hover {
-            color: #FD7FB6;
-          }
-          &.router-link-exact-active {
-            color: #FFF;
+      ul {
+        display: flex;
+        li {
+          float: left;
+          margin-right: 30px;
+          a {
+            color: rgba(255,255,255,.8);
+            font-weight: bold;
+            &:hover {
+              color: #FD7FB6;
+            }
+            &.router-link-exact-active {
+              color: #FFF;
+            }
           }
         }
       }
