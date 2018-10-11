@@ -30,7 +30,7 @@
       </div>
 
       <!-- Password -->
-      <div class="field">
+      <div class="field hint" :data-hint="$t('dont_reuse_bank_password')">
         <label class="label">{{ $t('password') }}</label>
         <div class="control has-icons-left has-icons-right">
           <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password">
@@ -57,7 +57,7 @@
         </p>
       </div>
 
-      <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth">{{ $t('register') }}</button>
+      <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth is-rounded">{{ $t('register') }}</button>
     </form>
     <p>
       {{ $t('already_have_account') }}?
@@ -107,3 +107,21 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+  .field.hint {
+    position: relative;
+    &:before {
+      content: attr(data-hint);
+      position: absolute;
+      top: 50%;
+      right: 320px;
+      text-align: right;
+      color: #FFF;
+      font-style: italic;
+      font-size: 14px;
+      width: 300px;
+      transform: rotate(3deg) translateY(-50%);
+    }
+  }
+</style>

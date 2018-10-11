@@ -36,7 +36,7 @@
         </checkbox>
       </div>
 
-      <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth">{{ $t('login') }}</button>
+      <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth is-rounded">{{ $t('login') }}</button>
     </form>
     <p>
       {{ $t('dont_have_account') }}?

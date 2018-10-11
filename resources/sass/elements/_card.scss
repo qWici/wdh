@@ -44,6 +44,10 @@
       }
       button {
         margin-top: 15px;
+        background: linear-gradient(-4deg, #3B9DFF 0%, #304FFE 100%);
+        &:hover {
+          background: linear-gradient(-4deg, #304FFE 0%, #3B9DFF 100%);
+        }
         &.register {
           margin-top: 40px;
         }

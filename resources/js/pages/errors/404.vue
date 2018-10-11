@@ -1,13 +1,12 @@
 <template>
-  <card class="text-center">
-    <h3 class="mb-4">{{ $t('page_not_found') }}</h3>
+  <div class="error404">
+    <img src="/img/404.png" alt="">
 
-    <div class="links">
-      <router-link :to="{ name: 'welcome' }">
-        {{ $t('go_home') }}
-      </router-link>
-    </div>
-  </card>
+    <h2>{{ $t('page_not_found') }}</h2>
+    <router-link :to="{ name: 'welcome' }" class="button is-link is-medium is-rounded">
+      {{ $t('go_home') }}
+    </router-link>
+  </div>
 </template>
 
 <script>
@@ -15,3 +14,24 @@ export default {
   name: 'NotFound'
 }
 </script>
+
+<style scoped lang="scss">
+  .error404 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h2 {
+      color: #FFF;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+    a {
+      background: linear-gradient(-4deg, #DB50CD 0%, #FD7FB6 100%);
+      &:hover {
+        background: linear-gradient(-4deg, #FD7FB6 0%, #DB50CD 100%);
+      }
+    }
+  }
+</style>

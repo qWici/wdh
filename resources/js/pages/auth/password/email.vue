@@ -1,31 +1,28 @@
 <template>
-  <div class="row">
-    <div class="col-lg-8 m-auto">
-      <card :title="$t('reset_password')">
-        <form @submit.prevent="send" @keydown="form.onKeydown($event)">
-          <alert-success :form="form" :message="status"/>
+  <form @submit.prevent="send" @keydown="form.onKeydown($event)">
+    <div class="wrapper">
+      <img src="https://mbtskoudsalg.com/images/rick-y-morty-vector-png-7.png" alt="">
+      <h1>{{ $t('reset_password') }}</h1>
+      <alert-success :form="form" :message="status"/>
 
-          <!-- Email -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-              <has-error :form="form" field="email"/>
-            </div>
-          </div>
+      <!-- Email -->
+      <div class="field">
+        <label class="label">{{ $t('email') }}</label>
+        <div class="control has-icons-left has-icons-right">
+          <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email" :placeholder="$t('your_email')">
+          <span class="icon is-small is-left">
+            <fa :icon="'envelope'" fixed-width/>
+          </span>
+        </div>
+        <p class="help is-danger">
+          <has-error :form="form" field="email"/>
+        </p>
+      </div>
 
-          <!-- Submit Button -->
-          <div class="form-group row">
-            <div class="col-md-9 ml-md-auto">
-              <v-button :loading="form.busy">
-                {{ $t('send_password_reset_link') }}
-              </v-button>
-            </div>
-          </div>
-        </form>
-      </card>
+      <!-- Submit Button -->
+      <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth">{{ $t('send_password_reset_link') }}</button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -56,3 +53,27 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  label {
+    color: #FD7FB6;
+  }
+  .wrapper {
+    text-align: center;
+    img {
+      height: 300px;
+    }
+    h1 {
+      margin-top: 0;
+      color: #FFF;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+  }
+}
+</style>
