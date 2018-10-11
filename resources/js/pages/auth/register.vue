@@ -60,7 +60,7 @@
       <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth">{{ $t('register') }}</button>
     </form>
     <p>
-      Already have an account?
+      {{ $t('already_have_account') }}?
       <router-link :to="{ name: 'login' }">
         {{ $t('login') }}
       </router-link>

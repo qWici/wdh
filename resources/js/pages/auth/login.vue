@@ -39,7 +39,7 @@
       <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth">{{ $t('login') }}</button>
     </form>
     <p>
-      Don't have an account?
+      {{ $t('dont_have_account') }}?
       <router-link :to="{ name: 'register' }">
         {{ $t('register') }}
       </router-link>
