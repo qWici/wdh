@@ -1,5 +1,7 @@
 <template>
-  <first-section></first-section>
+  <div id="welcome">
+    <first-section></first-section>
+  </div>
 </template>
 
 <script>
@@ -7,8 +9,6 @@ import { mapGetters } from 'vuex'
 import FirstSection from '../components/welcome/FirstSection'
 
 export default {
-  layout: 'basic',
-
   components: {
     FirstSection
   },
@@ -27,7 +27,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+#welcome {
+  width: 100%;
+}
 .top-right {
   position: absolute;
   right: 10px;
