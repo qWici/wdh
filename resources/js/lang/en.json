@@ -34,5 +34,10 @@
   "password_updated": "Your password has been updated!",
   "new_password": "New Password",
   "login_with": "Login with",
-  "register_with": "Register with"
+  "register_with": "Register with",
+  "reg_early_access": "Register for Early Access",
+  "contact_about_access": "We'll contact you as soon as we unveil it",
+  "get_access": "Get access",
+  "follow_everything": "All that is interesting to you in one place",
+  "faster_easier": "Faster. Easier. In a unique way."
 }
