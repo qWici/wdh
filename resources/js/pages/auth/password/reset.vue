@@ -1,54 +1,59 @@
-<!--@TODO: Markup-->
 <template>
-  <div class="row">
-    <div class="col-lg-8 m-auto">
-      <card :title="$t('reset_password')">
-        <form @submit.prevent="reset" @keydown="form.onKeydown($event)">
-          <alert-success :form="form" :message="status"/>
+  <card :title="$t('reset_password')" :sideImageSRC="sideImageSRC">
+    <form @submit.prevent="reset" @keydown="form.onKeydown($event)">
 
-          <!-- Email -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email" readonly>
-              <has-error :form="form" field="email"/>
-            </div>
-          </div>
+      <!-- Email -->
+      <div class="field">
+        <label class="label">{{ $t('email') }}</label>
+        <div class="control has-icons-left has-icons-right">
+          <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email">
+          <span class="icon is-small is-left">
+            <fa :icon="'envelope'" fixed-width/>
+          </span>
+        </div>
+        <p class="help is-danger">
+          <has-error :form="form" field="email"/>
+        </p>
+      </div>
 
-          <!-- Password -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('password') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
-              <has-error :form="form" field="password"/>
-            </div>
-          </div>
+      <!-- Password -->
+      <div class="field hint" :data-hint="$t('dont_reuse_bank_password')">
+        <label class="label">{{ $t('password') }}</label>
+        <div class="control has-icons-left has-icons-right">
+          <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password">
+          <span class="icon is-small is-left">
+            <fa :icon="'user-lock'" fixed-width/>
+          </span>
+        </div>
+        <p class="help is-danger">
+          <has-error :form="form" field="password"/>
+        </p>
+      </div>
 
-          <!-- Password Confirmation -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('confirm_password') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.password_confirmation" :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" type="password" name="password_confirmation">
-              <has-error :form="form" field="password_confirmation"/>
-            </div>
-          </div>
+      <!-- Password Confirmation -->
+      <div class="field">
+        <label class="label">{{ $t('confirm_password') }}</label>
+        <div class="control has-icons-left has-icons-right">
+          <input v-model="form.password_confirmation" :class="{ 'is-danger': form.errors.has('password_confirmation') }" class="input" type="password" name="password_confirmation">
+          <span class="icon is-small is-left">
+            <fa :icon="'user-lock'" fixed-width/>
+          </span>
+        </div>
+        <p class="help is-danger">
+          <has-error :form="form" field="password_confirmation"/>
+        </p>
+      </div>
 
-          <!-- Submit Button -->
-          <div class="form-group row">
-            <div class="col-md-9 ml-md-auto">
-              <v-button :loading="form.busy">
-                {{ $t('reset_password') }}
-              </v-button>
-            </div>
-          </div>
-        </form>
-      </card>
-    </div>
-  </div>
+      <!-- Submit Button -->
+      <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth is-rounded">{{ $t('reset_password') }}</button>
+    </form>
+  </card>
 </template>
 
 <script>
 import Form from 'vform'
+import swal from 'sweetalert2'
+import i18n from '~/plugins/i18n'
 
 export default {
   middleware: 'guest',
@@ -58,7 +63,7 @@ export default {
   },
 
   data: () => ({
-    status: '',
+    sideImageSRC: '/img/wolverine-reset-password.png',
     form: new Form({
       token: '',
       email: '',
@@ -76,7 +81,14 @@ export default {
     async reset () {
       const { data } = await this.form.post('/api/password/reset')
 
-      this.status = data.status
+      swal({
+        type: 'success',
+        title: i18n.t('info_updated'),
+        text: data.status,
+        reverseButtons: true,
+        confirmButtonText: i18n.t('ok'),
+        cancelButtonText: i18n.t('cancel')
+      })
 
       this.form.reset()
     }

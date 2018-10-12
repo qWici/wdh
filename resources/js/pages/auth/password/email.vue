@@ -1,9 +1,8 @@
 <template>
   <form @submit.prevent="send" @keydown="form.onKeydown($event)">
     <div class="wrapper">
-      <img src="https://mbtskoudsalg.com/images/rick-y-morty-vector-png-7.png" alt="">
+      <img src="/img/morty-forgot-password.png" alt="">
       <h1>{{ $t('reset_password') }}</h1>
-      <alert-success :form="form" :message="status"/>
 
       <!-- Email -->
       <div class="field">
@@ -27,6 +26,8 @@
 
 <script>
 import Form from 'vform'
+import swal from 'sweetalert2'
+import i18n from '~/plugins/i18n'
 
 export default {
   middleware: 'guest',
@@ -46,7 +47,14 @@ export default {
     async send () {
       const { data } = await this.form.post('/api/password/email')
 
-      this.status = data.status
+      swal({
+        type: 'success',
+        title: i18n.t('reset_password'),
+        text: data.status,
+        reverseButtons: true,
+        confirmButtonText: i18n.t('ok'),
+        cancelButtonText: i18n.t('cancel')
+      })
 
       this.form.reset()
     }
