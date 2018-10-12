@@ -12,7 +12,7 @@
                 <li>
                     <div class="content-nav__category">
                         <span class="content-nav__category__icon gradient-pink">
-                            <fa :icon="'newspaper'" fixed-width/>
+                            <fa :icon="['far', 'newspaper']" fixed-width/>
                         </span>
                         <span class="content-nav__category__title">Articles</span>
                     </div>
@@ -28,7 +28,7 @@
                 <li>
                     <div class="content-nav__category">
                         <span class="content-nav__category__icon gradient-blue">
-                            <fa :icon="'video'" fixed-width/>
+                            <fa :icon="['fab', 'youtube']" fixed-width/>
                         </span>
                         <span class="content-nav__category__title">Videos</span>
                     </div>
