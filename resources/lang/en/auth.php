@@ -13,6 +13,10 @@ return [
     |
     */
 
-    'failed'   => 'Имя пользователя и пароль не совпадают.',
-    'throttle' => 'Слишком много попыток входа. Пожалуйста, попробуйте еще раз через :seconds секунд.',
+    'failed' => 'These credentials do not match our records.',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'early_access' => [
+        'success' => "We will notify you as soon as the service works.",
+        'error' => "Looks like you are already registered"
+    ]
 ];

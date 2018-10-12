@@ -38,6 +38,8 @@
 <script>
   import { mapGetters } from 'vuex'
   import Form from 'vform'
+  import swal from 'sweetalert2'
+  import i18n from '~/plugins/i18n'
 
   export default {
     data: () => ({
@@ -53,13 +55,17 @@
 
     methods: {
       async send () {
-        // @TODO: Backend
-        console.log('form send');
-        // const { data } = await this.form.post('/api/password/email')
-        //
-        // this.status = data.status
-        //
-        // this.form.reset()
+        const { data } = await this.form.post('/api/early-access')
+
+        swal({
+          type: data.type,
+          text: data.status,
+          reverseButtons: true,
+          confirmButtonText: i18n.t('ok'),
+          cancelButtonText: i18n.t('cancel')
+        })
+
+        this.form.reset()
       }
     }
   }
