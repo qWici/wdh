@@ -17,15 +17,17 @@ $orange         : #fda100;
 $red            : #ce2020;
 $purple         : #664893;
 $default-black  : #0e1430;
-$hover          : #a1d5d2;
-$default-bg     : #f1f4f5;
-$gray           : rgba(0,0,0,.54);
-$grey           : #72777a;
 $text-color     : #858585;
-$button-bg      : #a1d5d2;
-$ap-blue        : #56A9F9;
-$ap-green       : #5BDB87;
-$ap-pink        : #FD546F;
+$purple-light   : #312b54;
+$purple-dark    : #191d3b;
+$pink-light     : #ff79c4;
+$pink-dark      : #e755d1;
+
+/* Gradients */
+$gradient-default: linear-gradient(-45deg, $purple-light 0%, $purple-dark 100%);
+$gradient-pink: linear-gradient(-45deg, $pink-dark 0%, $pink-light 100%);
+$gradient-purple-to-pink: linear-gradient(-45deg, #ab24ff 0%, #7245f4 100%);
+$gradient-blue: linear-gradient(-45deg, #3B9DFF 0%, #304FFE 100%);
 
 /* Media Queries */
 

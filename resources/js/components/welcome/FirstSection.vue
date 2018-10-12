@@ -13,7 +13,7 @@
                 <p>{{ $t('contact_about_access') }}</p>
             </div>
             <form @submit.prevent="send" @keydown="form.onKeydown($event)">
-                
+
                 <!-- Email -->
                 <div class="field">
                     <div class="control has-icons-left has-icons-right">

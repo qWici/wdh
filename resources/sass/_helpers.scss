@@ -1,7 +1,12 @@
 @import "vars";
 
+$box-width: 1170px;
+$sidebar-width: 300px;
+$content-sidebar-gap: 25px;
+$content-width: calc(100% - #{$sidebar-width} - #{$content-sidebar-gap});
+
 .box {
-  width: 1170px;
+  width: $box-width;
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
@@ -56,11 +61,11 @@
 }
 
 .content {
-  width: calc(100% - 375px);
-  margin-right: 25px;
+  width: $content-width;
+  margin-right: $content-sidebar-gap;
   &.left-sidebar {
     margin-right: initial;
-    margin-left: 25px;
+    margin-left: $content-sidebar-gap;
   }
 }
 
@@ -105,7 +110,7 @@
 }
 
 .sidebar {
-  width: 350px;
+  width: $sidebar-width;
 }
 
 @media #{$mobile} {
@@ -126,7 +131,7 @@
 
 @media #{$lg-tablet} {
   .sidebar {
-    width: 350px;
+    width: $sidebar-width;
   }
 }
 
@@ -191,3 +196,9 @@
 .mr15 { margin-right: 15px!important }
 .mb15 { margin-bottom: 15px!important }
 .ml15 { margin-left: 15px!important }
+
+// Background gradients
+.gradient-default { background: $gradient-default; }
+.gradient-pink { background: $gradient-pink; }
+.gradient-purple-to-pink { background: $gradient-purple-to-pink; }
+.gradient-blue { background: $gradient-blue; }

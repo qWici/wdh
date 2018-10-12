@@ -1,0 +1,57 @@
+aside.sidebar {
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.38);
+  background-image: linear-gradient(to top, #423a6f 0%, #272c5a 100%);
+  .user {
+    display: flex;
+    margin-bottom: 35px;
+    padding: 20px 20px 0;
+    &__img {
+      width: 50px;
+      height: 50px;
+      border-radius: 15px 0 15px 0;
+      margin-right: 20px;
+    }
+    &__name {
+      color: #FFF;
+      display: block;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    &__specs {
+      color: #FFF;
+      font-size: 13px;
+    }
+  }
+  .content-nav {
+    li {
+      padding: 10px 20px;
+      &:hover {
+        background: $gradient-default;
+        cursor: pointer;
+      }
+    }
+    &__category {
+      display: flex;
+      align-items: center;
+      &__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50% 50% 0 50%;
+        margin-right: 20px;
+        svg {
+          font-size: 13px;
+          path {
+            fill: #FFF;
+          }
+        }
+      }
+      &__title {
+        color: #FFF;
+        font-weight: bold;
+      }
+    }
+  }
+}

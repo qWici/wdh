@@ -6,11 +6,14 @@
             </router-link>
 
             <nav v-if="user">
-                User
-                <a href="#" @click.prevent="logout">
-                    <fa icon="sign-out-alt" fixed-width/>
-                    {{ $t('logout') }}
-                </a>
+                <ul>
+                    <li>
+                        <a href="#" @click.prevent="logout">
+                            <fa icon="sign-out-alt" fixed-width/>
+                            {{ $t('logout') }}
+                        </a>
+                    </li>
+                </ul>
                 <locale-dropdown/>
             </nav>
 
