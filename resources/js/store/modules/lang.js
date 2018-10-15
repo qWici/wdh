@@ -30,3 +30,11 @@ export const actions = {
     Cookies.set('locale', locale, { expires: 365 })
   }
 }
+
+export default {
+  namespaced: true,
+  actions,
+  getters,
+  mutations,
+  state,
+};

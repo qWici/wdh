@@ -1,11 +1,10 @@
 <template>
     <aside class="sidebar">
-        <div class="user">
-            <img :src="user.image ? user.image : '/img/user_default.png'" :alt="user.name" class="user__img">
+        <div class="user" v-if="user">
+            <img :src="userPhoto" :alt="user.name" class="user__img">
             <div>
-                <span class="user__name">{{ user.name }}</span>
-                <span class="user__specs">Full-stack</span>
-                <!--@TODO: Add to user model specs-->
+                <span class="user__name">{{ user.nickname }}</span>
+                <span class="user__specs" v-show="user.specialization">{{ user.specialization }}</span>
             </div>
         </div>
         <nav class="content-nav">
@@ -52,7 +51,8 @@
 
   export default {
     computed: mapGetters({
-      user: 'auth/user'
+      user: 'auth/user',
+      userPhoto: 'auth/userPhoto'
     }),
   }
 </script>

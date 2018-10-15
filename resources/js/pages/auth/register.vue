@@ -3,15 +3,15 @@
     <form @submit.prevent="register" @keydown="form.onKeydown($event)">
       <!-- Name -->
       <div class="field">
-        <label class="label">{{ $t('name') }}</label>
+        <label class="label">{{ $t('nickname') }}</label>
         <div class="control has-icons-left">
-          <input v-model="form.name" :class="{ 'is-danger': form.errors.has('name') }" class="input" type="text" name="name">
+          <input v-model="form.nickname" :class="{ 'is-danger': form.errors.has('nickname') }" class="input" type="text" name="nickname">
           <span class="icon is-small is-left">
             <fa :icon="'user'" fixed-width/>
           </span>
         </div>
         <p class="help is-danger">
-          <has-error :form="form" field="name"/>
+          <has-error :form="form" field="nickname"/>
         </p>
       </div>
 
@@ -80,7 +80,7 @@ export default {
   data: () => ({
     sideImageSRC: '/img/engineering-vector.png',
     form: new Form({
-      name: '',
+      nickname: '',
       email: '',
       password: '',
       password_confirmation: ''

@@ -48,6 +48,7 @@ export default {
 <style scoped lang="scss">
 .locales {
   position: relative;
+  z-index: 1;
   a {
     font-weight: bold;
     color: #FFF;

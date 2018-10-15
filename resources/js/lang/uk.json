@@ -19,7 +19,7 @@
   "forgot_password": "Забули пароль?",
   "dont_reuse_bank_password" : "Будь ласка не використовуйте ваш банківський пароль, ми не сильно тратились на безпеку",
   "confirm_password": "Підтвердження пароля",
-  "name": "Імя",
+  "nickname": "Нікнейм",
   "toggle_navigation": "Toggle navigation",
   "home": "Головна",
   "you_are_logged_in": "Ви успішно ввійшли!",
