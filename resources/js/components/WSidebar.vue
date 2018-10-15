@@ -51,14 +51,8 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    components: {},
-    data: () => ({}),
-
     computed: mapGetters({
       user: 'auth/user'
     }),
-
-    methods: {
-    }
   }
 </script>
