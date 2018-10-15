@@ -17,6 +17,6 @@ class Stream extends Model
 
     public function tags()
     {
-        return $this->hasMany(StreamTag::class);
+        return $this->belongsToMany(StreamTag::class, 'tags_to_stream', 'stream_id', 'tag_id');
     }
 }

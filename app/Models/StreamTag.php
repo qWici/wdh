@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class StreamTag extends Model
 {
     protected $fillable = [
-        'user_id',
         'tag'
     ];
 
     public function stream()
     {
-        return $this->belongsTo(Stream::class);
+        return $this->belongsToMany(Stream::class, 'tags_to_stream', 'tag_id', 'stream_id');
     }
 }

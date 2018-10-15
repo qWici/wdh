@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Helpers\RemoteRequest;
+use App\Models\Stream;
+use App\Models\StreamTag;
 use Illuminate\Console\Command;
 
 class ParseStreams extends Command
@@ -31,8 +33,6 @@ class ParseStreams extends Command
         parent::__construct();
     }
 
-    protected $streamFilesList = [];
-
     /**
      * Execute the console command.
      *
@@ -48,8 +48,27 @@ class ParseStreams extends Command
         $response = RemoteRequest::getRemoteContent('https://api.github.com/repos/neculaesei/devstream.tv/contents/streams/');
         $allStreamFiles = json_decode($response['data']);
         foreach ($allStreamFiles as $stream) {
-            $this->streamFilesList[] = $stream->download_url;
+            $this->storeNewStream($stream->download_url);
         }
-        var_dump($this->streamFilesList);
+    }
+
+    public function storeNewStream($JSON_URL)
+    {
+        $response = RemoteRequest::getRemoteContent($JSON_URL);
+        $streamData = json_decode($response['data']);
+
+        if(Stream::where('name', $streamData->name)->get()->count()) {
+            return false;
+        }
+
+        $newStream = new Stream();
+        $newStream->name = $streamData->name;
+        $newStream->twitch = $streamData->twitch;
+        $newStream->save();
+
+        foreach ($streamData->tags as $tag) {
+            $tag = StreamTag::firstOrCreate(['tag' => $tag], ['tag' => $tag]);
+            $newStream->tags()->attach($tag->id);
+        }
     }
 }
