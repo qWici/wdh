@@ -17,6 +17,9 @@ class CreateStreamsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('twitch');
+            $table->boolean('online')->default(false);
+            $table->string('title')->nullable();
+            $table->string('language')->nullable();
             $table->timestamps();
         });
     }

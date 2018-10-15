@@ -12,7 +12,20 @@ class Stream extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'twitch'
+        'name', 'twitch', 'online', 'title', 'language'
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'name' => 'string',
+        'twitch' => 'string',
+        'online' => 'boolean',
+        'title' => 'string',
+        'language' => 'string',
     ];
 
     public function tags()

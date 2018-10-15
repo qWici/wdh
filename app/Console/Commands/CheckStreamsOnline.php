@@ -40,21 +40,20 @@ class CheckStreamsOnline extends Command
      */
     public function handle()
     {
-        DB::table('streams_online')->truncate();
-
         foreach (Stream::cursor() as $stream) {
             $nickname = $stream->twitch;
             $live = $this->check($nickname);
+
             if($live) {
-                $this->error("${nickname} is Online");
-                DB::table('streams_online')->insert([
-                    'stream_id' => $stream->id,
+                Stream::where('id', $stream->id)->update([
+                    'online' => true,
                     'title' => $live->title,
                     'language' => $live->language
                 ]);
                 continue;
             }
-            $this->info("${nickname} is Offline");
+
+            Stream::where('id', $stream->id)->update(['online' => false]);
         }
 
     }

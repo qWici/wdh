@@ -22,6 +22,11 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
+
+    Route::prefix('streams')->group(function () {
+        Route::get('all', 'StreamController@all');
+        Route::get('online', 'StreamController@online');
+    });
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
