@@ -24,8 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+//        @TODO: Test with crone
+        $schedule->command('check:streams')->everyFifteenMinutes();
     }
 
     /**

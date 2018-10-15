@@ -10,20 +10,22 @@ class RemoteRequest
         "exceptions" => true,
         "decode_content" => true,
         "verify" => false,
-        'timeout' => 14.14,
+        'timeout' => 2,
         'headers' => [
             'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) 
                              Chrome/45.0.2454.93 Safari/537.36',
         ]
     ];
 
-    public static function getRemoteContent($url, $params = null, $proxyLists = null)
+    public static function getRemoteContent($url, $params = [], $proxyLists = null)
     {
         self::validateURL($url);
 
+        $requestParams = array_merge_recursive(self::$params, $params);
+
         try {
             $response = (new GuzzleHttp\Client())->request(
-                'GET', $url, (empty($params) ? self::$params : $params)
+                'GET', $url, $requestParams
             );
 
             return $response->getStatusCode() == 200
