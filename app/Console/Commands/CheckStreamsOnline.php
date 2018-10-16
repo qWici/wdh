@@ -55,13 +55,13 @@ class CheckStreamsOnline extends Command
 
             Stream::where('id', $stream->id)->update(['online' => false]);
         }
-
+        $this->info(date('Y-m-d H:i:s') . " Streams Updated");
     }
 
     public function check($streamNickname)
     {
         $additionalParams = [
-            'delay' => 2000,
+            'delay' => 3000,
             'headers' => [
                 'Client-ID' => 'y9i5ff8ov1scsxlf15d9oya5oqxjzi'
             ]

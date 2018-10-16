@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::prefix('streams')->group(function () {
         Route::get('all', 'StreamController@all');
         Route::get('online', 'StreamController@online');
+        Route::get('lastonline', 'StreamController@lastonline');
     });
 });
 

@@ -23,16 +23,17 @@ aside.sidebar {
     }
   }
   .content-nav {
-    li {
+    &__category {
+      display: flex;
+      align-items: center;
       padding: 10px 20px;
       &:hover {
         background: $gradient-default;
         cursor: pointer;
       }
-    }
-    &__category {
-      display: flex;
-      align-items: center;
+      &.router-link-exact-active {
+        background: $gradient-default;
+      }
       &__icon {
         display: flex;
         justify-content: center;

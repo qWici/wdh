@@ -18,12 +18,12 @@
           </div>
         </li>
         <li>
-          <div class="content-nav__category">
+          <router-link :to="{ name: 'streams' }" class="content-nav__category" active-class="active">
             <span class="content-nav__category__icon gradient-purple-to-pink">
               <fa :icon="'tv'" fixed-width/>
             </span>
             <span class="content-nav__category__title">{{ $t('streams') }}</span>
-          </div>
+          </router-link>
         </li>
         <li>
           <div class="content-nav__category">

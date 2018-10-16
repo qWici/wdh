@@ -1,0 +1,7 @@
+export const FETCH_ONLINE = 'FETCH_ONLINE'
+export const FETCH_LAST_ONLINE = 'FETCH_LAST_ONLINE'
+
+export default {
+  FETCH_ONLINE,
+  FETCH_LAST_ONLINE
+}

@@ -31,6 +31,12 @@ export default {
         return ['article', 'stream', 'video', 'podcast'].indexOf(value) !== -1
       }
     }
+  },
+
+  computed: {
+    stream: () => {
+      return this.type === 'stream'
+    }
   }
 }
 </script>
