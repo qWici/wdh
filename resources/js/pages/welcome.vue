@@ -1,6 +1,6 @@
 <template>
   <div id="welcome">
-    <first-section></first-section>
+    <first-section/>
   </div>
 </template>
 

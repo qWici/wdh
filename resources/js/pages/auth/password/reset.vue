@@ -1,5 +1,5 @@
 <template>
-  <card :title="$t('reset_password')" :sideImageSRC="sideImageSRC">
+  <card :title="$t('reset_password')" :side-image-src="sideImageSRC">
     <form @submit.prevent="reset" @keydown="form.onKeydown($event)">
 
       <!-- Email -->
@@ -17,7 +17,7 @@
       </div>
 
       <!-- Password -->
-      <div class="field hint" :data-hint="$t('dont_reuse_bank_password')">
+      <div :data-hint="$t('dont_reuse_bank_password')" class="field hint">
         <label class="label">{{ $t('password') }}</label>
         <div class="control has-icons-left has-icons-right">
           <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password">

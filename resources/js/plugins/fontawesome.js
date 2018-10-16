@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import fontawesome from '@fortawesome/fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 import {
@@ -8,16 +8,14 @@ import {
 
 import {
   faUser, faLock, faSignOutAlt, faCog, faCheck, faEnvelope, faUserLock, faTv, faMicrophone
-} from '@fortawesome/fontawesome-free-solid'
+} from '@fortawesome/free-solid-svg-icons'
 
 import {
-  faGithub, faYoutube,
+  faGithub, faYoutube
 } from '@fortawesome/free-brands-svg-icons'
 
-fontawesome.library.add(
+library.add(
   faUser, faLock, faSignOutAlt, faCog, faGithub, faCheck, faEnvelope, faUserLock, faNewspaper, faTv, faYoutube, faNewspaper, faMicrophone
 )
-
-dom.watch()
 
 Vue.component('fa', FontAwesomeIcon)

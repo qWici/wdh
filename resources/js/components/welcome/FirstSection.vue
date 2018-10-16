@@ -1,73 +1,73 @@
 <template>
-    <div class="first-section">
-        <div class="information">
-            <img src="/img/mockup.png" alt="">
-            <div class="main-texts">
-                <h1>{{ $t('follow_everything')}}</h1>
-                <span>{{ $t('faster_easier')}}</span>
-            </div>
-        </div>
-        <footer>
-            <div class="text">
-                <h3>{{ $t('reg_early_access') }}</h3>
-                <p>{{ $t('contact_about_access') }}</p>
-            </div>
-            <form @submit.prevent="send" @keydown="form.onKeydown($event)">
-
-                <!-- Email -->
-                <div class="field">
-                    <div class="control has-icons-left has-icons-right">
-                        <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email" :placeholder="$t('your_email')">
-                        <span class="icon is-small is-left">
-                                <fa :icon="'envelope'" fixed-width/>
-                            </span>
-                    </div>
-                    <p class="help is-danger">
-                        <has-error :form="form" field="email"/>
-                    </p>
-                </div>
-
-                <!-- Submit Button -->
-                <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth">{{ $t('get_access') }}</button>
-            </form>
-        </footer>
+  <div class="first-section">
+    <div class="information">
+      <img src="/img/mockup.png" alt="">
+      <div class="main-texts">
+        <h1>{{ $t('follow_everything') }}</h1>
+        <span>{{ $t('faster_easier') }}</span>
+      </div>
     </div>
+    <footer>
+      <div class="text">
+        <h3>{{ $t('reg_early_access') }}</h3>
+        <p>{{ $t('contact_about_access') }}</p>
+      </div>
+      <form @submit.prevent="send" @keydown="form.onKeydown($event)">
+
+        <!-- Email -->
+        <div class="field">
+          <div class="control has-icons-left has-icons-right">
+            <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" :placeholder="$t('your_email')" class="input" type="email" name="email">
+            <span class="icon is-small is-left">
+              <fa :icon="'envelope'" fixed-width/>
+            </span>
+          </div>
+          <p class="help is-danger">
+            <has-error :form="form" field="email"/>
+          </p>
+        </div>
+
+        <!-- Submit Button -->
+        <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth">{{ $t('get_access') }}</button>
+      </form>
+    </footer>
+  </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-  import Form from 'vform'
-  import swal from 'sweetalert2'
-  import i18n from '~/plugins/i18n'
+import { mapGetters } from 'vuex'
+import Form from 'vform'
+import swal from 'sweetalert2'
+import i18n from '~/plugins/i18n'
 
-  export default {
-    data: () => ({
-      status: '',
-      form: new Form({
-        email: ''
+export default {
+  data: () => ({
+    status: '',
+    form: new Form({
+      email: ''
+    })
+  }),
+
+  computed: mapGetters({
+    user: 'auth/user'
+  }),
+
+  methods: {
+    async send () {
+      const { data } = await this.form.post('/api/early-access')
+
+      swal({
+        type: data.type,
+        text: data.status,
+        reverseButtons: true,
+        confirmButtonText: i18n.t('ok'),
+        cancelButtonText: i18n.t('cancel')
       })
-    }),
 
-    computed: mapGetters({
-      user: 'auth/user'
-    }),
-
-    methods: {
-      async send () {
-        const { data } = await this.form.post('/api/early-access')
-
-        swal({
-          type: data.type,
-          text: data.status,
-          reverseButtons: true,
-          confirmButtonText: i18n.t('ok'),
-          cancelButtonText: i18n.t('cancel')
-        })
-
-        this.form.reset()
-      }
+      this.form.reset()
     }
   }
+}
 </script>
 
 <style scoped lang="scss">

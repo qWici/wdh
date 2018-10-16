@@ -8,13 +8,13 @@
 </template>
 
 <script>
-  import WHeader from '~/components/WHeader'
+import WHeader from '~/components/WHeader'
 
-  export default {
-    name: 'BasicLayout',
+export default {
+  name: 'BasicLayout',
 
-    components: {
-      WHeader
-    }
+  components: {
+    WHeader
   }
+}
 </script>

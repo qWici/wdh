@@ -1,27 +1,27 @@
 <template>
-    <div class="main-layout">
-        <w-header/>
-        <main>
-            <div class="box">
-                <w-sidebar/>
-                <div class="content left-sidebar">
-                    <child></child>
-                </div>
-            </div>
-        </main>
-    </div>
+  <div class="main-layout">
+    <w-header/>
+    <main>
+      <div class="box">
+        <w-sidebar/>
+        <div class="content left-sidebar">
+          <child/>
+        </div>
+      </div>
+    </main>
+  </div>
 </template>
 
 <script>
-  import WHeader from '~/components/WHeader'
-  import WSidebar from '~/components/WSidebar';
+import WHeader from '~/components/WHeader'
+import WSidebar from '~/components/WSidebar'
 
-  export default {
-    name: 'InnerLayout',
+export default {
+  name: 'InnerLayout',
 
-    components: {
-      WHeader,
-      WSidebar
-    }
+  components: {
+    WHeader,
+    WSidebar
   }
+}
 </script>

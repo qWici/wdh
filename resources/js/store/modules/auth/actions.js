@@ -1,9 +1,9 @@
-import * as types from "./mutation-types"
-import axios from "axios"
+import * as types from './mutation-types'
+import axios from 'axios'
 
 export const saveToken = ({ commit, dispatch }, payload) => {
   commit(types.SAVE_TOKEN, payload)
-};
+}
 
 export const fetchUser = async ({ commit }) => {
   try {
@@ -13,11 +13,11 @@ export const fetchUser = async ({ commit }) => {
   } catch (e) {
     commit(types.FETCH_USER_FAILURE)
   }
-};
+}
 
 export const updateUser = ({ commit }, payload) => {
   commit(types.UPDATE_USER, payload)
-};
+}
 
 export const logout = async ({ commit }) => {
   try {
@@ -25,7 +25,7 @@ export const logout = async ({ commit }) => {
   } catch (e) { }
 
   commit(types.LOGOUT)
-};
+}
 
 export const fetchOauthUrl = async (ctx, { provider }) => {
   const { data } = await axios.post(`/api/oauth/${provider}`)
@@ -33,11 +33,10 @@ export const fetchOauthUrl = async (ctx, { provider }) => {
   return data.url
 }
 
-
 export default {
   saveToken,
   fetchUser,
   updateUser,
   logout,
-  fetchOauthUrl,
-};
+  fetchOauthUrl
+}

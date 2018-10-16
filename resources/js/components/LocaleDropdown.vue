@@ -1,8 +1,8 @@
 <template>
-  <div class="locales" v-click-outside="hide">
+  <div v-click-outside="hide" class="locales">
     <a href="#" class="current-locale" @click.prevent="showLocales">{{ locales[locale] }}</a>
     <ul v-show="show">
-      <li v-for="(value, key) in locales" :key="key" v-if="value !== locales[locale]">
+      <li v-for="(value, key) in locales" v-if="value !== locales[locale]" :key="key">
         <a href="#" @click.prevent="setLocale(key)">{{ value }}</a>
       </li>
     </ul>
@@ -15,13 +15,17 @@ import { loadMessages } from '~/plugins/i18n'
 import ClickOutside from 'vue-click-outside'
 
 export default {
+  directives: {
+    ClickOutside
+  },
+
+  data: () => ({
+    show: false
+  }),
+
   computed: mapGetters({
     locale: 'lang/locale',
     locales: 'lang/locales'
-  }),
-
-  data: () => ({
-    show: false,
   }),
 
   methods: {
@@ -36,11 +40,8 @@ export default {
       this.show = !this.show
     },
     hide () {
-      this.show = false;
+      this.show = false
     }
-  },
-  directives: {
-    ClickOutside
   }
 }
 </script>

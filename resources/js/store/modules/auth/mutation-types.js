@@ -12,4 +12,4 @@ export default {
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE,
   UPDATE_USER
-};
+}

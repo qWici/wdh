@@ -1,5 +1,5 @@
 <template>
-  <card :title="$t('login')" :sideImageSRC="sideImageSRC">
+  <card :title="$t('login')" :side-image-src="sideImageSRC">
     <form @submit.prevent="login" @keydown="form.onKeydown($event)">
       <!-- Email -->
       <div class="field">

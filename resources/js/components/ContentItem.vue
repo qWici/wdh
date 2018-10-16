@@ -1,36 +1,38 @@
 <template>
-    <a class="content-item" :href="link" target="_blank">
-        <div class="img-wrapper" :style="'background-image: url(' + src + ')'">
-            <img :src="src" :alt="title" style="display: none">
-        </div>
-        <span class="item-info">
-            <span class="title">{{ title }}</span>
-            <span class="data">
-                <span class="date" v-if="type !== 'stream'">{{ date }}</span>
-                <span class="author">{{ author }}</span>
-            </span>
-        </span>
-    </a>
+  <a :href="link" class="content-item" target="_blank">
+    <div :style="'background-image: url(' + src + ')'" class="img-wrapper">
+      <img :src="src" :alt="title" style="display: none">
+    </div>
+    <span class="item-info">
+      <span class="title">{{ title }}</span>
+      <span class="data">
+        <span v-if="type !== 'stream'" class="date">{{ date }}</span>
+        <span class="author">{{ author }}</span>
+      </span>
+    </span>
+  </a>
 </template>
 
 <script>
-  export default {
-    name: "ContentItem",
+export default {
+  name: 'ContentItem',
 
-    props: {
-      src: { type: String, default: null }, // @TODO Add default image
-      title: { type: String, required: true },
-      link: { type: String, required: true },
-      author: { type: String, required: true },
-      date: { type: String, default: null },
-      lang: { type: String, default: null },
-      type: {
-        validator: value => {
-            return ['article', 'stream', 'video', 'podcast'].indexOf(value) !== -1
-        },
+  props: {
+    src: { type: String, default: null }, // @TODO Add default image
+    title: { type: String, required: true },
+    link: { type: String, required: true },
+    author: { type: String, required: true },
+    date: { type: String, default: null },
+    lang: { type: String, default: null },
+    type: {
+      type: String,
+      default: null,
+      validator: value => {
+        return ['article', 'stream', 'video', 'podcast'].indexOf(value) !== -1
       }
     }
   }
+}
 </script>
 
 <style scoped lang="scss">
