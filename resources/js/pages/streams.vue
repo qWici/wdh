@@ -6,7 +6,7 @@
         v-for="(item, key) in live"
         :key="key"
         :src="getTwitchThumbnail(item.twitch)"
-        :link="getTwitchStreamLink(item.twitch)"
+        :link="item.twitch"
         :title="item.title"
         :author="item.name"
         :date="item.date"
@@ -18,7 +18,7 @@
         v-for="(item, key) in lastOnline"
         :key="key"
         :src="getTwitchThumbnail(item.twitch)"
-        :link="getTwitchStreamLink(item.twitch)"
+        :link="item.twitch"
         :title="item.title"
         :author="item.name"
         :date="item.date"
@@ -43,7 +43,6 @@ export default {
     return { title: this.$t('streams') }
   },
 
-  // @TODO: Get data from server
   data: () => ({
     type: 'stream'
   }),
@@ -61,12 +60,6 @@ export default {
   methods: {
     getTwitchThumbnail (twitchNickname) {
       return `https://static-cdn.jtvnw.net/previews-ttv/live_user_${twitchNickname}-600x340.jpg`
-    },
-    getTwitchStreamLink (twitchNickname) {
-      return `https://www.twitch.tv/${twitchNickname}`
-    },
-    moreThen (items, value) {
-      return items.length > value;
     },
   }
 }

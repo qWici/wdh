@@ -1,5 +1,5 @@
 <template>
-  <a :href="link" class="content-item" target="_blank">
+  <router-link :to="{ name: type, params: { id: link }}" class="content-item">
     <div :style="'background-image: url(' + src + ')'" class="img-wrapper">
       <img :src="src" :alt="title" style="display: none">
     </div>
@@ -10,7 +10,7 @@
         <span class="author">{{ author }}</span>
       </span>
     </span>
-  </a>
+  </router-link>
 </template>
 
 <script>

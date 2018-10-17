@@ -1,5 +1,6 @@
 export const FETCH_ONLINE = 'FETCH_ONLINE'
 export const FETCH_LAST_ONLINE = 'FETCH_LAST_ONLINE'
+export const FETCH_STREAM_TAGS = 'FETCH_STREAM_TAGS'
 
 export default {
   FETCH_ONLINE,
