@@ -1,5 +1,5 @@
 <template>
-  <card :title="$t('reset_password')" :side-image-src="sideImageSRC">
+  <card :title="$t('reset_password')" :side_image_src="side_image_src">
     <form @submit.prevent="reset" @keydown="form.onKeydown($event)">
 
       <!-- Email -->
@@ -63,7 +63,7 @@ export default {
   },
 
   data: () => ({
-    sideImageSRC: '/img/wolverine-reset-password.png',
+    side_image_src: '/img/wolverine-reset-password.png',
     form: new Form({
       token: '',
       email: '',

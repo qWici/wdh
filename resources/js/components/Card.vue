@@ -11,7 +11,7 @@
     </aside>
 
     <div class="side-image-block">
-      <img :src="sideImageSRC" alt="Register image on WebDevHub.com">
+      <img :src="side_image_src" alt="Register image on WebDevHub.com">
     </div>
 
   </div>
@@ -23,7 +23,7 @@ export default {
 
   props: {
     title: { type: String, default: null },
-    sideImageSRC: { type: String, default: null }
+    side_image_src: { type: String, default: null }
   }
 }
 </script>

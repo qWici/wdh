@@ -1,5 +1,5 @@
 <template>
-  <card :title="$t('login')" :side-image-src="sideImageSRC">
+  <card :title="$t('login')" :side_image_src="side_image_src">
     <form @submit.prevent="login" @keydown="form.onKeydown($event)">
       <!-- Email -->
       <div class="field">
@@ -68,7 +68,7 @@ export default {
   },
 
   data: () => ({
-    sideImageSRC: '/img/software-engineers-vector.png',
+    side_image_src: '/img/software-engineers-vector.png',
     form: new Form({
       email: '',
       password: ''
