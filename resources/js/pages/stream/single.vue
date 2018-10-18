@@ -64,6 +64,7 @@ export default {
   padding-top: 20px;
   width: 100%;
   height: 680px;
+  display: block;
   &--tags {
     margin-top: -16px;
     background: linear-gradient(to left, #423a6f 0%, #272c5a 100%);
