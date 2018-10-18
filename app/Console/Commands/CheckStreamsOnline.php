@@ -61,7 +61,6 @@ class CheckStreamsOnline extends Command
     public function check($streamNickname)
     {
         $additionalParams = [
-            'delay' => 3000,
             'headers' => [
                 'Client-ID' => 'y9i5ff8ov1scsxlf15d9oya5oqxjzi'
             ]

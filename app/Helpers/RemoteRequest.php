@@ -11,6 +11,7 @@ class RemoteRequest
         "decode_content" => true,
         "verify" => false,
         'timeout' => 2,
+        'delay' => 2500,
         'headers' => [
             'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) 
                              Chrome/45.0.2454.93 Safari/537.36',
@@ -34,8 +35,10 @@ class RemoteRequest
 
         } catch (GuzzleHttp\Exception\RequestException $e) {
 
-            return ['error' => 3, 'message' => "400 Bad Request | URL: {$url}"];
-
+            return [
+                'error' => 3,
+                'message' => "400 Bad Request | URL: {$url}",
+                "exception" => $e];
         }
     }
 
