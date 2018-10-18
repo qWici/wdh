@@ -20,7 +20,7 @@ class StreamController extends Controller
 
     public function lastonline()
     {
-        $streams = Stream::orderBy('updated_at', 'desc')->whereNotNull('title')->where('online', false)->take(10)->get();
+        $streams = Stream::orderBy('updated_at', 'desc')->whereNotNull('title')->where('online', false)->take(9)->get();
         return response()->json(['count' => $streams->count(), 'data' => $streams]);
     }
 
