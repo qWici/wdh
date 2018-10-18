@@ -82,7 +82,7 @@ class ParseStreams extends Command
             'name' => $stream->display_name,
             'twitch' => $stream->name,
             'title' => $stream->status,
-            'language' => $stream->language,
+            'language' => preg_replace('/(\-.*)/', '', $stream->language),
             'logo' => $stream->logo
         ];
 
