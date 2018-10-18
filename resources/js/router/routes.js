@@ -6,8 +6,9 @@ const PasswordReset = () => import('~/pages/auth/password/reset').then(m => m.de
 const NotFound = () => import('~/pages/errors/404').then(m => m.default || m)
 
 const Home = () => import('~/pages/home').then(m => m.default || m)
-const Streams = () => import('~/pages/streams').then(m => m.default || m)
-const StreamPage = () => import('~/pages/stream-page').then(m => m.default || m)
+const StreamList = () => import('~/pages/stream/list').then(m => m.default || m)
+const StreamTag = () => import('~/pages/stream/tag').then(m => m.default || m)
+const StreamSingle = () => import('~/pages/stream/single').then(m => m.default || m)
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
 const SettingsProfile = () => import('~/pages/settings/profile').then(m => m.default || m)
 const SettingsPassword = () => import('~/pages/settings/password').then(m => m.default || m)
@@ -21,8 +22,9 @@ export default [
   { path: '/password/reset/:token', name: 'password.reset', component: PasswordReset },
 
   { path: '/home', name: 'home', component: Home },
-  { path: '/streams', name: 'streams', component: Streams },
-  { path: '/stream/:id', name: 'stream', component: StreamPage },
+  { path: '/streams', name: 'streams', component: StreamList },
+  { path: '/stream/:id', name: 'stream', component: StreamSingle },
+  { path: '/stream/tag/:id', name: 'stream.tag', component: StreamTag },
   { path: '/settings',
     component: Settings,
     children: [

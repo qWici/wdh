@@ -29,4 +29,10 @@ class StreamController extends Controller
         $stream = Stream::where('twitch', $twitchname)->with('tags')->get()->first();
         return response()->json(['data' => $stream->tags]);
     }
+
+    public function byTag($tag)
+    {
+        $tag = StreamTag::where('tag', $tag)->with('stream')->get()->first();
+        return response()->json(['data' => $tag->stream]);
+    }
 }

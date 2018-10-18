@@ -9,5 +9,8 @@ export default {
   },
   [types.FETCH_STREAM_TAGS] (state, data) {
     state.tags = data
+  },
+  [types.FETCH_STREAM_BY_TAG] (state, data) {
+    state.byTag = data
   }
 }

@@ -10,7 +10,9 @@
       <ul>
         <li v-for="(item, key) in tags"
             :key="key">
-          <a href="#">{{ item.tag }}</a>
+          <router-link :to="{ name: 'stream.tag', params: { id: item.tag }}">
+            {{ item.tag }}
+          </router-link>
         </li>
       </ul>
     </div>
@@ -19,11 +21,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import TwitchPlayer from '../components/TwitchPlayer'
+import TwitchPlayer from '../../components/TwitchPlayer'
 
 export default {
   middleware: 'auth',
   layout: 'inner',
+  name: 'StreamSingle',
 
   components: {
     TwitchPlayer
@@ -55,10 +58,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../sass/vars";
+@import "../../../sass/vars";
 
 .stream {
   padding-top: 20px;
+  width: 100%;
+  height: 680px;
   &--tags {
     margin-top: -16px;
     background: linear-gradient(to left, #423a6f 0%, #272c5a 100%);

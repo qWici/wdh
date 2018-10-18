@@ -15,12 +15,19 @@ export const fetchLastOnline = async ({ commit }) => {
 
 export const fetchStreamTags = async ({ commit }, twitchname) => {
   const { data } = await axios.get(`/api/streams/tags/${twitchname}`)
-  console.log(data)
+
   commit(types.FETCH_STREAM_TAGS, data.data)
+}
+
+export const fetchStreamsByTag = async ({ commit }, tag) => {
+  const { data } = await axios.get(`/api/streams/tag/${tag}`)
+
+  commit(types.FETCH_STREAM_BY_TAG, data.data)
 }
 
 export default {
   fetchOnlineStreams,
   fetchLastOnline,
-  fetchStreamTags
+  fetchStreamTags,
+  fetchStreamsByTag
 }

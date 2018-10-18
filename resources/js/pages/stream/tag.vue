@@ -1,23 +1,11 @@
 <template>
   <div class="home">
-    <h2 v-show="live.length > 0" class="live">Live now</h2>
-    <div v-show="live.length > 0" class="content-wrapper">
+    <h2 class="live">{{ this.$route.params.id }}</h2>
+    <div v-show="streams.length > 0" class="content-wrapper">
       <content-item
-        v-for="(item, key) in live"
+        v-for="(item, key) in streams"
         :key="key"
-        :src="getTwitchThumbnail(item.twitch)"
-        :link="item.twitch"
-        :title="item.title"
-        :author="item.name"
-        :date="item.date"
-        :type="type"/>
-    </div>
-    <h2 v-show="lastOnline.length > 0" class="offline">Last online</h2>
-    <div v-show="lastOnline.length > 0" class="content-wrapper">
-      <content-item
-        v-for="(item, key) in lastOnline"
-        :key="key"
-        :src="getTwitchThumbnail(item.twitch)"
+        :src="getThumbnail(item)"
         :link="item.twitch"
         :title="item.title"
         :author="item.name"
@@ -29,18 +17,19 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ContentItem from '../components/ContentItem'
+import ContentItem from '../../components/ContentItem'
 
 export default {
   middleware: 'auth',
   layout: 'inner',
+  name: 'StreamTag',
 
   components: {
     ContentItem
   },
 
   metaInfo () {
-    return { title: this.$t('streams') }
+    return { title: this.$route.params.id }
   },
 
   data: () => ({
@@ -48,19 +37,19 @@ export default {
   }),
 
   computed: mapGetters({
-    live: 'streams/streamsOnline',
-    lastOnline: 'streams/lastOnline'
+    streams: 'streams/byTag'
   }),
 
   created () {
-    this.$store.dispatch('streams/fetchOnlineStreams')
-    this.$store.dispatch('streams/fetchLastOnline')
+    this.$store.dispatch('streams/fetchStreamsByTag', this.$route.params.id)
   },
 
   methods: {
-    getTwitchThumbnail (twitchNickname) {
-      return `https://static-cdn.jtvnw.net/previews-ttv/live_user_${twitchNickname}-600x340.jpg`
-    },
+    getThumbnail (stream) {
+      return stream.online
+        ? `https://static-cdn.jtvnw.net/previews-ttv/live_user_${stream.name}-600x340.jpg`
+        : stream.logo
+    }
   }
 }
 </script>
@@ -95,22 +84,6 @@ export default {
       margin-bottom: 25px;
       &:first-child {
         margin-top: 0;
-      }
-      &:after {
-        content: '';
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-      }
-      &.live:after {
-        background-color: #D92B4C;
-      }
-      &.offline:after {
-        background-color: #858585;
       }
     }
   }
