@@ -11,6 +11,8 @@ export default {
     state.tags = data
   },
   [types.FETCH_STREAM_BY_TAG] (state, data) {
-    state.byTag = data
+    state.byTag = data.sort((a, b) => {
+      return b.online - a.online
+    })
   }
 }

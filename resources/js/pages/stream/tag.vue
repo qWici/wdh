@@ -10,7 +10,8 @@
         :title="item.title"
         :author="item.name"
         :date="item.date"
-        :type="type"/>
+        :type="type"
+        :online="item.online"/>
     </div>
   </div>
 </template>

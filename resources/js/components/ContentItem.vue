@@ -1,8 +1,11 @@
 <template>
   <router-link :to="{ name: type, params: { id: link }}" class="content-item">
+    <div v-if="type === 'stream'" :class="online ? 'live' : 'offline'" class="status">{{ status }}</div>
+
     <div :style="'background-image: url(' + src + ')'" class="img-wrapper">
       <img :src="src" :alt="title" style="display: none">
     </div>
+
     <span class="item-info">
       <span class="title">{{ title }}</span>
       <span class="data">
@@ -10,6 +13,7 @@
         <span class="author">{{ author }}</span>
       </span>
     </span>
+
   </router-link>
 </template>
 
@@ -24,6 +28,7 @@ export default {
     author: { type: String, required: true },
     date: { type: String, default: null },
     lang: { type: String, default: null },
+    online: { type: Boolean, default: false },
     type: {
       type: String,
       default: null,
@@ -36,7 +41,10 @@ export default {
   computed: {
     stream: () => {
       return this.type === 'stream'
-    }
+    },
+    status: () => {
+      return this.online ? 'Live' : 'Offline'
+    },
   }
 }
 </script>
@@ -50,6 +58,37 @@ export default {
     &:hover .item-info{
         bottom: 0;
         transition: all .2s ease-in;
+    }
+    .status {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 5px 10px 5px 26px;
+      border-radius: 3px;
+      z-index: 1;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: bold;
+      background-color: #36385F;
+      opacity: .8;
+      &:before {
+        content: '';
+        position: absolute;
+        left: 9px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 100%;
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+      &.live {
+        color: #FFF;
+        opacity: 1;
+        &:before {
+          background-color: #D92B4C;
+        }
+      }
     }
     .img-wrapper {
         height: 340px;
