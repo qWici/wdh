@@ -45,30 +45,54 @@ class ParseStreams extends Command
 
     public function getLinksToJSON()
     {
-        $response = RemoteRequest::getRemoteContent('https://api.github.com/repos/neculaesei/devstream.tv/contents/streams/');
-        $allStreamFiles = json_decode($response['data']);
-        foreach ($allStreamFiles as $stream) {
-            $this->storeNewStream($stream->download_url);
+        $response = RemoteRequest::getRemoteContent('https://gitlab.com/api/v4/projects/8927048/repository/files/streamers.min.json/raw?ref=master');
+        $allStreams = json_decode($response['data']);
+        foreach ($allStreams as $stream) {
+            if(Stream::where('name', $stream->twitch)->exists()) {
+                continue;
+            }
+
+            $this->getStreamDataFromTwitch($stream);
         }
     }
 
-    public function storeNewStream($JSON_URL)
+    public function getStreamDataFromTwitch($stream)
     {
-        $response = RemoteRequest::getRemoteContent($JSON_URL);
-        $streamData = json_decode($response['data']);
-
-        if(Stream::where('name', $streamData->name)->get()->count()) {
-            return false;
+        $additionalParams = [
+            'delay' => 3000,
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'Client-ID' => 'y9i5ff8ov1scsxlf15d9oya5oqxjzi'
+            ]
+        ];
+        $url = "https://api.twitch.tv/kraken/channels/" . $stream->twitch;
+        $response = RemoteRequest::getRemoteContent($url, $additionalParams);
+        try {
+            $data = json_decode($response['data']);
+            $this->storeNewStream($data, $stream->tags);
+        } catch (\ErrorException $errorException) {
+            var_dump($response);
         }
+    }
 
-        $newStream = new Stream();
-        $newStream->name = $streamData->name;
-        $newStream->twitch = $streamData->twitch;
-        $newStream->save();
+    public function storeNewStream($stream, $tags)
+    {
+        $streamerData = [
+            'name' => $stream->display_name,
+            'twitch' => $stream->name,
+            'title' => $stream->status,
+            'language' => $stream->language,
+            'logo' => $stream->logo
+        ];
 
-        foreach ($streamData->tags as $tag) {
+        $newStream = Stream::create($streamerData);
+
+        foreach ($tags as $tag) {
             $tag = StreamTag::firstOrCreate(['tag' => $tag], ['tag' => $tag]);
             $newStream->tags()->attach($tag->id);
         }
+
+        $this->info('Streamer ' . $stream->display_name . ' stored');
     }
 }

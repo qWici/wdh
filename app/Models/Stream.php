@@ -12,7 +12,7 @@ class Stream extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'twitch', 'online', 'title', 'language'
+        'name', 'twitch', 'online', 'title', 'language', 'logo'
     ];
 
     /**
@@ -26,6 +26,7 @@ class Stream extends Model
         'online' => 'boolean',
         'title' => 'string',
         'language' => 'string',
+        'logo' => 'string',
     ];
 
     public function tags()
