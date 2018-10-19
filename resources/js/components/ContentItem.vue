@@ -1,5 +1,6 @@
 <template>
   <router-link :to="{ name: type, params: { id: link }}" class="content-item">
+    <lang-flag :iso="lang" :squared="false" class="flag"/>
     <div v-if="type === 'stream'" :class="online ? 'live' : 'offline'" class="status">{{ status }}</div>
 
     <div :style="'background-image: url(' + src + ')'" class="img-wrapper">
@@ -44,7 +45,7 @@ export default {
     },
     status: () => {
       return this.online ? 'Live' : 'Offline'
-    },
+    }
   }
 }
 </script>
@@ -58,6 +59,14 @@ export default {
     &:hover .item-info{
         bottom: 0;
         transition: all .2s ease-in;
+    }
+    .flag {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 22px;
+      height: 22px;
+      z-index: 1;
     }
     .status {
       position: absolute;

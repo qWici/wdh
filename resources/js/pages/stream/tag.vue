@@ -10,6 +10,7 @@
         :title="item.title"
         :author="item.name"
         :date="item.date"
+        :lang="item.language"
         :type="type"
         :online="item.online"/>
     </div>

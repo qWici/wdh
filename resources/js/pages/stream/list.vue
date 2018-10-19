@@ -10,6 +10,7 @@
         :title="item.title"
         :author="item.name"
         :date="item.date"
+        :lang="item.language"
         :type="type"/>
     </div>
     <h2 v-show="lastOnline.length > 0" class="offline">Last online</h2>
@@ -22,6 +23,7 @@
         :title="item.title"
         :author="item.name"
         :date="item.date"
+        :lang="item.language"
         :type="type"/>
     </div>
   </div>
@@ -61,7 +63,7 @@ export default {
   methods: {
     getTwitchThumbnail (twitchNickname) {
       return `https://static-cdn.jtvnw.net/previews-ttv/live_user_${twitchNickname}-600x340.jpg`
-    },
+    }
   }
 }
 </script>
