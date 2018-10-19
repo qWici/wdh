@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2 v-show="live.length > 0" class="live">Live now</h2>
+    <h2 v-show="live.length > 0" class="live">{{ $t('live_now') }}</h2>
     <div v-show="live.length > 0" class="content-wrapper">
       <content-item
         v-for="(item, key) in live"
@@ -11,9 +11,10 @@
         :author="item.name"
         :date="item.date"
         :lang="item.language"
+        :online="item.online"
         :type="type"/>
     </div>
-    <h2 v-show="lastOnline.length > 0" class="offline">Last online</h2>
+    <h2 v-show="lastOnline.length > 0" class="offline">{{ $t('last_online') }}</h2>
     <div v-show="lastOnline.length > 0" class="content-wrapper">
       <content-item
         v-for="(item, key) in lastOnline"
@@ -24,6 +25,7 @@
         :author="item.name"
         :date="item.date"
         :lang="item.language"
+        :online="item.online"
         :type="type"/>
     </div>
   </div>

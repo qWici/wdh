@@ -44,5 +44,9 @@
   "articles": "Articles",
   "streams": "Live Streams",
   "videos": "Videos",
-  "podcasts": "Podcasts"
+  "podcasts": "Podcasts",
+  "live_now": "Live now",
+  "live": "Live",
+  "last_online" : "Last online",
+  "offline": "Offline"
 }

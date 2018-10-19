@@ -31,7 +31,7 @@ export default {
   },
 
   metaInfo () {
-    return { title: this.$route.params.id }
+    return { title: this.$route.params.id + " streams" }
   },
 
   data: () => ({

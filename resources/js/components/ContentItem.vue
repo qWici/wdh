@@ -8,7 +8,7 @@
     </div>
 
     <span class="item-info">
-      <span class="title">{{ title }}</span>
+      <span class="title">{{ trimmedTitle }}</span>
       <span class="data">
         <span v-if="type !== 'stream'" class="date">{{ date }}</span>
         <span class="author">{{ author }}</span>
@@ -40,11 +40,18 @@ export default {
   },
 
   computed: {
-    stream: () => {
+    stream: function () {
       return this.type === 'stream'
     },
-    status: () => {
-      return this.online ? 'Live' : 'Offline'
+    status: function () {
+      return this.online ? this.$t('live') : this.$t('offline')
+    },
+    trimmedTitle: function () {
+      if (this.title.length >= 50) {
+        return this.title.substr(0, 47) + '...'
+      }
+
+      return this.title
     }
   }
 }
