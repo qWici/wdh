@@ -1,9 +1,15 @@
 <template>
   <div v-click-outside="hide" class="locales">
-    <a href="#" class="current-locale" @click.prevent="showLocales">{{ locales[locale] }}</a>
+    <a href="#" class="current-locale" @click.prevent="showLocales">
+      <lang-flag :iso="locale" :squared="false" class="flag"/>
+      {{ locales[locale] }}
+    </a>
     <ul v-show="show">
       <li v-for="(value, key) in locales" v-if="value !== locales[locale]" :key="key">
-        <a href="#" @click.prevent="setLocale(key)">{{ value }}</a>
+        <a href="#" @click.prevent="setLocale(key)">
+          <lang-flag :iso="key" :squared="false" class="flag"/>
+          {{ value }}
+        </a>
       </li>
     </ul>
   </div>
@@ -75,7 +81,7 @@ export default {
     display: flex;
     flex-direction: column;
     margin: 0;
-    width: 70px;
+    width: 80px;
     background-color: #3c376b;
     padding: 10px;
     right: 0;
@@ -84,6 +90,12 @@ export default {
       text-align: right;
       &:last-child {
         margin-bottom: 0;
+      }
+      a {
+        display: flex;
+        span {
+          margin-right: 10px;
+        }
       }
     }
   }
