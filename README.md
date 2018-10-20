@@ -3,6 +3,7 @@
 ### Back-end
 ```bash
 composer install
+cp .env.example .env
 php artisan key:generate
 ```
 Create DB & configurate .env
