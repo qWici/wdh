@@ -13,11 +13,12 @@ class Article extends Model
      */
     protected $fillable = [
         'title',
+        'slug',
         'image_src',
         'link',
-        'author',
+        'author_id',
         'date',
-        'lang'
+        'description'
     ];
 
     /**
@@ -26,11 +27,6 @@ class Article extends Model
      * @var array
      */
     protected $casts = [
-        'title' => 'string',
-        'image_src' => 'string',
-        'link' => 'string',
-        'author' => 'string',
-        'date' => 'date:j M Y',
-        'lang' => 'string',
+        'date' => 'date:j M Y'
     ];
 }
