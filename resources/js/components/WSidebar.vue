@@ -10,12 +10,12 @@
     <nav class="content-nav">
       <ul>
         <li>
-          <div class="content-nav__category">
+          <router-link :to="{ name: 'articles' }" class="content-nav__category" active-class="active">
             <span class="content-nav__category__icon gradient-pink">
               <fa :icon="['far', 'newspaper']" fixed-width/>
             </span>
             <span class="content-nav__category__title">{{ $t('articles') }}</span>
-          </div>
+          </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'streams' }" class="content-nav__category" active-class="active">

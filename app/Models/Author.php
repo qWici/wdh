@@ -30,4 +30,9 @@ class Author extends Model
         'logo' => 'string',
         'feed_url' => 'string',
     ];
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

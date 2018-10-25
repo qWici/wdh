@@ -30,6 +30,10 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('tag/{tag}', 'StreamController@byTag');
         Route::get('tags/{twitchname}', 'StreamController@tags');
     });
+
+    Route::prefix('articles')->group(function () {
+        Route::get('all', 'ArticleController@all');
+    });
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

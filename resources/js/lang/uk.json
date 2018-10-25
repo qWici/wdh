@@ -48,5 +48,6 @@
   "live_now": "Зараз онлайн",
   "live": "Онлайн",
   "last_online" : "Останні онлайн",
-  "offline": "Оффлайн"
+  "offline": "Оффлайн",
+  "last_publications": "Останні публікації"
 }

@@ -59,7 +59,6 @@ class ParseStreams extends Command
     public function getStreamDataFromTwitch($stream)
     {
         $additionalParams = [
-            'delay' => 3000,
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',

@@ -29,4 +29,9 @@ class Article extends Model
     protected $casts = [
         'date' => 'date:j M Y'
     ];
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
 }
