@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Article;
 use App\Models\Author;
 use Illuminate\Console\Command;
-use Orchestra\Parser\Xml\Facade as XmlParser;
+use Image;
 
 class CheckNewArticle extends Command
 {
@@ -44,6 +44,9 @@ class CheckNewArticle extends Command
             $articles = $this->getArticles($author->feed_url);
             $articles = array_slice($articles, 0, 5);
             foreach ($articles as $article) {
+                if(Article::where(['slug' => str_slug($article['title']), 'author_id' => $author->id])->exists()) {
+                    continue;
+                }
                 $this->storeArticle($article, $author->id, $author->site_url);
             }
         }
@@ -65,10 +68,10 @@ class CheckNewArticle extends Command
 
             $description = null;
 
-            if(count($node->getElementsByTagName('description')) > 0) {
-                $description = $node->getElementsByTagName('description')->item(0)->nodeValue;
-            } elseif(count($node->getElementsByTagName('encoded')) > 0) {
+            if(count($node->getElementsByTagName('encoded')) > 0) {
                 $description = $node->getElementsByTagName('encoded')->item(0)->nodeValue;
+            } elseif(count($node->getElementsByTagName('description')) > 0) {
+                $description = $node->getElementsByTagName('description')->item(0)->nodeValue;
             }
 
             $item = [
@@ -88,35 +91,78 @@ class CheckNewArticle extends Command
         $newArticle->title = $article['title'];
         $newArticle->slug = str_slug($article['title']);
         $newArticle->link = $article['link'];
-
-        $descriptionSlices = empty($article['description']) ?: substr(strip_tags($article['description']),0,500);
-        $newArticle->description = $descriptionSlices;
-
+        $newArticle->description = $this->prepareDescription($article['description']);
         $newArticle->author_id = $authorID;
         $newArticle->date = empty($article['pubDate'])
             ? date('Y-m-d-H:i:s', time())
             : date("Y-m-d H:i:s", strtotime($article['pubDate']));
 
-        $newArticle->image_src = $this->getImageFromDescription($article['description'], $site_url);
+        $newArticle->image_src = $this->getImageFromDescription($article['description'], $site_url, $article['title']);
 
-        $newArticle->save();
+        try{
+            $newArticle->save();
+        } catch (\Exception $exception) {
+            var_dump($exception);
+        }
     }
 
-    public function getImageFromDescription($description, $site_url)
+    public function getImageFromDescription($description, $site_url, $title)
     {
         if(empty($description)) { return null; }
 
         $imageSRC = '';
-        $re = '/src=\"(.*)\" /mU';
+        $re = '/(<img.*?src=")([^"]*?(?:png|jpg|jpeg|gif|png|svg))/m';
         preg_match_all($re, $description, $matches, PREG_SET_ORDER, 0);
-        if(! empty($matches) && !empty($matches[0][1])) {
-            $imageSRC = $matches[0][1];
+        if(! empty($matches) && !empty($matches[0][2])) {
+            $imageSRC = $matches[0][2];
+        }
+
+        if(empty($imageSRC)) {
+            return $this->generateImage($title);
         }
 
         if(strpos($imageSRC, 'http') !== false) {
-            return $imageSRC;
+            return str_replace('"', "", $imageSRC);
         }
 
-        return $site_url . $imageSRC;
+        return $site_url . str_replace('"', "", $imageSRC);
+    }
+
+    public function prepareDescription($description)
+    {
+        $description = str_replace('><', '> <', $description);
+        $preparedDescription = mb_convert_encoding(htmlspecialchars_decode(strip_tags($description)), "UTF-8");
+        $descriptionSlices = empty($description) ?: substr($preparedDescription,0,500);
+
+        return trim($descriptionSlices);
+    }
+
+    public function generateImage($title)
+    {
+        $img = Image::make('public/img/default_item_bg.jpeg');
+
+        $words = explode(' ', $title);
+        $phrases = array_chunk($words, 4);
+        $startPosY = 525 - ((count($phrases) - 1) * 72);
+
+        foreach ($phrases as $counter => $phrase) {
+            $text = implode($phrase, " ");
+
+            $posY = $startPosY + ($counter * 115);
+
+            $img->text($text, 800, $posY, function($font) {
+                $font->file('public/fonts/Montserrat-Bold.ttf');
+                $font->size(72);
+                $font->color('#2B274D');
+                $font->align('center');
+                $font->valign('middle');
+            });
+        }
+
+
+        $imagePath = "/images/articles/" . str_slug($title) . ".jpg";
+        $img->encode('jpg', 75)->save("public" . $imagePath);
+
+        return $imagePath;
     }
 }
