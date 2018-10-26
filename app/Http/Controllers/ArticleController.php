@@ -12,4 +12,10 @@ class ArticleController extends Controller
         $articles = Article::with('author')->limit(9)->get();
         return response()->json(['data' => $articles]);
     }
+
+    public function paginate()
+    {
+        $articles = Article::with('author')->paginate(9);
+        return response()->json(['data' => $articles]);
+    }
 }

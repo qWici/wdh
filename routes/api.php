@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::prefix('articles')->group(function () {
         Route::get('all', 'ArticleController@all');
+        Route::get('paginate', 'ArticleController@paginate');
     });
 });
 

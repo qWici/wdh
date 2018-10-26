@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <h2 v-show="all.length > 0" >{{ $t('last_publications') }}</h2>
+    <h2 v-show="items.length > 0" >{{ $t('last_publications') }}</h2>
     <div class="content-wrapper">
       <content-item
-        v-for="(item, key) in all"
+        v-for="(item, key) in items"
         :key="key"
         :src="item.image_src"
         :link="item.link"
@@ -13,12 +13,16 @@
         :lang="item.author.language"
         :type="type"/>
     </div>
-    </div>
+    <infinite-loading :distance="0" spinner="spiral" @infinite="infiniteHandler">
+      <div slot="no-more"></div>
+    </infinite-loading>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import ContentItem from '../../components/ContentItem'
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   middleware: 'auth',
@@ -26,7 +30,8 @@ export default {
   name: 'ArticleList',
 
   components: {
-    ContentItem
+    ContentItem,
+    InfiniteLoading
   },
 
   metaInfo () {
@@ -34,18 +39,34 @@ export default {
   },
 
   data: () => ({
-    type: 'article'
+    type: 'article',
+    page: 1,
+    countItems: 0,
+    infinityState: null
   }),
 
   computed: mapGetters({
-    all: 'articles/all'
+    items: 'articles/paginate'
   }),
 
-  created () {
-    this.$store.dispatch('articles/fetchAllArticles')
+  watch: {
+    items (newItems) {
+      this.page += 1
+      if (this.countItems === newItems.length) {
+        this.infinityState.complete()
+      } else {
+        this.countItems = newItems.length
+        this.infinityState.loaded()
+      }
+    }
   },
 
-  methods: {}
+  methods: {
+    infiniteHandler ($state) {
+      this.infinityState = $state
+      this.$store.dispatch('articles/fetchPaginateArticles', this.page + 1)
+    }
+  }
 }
 </script>
 

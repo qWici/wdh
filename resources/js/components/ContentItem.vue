@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{ name: type, params: { id: link }}" class="content-item">
-    <lang-flag :iso="lang" :squared="false" class="flag"/>
+    <lang-flag v-if="lang !== null" :iso="lang" :squared="false" class="flag"/>
     <div v-if="type === 'stream'" :class="online ? 'live' : 'offline'" class="status">{{ status }}</div>
 
     <div :style="'background-image: url(' + src + ')'" class="img-wrapper">
