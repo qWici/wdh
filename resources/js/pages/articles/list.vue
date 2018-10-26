@@ -40,7 +40,7 @@ export default {
 
   data: () => ({
     type: 'article',
-    page: 1,
+    page: 0,
     countItems: 0,
     infinityState: null
   }),
@@ -59,6 +59,10 @@ export default {
         this.infinityState.loaded()
       }
     }
+  },
+
+  destroyed () {
+    this.$store.dispatch('articles/clearState')
   },
 
   methods: {

@@ -1,7 +1,9 @@
 export const FETCH_ALL = 'FETCH_ALL'
 export const FETCH_PAGINATE = 'FETCH_PAGINATE'
+export const CLEAR_ARTICLES = 'CLEAR_ARTICLES'
 
 export default {
   FETCH_ALL,
-  FETCH_PAGINATE
+  FETCH_PAGINATE,
+  CLEAR_ARTICLES
 }

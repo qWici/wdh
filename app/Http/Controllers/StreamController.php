@@ -14,8 +14,8 @@ class StreamController extends Controller
 
     public function online()
     {
-        $streams = Stream::where('online', true)->get();
-        return response()->json(['count' => $streams->count(), 'data' => $streams]);
+        $streams = Stream::where('online', true)->paginate(9);
+        return response()->json(['data' => $streams]);
     }
 
     public function lastonline()

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <h2 v-show="live.length > 0" class="live">{{ $t('live_now') }}</h2>
-    <div v-show="live.length > 0" class="content-wrapper">
+    <h2 class="live">{{ $t('live_now') }}</h2>
+    <div class="content-wrapper">
       <content-item
         v-for="(item, key) in live"
         :key="key"
@@ -13,20 +13,9 @@
         :lang="item.language"
         :online="item.online"
         :type="type"/>
-    </div>
-    <h2 v-show="lastOnline.length > 0" class="offline">{{ $t('last_online') }}</h2>
-    <div v-show="lastOnline.length > 0" class="content-wrapper">
-      <content-item
-        v-for="(item, key) in lastOnline"
-        :key="key"
-        :src="item.logo"
-        :link="item.twitch"
-        :title="item.title"
-        :author="item.name"
-        :date="item.date"
-        :lang="item.language"
-        :online="item.online"
-        :type="type"/>
+      <infinite-loading :distance="0" spinner="spiral" @infinite="infiniteHandler">
+        <div slot="no-more"></div>
+      </infinite-loading>
     </div>
   </div>
 </template>
@@ -34,6 +23,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import ContentItem from '../../components/ContentItem'
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   middleware: 'auth',
@@ -41,7 +31,8 @@ export default {
   name: 'StreamList',
 
   components: {
-    ContentItem
+    ContentItem,
+    InfiniteLoading
   },
 
   metaInfo () {
@@ -49,20 +40,37 @@ export default {
   },
 
   data: () => ({
-    type: 'stream'
+    type: 'stream',
+    page: 0,
+    countItems: 0,
+    infinityState: null
   }),
 
   computed: mapGetters({
-    live: 'streams/streamsOnline',
-    lastOnline: 'streams/lastOnline'
+    live: 'streams/streamsOnline'
   }),
 
-  created () {
-    this.$store.dispatch('streams/fetchOnlineStreams')
-    this.$store.dispatch('streams/fetchLastOnline')
+  watch: {
+    live (newItems) {
+      this.page += 1
+      if (this.countItems === newItems.length) {
+        this.infinityState.complete()
+      } else {
+        this.countItems = newItems.length
+        this.infinityState.loaded()
+      }
+    }
+  },
+
+  destroyed () {
+    this.$store.dispatch('streams/clearState')
   },
 
   methods: {
+    infiniteHandler ($state) {
+      this.infinityState = $state
+      this.$store.dispatch('streams/fetchOnlineStreams', this.page + 1)
+    },
     getTwitchThumbnail (twitchNickname) {
       return `https://static-cdn.jtvnw.net/previews-ttv/live_user_${twitchNickname}-600x340.jpg`
     }

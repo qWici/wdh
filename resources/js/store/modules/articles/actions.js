@@ -13,7 +13,12 @@ export const fetchPaginateArticles = async ({ commit }, pageNumber = 1) => {
   commit(types.FETCH_PAGINATE, data.data.data)
 }
 
+export const clearState = async ({ commit }) => {
+  commit(types.CLEAR_ARTICLES)
+}
+
 export default {
   fetchAllArticles,
-  fetchPaginateArticles
+  fetchPaginateArticles,
+  clearState
 }

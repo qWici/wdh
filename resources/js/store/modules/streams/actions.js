@@ -1,10 +1,10 @@
 import * as types from './mutation-types'
 import axios from 'axios'
 
-export const fetchOnlineStreams = async ({ commit }) => {
-  const { data } = await axios.get('/api/streams/online')
+export const fetchOnlineStreams = async ({ commit }, pageNumber = 1) => {
+  const { data } = await axios.get(`/api/streams/online?page=${pageNumber}`)
 
-  commit(types.FETCH_ONLINE, data.data)
+  commit(types.FETCH_ONLINE, data.data.data)
 }
 
 export const fetchLastOnline = async ({ commit }) => {
@@ -25,9 +25,14 @@ export const fetchStreamsByTag = async ({ commit }, tag) => {
   commit(types.FETCH_STREAM_BY_TAG, data.data)
 }
 
+export const clearState = async ({ commit }) => {
+  commit(types.CLEAR_STREAMS)
+}
+
 export default {
   fetchOnlineStreams,
   fetchLastOnline,
   fetchStreamTags,
-  fetchStreamsByTag
+  fetchStreamsByTag,
+  clearState
 }

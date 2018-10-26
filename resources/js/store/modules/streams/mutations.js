@@ -2,7 +2,7 @@ import * as types from './mutation-types'
 
 export default {
   [types.FETCH_ONLINE] (state, data) {
-    state.online = data
+    state.online = [...state.online, ...data]
   },
   [types.FETCH_LAST_ONLINE] (state, data) {
     state.lastOnline = data
@@ -14,5 +14,8 @@ export default {
     state.byTag = data.sort((a, b) => {
       return b.online - a.online
     })
+  },
+  [types.CLEAR_STREAMS] (state) {
+    state.online = []
   }
 }
