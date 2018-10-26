@@ -12,6 +12,7 @@ const StreamTag = () => import('~/pages/stream/tag').then(m => m.default || m)
 const StreamSingle = () => import('~/pages/stream/single').then(m => m.default || m)
 
 const ArticleList = () => import('~/pages/articles/list').then(m => m.default || m)
+const ArticleSingle = () => import('~/pages/articles/single').then(m => m.default || m)
 
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
 const SettingsProfile = () => import('~/pages/settings/profile').then(m => m.default || m)
@@ -32,6 +33,7 @@ export default [
   { path: '/stream/tag/:id', name: 'stream.tag', component: StreamTag },
 
   { path: '/articles', name: 'articles', component: ArticleList },
+  { path: '/article/:id', name: 'article', component: ArticleSingle },
 
   { path: '/settings',
     component: Settings,

@@ -25,7 +25,7 @@ export default {
   props: {
     src: { type: String, default: null }, // @TODO Add default image
     title: { type: String, required: true },
-    link: { type: String, required: true },
+    link: { type: [String, Number], required: true },
     author: { type: String, required: true },
     date: { type: String, default: null },
     lang: { type: String, default: null },

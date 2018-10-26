@@ -7,6 +7,12 @@ export const fetchAllArticles = async ({ commit }) => {
   commit(types.FETCH_ALL, data.data)
 }
 
+export const fetchById = async ({ commit }, id) => {
+  const { data } = await axios.get(`/api/articles/id/${id}`)
+
+  commit(types.FETCH_BY_ID, data.data[0])
+}
+
 export const fetchPaginateArticles = async ({ commit }, pageNumber = 1) => {
   const { data } = await axios.get(`/api/articles/paginate?page=${pageNumber}`)
 
@@ -20,5 +26,6 @@ export const clearState = async ({ commit }) => {
 export default {
   fetchAllArticles,
   fetchPaginateArticles,
-  clearState
+  clearState,
+  fetchById
 }

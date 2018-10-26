@@ -18,4 +18,10 @@ class ArticleController extends Controller
         $articles = Article::with('author')->paginate(9);
         return response()->json(['data' => $articles]);
     }
+
+    public function byId($id)
+    {
+        $article = Article::where('id', $id)->with('author')->get();
+        return response()->json(['data' => $article]);
+    }
 }

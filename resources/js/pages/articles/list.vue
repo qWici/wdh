@@ -6,7 +6,7 @@
         v-for="(item, key) in items"
         :key="key"
         :src="item.image_src"
-        :link="item.link"
+        :link="item.id"
         :title="item.title"
         :author="item.author.name"
         :date="item.date"
