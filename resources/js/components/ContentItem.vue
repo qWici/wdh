@@ -23,7 +23,7 @@ export default {
   name: 'ContentItem',
 
   props: {
-    src: { type: String, default: null }, // @TODO Add default image
+    src: { type: String, default: '/img/no_image.webp' },
     title: { type: String, required: true },
     link: { type: [String, Number], required: true },
     author: { type: String, required: true },
