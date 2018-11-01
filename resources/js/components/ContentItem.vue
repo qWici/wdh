@@ -1,7 +1,8 @@
 <template>
-  <router-link :to="{ name: type, params: { id: link }}" class="content-item">
+  <router-link :to="itemLink" class="content-item">
     <lang-flag v-if="lang !== null" :iso="lang" :squared="false" class="flag"/>
-    <div v-if="type === 'stream'" :class="online ? 'live' : 'offline'" class="status">{{ status }}</div>
+
+    <div v-if="stream" :class="online ? 'live' : 'offline'" class="status">{{ status }}</div>
 
     <div :style="'background-image: url(' + src + ')'" class="img-wrapper">
       <img :src="src" :alt="title" style="display: none">
@@ -10,7 +11,7 @@
     <span class="item-info">
       <span class="title">{{ trimmedTitle }}</span>
       <span class="data">
-        <span v-if="type !== 'stream'" class="date">{{ date }}</span>
+        <span v-if="stream" class="date">{{ date }}</span>
         <span class="author">{{ author }}</span>
       </span>
     </span>
@@ -52,6 +53,9 @@ export default {
       }
 
       return this.title
+    },
+    itemLink: function () {
+      return {name: this.type, params: { id: this.link }}
     }
   }
 }
