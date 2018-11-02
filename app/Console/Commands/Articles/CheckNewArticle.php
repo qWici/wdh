@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Articles;
 
 use App\Models\Article;
 use App\Models\Author;

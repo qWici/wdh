@@ -2,7 +2,7 @@
 
 namespace App\Console;
 
-use App\Console\Commands\CheckStreamsOnline;
+use App\Console\Commands\Streams\CheckStreamsOnline;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
