@@ -40,7 +40,7 @@ class ParseAuthors extends Command
      */
     public function handle()
     {
-        $response = RemoteRequest::getRemoteContent('https://gitlab.com/api/v4/projects/8927048/repository/files/authors.min.json/raw?ref=master');
+        $response = RemoteRequest::getRemoteContent(config('resources.authors'));
         $authors = json_decode($response['data']);
         foreach ($authors as $author) {
             $authorSlug = str_slug($author->name);

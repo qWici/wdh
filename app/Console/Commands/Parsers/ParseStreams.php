@@ -45,7 +45,7 @@ class ParseStreams extends Command
 
     public function getLinksToJSON()
     {
-        $response = RemoteRequest::getRemoteContent('https://gitlab.com/api/v4/projects/8927048/repository/files/streamers.min.json/raw?ref=master');
+        $response = RemoteRequest::getRemoteContent(config('resources.streamers'));
         $allStreams = json_decode($response['data']);
         foreach ($allStreams as $stream) {
             if(Stream::where('name', $stream->twitch)->exists()) {
