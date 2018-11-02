@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\Parsers;
 
-use App\Helpers\RemoteRequest;
+use App\Helpers\ParseResource;
 use App\Models\Author;
 use Illuminate\Console\Command;
 use Image;
@@ -40,8 +40,8 @@ class ParseAuthors extends Command
      */
     public function handle()
     {
-        $response = RemoteRequest::getRemoteContent(config('resources.authors'));
-        $authors = json_decode($response['data']);
+        $authors = ParseResource::getData('authors');
+
         foreach ($authors as $author) {
             $authorSlug = str_slug($author->name);
             $author->slug = $authorSlug;

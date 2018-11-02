@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Parsers;
 
+use App\Helpers\ParseResource;
 use App\Helpers\RemoteRequest;
 use App\Models\Stream;
 use App\Models\StreamTag;
@@ -45,9 +46,9 @@ class ParseStreams extends Command
 
     public function getLinksToJSON()
     {
-        $response = RemoteRequest::getRemoteContent(config('resources.streamers'));
-        $allStreams = json_decode($response['data']);
-        foreach ($allStreams as $stream) {
+        $streamers = ParseResource::getData('streamers');
+
+        foreach ($streamers as $stream) {
             if(Stream::where('name', $stream->twitch)->exists()) {
                 continue;
             }
