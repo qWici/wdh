@@ -29,11 +29,11 @@ export default [
   { path: '/home', name: 'home', component: Home },
 
   { path: '/streams', name: 'streams', component: StreamList },
-  { path: '/stream/:id', name: 'stream', component: StreamSingle },
-  { path: '/stream/tag/:id', name: 'stream.tag', component: StreamTag },
+  { path: '/stream/:id', name: 'stream', component: StreamSingle }, // @TODO: by slug
+  { path: '/stream/tag/:id', name: 'stream.tag', component: StreamTag }, // @TODO: by slug
 
   { path: '/articles', name: 'articles', component: ArticleList },
-  { path: '/article/:id', name: 'article', component: ArticleSingle },
+  { path: '/article/:id', name: 'article', component: ArticleSingle }, // @TODO: by slug
 
   { path: '/settings',
     component: Settings,
