@@ -14,6 +14,7 @@ class Channel extends Model
     protected $fillable = [
         'youtube_id',
         'title',
+        'slug',
         'description',
         'custom_url',
         'image_src',

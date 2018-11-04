@@ -15,8 +15,9 @@ class CreateChannelsTable extends Migration
     {
         Schema::create('channels', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('youtube_id');
+            $table->string('youtube_id');
             $table->string('title');
+            $table->string('slug');
             $table->text('description');
             $table->string('custom_url')->nullable();
             $table->string('image_src');

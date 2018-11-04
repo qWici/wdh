@@ -15,6 +15,7 @@ class Video extends Model
         'channel_id',
         'youtube_id',
         'title',
+        'slug',
         'description',
         'image_src',
         'viewCount',
