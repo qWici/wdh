@@ -61,6 +61,11 @@ class ParseYoutubeChannels extends Command
         }
     }
 
+    /**
+     * Store channel
+     *
+     * @param $channel
+     */
     public function storeChannel($channel)
     {
         $newChannel = new Channel();
@@ -79,6 +84,11 @@ class ParseYoutubeChannels extends Command
         $this->info("Channel " . $newChannel->title . " stored");
     }
 
+    /**
+     * Store channel logo to public folder in webp format
+     *
+     * @param $channel
+     */
     public function storeAndUpdateLogo($channel)
     {
         $imageURL = $channel->image_src;
@@ -88,6 +98,15 @@ class ParseYoutubeChannels extends Command
         $channel->save();
     }
 
+
+    /**
+     * Check if channel snippets has property
+     * Now using for check country
+     *
+     * @param $channel
+     * @param string $property
+     * @return null
+     */
     public function checkExistProperty($channel, string $property)
     {
         if(property_exists($channel->snippet, $property)){

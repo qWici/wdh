@@ -52,6 +52,12 @@ class CheckNewArticle extends Command
         }
     }
 
+    /**
+     * Get list of last articles from RSS feed
+     *
+     * @param $url
+     * @return array
+     */
     public function getArticles($url)
     {
         $rss = new \DOMDocument();
@@ -85,6 +91,13 @@ class CheckNewArticle extends Command
         return $feed;
     }
 
+    /**
+     * Store article to DB
+     *
+     * @param $article
+     * @param $authorID
+     * @param $site_url
+     */
     public function storeArticle($article, $authorID, $site_url)
     {
         $newArticle = new Article();
@@ -106,6 +119,14 @@ class CheckNewArticle extends Command
         }
     }
 
+    /**
+     * Get first image URL from description
+     *
+     * @param $description
+     * @param $site_url
+     * @param $title
+     * @return mixed|null|string
+     */
     public function getImageFromDescription($description, $site_url, $title)
     {
         if(empty($description)) { return null; }
@@ -128,6 +149,12 @@ class CheckNewArticle extends Command
         return $site_url . str_replace('"', "", $imageSRC);
     }
 
+    /**
+     * Remove html tags and slice to 500 symbols
+     *
+     * @param $description
+     * @return string
+     */
     public function prepareDescription($description)
     {
         $description = str_replace('><', '> <', $description);
@@ -137,6 +164,12 @@ class CheckNewArticle extends Command
         return trim($descriptionSlices);
     }
 
+    /**
+     * If article doesn't have image - generate it by article title
+     *
+     * @param $title
+     * @return string
+     */
     public function generateImage($title)
     {
         $img = Image::make('public/img/default_item_bg.jpeg');

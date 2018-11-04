@@ -55,6 +55,11 @@ class ParseAuthors extends Command
         }
     }
 
+    /**
+     * Store logo to public folder in .webp format
+     *
+     * @param $author
+     */
     public function storeAndUpdateLogo($author)
     {
         $imageURL = $author->logo;

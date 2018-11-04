@@ -60,6 +60,13 @@ class CheckStreamsOnline extends Command
         $this->info(date('Y-m-d H:i:s') . " Streams Updated");
     }
 
+
+    /**
+     * Check if stream is live
+     *
+     * @param $streamNickname
+     * @return bool
+     */
     public function check($streamNickname)
     {
         $additionalParams = [

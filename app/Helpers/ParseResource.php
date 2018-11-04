@@ -6,6 +6,13 @@ use App\Helpers\RemoteRequest;
 
 class ParseResource
 {
+    /**
+     * Get resource data from Gitlab storage
+     * https://gitlab.com/qWici/webdev-resources
+     *
+     * @param $resourceType
+     * @return mixed
+     */
     public static function getData($resourceType)
     {
         $response = RemoteRequest::getRemoteContent(config('resources.' .$resourceType));

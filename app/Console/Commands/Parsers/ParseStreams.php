@@ -41,11 +41,6 @@ class ParseStreams extends Command
      */
     public function handle()
     {
-        $this->getLinksToJSON();
-    }
-
-    public function getLinksToJSON()
-    {
         $streamers = ParseResource::getData('streamers');
 
         foreach ($streamers as $stream) {
@@ -57,6 +52,11 @@ class ParseStreams extends Command
         }
     }
 
+    /**
+     * Get data from Twitch
+     *
+     * @param $stream
+     */
     public function getStreamDataFromTwitch($stream)
     {
         $additionalParams = [
@@ -76,6 +76,12 @@ class ParseStreams extends Command
         }
     }
 
+    /**
+     * Store new streamer
+     *
+     * @param $stream
+     * @param $tags
+     */
     public function storeNewStream($stream, $tags)
     {
         $streamerData = [
