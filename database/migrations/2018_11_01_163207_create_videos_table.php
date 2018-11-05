@@ -21,7 +21,7 @@ class CreateVideosTable extends Migration
             $table->string('slug');
             $table->text('description');
             $table->string('image_src');
-            $table->integer('viewCount');
+            $table->integer('viewCount')->nullable();
             $table->string('published_at');
             $table->timestamps();
         });
