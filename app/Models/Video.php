@@ -18,7 +18,12 @@ class Video extends Model
         'slug',
         'description',
         'image_src',
-        'viewCount',
+        'lang',
         'published_at'
     ];
+
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class);
+    }
 }

@@ -14,6 +14,8 @@ const StreamSingle = () => import('~/pages/stream/single').then(m => m.default |
 const ArticleList = () => import('~/pages/articles/list').then(m => m.default || m)
 const ArticleSingle = () => import('~/pages/articles/single').then(m => m.default || m)
 
+const VideosList = () => import('~/pages/videos/list').then(m => m.default || m)
+
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
 const SettingsProfile = () => import('~/pages/settings/profile').then(m => m.default || m)
 const SettingsPassword = () => import('~/pages/settings/password').then(m => m.default || m)
@@ -34,6 +36,8 @@ export default [
 
   { path: '/articles', name: 'articles', component: ArticleList },
   { path: '/article/:id', name: 'article', component: ArticleSingle }, // @TODO: by slug
+
+  { path: '/videos', name: 'videos', component: VideosList },
 
   { path: '/settings',
     component: Settings,

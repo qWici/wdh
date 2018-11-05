@@ -5,6 +5,7 @@ import auth from './modules/auth'
 import lang from './modules/lang'
 import streams from './modules/streams'
 import articles from './modules/articles'
+import videos from './modules/videos'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     auth,
     lang,
     streams,
-    articles
+    articles,
+    videos
   }
 })

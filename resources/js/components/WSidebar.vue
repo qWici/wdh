@@ -26,12 +26,12 @@
           </router-link>
         </li>
         <li>
-          <div class="content-nav__category">
+          <router-link :to="{ name: 'videos' }" class="content-nav__category" active-class="active">
             <span class="content-nav__category__icon gradient-blue">
               <fa :icon="['fab', 'youtube']" fixed-width/>
             </span>
             <span class="content-nav__category__title">{{ $t('videos') }}</span>
-          </div>
+          </router-link>
         </li>
         <li>
           <div class="content-nav__category">

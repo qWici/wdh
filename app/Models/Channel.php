@@ -21,4 +21,9 @@ class Channel extends Model
         'country',
         'subscriber_count'
     ];
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
 }

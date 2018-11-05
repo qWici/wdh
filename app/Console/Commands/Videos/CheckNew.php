@@ -42,7 +42,7 @@ class CheckNew extends Command
     public function handle()
     {
         foreach (Channel::cursor() as $channel) {
-            $videoList = Youtube::listChannelVideos($channel->youtube_id, 10);
+            $videoList = Youtube::listChannelVideos($channel->youtube_id, 10, 'date');
             $this->check($videoList, $channel->id);
         }
     }
@@ -54,15 +54,17 @@ class CheckNew extends Command
                 continue;
             }
 
-            $this->store($video, $channelID);
+            $this->store($video->id->videoId, $channelID);
         }
     }
 
-    public function store($video, $channelID)
+    public function store($videoID, $channelID)
     {
+        $video = Youtube::getVideoInfo($videoID);
+
         $newVideo = new Video();
         $newVideo->channel_id = $channelID;
-        $newVideo->youtube_id = $video->id->videoId;
+        $newVideo->youtube_id = $videoID;
         $newVideo->title = $video->snippet->title;
         $newVideo->slug = str_slug($video->snippet->title);
         $newVideo->description = $video->snippet->description;
@@ -72,8 +74,9 @@ class CheckNew extends Command
             str_slug($video->snippet->title)
         );
 
+        $newVideo->lang = $this->checkAndPrepareLang($video);
         $newVideo->image_src = $thumbnail;
-        $newVideo->published_at = $video->snippet->publishedAt;
+        $newVideo->published_at = date("Y-m-d H:i:s", strtotime($video->snippet->publishedAt));
         $newVideo->save();
 
         $this->info("Video \"" . $newVideo->title . "\" stored");
@@ -84,5 +87,19 @@ class CheckNew extends Command
         $imagePath = "/images/videos/" . $slug . ".webp";
         Image::make($url)->encode('webp', 75)->save("public" . $imagePath);
         return $imagePath;
+    }
+
+    public function checkAndPrepareLang($video)
+    {
+        if(! property_exists($video->snippet, 'defaultAudioLanguage')) {
+            return null;
+        }
+
+        $currentLang = $video->snippet->defaultAudioLanguage;
+        if(strlen($currentLang) > 2) {
+            return substr($currentLang, 0, -3);
+        }
+
+        return $currentLang;
     }
 }

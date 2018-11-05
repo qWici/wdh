@@ -15,10 +15,11 @@ class ArticleController extends Controller
 
     public function paginate()
     {
-        $articles = Article::with('author')->paginate(9);
+        $articles = Article::orderBy('date', 'desc')->with('author')->paginate(9);
         return response()->json(['data' => $articles]);
     }
 
+    // @TODO: change to slug
     public function byId($id)
     {
         $article = Article::where('id', $id)->with('author')->get();
