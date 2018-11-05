@@ -75,7 +75,7 @@ class ParseYoutubeChannels extends Command
         $newChannel->description = $channel->snippet->description;
         $newChannel->custom_url = $channel->snippet->customUrl;
         $newChannel->image_src = $channel->snippet->thumbnails->medium->url;
-        $newChannel->country = $this->checkExistData($channel, 'country');
+        $newChannel->country = $this->checkExistProperty($channel, 'country');
         $newChannel->subscriber_count = $channel->statistics->subscriberCount;
         $newChannel->save();
 
