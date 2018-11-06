@@ -1,6 +1,12 @@
 import * as types from './mutation-types'
 import axios from 'axios'
 
+export const fetchBySlug = async ({ commit }, { channel, slug }) => {
+  const { data } = await axios.get(`/api/videos/${channel}/${slug}`)
+
+  commit(types.FETCH_BY_SLUG, data.data[0])
+}
+
 export const fetchPaginateVideos = async ({ commit }, pageNumber = 1) => {
   const { data } = await axios.get(`/api/videos/paginate?page=${pageNumber}`)
   const videos = data.data.data
@@ -26,6 +32,7 @@ export const clearState = async ({ commit }) => {
 }
 
 export default {
+  fetchBySlug,
   fetchPaginateVideos,
   clearState
 }

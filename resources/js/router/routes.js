@@ -15,6 +15,7 @@ const ArticleList = () => import('~/pages/articles/list').then(m => m.default ||
 const ArticleSingle = () => import('~/pages/articles/single').then(m => m.default || m)
 
 const VideosList = () => import('~/pages/videos/list').then(m => m.default || m)
+const VideoSingle = () => import('~/pages/videos/single').then(m => m.default || m)
 
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
 const SettingsProfile = () => import('~/pages/settings/profile').then(m => m.default || m)
@@ -39,6 +40,7 @@ export default [
   { path: '/article/:author/:slug', name: 'article', component: ArticleSingle },
 
   { path: '/videos', name: 'videos', component: VideosList },
+  { path: '/video/:channel/:slug', name: 'video', component: VideoSingle },
 
   { path: '/settings',
     component: Settings,

@@ -1,11 +1,12 @@
 <template>
   <div v-if="single" class="article">
-    <div :style="'background-image: url(' + single.image_src + ')'" class="article--image">
-      <img :src="single.image_src" :alt="single.title" style="display: none">
-    </div>
+    <iframe id="ytplayer" :src="youtubeLink" type="text/html" width="1025" height="576.5625"
+            frameborder="0" allowfullscreen></iframe>
     <h1>{{ single.title }}</h1>
-    <div class="article--body">
-      {{ single.description }}
+    <div v-if="single !== undefined" class="article--body">
+      <p v-for="(item, key) in preparedDescription(single.description)" :key="key">
+        {{ item }}
+      </p>
     </div>
     <footer v-if="single.author">
       <div class="article-author">
@@ -26,25 +27,44 @@ import { mapGetters } from 'vuex'
 export default {
   middleware: 'auth',
   layout: 'inner',
-  name: 'ArticleSingle',
+  name: 'VideoSingle',
 
   components: {},
 
   metaInfo () {
-    return {title: this.single.title === undefined ? 'Article' : this.single.title}
+    return {title: this.single.title === undefined ? 'Video' : this.single.title}
   },
 
   data: () => ({}),
 
-  computed: mapGetters({
-    single: 'articles/single'
-  }),
-
-  created () {
-    this.$store.dispatch('articles/fetchById', this.$route.params.id)
+  computed: {
+    youtubeLink () {
+      return 'https://www.youtube.com/embed/' + this.single.youtube_id
+    },
+    ...mapGetters({
+      single: 'videos/single'
+    })
   },
 
-  methods: {}
+  created () {
+    let video = {
+      'channel': this.$route.params.channel,
+      'slug': this.$route.params.slug
+    }
+
+    this.$store.dispatch('videos/fetchBySlug', video)
+  },
+
+  methods: {
+    preparedDescription (text) {
+      if (text === undefined) {
+        return null
+      }
+
+      let replacedEntersText = text.replace(new RegExp(/\n\n/, 'g'), '\n')
+      return replacedEntersText.match(/(.*?)\n/g)
+    }
+  }
 }
 </script>
 

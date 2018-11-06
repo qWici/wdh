@@ -6,7 +6,7 @@
         v-for="(item, key) in items"
         :key="key"
         :src="item.image_src"
-        :link="item.id"
+        :link="getVideoLink(item)"
         :title="item.title"
         :author="item.channel.title"
         :date="item.published_at"
@@ -69,6 +69,9 @@ export default {
     infiniteHandler ($state) {
       this.infinityState = $state
       this.$store.dispatch('videos/fetchPaginateVideos', this.page + 1)
+    },
+    getVideoLink (video) {
+      return {channel: video.channel.slug, slug: video.slug}
     }
   }
 }
