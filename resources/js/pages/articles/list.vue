@@ -14,7 +14,7 @@
         :type="type"/>
     </div>
     <infinite-loading :distance="0" spinner="spiral" @infinite="infiniteHandler">
-      <div slot="no-more"></div>
+      <div slot="no-more"/>
     </infinite-loading>
   </div>
 </template>

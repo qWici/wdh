@@ -14,7 +14,7 @@
         :online="item.online"
         :type="type"/>
       <infinite-loading :distance="0" spinner="spiral" @infinite="infiniteHandler">
-        <div slot="no-more"></div>
+        <div slot="no-more"/>
       </infinite-loading>
     </div>
   </div>
