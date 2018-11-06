@@ -26,7 +26,7 @@ export default {
   props: {
     src: { type: String, default: '/img/no_image.webp' },
     title: { type: String, required: true },
-    link: { type: [String, Number], required: true },
+    link: { type: [String, Number, Object], required: true },
     author: { type: String, required: true },
     date: { type: String, default: null },
     lang: { type: String, default: null },
@@ -55,6 +55,9 @@ export default {
       return this.title
     },
     itemLink: function () {
+      if (this.type === 'article') {
+        return {name: this.type, params: { author: this.link.author, slug: this.link.slug }}
+      }
       return {name: this.type, params: { id: this.link }}
     }
   }

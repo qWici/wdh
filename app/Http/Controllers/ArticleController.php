@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -19,10 +20,10 @@ class ArticleController extends Controller
         return response()->json(['data' => $articles]);
     }
 
-    // @TODO: change to slug
-    public function byId($id)
+    public function bySlug($author, $slug)
     {
-        $article = Article::where('id', $id)->with('author')->get();
+        $author = Author::where('slug', $author)->get()->first();
+        $article = Article::where(['slug' => $slug, 'author_id' => $author->id])->with('author')->get();
         return response()->json(['data' => $article]);
     }
 }

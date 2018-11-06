@@ -41,7 +41,11 @@ export default {
   }),
 
   created () {
-    this.$store.dispatch('articles/fetchById', this.$route.params.id)
+    let article = {
+      'author': this.$route.params.author,
+      'slug': this.$route.params.slug
+    }
+    this.$store.dispatch('articles/fetchBySlug', article)
   },
 
   methods: {}
@@ -83,7 +87,8 @@ export default {
   footer {
     display: flex;
     justify-content: space-between;
-    padding: 0 20px 20px;
+    padding: 20px;
+    background-color: #fff;
     align-items: center;
     > a {
       display: block;
@@ -101,7 +106,6 @@ export default {
         width: auto;
         max-height: 100px;
         margin-right: 20px;
-        border-radius: 50%;
       }
     }
   }

@@ -6,7 +6,7 @@
         v-for="(item, key) in items"
         :key="key"
         :src="item.image_src"
-        :link="item.id"
+        :link="getArticleLink(item)"
         :title="item.title"
         :author="item.author.name"
         :date="item.date"
@@ -69,6 +69,9 @@ export default {
     infiniteHandler ($state) {
       this.infinityState = $state
       this.$store.dispatch('articles/fetchPaginateArticles', this.page + 1)
+    },
+    getArticleLink (article) {
+      return {author: article.author.slug, slug: article.slug}
     }
   }
 }

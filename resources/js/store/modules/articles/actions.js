@@ -7,10 +7,10 @@ export const fetchAllArticles = async ({ commit }) => {
   commit(types.FETCH_ALL, data.data)
 }
 
-export const fetchById = async ({ commit }, id) => {
-  const { data } = await axios.get(`/api/articles/id/${id}`)
+export const fetchBySlug = async ({ commit }, { author, slug }) => {
+  const { data } = await axios.get(`/api/articles/${author}/${slug}`)
 
-  commit(types.FETCH_BY_ID, data.data[0])
+  commit(types.FETCH_BY_SLUG, data.data[0])
 }
 
 export const fetchPaginateArticles = async ({ commit }, pageNumber = 1) => {
@@ -41,5 +41,5 @@ export default {
   fetchAllArticles,
   fetchPaginateArticles,
   clearState,
-  fetchById
+  fetchBySlug
 }
