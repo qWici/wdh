@@ -20,7 +20,6 @@
             </a>
           </li>
         </ul>
-        <locale-dropdown/>
       </nav>
 
       <nav v-else>
@@ -41,7 +40,7 @@
             </router-link>
           </li>
         </ul>
-        <locale-dropdown/>
+        <locale-dropdown position="top"/>
       </nav>
     </div>
   </header>

@@ -1,5 +1,5 @@
 <template>
-  <div v-click-outside="hide" class="locales">
+  <div v-click-outside="hide" :class="'locales ' + position">
     <a href="#" class="current-locale" @click.prevent="showLocales">
       <lang-flag :iso="locale" :squared="false" class="flag"/>
       {{ locales[locale] }}
@@ -23,6 +23,16 @@ import ClickOutside from 'vue-click-outside'
 export default {
   directives: {
     ClickOutside
+  },
+
+  props: {
+    position: {
+      type: String,
+      default: 'bottom',
+      validator: value => {
+        return ['top', 'bottom'].indexOf(value) !== -1
+      }
+    }
   },
 
   data: () => ({
@@ -75,9 +85,14 @@ export default {
       }
     }
   }
+  &.top {
+    ul {
+      top: 25px;
+    }
+  }
   ul {
     position: absolute;
-    top: 25px;
+    top: -80px;
     display: flex;
     flex-direction: column;
     margin: 0;
