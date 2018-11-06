@@ -19,6 +19,12 @@ export const updateUser = ({ commit }, payload) => {
   commit(types.UPDATE_USER, payload)
 }
 
+export const updateUserPhoto = async ({ commit }, file) => {
+  const { data } = await axios.post('/api/settings/profile/photo', file)
+
+  commit(types.UPDATE_USER_PHOTO, data)
+}
+
 export const logout = async ({ commit }) => {
   try {
     await axios.post('/api/logout')
@@ -38,5 +44,6 @@ export default {
   fetchUser,
   updateUser,
   logout,
-  fetchOauthUrl
+  fetchOauthUrl,
+  updateUserPhoto
 }

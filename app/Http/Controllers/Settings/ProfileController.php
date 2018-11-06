@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Settings;
 
+use Image;
+use File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,8 +22,35 @@ class ProfileController extends Controller
         $this->validate($request, [
             'nickname' => 'required',
             'email' => 'required|email|unique:users,email,'.$user->id,
+            'specialization' => 'string'
         ]);
 
-        return tap($user)->update($request->only('nickname', 'email'));
+        return tap($user)->update($request->only('nickname', 'email', 'specialization'));
+    }
+
+    public function updatePhoto(Request $request)
+    {
+        $user = auth()->user();
+
+        if($user->image_src !== null){
+            File::delete(public_path('/images/users/' . $user->image_src));
+        }
+
+        if($request->hasFile('userPhoto')) {
+            $file = $request->file('userPhoto');
+            $imageName = md5(time()) . ".webp";
+            $imagePath = "/images/users/" . $imageName;
+            Image::make($file->getFileInfo()->getPathname())
+                ->encode('webp', 75)
+                ->resize(200, null)
+                ->save(public_path($imagePath));
+
+            $user->image_src = $imageName;
+            $user->save();
+
+            return response()->json(['image_src' => $imageName]);
+        }
+
+        return null;
     }
 }

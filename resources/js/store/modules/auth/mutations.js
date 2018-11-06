@@ -25,5 +25,9 @@ export default {
 
   [types.UPDATE_USER] (state, { user }) {
     state.user = user
+  },
+
+  [types.UPDATE_USER_PHOTO] (state, data) {
+    state.user.image_src = data.image_src
   }
 }

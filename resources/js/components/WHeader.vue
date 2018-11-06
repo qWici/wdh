@@ -8,6 +8,12 @@
       <nav v-if="user">
         <ul>
           <li>
+            <router-link :to="{ name: 'settings.profile' }">
+              <fa icon="cog" fixed-width/>
+              {{ $t('settings') }}
+            </router-link>
+          </li>
+          <li>
             <a href="#" @click.prevent="logout">
               <fa icon="sign-out-alt" fixed-width/>
               {{ $t('logout') }}
@@ -52,7 +58,8 @@ export default {
   data: () => ({}),
 
   computed: mapGetters({
-    user: 'auth/user'
+    user: 'auth/user',
+    userPhoto: 'auth/userPhoto'
   }),
 
   methods: {
@@ -66,3 +73,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .profile-photo {
+    width: 2rem;
+    height: 2rem;
+    margin: -.375rem 0;
+  }
+</style>

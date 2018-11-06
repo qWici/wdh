@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     });
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
+    Route::post('settings/profile/photo', 'Settings\ProfileController@updatePhoto');
     Route::patch('settings/password', 'Settings\PasswordController@update');
 
     Route::prefix('streams')->group(function () {

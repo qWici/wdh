@@ -49,5 +49,6 @@
   "live": "Онлайн",
   "last_online" : "Последние онлайн",
   "offline": "Оффлайн",
-  "last_publications": "Последние публикации"
+  "last_publications": "Последние публикации",
+  "position": "Должность"
 }

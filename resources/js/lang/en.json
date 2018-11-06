@@ -49,5 +49,6 @@
   "live": "Live",
   "last_online" : "Last online",
   "offline": "Offline",
-  "last_publications": "Last publications"
+  "last_publications": "Last publications",
+  "position": "Position"
 }

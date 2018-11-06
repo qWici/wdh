@@ -19,6 +19,7 @@ const VideosList = () => import('~/pages/videos/list').then(m => m.default || m)
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
 const SettingsProfile = () => import('~/pages/settings/profile').then(m => m.default || m)
 const SettingsPassword = () => import('~/pages/settings/password').then(m => m.default || m)
+// @TODO: Add tab for feedback
 
 export default [
   { path: '/', name: 'welcome', component: Welcome },
