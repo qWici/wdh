@@ -86,6 +86,7 @@ export default {
     }
   }
   &.top {
+    margin-left: 20px;
     ul {
       top: 25px;
     }

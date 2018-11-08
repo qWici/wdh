@@ -15,7 +15,7 @@
           <p>{{ single.author.about }}</p>
         </div>
       </div>
-      <a :href="single.link">Read full article</a>
+      <a :href="single.link" target="_blank">Read full article</a>
     </footer>
   </div>
 </template>
