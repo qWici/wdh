@@ -1,7 +1,7 @@
 <template>
   <div v-if="single" class="article">
     <iframe id="ytplayer" :src="youtubeLink" type="text/html" width="1025" height="576.5625"
-            frameborder="0" allowfullscreen></iframe>
+            frameborder="0" allowfullscreen/>
     <h1>{{ single.title }}</h1>
     <div v-if="single !== undefined" class="article--body">
       <p v-for="(item, key) in preparedDescription(single.description)" :key="key">

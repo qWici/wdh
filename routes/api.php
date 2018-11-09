@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::prefix('articles')->group(function () {
         Route::get('all', 'ArticleController@all');
         Route::get('paginate', 'ArticleController@paginate');
+        Route::get('/{slug}', 'ArticleController@byAuthorSlug');
         Route::get('/{author}/{slug}', 'ArticleController@bySlug');
     });
 

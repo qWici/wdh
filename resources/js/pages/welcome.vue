@@ -1,5 +1,6 @@
 <template>
   <div id="welcome">
+    {{ redirectUserToHome() }}
     <first-section/>
   </div>
 </template>
@@ -23,7 +24,15 @@ export default {
 
   computed: mapGetters({
     authenticated: 'auth/check'
-  })
+  }),
+
+  methods: {
+    redirectUserToHome () {
+      if (this.authenticated) {
+        this.$router.push({ name: 'home' })
+      }
+    }
+  }
 }
 </script>
 

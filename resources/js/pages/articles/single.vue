@@ -11,7 +11,9 @@
       <div class="article-author">
         <img :src="single.author.logo" :alt="single.author.name">
         <div class="article-author-info">
-          <a :href="single.author.site_url">{{ single.author.name }}</a>
+          <router-link :to="{name: 'article.author', params: { author: single.author.slug }}">
+            {{ single.author.name }}
+          </router-link>
           <p>{{ single.author.about }}</p>
         </div>
       </div>

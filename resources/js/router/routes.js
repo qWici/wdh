@@ -12,6 +12,7 @@ const StreamTag = () => import('~/pages/stream/tag').then(m => m.default || m)
 const StreamSingle = () => import('~/pages/stream/single').then(m => m.default || m)
 
 const ArticleList = () => import('~/pages/articles/list').then(m => m.default || m)
+const ArticleAuthor = () => import('~/pages/articles/author').then(m => m.default || m)
 const ArticleSingle = () => import('~/pages/articles/single').then(m => m.default || m)
 
 const VideosList = () => import('~/pages/videos/list').then(m => m.default || m)
@@ -37,6 +38,7 @@ export default [
   { path: '/stream/tag/:id', name: 'stream.tag', component: StreamTag },
 
   { path: '/articles', name: 'articles', component: ArticleList },
+  { path: '/article/:author', name: 'article.author', component: ArticleAuthor },
   { path: '/article/:author/:slug', name: 'article', component: ArticleSingle },
 
   { path: '/videos', name: 'videos', component: VideosList },
