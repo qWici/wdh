@@ -8,15 +8,16 @@
         {{ item }}
       </p>
     </div>
-    <footer v-if="single.author">
+    <footer v-if="single.channel">
       <div class="article-author">
-        <img :src="single.author.logo" :alt="single.author.name">
+        <img :src="single.channel.image_src" :alt="single.channel.title">
         <div class="article-author-info">
-          <a :href="single.author.site_url">{{ single.author.name }}</a>
-          <p>{{ single.author.about }}</p>
+          <router-link :to="{name: 'video.channel', params: { channel: single.channel.slug }}">
+            {{ single.channel.title }}
+          </router-link>
+          <p>{{ single.channel.description }}</p>
         </div>
       </div>
-      <a :href="single.link">Read full article</a>
     </footer>
   </div>
 </template>

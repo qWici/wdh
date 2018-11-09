@@ -16,6 +16,7 @@ const ArticleAuthor = () => import('~/pages/articles/author').then(m => m.defaul
 const ArticleSingle = () => import('~/pages/articles/single').then(m => m.default || m)
 
 const VideosList = () => import('~/pages/videos/list').then(m => m.default || m)
+const VideoChannel = () => import('~/pages/videos/channel').then(m => m.default || m)
 const VideoSingle = () => import('~/pages/videos/single').then(m => m.default || m)
 
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
@@ -42,6 +43,7 @@ export default [
   { path: '/article/:author/:slug', name: 'article', component: ArticleSingle },
 
   { path: '/videos', name: 'videos', component: VideosList },
+  { path: '/video/:channel', name: 'video.channel', component: VideoChannel },
   { path: '/video/:channel/:slug', name: 'video', component: VideoSingle },
 
   { path: '/settings',

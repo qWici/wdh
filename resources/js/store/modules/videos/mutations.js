@@ -7,10 +7,14 @@ export default {
   [types.FETCH_BY_SLUG] (state, data) {
     state.single = data
   },
+  [types.FETCH_BY_CHANNEL_SLUG] (state, data) {
+    state.channel = [...state.channel, ...data]
+  },
   [types.FETCH_PAGINATE] (state, data) {
     state.paginate = [...state.paginate, ...data]
   },
   [types.CLEAR_VIDEOS] (state) {
     state.paginate = []
+    state.channel = []
   }
 }

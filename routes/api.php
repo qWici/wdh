@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::prefix('videos')->group(function () {
         Route::get('paginate', 'VideoController@paginate');
+        Route::get('/{slug}', 'VideoController@byChannelSlug');
         Route::get('/{channel}/{slug}', 'VideoController@bySlug');
     });
 });
