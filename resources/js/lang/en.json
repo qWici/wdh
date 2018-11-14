@@ -50,5 +50,6 @@
   "last_online" : "Last online",
   "offline": "Offline",
   "last_publications": "Last publications",
-  "position": "Position"
+  "position": "Position",
+  "read_full_article": "Read full article"
 }

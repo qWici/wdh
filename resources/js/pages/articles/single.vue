@@ -5,11 +5,14 @@
     </div>
     <h1>{{ single.title }}</h1>
     <div class="article--body">
-      {{ single.description }}
+      <p>{{ single.description }}</p>
+      <a :href="single.link" target="_blank">{{ $t('read_full_article') }}</a>
     </div>
     <footer v-if="single.author">
       <div class="article-author">
-        <img :src="single.author.logo" :alt="single.author.name">
+        <div :style="getBackgroundImage(single)" class="author-logo">
+          <img :src="single.author.logo" :alt="single.author.name" style="display: none;">
+        </div>
         <div class="article-author-info">
           <router-link :to="{name: 'article.author', params: { author: single.author.slug }}">
             {{ single.author.name }}
@@ -17,7 +20,6 @@
           <p>{{ single.author.about }}</p>
         </div>
       </div>
-      <a :href="single.link" target="_blank">Read full article</a>
     </footer>
   </div>
 </template>
@@ -50,7 +52,11 @@ export default {
     this.$store.dispatch('articles/fetchBySlug', article)
   },
 
-  methods: {}
+  methods: {
+    getBackgroundImage (article) {
+      return `background-image: url("${article.author.logo}")`
+    }
+  }
 }
 </script>
 
@@ -66,50 +72,122 @@ export default {
 
 .article {
   margin: 20px 0;
-  background: $default-black;
+  background: $gradient-default;
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
   overflow: hidden;
+  color: #FFF;
   &--image {
-    background-size: cover;
-    background-position: center;
     width: 100%;
     height: 500px;
+    background: #FFF;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
   h1 {
     color: #FFF;
     margin: 0;
     padding: 20px;
-    background-color: $pink;
+    background-color: $default-black;
+    text-align: center;
   }
   &--body {
-    padding: 20px;
-    color: #FFF;
-  }
-  footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #fff;
-    align-items: center;
+    padding: 20px 20px 0;
+    &:after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, #5E4F8E 0%, #554C86 100%);
+    }
+    > p {
+      margin: 0;
+    }
     > a {
       display: block;
-      background: linear-gradient(135deg, #3260FE 0%, #3A9CFF 100%);
+      width: 200px;
+      margin: 20px auto;
+      background: linear-gradient(to right, #9857D4 0%, #6546CC 100%);
       color: #FFF;
       padding: 10px 20px;
       border-radius: 5px;
       font-weight: bold;
       text-align: center;
-    }
-    & .article-author {
-      display: flex;
-      max-width: calc(100% - 200px);
-      img {
-        width: auto;
-        max-height: 100px;
-        margin-right: 20px;
+      &:hover {
+        box-shadow: 0 4px 6px rgba(0,0,0,.3);
+        animation: animateButton 0.3s linear forwards;
       }
     }
+  }
+  footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    & .article-author {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .author-logo {
+        width: 100px;
+        height: 100px;
+        background: #FFF;
+        background-size: 85%;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-bottom: 20px;
+      }
+      .article-author-info {
+        width: 100%;
+        text-align: center;
+        a {
+          font-weight: bold;
+          color: $pink;
+          &:hover {
+            color: $blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes animateButton {
+  0%   {
+    background: linear-gradient(to right, #9857D4 0%, #6546CC 100%);
+  }
+  10% {
+    background: linear-gradient(to right, #9857D4 0%, #6546CC 90%);
+  }
+  20% {
+    background: linear-gradient(to right, #9857D4 0%, #6546CC 80%);
+  }
+  30% {
+    background: linear-gradient(to right, #9857D4 0%, #6546CC 70%);
+  }
+  40% {
+    background: linear-gradient(to right, #9857D4 0%, #6546CC 60%);
+  }
+  50% {
+    background: linear-gradient(to right, #9857D4 0%, #6546CC 50%);
+  }
+  60% {
+    background: linear-gradient(to right, #9857D4 0%, #6546CC 40%);
+  }
+  70% {
+    background: linear-gradient(to right, #9857D4 0%, #6546CC 30%);
+  }
+  80% {
+    background: linear-gradient(to right, #9857D4 0%, #6546CC 20%);
+  }
+  90% {
+    background: linear-gradient(to right, #9857D4 0%, #6546CC 10%);
+  }
+  100% {
+    background: linear-gradient(to right, #6546CC 0%, #6546CC 0%);
   }
 }
 </style>

@@ -50,5 +50,6 @@
   "last_online" : "Последние онлайн",
   "offline": "Оффлайн",
   "last_publications": "Последние публикации",
-  "position": "Должность"
+  "position": "Должность",
+  "read_full_article": "Читать дальше"
 }
