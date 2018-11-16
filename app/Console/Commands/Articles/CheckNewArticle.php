@@ -193,8 +193,8 @@ class CheckNewArticle extends Command
         }
 
 
-        $imagePath = "/images/articles/" . str_slug($title) . ".jpg";
-        $img->encode('jpg', 75)->save("public" . $imagePath);
+        $imagePath = "/images/articles/" . str_slug($title) . ".webp";
+        $img->encode('webp', 75)->fit(1050, 500)->save("public" . $imagePath);
 
         return $imagePath;
     }
