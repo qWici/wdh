@@ -44,6 +44,12 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/{slug}', 'VideoController@byChannelSlug');
         Route::get('/{channel}/{slug}', 'VideoController@bySlug');
     });
+
+    Route::prefix('podcasts')->group(function () {
+        Route::get('paginate', 'PodcastController@paginate');
+        Route::get('/{slug}', 'PodcastController@byShowSlug');
+        Route::get('/{show}/{slug}', 'PodcastController@bySlug');
+    });
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

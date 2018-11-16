@@ -19,6 +19,10 @@ const VideosList = () => import('~/pages/videos/list').then(m => m.default || m)
 const VideoChannel = () => import('~/pages/videos/channel').then(m => m.default || m)
 const VideoSingle = () => import('~/pages/videos/single').then(m => m.default || m)
 
+const PodcastsList = () => import('~/pages/podcasts/list').then(m => m.default || m)
+const PodcastShow = () => import('~/pages/podcasts/show').then(m => m.default || m)
+const PodcastSingle = () => import('~/pages/podcasts/single').then(m => m.default || m)
+
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
 const SettingsProfile = () => import('~/pages/settings/profile').then(m => m.default || m)
 const SettingsPassword = () => import('~/pages/settings/password').then(m => m.default || m)
@@ -45,6 +49,10 @@ export default [
   { path: '/videos', name: 'videos', component: VideosList },
   { path: '/video/:channel', name: 'video.channel', component: VideoChannel },
   { path: '/video/:channel/:slug', name: 'video', component: VideoSingle },
+
+  { path: '/podcasts', name: 'podcasts', component: PodcastsList },
+  { path: '/podcast/:show', name: 'podcast.show', component: PodcastShow },
+  { path: '/podcast/:show/:slug', name: 'podcast', component: PodcastSingle },
 
   { path: '/settings',
     component: Settings,

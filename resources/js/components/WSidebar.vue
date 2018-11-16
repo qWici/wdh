@@ -35,12 +35,12 @@
             </router-link>
           </li>
           <li>
-            <div class="content-nav__category">
+            <router-link :to="{ name: 'podcasts' }" class="content-nav__category" active-class="active">
               <span class="content-nav__category__icon gradient-crimson">
                 <fa :icon="['fas', 'microphone']" fixed-width/>
               </span>
               <span class="content-nav__category__title">{{ $t('podcasts') }}</span>
-            </div>
+            </router-link>
           </li>
         </ul>
       </nav>

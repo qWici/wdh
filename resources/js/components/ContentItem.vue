@@ -61,6 +61,9 @@ export default {
       if (this.type === 'video') {
         return {name: this.type, params: { channel: this.link.channel, slug: this.link.slug }}
       }
+      if (this.type === 'podcast') {
+        return {name: this.type, params: { show: this.link.show, slug: this.link.slug }}
+      }
       return {name: this.type, params: { id: this.link }}
     }
   }

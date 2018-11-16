@@ -6,6 +6,7 @@ import lang from './modules/lang'
 import streams from './modules/streams'
 import articles from './modules/articles'
 import videos from './modules/videos'
+import podcasts from './modules/podcasts'
 
 Vue.use(Vuex)
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     lang,
     streams,
     articles,
-    videos
+    videos,
+    podcasts
   }
 })

@@ -25,6 +25,7 @@
     "sweetalert2": "^7.19.3",
     "vform": "^1.0.0",
     "vue": "^2.5.16",
+    "vue-aplayer": "^1.6.1",
     "vue-click-outside": "^1.0.7",
     "vue-i18n": "^7.6.0",
     "vue-infinite-loading": "^2.4.0",
