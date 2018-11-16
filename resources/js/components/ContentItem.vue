@@ -56,15 +56,15 @@ export default {
     },
     itemLink: function () {
       if (this.type === 'article') {
-        return {name: this.type, params: { author: this.link.author, slug: this.link.slug }}
+        return {name: 'article.single', params: { author: this.link.author, slug: this.link.slug }}
       }
       if (this.type === 'video') {
-        return {name: this.type, params: { channel: this.link.channel, slug: this.link.slug }}
+        return {name: 'video.single', params: { channel: this.link.channel, slug: this.link.slug }}
       }
       if (this.type === 'podcast') {
-        return {name: this.type, params: { show: this.link.show, slug: this.link.slug }}
+        return {name: 'podcast.single', params: { show: this.link.show, slug: this.link.slug }}
       }
-      return {name: this.type, params: { id: this.link }}
+      return {name: 'stream.single', params: { id: this.link }}
     }
   }
 }

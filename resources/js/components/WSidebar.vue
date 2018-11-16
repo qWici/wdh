@@ -11,7 +11,7 @@
       <nav class="content-nav">
         <ul>
           <li>
-            <router-link :to="{ name: 'articles' }" class="content-nav__category" active-class="active">
+            <router-link :to="{ name: 'article' }" class="content-nav__category" active-class="active">
               <span class="content-nav__category__icon gradient-pink">
                 <fa :icon="['far', 'newspaper']" fixed-width/>
               </span>
@@ -19,7 +19,7 @@
             </router-link>
           </li>
           <li>
-            <router-link :to="{ name: 'streams' }" class="content-nav__category" active-class="active">
+            <router-link :to="{ name: 'stream' }" class="content-nav__category" active-class="active">
               <span class="content-nav__category__icon gradient-purple-to-pink">
                 <fa :icon="'tv'" fixed-width/>
               </span>
@@ -27,7 +27,7 @@
             </router-link>
           </li>
           <li>
-            <router-link :to="{ name: 'videos' }" class="content-nav__category" active-class="active">
+            <router-link :to="{ name: 'video' }" class="content-nav__category" active-class="active">
               <span class="content-nav__category__icon gradient-blue">
                 <fa :icon="['fab', 'youtube']" fixed-width/>
               </span>
@@ -35,7 +35,7 @@
             </router-link>
           </li>
           <li>
-            <router-link :to="{ name: 'podcasts' }" class="content-nav__category" active-class="active">
+            <router-link :to="{ name: 'podcast' }" class="content-nav__category" active-class="active">
               <span class="content-nav__category__icon gradient-crimson">
                 <fa :icon="['fas', 'microphone']" fixed-width/>
               </span>

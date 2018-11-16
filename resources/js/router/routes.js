@@ -7,18 +7,22 @@ const NotFound = () => import('~/pages/errors/404').then(m => m.default || m)
 
 const Home = () => import('~/pages/home').then(m => m.default || m)
 
+const StreamIndex = () => import('~/pages/stream/index').then(m => m.default || m)
 const StreamList = () => import('~/pages/stream/list').then(m => m.default || m)
 const StreamTag = () => import('~/pages/stream/tag').then(m => m.default || m)
 const StreamSingle = () => import('~/pages/stream/single').then(m => m.default || m)
 
+const ArticleIndex = () => import('~/pages/articles/index').then(m => m.default || m)
 const ArticleList = () => import('~/pages/articles/list').then(m => m.default || m)
 const ArticleAuthor = () => import('~/pages/articles/author').then(m => m.default || m)
 const ArticleSingle = () => import('~/pages/articles/single').then(m => m.default || m)
 
+const VideoIndex = () => import('~/pages/videos/index').then(m => m.default || m)
 const VideosList = () => import('~/pages/videos/list').then(m => m.default || m)
 const VideoChannel = () => import('~/pages/videos/channel').then(m => m.default || m)
 const VideoSingle = () => import('~/pages/videos/single').then(m => m.default || m)
 
+const PodcastsIndex = () => import('~/pages/podcasts/index').then(m => m.default || m)
 const PodcastsList = () => import('~/pages/podcasts/list').then(m => m.default || m)
 const PodcastShow = () => import('~/pages/podcasts/show').then(m => m.default || m)
 const PodcastSingle = () => import('~/pages/podcasts/single').then(m => m.default || m)
@@ -38,21 +42,45 @@ export default [
 
   { path: '/home', name: 'home', component: Home },
 
-  { path: '/streams', name: 'streams', component: StreamList },
-  { path: '/stream/:id', name: 'stream', component: StreamSingle },
-  { path: '/stream/tag/:id', name: 'stream.tag', component: StreamTag },
+  {
+    path: '/streams',
+    component: StreamIndex,
+    children: [
+      { path: '', name: 'stream', component: StreamList },
+      { path: ':id/', name: 'stream.single', component: StreamSingle },
+      { path: 'tag/:id/', name: 'stream.tag', component: StreamTag }
+    ]
+  },
 
-  { path: '/articles', name: 'articles', component: ArticleList },
-  { path: '/article/:author', name: 'article.author', component: ArticleAuthor },
-  { path: '/article/:author/:slug', name: 'article', component: ArticleSingle },
+  {
+    path: '/articles',
+    component: ArticleIndex,
+    children: [
+      { path: '', name: 'article', component: ArticleList },
+      { path: ':author/', name: 'article.author', component: ArticleAuthor },
+      { path: ':author/:slug/', name: 'article.single', component: ArticleSingle }
+    ]
+  },
 
-  { path: '/videos', name: 'videos', component: VideosList },
-  { path: '/video/:channel', name: 'video.channel', component: VideoChannel },
-  { path: '/video/:channel/:slug', name: 'video', component: VideoSingle },
+  {
+    path: '/videos',
+    component: VideoIndex,
+    children: [
+      { path: '', name: 'video', component: VideosList },
+      { path: ':channel/', name: 'video.channel', component: VideoChannel },
+      { path: ':channel/:slug/', name: 'video.single', component: VideoSingle }
+    ]
+  },
 
-  { path: '/podcasts', name: 'podcasts', component: PodcastsList },
-  { path: '/podcast/:show', name: 'podcast.show', component: PodcastShow },
-  { path: '/podcast/:show/:slug', name: 'podcast', component: PodcastSingle },
+  {
+    path: '/podcasts',
+    component: PodcastsIndex,
+    children: [
+      { path: '', name: 'podcast', component: PodcastsList },
+      { path: ':show/', name: 'podcast.show', component: PodcastShow },
+      { path: ':show/:slug/', name: 'podcast.single', component: PodcastSingle }
+    ]
+  },
 
   { path: '/settings',
     component: Settings,
@@ -60,7 +88,8 @@ export default [
       { path: '', redirect: { name: 'settings.profile' } },
       { path: 'profile', name: 'settings.profile', component: SettingsProfile },
       { path: 'password', name: 'settings.password', component: SettingsPassword }
-    ] },
+    ]
+  },
 
   { path: '*', component: NotFound }
 ]
