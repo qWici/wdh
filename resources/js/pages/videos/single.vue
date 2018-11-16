@@ -114,7 +114,7 @@ export default {
       background: linear-gradient(to right, #5E4F8E 0%, #554C86 100%);
     }
     > p {
-      margin: 0;
+      margin: 0 0 20px;
     }
     > a {
       display: block;
