@@ -15,7 +15,7 @@ class CreatePodcastsTable extends Migration
     {
         Schema::create('podcasts', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('podcast_shows_id');
+            $table->unsignedInteger('podcast_show_id');
             $table->string('title');
             $table->string('slug');
             $table->text('description')->nullable();
@@ -24,7 +24,7 @@ class CreatePodcastsTable extends Migration
             $table->string('audio_url');
             $table->timestamps();
 
-            $table->foreign('podcast_shows_id')->references('id')->on('podcast_shows')->onDelete('cascade');
+            $table->foreign('podcast_show_id')->references('id')->on('podcast_shows')->onDelete('cascade');
         });
     }
 

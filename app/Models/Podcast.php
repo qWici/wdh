@@ -12,7 +12,7 @@ class Podcast extends Model
      * @var array
      */
     protected $fillable = [
-        'podcast_shows_id',
+        'podcast_show_id',
         'title',
         'slug',
         'description',
@@ -23,6 +23,6 @@ class Podcast extends Model
 
     public function show()
     {
-        return $this->belongsTo(PodcastShow::class);
+        return $this->belongsTo(PodcastShow::class, 'podcast_show_id', 'id');
     }
 }

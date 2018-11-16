@@ -58,7 +58,7 @@ class CheckNewPodcasts extends Command
         $podcasts = [];
         for($i = 0; $i < 20; $i++) {
             $podcasts[] = [
-                'podcast_shows_id' => $showID,
+                'podcast_show_id' => $showID,
                 'title' => $items['items'][$i]['title'],
                 'slug' => str_slug($items['items'][$i]['title']),
                 'description' => $items['media'][$i]['summary'],
@@ -74,7 +74,7 @@ class CheckNewPodcasts extends Command
     public function storePodcasts($podcasts)
     {
         foreach ($podcasts as $podcast) {
-            if(Podcast::where(['slug' => $podcast['slug'], 'podcast_shows_id' => $podcast['podcast_shows_id']])->exists()) {
+            if(Podcast::where(['slug' => $podcast['slug'], 'podcast_show_id' => $podcast['podcast_show_id']])->exists()) {
                 continue;
             }
 
