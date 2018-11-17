@@ -36,6 +36,7 @@ export default {
     return {
       title: `Stream ${this.$route.params.id}`,
       meta: [
+        {name: 'description', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
         {property: 'og:title', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
         {property: 'og:site_name', content: 'WebDevHub'},
         {property: 'og:type', content: 'website'},

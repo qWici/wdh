@@ -38,6 +38,7 @@ export default {
     return {
       title: this.single.title === undefined ? 'Article' : this.single.title,
       meta: [
+        {name: 'description', content: this.single.description},
         {property: 'og:title', content: this.single.title},
         {property: 'og:site_name', content: 'WebDevHub'},
         {property: 'og:type', content: 'website'},
