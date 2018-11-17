@@ -2,7 +2,7 @@
   <aside class="sidebar">
     <div class="main">
       <div v-if="user" class="user">
-        <img :src="userPhoto" :alt="user.name" class="user__img">
+        <img :src="userPhoto" :alt="user.nickname" class="user__img">
         <div>
           <span class="user__name">{{ user.nickname }}</span>
           <span v-show="user.specialization" class="user__specs">{{ user.specialization }}</span>
