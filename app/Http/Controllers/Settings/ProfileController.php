@@ -37,12 +37,16 @@ class ProfileController extends Controller
         }
 
         if($request->hasFile('userPhoto')) {
+            $this->validate($request, [
+                'userPhoto' => 'image|required|mimes:jpeg,png,jpg,gif'
+            ]);
+
             $file = $request->file('userPhoto');
             $imageName = md5(time()) . ".webp";
             $imagePath = "/images/users/" . $imageName;
             Image::make($file->getFileInfo()->getPathname())
                 ->encode('webp', 75)
-                ->resize(200, null)
+                ->fit(200, 200)
                 ->save(public_path($imagePath));
 
             $user->image_src = $imageName;

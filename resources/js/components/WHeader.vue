@@ -1,8 +1,8 @@
 <template>
   <header>
     <div class="box">
-      <router-link :to="{ name: user ? 'home' : 'welcome' }" class="logo" alt="WebDevHub Logo">
-        <img src="/img/logo.png" alt="">
+      <router-link :to="{ name: user ? 'home' : 'welcome' }" class="logo">
+        <img src="/img/logo.png" alt="WebDevHub Logo">
       </router-link>
 
       <nav v-if="user">
