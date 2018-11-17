@@ -33,7 +33,22 @@ export default {
   },
 
   metaInfo () {
-    return {title: `Stream ${this.$route.params.id}`}
+    return {
+      title: `Stream ${this.$route.params.id}`,
+      meta: [
+        {property: 'og:title', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
+        {property: 'og:site_name', content: 'WebDevHub'},
+        {property: 'og:type', content: 'website'},
+        {property: 'og:url', content: window.location.href},
+        {property: 'og:description', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
+        {name: 'twitter:card', content: 'summary'},
+        {name: 'twitter:site', content: window.location.href},
+        {name: 'twitter:title', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
+        {name: 'twitter:description', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
+        {itemprop: 'name', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
+        {itemprop: 'description', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
+      ]
+    }
   },
 
   data: () => ({

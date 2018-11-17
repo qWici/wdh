@@ -35,7 +35,25 @@ export default {
   components: {},
 
   metaInfo () {
-    return {title: this.single.title === undefined ? 'Article' : this.single.title}
+    return {
+      title: this.single.title === undefined ? 'Article' : this.single.title,
+      meta: [
+        {property: 'og:title', content: this.single.title},
+        {property: 'og:site_name', content: 'WebDevHub'},
+        {property: 'og:type', content: 'website'},
+        {property: 'og:url', content: window.location.href},
+        {property: 'og:image', content: this.single.image_src},
+        {property: 'og:description', content: this.single.description},
+        {name: 'twitter:card', content: 'summary'},
+        {name: 'twitter:site', content: window.location.href},
+        {name: 'twitter:title', content: this.single.title},
+        {name: 'twitter:description', content: this.single.description},
+        {name: 'twitter:image:src', content: this.single.image_src},
+        {itemprop: 'name', content: this.single.title},
+        {itemprop: 'description', content: this.single.description},
+        {itemprop: 'image', content: this.single.image_src}
+      ]
+    }
   },
 
   data: () => ({}),
