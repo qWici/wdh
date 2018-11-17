@@ -65,7 +65,14 @@ export default {
   }),
 
   created () {
-    this.$store.dispatch('streams/fetchStreamTags', this.$route.params.id)
+    this.$store.dispatch('streams/fetchStreamTags', this.$route.params.id).then(() => {
+      let breadcrumbs = [
+        {title: this.$t('streams'), route: {name: 'stream'}},
+        {title: this.$route.params.id, route: {name: 'stream.single', params: {id: this.$route.params.id}}}
+      ]
+
+      this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+    })
   },
 
   methods: {}

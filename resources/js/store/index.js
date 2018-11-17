@@ -7,6 +7,7 @@ import streams from './modules/streams'
 import articles from './modules/articles'
 import videos from './modules/videos'
 import podcasts from './modules/podcasts'
+import breadcrumbs from './modules/breadcrumbs'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     streams,
     articles,
     videos,
-    podcasts
+    podcasts,
+    breadcrumbs
   }
 })

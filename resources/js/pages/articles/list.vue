@@ -51,6 +51,8 @@ export default {
 
   watch: {
     items (newItems) {
+      if (this.infinityState === null) { return false }
+
       this.page += 1
       if (this.countItems === newItems.length) {
         this.infinityState.complete()
@@ -68,7 +70,11 @@ export default {
   methods: {
     infiniteHandler ($state) {
       this.infinityState = $state
-      this.$store.dispatch('articles/fetchPaginateArticles', this.page + 1)
+      this.$store.dispatch('articles/fetchPaginateArticles', this.page + 1).then(() => {
+        let breadcrumbs = [{title: this.$t('articles'), route: {name: 'article'}}]
+
+        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+      })
     },
     getArticleLink (article) {
       return {author: article.author.slug, slug: article.slug}

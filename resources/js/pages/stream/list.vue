@@ -52,6 +52,8 @@ export default {
 
   watch: {
     live (newItems) {
+      if (this.infinityState === null) { return false }
+
       this.page += 1
       if (this.countItems === newItems.length) {
         this.infinityState.complete()
@@ -69,7 +71,11 @@ export default {
   methods: {
     infiniteHandler ($state) {
       this.infinityState = $state
-      this.$store.dispatch('streams/fetchOnlineStreams', this.page + 1)
+      this.$store.dispatch('streams/fetchOnlineStreams', this.page + 1).then(() => {
+        let breadcrumbs = [{title: this.$t('streams'), route: {name: 'stream'}}]
+
+        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+      })
     },
     getTwitchThumbnail (twitchNickname) {
       return `https://static-cdn.jtvnw.net/previews-ttv/live_user_${twitchNickname}-600x340.jpg`

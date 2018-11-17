@@ -72,7 +72,14 @@ export default {
         'show': this.$route.params.show,
         'pageNumber': this.page + 1
       }
-      this.$store.dispatch('podcasts/fetchByShowSlug', requestData)
+      this.$store.dispatch('podcasts/fetchByShowSlug', requestData).then(() => {
+        let breadcrumbs = [
+          {title: 'Podcasts', route: {name: 'podcast'}},
+          {title: this.items[0].show.title, route: {name: 'podcast.show', params: {author: this.$route.params.show}}}
+        ]
+
+        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+      })
     },
     getPodcastLink (podcast) {
       return {show: podcast.show.slug, slug: podcast.slug}

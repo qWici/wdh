@@ -85,7 +85,17 @@ export default {
       'slug': this.$route.params.slug
     }
 
-    this.$store.dispatch('podcasts/fetchBySlug', video)
+    this.$store.dispatch('podcasts/fetchBySlug', video).then(() => {
+      let breadcrumbs = [
+        {title: 'Podcasts', route: {name: 'podcast'}},
+        {title: this.single.show.title, route: {name: 'podcast.show', params: {show: this.$route.params.show}}},
+        {title: this.single.title,
+          route: {name: 'podcast.single', params: {show: this.single.show.slug, slug: this.single.slug}}
+        }
+      ]
+
+      this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+    })
   },
 
   methods: {

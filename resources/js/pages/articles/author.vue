@@ -72,7 +72,14 @@ export default {
         'author': this.$route.params.author,
         'pageNumber': this.page + 1
       }
-      this.$store.dispatch('articles/fetchByAuthorSlug', requestData)
+      this.$store.dispatch('articles/fetchByAuthorSlug', requestData).then(() => {
+        let breadcrumbs = [
+          {title: this.$t('articles'), route: {name: 'article'}},
+          {title: this.items[0].author.name, route: {name: 'article.author', params: {author: this.$route.params.author}}}
+        ]
+
+        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+      })
     },
     getArticleLink (article) {
       return {author: article.author.slug, slug: article.slug}

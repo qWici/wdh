@@ -67,7 +67,17 @@ export default {
       'author': this.$route.params.author,
       'slug': this.$route.params.slug
     }
-    this.$store.dispatch('articles/fetchBySlug', article)
+    this.$store.dispatch('articles/fetchBySlug', article).then(() => {
+      let breadcrumbs = [
+        {title: this.$t('articles'), route: {name: 'article'}},
+        {title: this.single.author.name, route: {name: 'article.author', params: {author: this.single.author.slug}}},
+        {title: this.single.title,
+          route: {name: 'article.single', params: {author: this.single.author.slug, slug: this.single.slug}}
+        }
+      ]
+
+      this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+    })
   },
 
   methods: {

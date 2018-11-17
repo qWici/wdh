@@ -51,6 +51,8 @@ export default {
 
   watch: {
     items (newItems) {
+      if (this.infinityState === null) { return false }
+
       this.page += 1
       if (this.countItems === newItems.length) {
         this.infinityState.complete()
@@ -68,7 +70,11 @@ export default {
   methods: {
     infiniteHandler ($state) {
       this.infinityState = $state
-      this.$store.dispatch('podcasts/fetchPaginatePodcasts', this.page + 1)
+      this.$store.dispatch('podcasts/fetchPaginatePodcasts', this.page + 1).then(() => {
+        let breadcrumbs = [{title: 'Podcasts', route: {name: 'podcast'}}]
+
+        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+      })
     },
     getPodcastLink (podcast) {
       return {show: podcast.show.slug, slug: podcast.slug}
