@@ -45,6 +45,8 @@ class CheckNew extends Command
             $videoList = Youtube::listChannelVideos($channel->youtube_id, 10, 'date');
             $this->check($videoList, $channel->id);
         }
+
+        $this->info(date('Y-m-d H:i:s') . " Videos Updated");
     }
 
     public function check(array $videoList, string $channelID)

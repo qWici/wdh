@@ -50,6 +50,8 @@ class CheckNewArticle extends Command
                 $this->storeArticle($article, $author->id, $author->site_url);
             }
         }
+
+        $this->info(date('Y-m-d H:i:s') . " Articles Updated");
     }
 
     /**

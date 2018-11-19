@@ -28,6 +28,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('check:streams')
             ->everyFifteenMinutes()
             ->appendOutputTo('/var/log/webdevhub.log');
+
+        $schedule->command('check:articles')->hourly()->appendOutputTo('/var/log/webdevhub.log');
+        $schedule->command('check:podcasts')->hourly()->appendOutputTo('/var/log/webdevhub.log');
+        $schedule->command('check:videos')->hourly()->appendOutputTo('/var/log/webdevhub.log');
     }
 
     /**
