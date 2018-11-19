@@ -71,9 +71,7 @@ class ParseStreams extends Command
         try {
             $data = json_decode($response['data']);
             $this->storeNewStream($data, $stream->tags);
-        } catch (\ErrorException $e) {
-            var_dump("Parse streams the error: " . $e->getMessage . " \r\n" );
-        }
+        } catch (\ErrorException $e) {}
     }
 
     /**

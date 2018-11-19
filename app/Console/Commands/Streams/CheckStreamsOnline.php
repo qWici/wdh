@@ -82,8 +82,6 @@ class CheckStreamsOnline extends Command
                 return $data->data[0];
             }
             return false;
-        } catch (\ErrorException $e) {
-            var_dump("Check streams online the error: " . $e->getMessage . " \r\n" );
-        }
+        } catch (\ErrorException $e) {}
     }
 }

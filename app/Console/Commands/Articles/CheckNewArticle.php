@@ -116,9 +116,7 @@ class CheckNewArticle extends Command
 
         try{
             $newArticle->save();
-        } catch (\Exception $e) {
-            var_dump("Parse articles the error: " . $e->getMessage . " \r\n" );
-        }
+        } catch (\Exception $e) {}
     }
 
     /**
