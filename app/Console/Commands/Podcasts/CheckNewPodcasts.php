@@ -81,7 +81,6 @@ class CheckNewPodcasts extends Command
             }
 
             Podcast::create($podcast);
-            $this->info("Podcast \"" . $podcast['title'] . "\" stored");
         }
     }
 }

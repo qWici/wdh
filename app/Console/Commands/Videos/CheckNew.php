@@ -80,8 +80,6 @@ class CheckNew extends Command
         $newVideo->image_src = $thumbnail;
         $newVideo->published_at = date("Y-m-d H:i:s", strtotime($video->snippet->publishedAt));
         $newVideo->save();
-
-        $this->info("Video \"" . $newVideo->title . "\" stored");
     }
 
     public function storeVideoThumbnail(string $url, string $slug)

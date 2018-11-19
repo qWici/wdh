@@ -71,8 +71,8 @@ class ParseStreams extends Command
         try {
             $data = json_decode($response['data']);
             $this->storeNewStream($data, $stream->tags);
-        } catch (\ErrorException $errorException) {
-            var_dump($response);
+        } catch (\ErrorException $e) {
+            var_dump("Parse streams the error: " . $e->getMessage . " \r\n" );
         }
     }
 
@@ -98,7 +98,5 @@ class ParseStreams extends Command
             $tag = StreamTag::firstOrCreate(['tag' => $tag], ['tag' => $tag]);
             $newStream->tags()->attach($tag->id);
         }
-
-        $this->info('Streamer ' . $stream->display_name . ' stored');
     }
 }

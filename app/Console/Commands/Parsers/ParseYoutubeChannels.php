@@ -80,8 +80,6 @@ class ParseYoutubeChannels extends Command
         $newChannel->save();
 
         $this->storeAndUpdateLogo($newChannel);
-
-        $this->info("Channel " . $newChannel->title . " stored");
     }
 
     /**

@@ -53,6 +53,5 @@ class ParseShows extends Command
     {
         $show->slug = str_slug($show->title);
         PodcastShow::create((array) $show);
-        $this->info("Show \"" . $show->title . "\" stored");
     }
 }
