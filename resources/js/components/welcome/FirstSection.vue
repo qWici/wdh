@@ -1,7 +1,7 @@
 <template>
   <div class="first-section">
     <div class="information">
-      <img src="/img/mockup.png" alt="">
+      <img src="/img/mockup.webp" alt="WebDevHub main page">
       <div class="main-texts">
         <h1>{{ $t('follow_everything') }}</h1>
         <span>{{ $t('faster_easier') }}</span>
