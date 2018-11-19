@@ -5,7 +5,7 @@
       <div class="field">
         <label class="label">{{ $t('email') }}</label>
         <div class="control has-icons-left has-icons-right">
-          <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email">
+          <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email" autocomplete="username">
           <span class="icon is-small is-left">
             <fa :icon="'envelope'" fixed-width/>
           </span>
@@ -19,7 +19,7 @@
       <div class="field">
         <label class="label">{{ $t('password') }}</label>
         <div class="control has-icons-left has-icons-right">
-          <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password">
+          <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password" autocomplete="current-password">
           <span class="icon is-small is-left">
             <fa :icon="'user-lock'" fixed-width/>
           </span>
