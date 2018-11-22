@@ -100,9 +100,10 @@ export default {
       return `background-image: url("${video.channel.image_src}")`
     },
     calculatePlayerHeight () {
-      // Content width all time is 845px. Player standard ratio is 16:9
-      // After few calculation we get number 53 - its count of pixels per 1 ratio point
-      return (53 * 9) + 'px'
+      let content = document.querySelector('.content')
+      let contentWidth = parseInt(window.getComputedStyle(content).getPropertyValue('width'))
+      let pixelsPerPointRatio = contentWidth / 16
+      return (pixelsPerPointRatio * 9) + 'px'
     }
   }
 }

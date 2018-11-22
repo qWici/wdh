@@ -73,4 +73,14 @@ export default {
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .breadcrumbs {
+    margin-top: 0;
+    margin-bottom: 20px;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+}
 </style>

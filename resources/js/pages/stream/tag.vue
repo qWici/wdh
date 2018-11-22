@@ -65,42 +65,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .home {
-    margin-top: 20px;
-    padding-right: 10px;
-    padding-bottom: 20px;
-    overflow-y: scroll;
-    height: calc(100vh - 100px);
-    &::-webkit-scrollbar {
-      width: 10px;
-    }
-    &::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
-      border-radius: 5px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #0e1430;
-      border-radius: 5px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background: #0e1430;
-    }
-    h2 {
-      color: #FFF;
-      margin-top: 20px;
-      display: inline-block;
-      position: relative;
-      padding-right: 20px;
-      margin-bottom: 25px;
-      &:first-child {
-        margin-top: 0;
-      }
-    }
-  }
-  .content-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
-  }
+  @import "../../../sass/elements/home";
 </style>

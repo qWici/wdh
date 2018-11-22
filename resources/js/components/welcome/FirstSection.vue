@@ -131,4 +131,27 @@ export default {
         }
     }
 }
+
+@media only screen and (max-width: 768px) {
+  .first-section {
+    .information {
+      height: calc(100% - 270px);
+    }
+    footer {
+      flex-wrap: wrap;
+      height: auto;
+      text-align: center;
+      justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      .text {
+        margin-bottom: 30px;
+      }
+      h3 {
+        font-size: 29px;
+      }
+    }
+  }
+}
 </style>

@@ -45,7 +45,7 @@
         </ul>
       </nav>
     </div>
-    <footer>
+    <footer v-if="showLocalesOnTablets()">
       <div class="lang">
         <locale-dropdown />
       </div>
@@ -64,6 +64,11 @@ export default {
   computed: mapGetters({
     user: 'auth/user',
     userPhoto: 'auth/userPhoto'
-  })
+  }),
+  methods: {
+    showLocalesOnTablets () {
+      return document.documentElement.clientWidth > 768
+    }
+  }
 }
 </script>

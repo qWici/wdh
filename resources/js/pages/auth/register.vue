@@ -138,9 +138,15 @@ export default {
   .field.hint:before {
     right: 0;
     left: 288px;
-    background: linear-gradient(to right, #312b5400 0%, #191d3b 100%);
+    background: linear-gradient(to right, rgba(49, 43, 84, 0) 0%, #191d3b 100%);
     padding: 20px;
     transform: rotate(-3deg) translateY(-50%);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .field.hint:before {
+    display: none;
   }
 }
 </style>

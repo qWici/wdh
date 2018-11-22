@@ -159,4 +159,11 @@ export default {
         }
     }
 }
+@media only screen and (max-width: 768px) {
+  .content-item {
+    .title {
+      font-size: 16px;
+    }
+  }
+}
 </style>

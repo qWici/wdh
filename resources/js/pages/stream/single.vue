@@ -79,7 +79,10 @@ export default {
 
   methods: {
     calculatePlayerHeight () {
-      return (document.documentElement.clientHeight - 204) + 'px'
+      let content = document.querySelector('.content')
+      let contentWidth = parseInt(window.getComputedStyle(content).getPropertyValue('width'))
+      let pixelsPerPointRatio = contentWidth / 16
+      return (pixelsPerPointRatio * 9) + 'px'
     }
   }
 }
@@ -121,6 +124,11 @@ export default {
         }
       }
     }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .stream {
+    padding-top: 0;
   }
 }
 </style>

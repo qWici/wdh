@@ -20,6 +20,7 @@
             </a>
           </li>
         </ul>
+        <locale-dropdown v-if="showLocalesOnTablets()" position="top" />
       </nav>
 
       <nav v-else>
@@ -68,6 +69,9 @@ export default {
 
       // Redirect to login.
       this.$router.push({ name: 'login' })
+    },
+    showLocalesOnTablets () {
+      return document.documentElement.clientWidth <= 768
     }
   }
 }
