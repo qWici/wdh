@@ -39,21 +39,21 @@ export default {
     return {
       title: this.single.title === undefined ? 'Podcast' : this.single.title,
       meta: [
-        {name: 'description', content: this.single.description},
-        {property: 'og:title', content: this.single.title},
-        {property: 'og:site_name', content: 'WebDevHub'},
-        {property: 'og:type', content: 'website'},
-        {property: 'og:url', content: window.location.href},
-        {property: 'og:image', content: this.single.image_url},
-        {property: 'og:description', content: this.single.description},
-        {name: 'twitter:card', content: 'summary'},
-        {name: 'twitter:site', content: window.location.href},
-        {name: 'twitter:title', content: this.single.title},
-        {name: 'twitter:description', content: this.single.description},
-        {name: 'twitter:image:src', content: this.single.image_url},
-        {itemprop: 'name', content: this.single.title},
-        {itemprop: 'description', content: this.single.description},
-        {itemprop: 'image', content: this.single.image_url}
+        { name: 'description', content: this.single.description },
+        { property: 'og:title', content: this.single.title },
+        { property: 'og:site_name', content: 'WebDevHub' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: window.location.href },
+        { property: 'og:image', content: this.single.image_url },
+        { property: 'og:description', content: this.single.description },
+        { name: 'twitter:card', content: 'summary' },
+        { name: 'twitter:site', content: window.location.href },
+        { name: 'twitter:title', content: this.single.title },
+        { name: 'twitter:description', content: this.single.description },
+        { name: 'twitter:image:src', content: this.single.image_url },
+        { itemprop: 'name', content: this.single.title },
+        { itemprop: 'description', content: this.single.description },
+        { itemprop: 'image', content: this.single.image_url }
       ]
     }
   },
@@ -88,10 +88,10 @@ export default {
 
     this.$store.dispatch('podcasts/fetchBySlug', video).then(() => {
       let breadcrumbs = [
-        {title: 'Podcasts', route: {name: 'podcast'}},
-        {title: this.single.show.title, route: {name: 'podcast.show', params: {show: this.$route.params.show}}},
-        {title: this.single.title,
-          route: {name: 'podcast.single', params: {show: this.single.show.slug, slug: this.single.slug}}
+        { title: 'Podcasts', route: { name: 'podcast' } },
+        { title: this.single.show.title, route: { name: 'podcast.show', params: { show: this.$route.params.show } } },
+        { title: this.single.title,
+          route: { name: 'podcast.single', params: { show: this.single.show.slug, slug: this.single.slug } }
         }
       ]
 
@@ -102,7 +102,7 @@ export default {
   methods: {
     getBackgroundImage (podcast) {
       return `background-image: url("${podcast.show.image_url}")`
-    },
+    }
   }
 }
 </script>

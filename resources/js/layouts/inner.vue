@@ -1,12 +1,12 @@
 <template>
   <div class="main-layout">
-    <w-header/>
+    <w-header />
     <main>
       <div class="box">
-        <w-sidebar/>
+        <w-sidebar />
         <div class="content left-sidebar">
-          <w-breadcrumbs/>
-          <child/>
+          <w-breadcrumbs />
+          <child />
         </div>
       </div>
     </main>

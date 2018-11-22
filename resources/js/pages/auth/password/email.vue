@@ -10,11 +10,11 @@
         <div class="control has-icons-left has-icons-right">
           <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" :placeholder="$t('your_email')" class="input" type="email" name="email">
           <span class="icon is-small is-left">
-            <fa :icon="'envelope'" fixed-width/>
+            <fa :icon="'envelope'" fixed-width />
           </span>
         </div>
         <p class="help is-danger">
-          <has-error :form="form" field="email"/>
+          <has-error :form="form" field="email" />
         </p>
       </div>
 

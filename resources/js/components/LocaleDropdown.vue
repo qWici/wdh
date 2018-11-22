@@ -1,13 +1,13 @@
 <template>
   <div v-click-outside="hide" :class="'locales ' + position">
     <a href="#" class="current-locale" @click.prevent="showLocales">
-      <lang-flag :iso="locale" :squared="false" class="flag"/>
+      <lang-flag :iso="locale" :squared="false" class="flag" />
       {{ locales[locale] }}
     </a>
     <ul v-show="show">
-      <li v-for="(value, key) in locales" v-if="value !== locales[locale]" :key="key">
-        <a href="#" @click.prevent="setLocale(key)">
-          <lang-flag :iso="key" :squared="false" class="flag"/>
+      <li v-for="(value, key) in locales" :key="key">
+        <a v-if="value !== locales[locale]" href="#" @click.prevent="setLocale(key)">
+          <lang-flag :iso="key" :squared="false" class="flag" />
           {{ value }}
         </a>
       </li>

@@ -1,9 +1,9 @@
 <template>
   <div class="main-layout">
-    <w-header/>
+    <w-header />
     <main>
       <div class="box">
-        <child/>
+        <child />
       </div>
     </main>
   </div>

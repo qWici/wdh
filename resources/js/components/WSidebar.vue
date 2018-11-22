@@ -13,7 +13,7 @@
           <li>
             <router-link :to="{ name: 'article' }" class="content-nav__category" active-class="active">
               <span class="content-nav__category__icon gradient-pink">
-                <fa :icon="['far', 'newspaper']" fixed-width/>
+                <fa :icon="['far', 'newspaper']" fixed-width />
               </span>
               <span class="content-nav__category__title">{{ $t('articles') }}</span>
             </router-link>
@@ -21,7 +21,7 @@
           <li>
             <router-link :to="{ name: 'stream' }" class="content-nav__category" active-class="active">
               <span class="content-nav__category__icon gradient-purple-to-pink">
-                <fa :icon="'tv'" fixed-width/>
+                <fa :icon="'tv'" fixed-width />
               </span>
               <span class="content-nav__category__title">{{ $t('streams') }}</span>
             </router-link>
@@ -29,7 +29,7 @@
           <li>
             <router-link :to="{ name: 'video' }" class="content-nav__category" active-class="active">
               <span class="content-nav__category__icon gradient-blue">
-                <fa :icon="['fab', 'youtube']" fixed-width/>
+                <fa :icon="['fab', 'youtube']" fixed-width />
               </span>
               <span class="content-nav__category__title">{{ $t('videos') }}</span>
             </router-link>
@@ -37,7 +37,7 @@
           <li>
             <router-link :to="{ name: 'podcast' }" class="content-nav__category" active-class="active">
               <span class="content-nav__category__icon gradient-crimson">
-                <fa :icon="['fas', 'microphone']" fixed-width/>
+                <fa :icon="['fas', 'microphone']" fixed-width />
               </span>
               <span class="content-nav__category__title">{{ $t('podcasts') }}</span>
             </router-link>
@@ -47,7 +47,7 @@
     </div>
     <footer>
       <div class="lang">
-        <locale-dropdown/>
+        <locale-dropdown />
       </div>
     </footer>
   </aside>

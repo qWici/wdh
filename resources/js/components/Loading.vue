@@ -4,7 +4,8 @@
     height: height,
     opacity: show ? 1 : 0,
     'background': canSuccess ? gradient : failedColor
-  }" class="progress"/>
+  }" class="progress"
+  />
 </template>
 
 <script>

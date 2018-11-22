@@ -5,11 +5,13 @@
       :width="playerOptions.width"
       :height="playerOptions.height"
       :autoplay="playerOptions.autoplay"
-      :volume="playerOptions.volume"/>
+      :volume="playerOptions.volume"
+    />
     <div class="stream--tags">
       <ul>
         <li v-for="(item, key) in tags"
-            :key="key">
+            :key="key"
+        >
           <router-link :to="{ name: 'stream.tag', params: { id: item.tag }}">
             {{ item.tag }}
           </router-link>
@@ -36,18 +38,18 @@ export default {
     return {
       title: `Stream ${this.$route.params.id}`,
       meta: [
-        {name: 'description', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
-        {property: 'og:title', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
-        {property: 'og:site_name', content: 'WebDevHub'},
-        {property: 'og:type', content: 'website'},
-        {property: 'og:url', content: window.location.href},
-        {property: 'og:description', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
-        {name: 'twitter:card', content: 'summary'},
-        {name: 'twitter:site', content: window.location.href},
-        {name: 'twitter:title', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
-        {name: 'twitter:description', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
-        {itemprop: 'name', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
-        {itemprop: 'description', content: `Web development stream ${this.$route.params.id} on WebDevHub`},
+        { name: 'description', content: `Web development stream ${this.$route.params.id} on WebDevHub` },
+        { property: 'og:title', content: `Web development stream ${this.$route.params.id} on WebDevHub` },
+        { property: 'og:site_name', content: 'WebDevHub' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: window.location.href },
+        { property: 'og:description', content: `Web development stream ${this.$route.params.id} on WebDevHub` },
+        { name: 'twitter:card', content: 'summary' },
+        { name: 'twitter:site', content: window.location.href },
+        { name: 'twitter:title', content: `Web development stream ${this.$route.params.id} on WebDevHub` },
+        { name: 'twitter:description', content: `Web development stream ${this.$route.params.id} on WebDevHub` },
+        { itemprop: 'name', content: `Web development stream ${this.$route.params.id} on WebDevHub` },
+        { itemprop: 'description', content: `Web development stream ${this.$route.params.id} on WebDevHub` }
       ]
     }
   },
@@ -68,8 +70,8 @@ export default {
   created () {
     this.$store.dispatch('streams/fetchStreamTags', this.$route.params.id).then(() => {
       let breadcrumbs = [
-        {title: this.$t('streams'), route: {name: 'stream'}},
-        {title: this.$route.params.id, route: {name: 'stream.single', params: {id: this.$route.params.id}}}
+        { title: this.$t('streams'), route: { name: 'stream' } },
+        { title: this.$route.params.id, route: { name: 'stream.single', params: { id: this.$route.params.id } } }
       ]
 
       this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)

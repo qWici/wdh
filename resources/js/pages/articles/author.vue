@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2 v-show="items.length > 0" >{{ getPageTitle() }}</h2>
+    <h2 v-show="items.length > 0">{{ getPageTitle() }}</h2>
     <div class="content-wrapper">
       <content-item
         v-for="(item, key) in items"
@@ -11,10 +11,11 @@
         :author="item.author.name"
         :date="item.date"
         :lang="item.author.language"
-        :type="type"/>
+        :type="type"
+      />
     </div>
     <infinite-loading :distance="0" spinner="spiral" @infinite="infiniteHandler">
-      <div slot="no-more"/>
+      <div slot="no-more" />
     </infinite-loading>
   </div>
 </template>
@@ -74,15 +75,15 @@ export default {
       }
       this.$store.dispatch('articles/fetchByAuthorSlug', requestData).then(() => {
         let breadcrumbs = [
-          {title: this.$t('articles'), route: {name: 'article'}},
-          {title: this.items[0].author.name, route: {name: 'article.author', params: {author: this.$route.params.author}}}
+          { title: this.$t('articles'), route: { name: 'article' } },
+          { title: this.items[0].author.name, route: { name: 'article.author', params: { author: this.$route.params.author } } }
         ]
 
         this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
       })
     },
     getArticleLink (article) {
-      return {author: article.author.slug, slug: article.slug}
+      return { author: article.author.slug, slug: article.slug }
     },
     getPageTitle () {
       if (this.items.length > 0) {

@@ -1,5 +1,5 @@
 <template>
-  <div id="player" ref="player"/>
+  <div id="player" ref="player" />
 </template>
 
 <script>

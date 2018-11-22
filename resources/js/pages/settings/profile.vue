@@ -8,7 +8,7 @@
       <img :src="userPhoto" :alt="user.nickname">
       <input id="image_src" type="file" name="image_src" @change="updatePhoto($event)">
       <label for="image_src">
-        <fa :icon="['fas', 'upload']" fixed-width/>
+        <fa :icon="['fas', 'upload']" fixed-width />
       </label>
     </div>
 
@@ -17,7 +17,7 @@
       <label class="label">{{ $t('nickname') }}</label>
       <div class="control">
         <input v-model="form.nickname" :class="{ 'is-danger': form.errors.has('nickname') }" class="input" type="text" name="nickname">
-        <has-error :form="form" field="nickname"/>
+        <has-error :form="form" field="nickname" />
       </div>
     </div>
 
@@ -26,7 +26,7 @@
       <label class="label">{{ $t('position') }}</label>
       <div class="control">
         <input v-model="form.specialization" :class="{ 'is-danger': form.errors.has('specialization') }" class="input" type="text" name="specialization">
-        <has-error :form="form" field="specialization"/>
+        <has-error :form="form" field="specialization" />
       </div>
     </div>
 
@@ -35,7 +35,7 @@
       <label class="label">{{ $t('email') }}</label>
       <div class="control">
         <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email">
-        <has-error :form="form" field="email"/>
+        <has-error :form="form" field="email" />
       </div>
     </div>
 

@@ -12,9 +12,10 @@
         :date="item.date"
         :lang="item.language"
         :online="item.online"
-        :type="type"/>
+        :type="type"
+      />
       <infinite-loading :distance="0" spinner="spiral" @infinite="infiniteHandler">
-        <div slot="no-more"/>
+        <div slot="no-more" />
       </infinite-loading>
     </div>
   </div>
@@ -72,7 +73,7 @@ export default {
     infiniteHandler ($state) {
       this.infinityState = $state
       this.$store.dispatch('streams/fetchOnlineStreams', this.page + 1).then(() => {
-        let breadcrumbs = [{title: this.$t('streams'), route: {name: 'stream'}}]
+        let breadcrumbs = [{ title: this.$t('streams'), route: { name: 'stream' } }]
 
         this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
       })

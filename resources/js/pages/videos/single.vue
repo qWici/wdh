@@ -1,7 +1,8 @@
 <template>
   <div v-if="single" class="article">
     <iframe id="ytplayer" :src="youtubeLink" type="text/html" width="1025" height="576.5625"
-            frameborder="0" allowfullscreen style="margin-bottom: -10px;"/>
+            frameborder="0" allowfullscreen style="margin-bottom: -10px;"
+    />
     <h1>{{ single.title }}</h1>
     <div v-if="single !== undefined" class="article--body">
       <p v-for="(item, key) in preparedDescription(single.description)" :key="key">
@@ -38,21 +39,21 @@ export default {
     return {
       title: this.single.title === undefined ? 'Video' : this.single.title,
       meta: [
-        {name: 'description', content: this.single.description},
-        {property: 'og:title', content: this.single.title},
-        {property: 'og:site_name', content: 'WebDevHub'},
-        {property: 'og:type', content: 'website'},
-        {property: 'og:url', content: window.location.href},
-        {property: 'og:image', content: this.single.image_src},
-        {property: 'og:description', content: this.single.description},
-        {name: 'twitter:card', content: 'summary'},
-        {name: 'twitter:site', content: window.location.href},
-        {name: 'twitter:title', content: this.single.title},
-        {name: 'twitter:description', content: this.single.description},
-        {name: 'twitter:image:src', content: this.single.image_src},
-        {itemprop: 'name', content: this.single.title},
-        {itemprop: 'description', content: this.single.description},
-        {itemprop: 'image', content: this.single.image_src}
+        { name: 'description', content: this.single.description },
+        { property: 'og:title', content: this.single.title },
+        { property: 'og:site_name', content: 'WebDevHub' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: window.location.href },
+        { property: 'og:image', content: this.single.image_src },
+        { property: 'og:description', content: this.single.description },
+        { name: 'twitter:card', content: 'summary' },
+        { name: 'twitter:site', content: window.location.href },
+        { name: 'twitter:title', content: this.single.title },
+        { name: 'twitter:description', content: this.single.description },
+        { name: 'twitter:image:src', content: this.single.image_src },
+        { itemprop: 'name', content: this.single.title },
+        { itemprop: 'description', content: this.single.description },
+        { itemprop: 'image', content: this.single.image_src }
       ]
     }
   },
@@ -76,10 +77,10 @@ export default {
 
     this.$store.dispatch('videos/fetchBySlug', video).then(() => {
       let breadcrumbs = [
-        {title: this.$t('videos'), route: {name: 'video'}},
-        {title: this.single.channel.title, route: {name: 'video.channel', params: {channel: this.single.channel.slug}}},
-        {title: this.single.title,
-          route: {name: 'video.single', params: {channel: this.single.channel.slug, slug: this.single.slug}}
+        { title: this.$t('videos'), route: { name: 'video' } },
+        { title: this.single.channel.title, route: { name: 'video.channel', params: { channel: this.single.channel.slug } } },
+        { title: this.single.title,
+          route: { name: 'video.single', params: { channel: this.single.channel.slug, slug: this.single.slug } }
         }
       ]
 

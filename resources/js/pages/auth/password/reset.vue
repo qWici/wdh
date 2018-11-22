@@ -8,11 +8,11 @@
         <div class="control has-icons-left has-icons-right">
           <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email">
           <span class="icon is-small is-left">
-            <fa :icon="'envelope'" fixed-width/>
+            <fa :icon="'envelope'" fixed-width />
           </span>
         </div>
         <p class="help is-danger">
-          <has-error :form="form" field="email"/>
+          <has-error :form="form" field="email" />
         </p>
       </div>
 
@@ -22,11 +22,11 @@
         <div class="control has-icons-left has-icons-right">
           <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password">
           <span class="icon is-small is-left">
-            <fa :icon="'user-lock'" fixed-width/>
+            <fa :icon="'user-lock'" fixed-width />
           </span>
         </div>
         <p class="help is-danger">
-          <has-error :form="form" field="password"/>
+          <has-error :form="form" field="password" />
         </p>
       </div>
 
@@ -36,11 +36,11 @@
         <div class="control has-icons-left has-icons-right">
           <input v-model="form.password_confirmation" :class="{ 'is-danger': form.errors.has('password_confirmation') }" class="input" type="password" name="password_confirmation">
           <span class="icon is-small is-left">
-            <fa :icon="'user-lock'" fixed-width/>
+            <fa :icon="'user-lock'" fixed-width />
           </span>
         </div>
         <p class="help is-danger">
-          <has-error :form="form" field="password_confirmation"/>
+          <has-error :form="form" field="password_confirmation" />
         </p>
       </div>
 

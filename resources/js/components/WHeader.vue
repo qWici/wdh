@@ -9,13 +9,13 @@
         <ul>
           <li>
             <router-link :to="{ name: 'settings.profile' }">
-              <fa icon="cog" fixed-width/>
+              <fa icon="cog" fixed-width />
               {{ $t('settings') }}
             </router-link>
           </li>
           <li>
             <a href="#" @click.prevent="logout">
-              <fa icon="sign-out-alt" fixed-width/>
+              <fa icon="sign-out-alt" fixed-width />
               {{ $t('logout') }}
             </a>
           </li>
@@ -40,7 +40,7 @@
             </router-link>
           </li>
         </ul>
-        <locale-dropdown position="top"/>
+        <locale-dropdown position="top" />
       </nav>
     </div>
   </header>

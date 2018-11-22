@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2 v-show="items.length > 0" >{{ getPageTitle() }}</h2>
+    <h2 v-show="items.length > 0">{{ getPageTitle() }}</h2>
     <div class="content-wrapper">
       <content-item
         v-for="(item, key) in items"
@@ -11,10 +11,11 @@
         :author="item.channel.title"
         :date="item.published_at"
         :lang="item.lang"
-        :type="type"/>
+        :type="type"
+      />
     </div>
     <infinite-loading :distance="0" spinner="spiral" @infinite="infiniteHandler">
-      <div slot="no-more"/>
+      <div slot="no-more" />
     </infinite-loading>
   </div>
 </template>
@@ -74,15 +75,15 @@ export default {
       }
       this.$store.dispatch('videos/fetchByChannelSlug', requestData).then(() => {
         let breadcrumbs = [
-          {title: this.$t('videos'), route: {name: 'video'}},
-          {title: this.items[0].channel.title, route: {name: 'video.channel', params: {channel: this.$route.params.channel}}}
+          { title: this.$t('videos'), route: { name: 'video' } },
+          { title: this.items[0].channel.title, route: { name: 'video.channel', params: { channel: this.$route.params.channel } } }
         ]
 
         this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
       })
     },
     getVideoLink (video) {
-      return {author: video.channel.slug, slug: video.slug}
+      return { author: video.channel.slug, slug: video.slug }
     },
     getPageTitle () {
       if (this.items.length > 0) {

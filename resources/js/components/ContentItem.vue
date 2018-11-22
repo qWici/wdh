@@ -1,6 +1,6 @@
 <template>
   <router-link :to="itemLink" class="content-item">
-    <lang-flag v-if="lang !== null" :iso="lang" :squared="false" class="flag"/>
+    <lang-flag v-if="lang !== null" :iso="lang" :squared="false" class="flag" />
 
     <div v-if="stream" :class="online ? 'live' : 'offline'" class="status">{{ status }}</div>
 
@@ -56,15 +56,15 @@ export default {
     },
     itemLink: function () {
       if (this.type === 'article') {
-        return {name: 'article.single', params: { author: this.link.author, slug: this.link.slug }}
+        return { name: 'article.single', params: { author: this.link.author, slug: this.link.slug } }
       }
       if (this.type === 'video') {
-        return {name: 'video.single', params: { channel: this.link.channel, slug: this.link.slug }}
+        return { name: 'video.single', params: { channel: this.link.channel, slug: this.link.slug } }
       }
       if (this.type === 'podcast') {
-        return {name: 'podcast.single', params: { show: this.link.show, slug: this.link.slug }}
+        return { name: 'podcast.single', params: { show: this.link.show, slug: this.link.slug } }
       }
-      return {name: 'stream.single', params: { id: this.link }}
+      return { name: 'stream.single', params: { id: this.link } }
     }
   }
 }

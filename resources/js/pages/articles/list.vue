@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2 v-show="items.length > 0" >{{ $t('last_publications') }}</h2>
+    <h2 v-show="items.length > 0">{{ $t('last_publications') }}</h2>
     <div class="content-wrapper">
       <content-item
         v-for="(item, key) in items"
@@ -11,10 +11,11 @@
         :author="item.author.name"
         :date="item.date"
         :lang="item.author.language"
-        :type="type"/>
+        :type="type"
+      />
     </div>
     <infinite-loading :distance="0" spinner="spiral" @infinite="infiniteHandler">
-      <div slot="no-more"/>
+      <div slot="no-more" />
     </infinite-loading>
   </div>
 </template>
@@ -71,13 +72,13 @@ export default {
     infiniteHandler ($state) {
       this.infinityState = $state
       this.$store.dispatch('articles/fetchPaginateArticles', this.page + 1).then(() => {
-        let breadcrumbs = [{title: this.$t('articles'), route: {name: 'article'}}]
+        let breadcrumbs = [{ title: this.$t('articles'), route: { name: 'article' } }]
 
         this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
       })
     },
     getArticleLink (article) {
-      return {author: article.author.slug, slug: article.slug}
+      return { author: article.author.slug, slug: article.slug }
     }
   }
 }

@@ -12,7 +12,8 @@
         :date="item.date"
         :lang="item.language"
         :type="type"
-        :online="item.online"/>
+        :online="item.online"
+      />
     </div>
   </div>
 </template>
@@ -45,8 +46,8 @@ export default {
   created () {
     this.$store.dispatch('streams/fetchStreamsByTag', this.$route.params.id).then(() => {
       let breadcrumbs = [
-        {title: this.$t('streams'), route: {name: 'stream'}},
-        {title: this.$route.params.id, route: {name: 'stream.tag', params: {id: this.$route.params.id}}}
+        { title: this.$t('streams'), route: { name: 'stream' } },
+        { title: this.$route.params.id, route: { name: 'stream.tag', params: { id: this.$route.params.id } } }
       ]
 
       this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)

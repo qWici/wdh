@@ -7,11 +7,11 @@
         <div class="control has-icons-left has-icons-right">
           <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email" autocomplete="username">
           <span class="icon is-small is-left">
-            <fa :icon="'envelope'" fixed-width/>
+            <fa :icon="'envelope'" fixed-width />
           </span>
         </div>
         <p class="help is-danger">
-          <has-error :form="form" field="email"/>
+          <has-error :form="form" field="email" />
         </p>
       </div>
 
@@ -21,11 +21,11 @@
         <div class="control has-icons-left has-icons-right">
           <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password" autocomplete="current-password">
           <span class="icon is-small is-left">
-            <fa :icon="'user-lock'" fixed-width/>
+            <fa :icon="'user-lock'" fixed-width />
           </span>
         </div>
         <p class="help is-danger">
-          <has-error :form="form" field="password"/>
+          <has-error :form="form" field="password" />
         </p>
       </div>
 
@@ -54,14 +54,11 @@
 
 <script>
 import Form from 'vform'
-import LoginWithGithub from '~/components/LoginWithGithub'
 
 export default {
   middleware: 'guest',
 
-  components: {
-    LoginWithGithub
-  },
+  components: {},
 
   metaInfo () {
     return { title: this.$t('login') }

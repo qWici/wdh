@@ -1,7 +1,7 @@
 <template>
   <div id="welcome">
     {{ redirectUserToHome() }}
-    <first-section/>
+    <first-section />
   </div>
 </template>
 

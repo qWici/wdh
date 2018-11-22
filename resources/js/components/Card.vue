@@ -6,7 +6,7 @@
       </div>
 
       <div class="card-body">
-        <slot/>
+        <slot />
       </div>
     </aside>
 
@@ -23,7 +23,7 @@ export default {
 
   props: {
     title: { type: String, default: null },
-    side_image_src: { type: String, default: null }
+    sideImageSrc: { type: String, default: null }
   }
 }
 </script>
