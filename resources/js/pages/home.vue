@@ -48,7 +48,7 @@ export default {
     padding-right: 10px;
     padding-bottom: 20px;
     overflow-y: scroll;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 120px);
     &::-webkit-scrollbar {
       width: 10px;
     }
