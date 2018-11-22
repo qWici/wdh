@@ -1,5 +1,5 @@
 <template>
-  <card :title="$t('register')" :side_image_src="side_image_src">
+  <card :title="$t('register')" :image="side_image_src">
     <form @submit.prevent="register" @keydown="form.onKeydown($event)">
       <!-- Name -->
       <div class="field">
