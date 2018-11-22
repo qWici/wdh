@@ -93,7 +93,7 @@ export default {
   }
   ul {
     position: absolute;
-    top: -80px;
+    top: -90px;
     display: flex;
     flex-direction: column;
     margin: 0;
