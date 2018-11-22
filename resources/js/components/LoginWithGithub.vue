@@ -84,3 +84,16 @@ function openWindow (url, title, options = {}) {
   return newWindow
 }
 </script>
+
+<style scoped lang="scss">
+button {
+    width: 100%;
+    background: linear-gradient(to bottom, #fff 0%, #cecdcd 100%);
+    padding: 10px;
+    border-radius: 5px;
+    &:hover {
+        cursor: pointer;
+        background: linear-gradient(to bottom, #cecdcd 0%, #cecdcd 100%);
+    }
+}
+</style>

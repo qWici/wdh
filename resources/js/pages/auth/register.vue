@@ -59,6 +59,11 @@
 
       <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth is-rounded">{{ $t('register') }}</button>
     </form>
+
+    <p>
+      <login-with-github/>
+    </p>
+
     <p>
       {{ $t('already_have_account') }}?
       <router-link :to="{ name: 'login' }">
@@ -70,11 +75,16 @@
 
 <script>
 import Form from 'vform'
+import LoginWithGithub from '~/components/LoginWithGithub'
 
 export default {
   middleware: 'guest',
   metaInfo () {
     return { title: this.$t('register') }
+  },
+
+  components: {
+    LoginWithGithub
   },
 
   data: () => ({

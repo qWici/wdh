@@ -95,8 +95,9 @@ class OAuthController extends Controller
     protected function createUser($provider, $sUser)
     {
         $user = User::create([
-            'name' => $sUser->getName(),
+            'nickname' => $sUser->getNickname(),
             'email' => $sUser->getEmail(),
+            'image_src' => $sUser->getAvatar()
         ]);
 
         $user->oauthProviders()->create([

@@ -7,6 +7,9 @@ export default {
       return false
     }
     if (state.user.image_src) {
+      if (state.user.image_src.includes('githubusercontent')) {
+        return state.user.image_src
+      }
       return '/images/users/' + state.user.image_src
     }
     if (state.user.photo_url) {
