@@ -1,8 +1,7 @@
 <template>
   <div v-if="single" class="article">
-    <iframe id="ytplayer" :src="youtubeLink" type="text/html" width="1025" height="576.5625"
-            frameborder="0" allowfullscreen style="margin-bottom: -10px;"
-    />
+    <iframe id="ytplayer" :src="youtubeLink" type="text/html" width="100%" :height="calculatePlayerHeight()"
+            frameborder="0" allowfullscreen style="margin-bottom: -10px;"/>
     <h1>{{ single.title }}</h1>
     <div v-if="single !== undefined" class="article--body">
       <p v-for="(item, key) in preparedDescription(single.description)" :key="key">
@@ -99,6 +98,11 @@ export default {
     },
     getBackgroundImage (video) {
       return `background-image: url("${video.channel.image_src}")`
+    },
+    calculatePlayerHeight () {
+      // Content width all time is 845px. Player standard ratio is 16:9
+      // After few calculation we get number 53 - its count of pixels per 1 ratio point
+      return (53 * 9) + 'px'
     }
   }
 }

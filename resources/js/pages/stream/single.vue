@@ -3,7 +3,7 @@
     <twitch-player
       :channel="this.$route.params.id"
       :width="playerOptions.width"
-      :height="playerOptions.height"
+      :height="calculatePlayerHeight()"
       :autoplay="playerOptions.autoplay"
       :volume="playerOptions.volume"
     />
@@ -57,7 +57,6 @@ export default {
   data: () => ({
     playerOptions: {
       width: '100%',
-      height: '680px',
       autoplay: false,
       volume: 0.5
     }
@@ -78,7 +77,11 @@ export default {
     })
   },
 
-  methods: {}
+  methods: {
+    calculatePlayerHeight () {
+      return (document.documentElement.clientHeight - 204) + 'px'
+    }
+  }
 }
 </script>
 
@@ -88,7 +91,7 @@ export default {
 .stream {
   padding-top: 20px;
   width: 100%;
-  height: 680px;
+  height: calc(100vh - 204px);
   display: block;
   &--tags {
     margin-top: -16px;

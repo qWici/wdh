@@ -35,7 +35,10 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin: 20px 0 20px 20px;
+  margin: 20px 0 0 20px;
+  &:not(:last-child) {
+    margin-bottom: 0;
+  }
   li {
     margin-right: 10px;
     padding-right: 15px;
