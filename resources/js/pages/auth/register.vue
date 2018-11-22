@@ -130,6 +130,7 @@ export default {
     left: 288px;
     background: linear-gradient(to right, #312b5400 0%, #191d3b 100%);
     padding: 20px;
+    transform: rotate(-3deg) translateY(-50%);
   }
 }
 </style>
