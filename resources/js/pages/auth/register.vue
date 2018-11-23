@@ -61,7 +61,7 @@
     </form>
 
     <p>
-      <login-with-github/>
+      <login-with-github />
     </p>
 
     <p>

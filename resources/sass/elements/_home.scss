@@ -38,9 +38,36 @@
 @media only screen and (max-width: 768px) {
   .home {
     margin-top: 0;
-    height: calc(100vh - 190px);
+    height: calc(100vh - 100px);
     h2 {
       margin-top: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .home {
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+  }
+  .content-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .home {
+    h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    &::-webkit-scrollbar {
+      width: 5px;
     }
   }
 }

@@ -162,4 +162,17 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 480px) {
+    form {
+      h2 {
+        font-size: 16px;
+      }
+      .user-photo {
+        img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+  }
 </style>

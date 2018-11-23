@@ -1,3 +1,5 @@
+@import "../vars";
+
 header {
   position: absolute;
   top: 0;
@@ -31,6 +33,53 @@ header {
           }
         }
       }
+    }
+  }
+}
+
+@media #{$mobile} {
+  header {
+    transition: all .2s ease-out;
+    &.nav-open {
+      transform: translateX(20rem);
+      transition: all .2s ease-in;
+    }
+    .box {
+      padding: 0 20px;
+      svg path {
+        fill: #FFF;
+      }
+      > nav {
+        position: absolute;
+        height: 100vh;
+        top: 0;
+        left: -20rem;
+        width: 20rem;
+        flex-direction: column;
+        background: linear-gradient(to left, #423a6f 0%, #272c5a 100%);
+        justify-content: space-between;
+        > ul {
+          flex-direction: column;
+          text-align: right;
+          li {
+            margin-right: 0;
+            padding: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  header {
+    &.nav-open {
+      transform: translateX(15rem);
+      transition: all .2s ease-in;
+    }
+    .box > nav{
+      left: -15rem;
+      width: 15rem;
     }
   }
 }

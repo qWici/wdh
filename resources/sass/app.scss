@@ -1,5 +1,4 @@
 @import 'vars';
-@import "helpers";
 @import "reset";
 
 #app, .main-layout {
@@ -10,6 +9,19 @@
 main {
   height: calc(100% - 80px);
   margin-top: 80px;
+  transition: all .2s ease-out;
+  &.nav-open {
+    transform: translateX(20rem);
+    transition: all .2s ease-in;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  main {
+    &.nav-open {
+      transform: translateX(15rem);
+    }
+  }
 }
 
 body {
@@ -39,6 +51,7 @@ body {
 @import 'elements/card';
 @import 'elements/header';
 @import 'elements/sidebar';
+@import "helpers";
 @import 'elements/buttons';
 @import 'elements/transitions';
 @import '~sweetalert2/src/sweetalert2';

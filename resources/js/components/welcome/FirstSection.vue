@@ -136,6 +136,17 @@ export default {
   .first-section {
     .information {
       height: calc(100% - 270px);
+      img {
+        height: 150px;
+      }
+      .main-texts {
+        h1 {
+          font-size: 28px;
+        }
+        span {
+          font-size: 18px;
+        }
+      }
     }
     footer {
       flex-wrap: wrap;
@@ -146,10 +157,18 @@ export default {
       align-items: center;
       padding: 20px;
       .text {
-        margin-bottom: 30px;
+        margin-bottom: 15px;
       }
       h3 {
-        font-size: 29px;
+        font-size: 22px;
+      }
+      p {
+        font-size: 14px;
+      }
+      form {
+        button {
+          font-size: 16px;
+        }
       }
     }
   }
