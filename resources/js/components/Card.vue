@@ -13,7 +13,6 @@
     <div class="side-image-block">
       <img :src="image" alt="Register image on WebDevHub.com">
     </div>
-
   </div>
 </template>
 

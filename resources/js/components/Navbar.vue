@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
-      <router-link :to="{ name: user ? 'home' : 'welcome' }" class="navbar-brand">
+      <RouterLink :to="{ name: user ? 'home' : 'welcome' }" class="navbar-brand">
         {{ appName }}
-      </router-link>
+      </RouterLink>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false">
         <span class="navbar-toggler-icon" />
@@ -11,7 +11,7 @@
 
       <div id="navbarToggler" class="collapse navbar-collapse">
         <ul class="navbar-nav">
-          <locale-dropdown />
+          <LocaleDropdown />
           <!-- <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li> -->
@@ -27,14 +27,14 @@
               {{ user.name }}
             </a>
             <div class="dropdown-menu">
-              <router-link :to="{ name: 'settings.profile' }" class="dropdown-item pl-3">
-                <fa icon="cog" fixed-width />
+              <RouterLink :to="{ name: 'settings.profile' }" class="dropdown-item pl-3">
+                <Fa icon="cog" fixed-width />
                 {{ $t('settings') }}
-              </router-link>
+              </RouterLink>
 
               <div class="dropdown-divider" />
               <a href="#" class="dropdown-item pl-3" @click.prevent="logout">
-                <fa icon="sign-out-alt" fixed-width />
+                <Fa icon="sign-out-alt" fixed-width />
                 {{ $t('logout') }}
               </a>
             </div>
@@ -42,14 +42,14 @@
           <!-- Guest -->
           <template v-else>
             <li class="nav-item">
-              <router-link :to="{ name: 'login' }" class="nav-link" active-class="active">
+              <RouterLink :to="{ name: 'login' }" class="nav-link" active-class="active">
                 {{ $t('login') }}
-              </router-link>
+              </RouterLink>
             </li>
             <li class="nav-item">
-              <router-link :to="{ name: 'register' }" class="nav-link" active-class="active">
+              <RouterLink :to="{ name: 'register' }" class="nav-link" active-class="active">
                 {{ $t('register') }}
-              </router-link>
+              </RouterLink>
             </li>
           </template>
         </ul>

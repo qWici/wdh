@@ -8,39 +8,47 @@
       <img :src="userPhoto" :alt="user.nickname">
       <input id="image_src" type="file" name="image_src" @change="updatePhoto($event)">
       <label for="image_src">
-        <fa :icon="['fas', 'upload']" fixed-width />
+        <Fa :icon="['fas', 'upload']" fixed-width />
       </label>
     </div>
 
     <!-- Nickname -->
     <div class="field">
-      <label class="label">{{ $t('nickname') }}</label>
+      <label class="label">
+        {{ $t('nickname') }}
+      </label>
       <div class="control">
         <input v-model="form.nickname" :class="{ 'is-danger': form.errors.has('nickname') }" class="input" type="text" name="nickname">
-        <has-error :form="form" field="nickname" />
+        <HasError :form="form" field="nickname" />
       </div>
     </div>
 
     <!-- Specialization -->
     <div class="field">
-      <label class="label">{{ $t('position') }}</label>
+      <label class="label">
+        {{ $t('position') }}
+      </label>
       <div class="control">
         <input v-model="form.specialization" :class="{ 'is-danger': form.errors.has('specialization') }" class="input" type="text" name="specialization">
-        <has-error :form="form" field="specialization" />
+        <HasError :form="form" field="specialization" />
       </div>
     </div>
 
     <!-- Email -->
     <div class="field">
-      <label class="label">{{ $t('email') }}</label>
+      <label class="label">
+        {{ $t('email') }}
+      </label>
       <div class="control">
         <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email">
-        <has-error :form="form" field="email" />
+        <HasError :form="form" field="email" />
       </div>
     </div>
 
     <!-- Submit Button -->
-    <v-button :loading="form.busy" class="button is-link is-medium is-rounded" type="success">{{ $t('update') }}</v-button>
+    <VButton :loading="form.busy" class="button is-link is-medium is-rounded" type="success">
+      {{ $t('update') }}
+    </VButton>
   </form>
 </template>
 

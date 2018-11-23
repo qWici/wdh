@@ -15,9 +15,9 @@
           <img :src="single.channel.image_src" :alt="single.channel.title" style="display: none;">
         </div>
         <div class="article-author-info">
-          <router-link :to="{name: 'video.channel', params: { channel: single.channel.slug }}">
+          <RouterLink :to="{name: 'video.channel', params: { channel: single.channel.slug }}">
             {{ single.channel.title }}
-          </router-link>
+          </RouterLink>
           <p>{{ single.channel.description }}</p>
         </div>
       </div>

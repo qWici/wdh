@@ -1,8 +1,8 @@
 <template>
   <div class="main-layout">
-    <w-header />
+    <WHeader />
     <main>
-      <child />
+      <Child />
     </main>
   </div>
 </template>

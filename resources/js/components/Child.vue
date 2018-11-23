@@ -1,9 +1,9 @@
 <template>
-  <transition name="page" mode="out-in">
+  <Transition name="page" mode="out-in">
     <slot>
-      <router-view />
+      <RouterView />
     </slot>
-  </transition>
+  </Transition>
 </template>
 
 <script>

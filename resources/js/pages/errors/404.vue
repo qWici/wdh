@@ -3,9 +3,9 @@
     <img src="/img/404.png" alt="">
 
     <h2>{{ $t('page_not_found') }}</h2>
-    <router-link :to="{ name: 'welcome' }" class="button is-link is-medium is-rounded">
+    <RouterLink :to="{ name: 'welcome' }" class="button is-link is-medium is-rounded">
       {{ $t('go_home') }}
-    </router-link>
+    </RouterLink>
   </div>
 </template>
 

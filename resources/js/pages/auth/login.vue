@@ -1,60 +1,66 @@
 <template>
-  <card :title="$t('login')" :image="side_image_src">
+  <Card :title="$t('login')" :image="side_image_src">
     <form @submit.prevent="login" @keydown="form.onKeydown($event)">
       <!-- Email -->
       <div class="field">
-        <label class="label">{{ $t('email') }}</label>
+        <label class="label">
+          {{ $t('email') }}
+        </label>
         <div class="control has-icons-left has-icons-right">
           <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email" autocomplete="username">
           <span class="icon is-small is-left">
-            <fa :icon="'envelope'" fixed-width />
+            <Fa :icon="'envelope'" fixed-width />
           </span>
         </div>
         <p class="help is-danger">
-          <has-error :form="form" field="email" />
+          <HasError :form="form" field="email" />
         </p>
       </div>
 
       <!-- Password -->
       <div class="field">
-        <label class="label">{{ $t('password') }}</label>
+        <label class="label">
+          {{ $t('password') }}
+        </label>
         <div class="control has-icons-left has-icons-right">
           <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password" autocomplete="current-password">
           <span class="icon is-small is-left">
-            <fa :icon="'user-lock'" fixed-width />
+            <Fa :icon="'user-lock'" fixed-width />
           </span>
         </div>
         <p class="help is-danger">
-          <has-error :form="form" field="password" />
+          <HasError :form="form" field="password" />
         </p>
       </div>
 
       <!-- Remember Me -->
       <div class="field-details">
-        <checkbox v-model="remember" name="remember">
+        <Checkbox v-model="remember" name="remember">
           {{ $t('remember_me') }}
-        </checkbox>
+        </Checkbox>
       </div>
 
-      <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth is-rounded">{{ $t('login') }}</button>
+      <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth is-rounded">
+        {{ $t('login') }}
+      </button>
     </form>
 
     <p>
-      <login-with-github />
+      <LoginWithGithub />
     </p>
 
     <p>
       {{ $t('dont_have_account') }}?
-      <router-link :to="{ name: 'register' }">
+      <RouterLink :to="{ name: 'register' }">
         {{ $t('register') }}
-      </router-link>
+      </RouterLink>
     </p>
     <p>
-      <router-link :to="{ name: 'password.request' }">
+      <RouterLink :to="{ name: 'password.request' }">
         {{ $t('forgot_password') }}
-      </router-link>
+      </RouterLink>
     </p>
-  </card>
+  </Card>
 </template>
 
 <script>

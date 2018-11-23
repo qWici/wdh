@@ -1,6 +1,6 @@
 <template>
   <div class="stream">
-    <twitch-player
+    <TwitchPlayer
       :channel="this.$route.params.id"
       :width="playerOptions.width"
       :height="calculatePlayerHeight()"
@@ -12,9 +12,9 @@
         <li v-for="(item, key) in tags"
             :key="key"
         >
-          <router-link :to="{ name: 'stream.tag', params: { id: item.tag }}">
+          <RouterLink :to="{ name: 'stream.tag', params: { id: item.tag }}">
             {{ item.tag }}
-          </router-link>
+          </RouterLink>
         </li>
       </ul>
     </div>

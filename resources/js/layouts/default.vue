@@ -1,9 +1,9 @@
 <template>
   <div class="main-layout">
-    <w-header />
+    <WHeader />
     <main :class="{ 'nav-open': navOpened }">
       <div class="box">
-        <child />
+        <Child />
       </div>
     </main>
   </div>

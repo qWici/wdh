@@ -1,55 +1,55 @@
 <template>
   <header :class="{ 'nav-open': navOpened }">
     <div class="box">
-      <fa v-if="isMobile()" :icon="navOpened ? 'window-close' : 'bars'" fixed-width @click="toggleNav" />
+      <Fa v-if="isMobile()" :icon="navOpened ? 'window-close' : 'bars'" fixed-width @click="toggleNav" />
 
-      <router-link :to="{ name: user ? 'home' : 'welcome' }" class="logo">
+      <RouterLink :to="{ name: user ? 'home' : 'welcome' }" class="logo">
         <img src="/img/logo.png" alt="WebDevHub Logo">
-      </router-link>
+      </RouterLink>
 
-      <router-link v-if="isMobile() && !user" :to="{ name: 'login' }" active-class="active">
-        <fa icon="sign-out-alt" fixed-width />
-      </router-link>
+      <RouterLink v-if="isMobile() && !user" :to="{ name: 'login' }" active-class="active">
+        <Fa icon="sign-out-alt" fixed-width />
+      </RouterLink>
 
       <a v-if="isMobile() && user" href="#" @click.prevent="logout">
-        <fa icon="sign-out-alt" fixed-width />
+        <Fa icon="sign-out-alt" fixed-width />
       </a>
 
       <nav v-if="user">
-        <w-sidebar-mobile v-if="isMobile()" />
+        <WSidebarMobile v-if="isMobile()" />
 
         <ul v-if="!isMobile()">
           <li>
-            <router-link :to="{ name: 'settings.profile' }">
-              <fa icon="cog" fixed-width />
+            <RouterLink :to="{ name: 'settings.profile' }">
+              <Fa icon="cog" fixed-width />
               {{ $t('settings') }}
-            </router-link>
+            </RouterLink>
           </li>
           <li>
             <a href="#" @click.prevent="logout">
-              <fa icon="sign-out-alt" fixed-width />
+              <Fa icon="sign-out-alt" fixed-width />
               {{ $t('logout') }}
             </a>
           </li>
         </ul>
 
-        <locale-dropdown v-if="isMobile()" position="top" />
+        <LocaleDropdown v-if="isMobile()" position="top" />
       </nav>
 
       <nav v-else>
         <ul>
           <li>
-            <router-link :to="{ name: 'login' }" active-class="active">
+            <RouterLink :to="{ name: 'login' }" active-class="active">
               {{ $t('login') }}
-            </router-link>
+            </RouterLink>
           </li>
           <li>
-            <router-link :to="{ name: 'register' }" active-class="active">
+            <RouterLink :to="{ name: 'register' }" active-class="active">
               {{ $t('register') }}
-            </router-link>
+            </RouterLink>
           </li>
         </ul>
-        <locale-dropdown position="top" />
+        <LocaleDropdown position="top" />
       </nav>
     </div>
   </header>

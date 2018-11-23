@@ -1,12 +1,12 @@
 <template>
   <div class="main-layout">
-    <w-header />
+    <WHeader />
     <main :class="{ 'nav-open': navOpened }">
       <div class="box">
-        <w-sidebar />
+        <WSidebar />
         <div class="content left-sidebar">
-          <w-breadcrumbs />
-          <child />
+          <WBreadcrumbs />
+          <Child />
         </div>
       </div>
     </main>

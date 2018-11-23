@@ -6,7 +6,9 @@
     <h1>{{ single.title }}</h1>
     <div class="article--body">
       <p>{{ single.description }}</p>
-      <a :href="single.link" rel="noreferrer" target="_blank">{{ $t('read_full_article') }}</a>
+      <a :href="single.link" rel="noreferrer" target="_blank">
+        {{ $t('read_full_article') }}
+      </a>
     </div>
     <footer v-if="single.author">
       <div class="article-author">
@@ -14,9 +16,9 @@
           <img :src="single.author.logo" :alt="single.author.name" style="display: none;">
         </div>
         <div class="article-author-info">
-          <router-link :to="{name: 'article.author', params: { author: single.author.slug }}">
+          <RouterLink :to="{name: 'article.author', params: { author: single.author.slug }}">
             {{ single.author.name }}
-          </router-link>
+          </RouterLink>
           <p>{{ single.author.about }}</p>
         </div>
       </div>

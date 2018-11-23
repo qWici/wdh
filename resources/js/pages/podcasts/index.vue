@@ -1,7 +1,7 @@
 <template>
-  <transition name="fade" mode="out-in">
-    <router-view />
-  </transition>
+  <Transition name="fade" mode="out-in">
+    <RouterView />
+  </Transition>
 </template>
 
 <script>

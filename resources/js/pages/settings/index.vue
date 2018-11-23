@@ -4,17 +4,17 @@
     <div class="tabs">
       <ul>
         <li v-for="tab in tabs" :key="tab.route" class="nav-item">
-          <router-link :to="{ name: tab.route }" class="nav-link" active-class="active">
-            <fa :icon="tab.icon" fixed-width />
+          <RouterLink :to="{ name: tab.route }" class="nav-link" active-class="active">
+            <Fa :icon="tab.icon" fixed-width />
             {{ tab.name }}
-          </router-link>
+          </RouterLink>
         </li>
       </ul>
     </div>
     <div class="tabs-content">
-      <transition name="fade" mode="out-in">
-        <router-view />
-      </transition>
+      <Transition name="fade" mode="out-in">
+        <RouterView />
+      </Transition>
     </div>
   </div>
 </template>

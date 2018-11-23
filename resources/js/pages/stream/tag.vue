@@ -1,8 +1,10 @@
 <template>
   <div class="home">
-    <h2 class="live">{{ this.$route.params.id }}</h2>
+    <h2 class="live">
+      {{ this.$route.params.id }}
+    </h2>
     <div v-show="streams.length > 0" class="content-wrapper">
-      <content-item
+      <ContentItem
         v-for="(item, key) in streams"
         :key="key"
         :src="getThumbnail(item)"

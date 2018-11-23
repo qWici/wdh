@@ -1,10 +1,12 @@
 <template>
   <ul v-show="lastIndex !== 0" class="breadcrumbs">
     <li v-for="(item, key) in breadcrumbs" :key="key">
-      <router-link v-if="key !== lastIndex" :to="item.route">
+      <RouterLink v-if="key !== lastIndex" :to="item.route">
         {{ item.title }}
-      </router-link>
-      <span v-else>{{ item.title }}</span>
+      </RouterLink>
+      <span v-else>
+        {{ item.title }}
+      </span>
     </li>
   </ul>
 </template>

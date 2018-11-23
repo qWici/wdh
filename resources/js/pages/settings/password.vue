@@ -5,24 +5,30 @@
 
     <!-- Password -->
     <div class="field">
-      <label class="label">{{ $t('new_password') }}</label>
+      <label class="label">
+        {{ $t('new_password') }}
+      </label>
       <div class="control">
         <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password">
-        <has-error :form="form" field="password" />
+        <HasError :form="form" field="password" />
       </div>
     </div>
 
     <!-- Password Confirmation -->
     <div class="field">
-      <label class="label">{{ $t('confirm_password') }}</label>
+      <label class="label">
+        {{ $t('confirm_password') }}
+      </label>
       <div class="control">
         <input v-model="form.password_confirmation" :class="{ 'is-danger': form.errors.has('password_confirmation') }" class="input" type="password" name="password_confirmation">
-        <has-error :form="form" field="password_confirmation" />
+        <HasError :form="form" field="password_confirmation" />
       </div>
     </div>
 
     <!-- Submit Button -->
-    <v-button :loading="form.busy" class="button is-link is-medium is-rounded" type="success">{{ $t('update') }}</v-button>
+    <VButton :loading="form.busy" class="button is-link is-medium is-rounded" type="success">
+      {{ $t('update') }}
+    </VButton>
   </form>
 </template>
 

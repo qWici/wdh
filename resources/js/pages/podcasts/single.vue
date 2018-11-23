@@ -1,6 +1,6 @@
 <template>
   <div v-if="single !== undefined" class="article">
-    <aplayer :music="audioData" :volume="0.5" />
+    <Aplayer :music="audioData" :volume="0.5" />
 
     <h1>{{ single.title }}</h1>
     <div v-if="single !== undefined" class="article--body">
@@ -12,9 +12,9 @@
           <img :src="single.show.image_url" :alt="single.show.title" style="display: none;">
         </div>
         <div class="article-author-info">
-          <router-link :to="{name: 'podcast.show', params: { show: single.show.slug }}">
+          <RouterLink :to="{name: 'podcast.show', params: { show: single.show.slug }}">
             {{ single.show.title }}
-          </router-link>
+          </RouterLink>
           <p>{{ single.show.description }}</p>
         </div>
       </div>
