@@ -1,3 +1,4 @@
 export default {
-  navOpened: false
+  navOpened: false,
+  isMobile: false
 }

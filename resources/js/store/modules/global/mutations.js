@@ -8,5 +8,8 @@ export default {
     }
 
     state.navOpened = status
+  },
+  [types.SET_MOBILE_STATUS] (state, status) {
+    state.isMobile = status
   }
 }

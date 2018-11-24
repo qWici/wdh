@@ -83,6 +83,8 @@ export default {
     border-radius: 5px;
     overflow: hidden;
     position: relative;
+    min-height: 300px;
+    max-height: 300px;
     &:hover .item-info{
         bottom: 0;
         transition: all .2s ease-in;

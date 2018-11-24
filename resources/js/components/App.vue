@@ -46,6 +46,7 @@ export default {
 
   mounted () {
     this.$loading = this.$refs.loading
+    window.addEventListener('resize', this.resize)
   },
 
   methods: {
@@ -60,6 +61,11 @@ export default {
       }
 
       this.layout = layouts[layout]
+    },
+    resize () {
+      let status = document.documentElement.clientWidth <= 768
+      this.$store.dispatch('global/setMobileStatus', status)
+      console.log('reszie')
     }
   }
 }

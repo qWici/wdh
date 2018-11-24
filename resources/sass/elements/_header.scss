@@ -71,6 +71,12 @@ header {
   }
 }
 
+@media only screen and (max-width: 480px) {
+  header .box {
+    padding: 0;
+  }
+}
+
 @media only screen and (max-width: 360px) {
   header {
     &.nav-open {

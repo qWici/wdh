@@ -1,12 +1,22 @@
 .home {
   margin-top: 20px;
-  padding-right: 10px;
-  padding-bottom: 20px;
-  overflow-y: scroll;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 100px);
   h2 {
     color: #FFF;
+    margin-top: 0;
+    font-size: 28px;
+    line-height: 1;
+    margin-bottom: 20px;
   }
+}
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  overflow-y: scroll;
+  height: calc(100% - 48px);
+  padding-right: 10px;
   &::-webkit-scrollbar {
     width: 10px;
   }
@@ -21,12 +31,6 @@
   &::-webkit-scrollbar-thumb:hover {
     background: #0e1430;
   }
-}
-.content-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -51,12 +55,12 @@
       font-size: 24px;
       margin-bottom: 20px;
     }
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
   }
   .content-wrapper {
     grid-template-columns: 1fr;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
   }
 }
 
@@ -66,6 +70,11 @@
       font-size: 20px;
       margin-bottom: 20px;
     }
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+  }
+  .content-wrapper {
     &::-webkit-scrollbar {
       width: 5px;
     }

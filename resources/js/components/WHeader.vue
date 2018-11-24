@@ -1,24 +1,24 @@
 <template>
   <header :class="{ 'nav-open': navOpened }">
     <div class="box">
-      <fa v-if="isMobile()" :icon="navOpened ? 'window-close' : 'bars'" fixed-width @click="toggleNav" />
+      <fa v-if="isMobile" :icon="navOpened ? 'window-close' : 'bars'" fixed-width @click="toggleNav" />
 
       <router-link :to="{ name: user ? 'home' : 'welcome' }" class="logo">
         <img src="/img/logo.png" alt="WebDevHub Logo">
       </router-link>
 
-      <router-link v-if="isMobile() && !user" :to="{ name: 'login' }" active-class="active">
+      <router-link v-if="isMobile && !user" :to="{ name: 'login' }" active-class="active">
         <fa icon="sign-out-alt" fixed-width />
       </router-link>
 
-      <a v-if="isMobile() && user" href="#" @click.prevent="logout">
+      <a v-if="isMobile && user" href="#" @click.prevent="logout">
         <fa icon="sign-out-alt" fixed-width />
       </a>
 
       <nav v-if="user">
-        <w-sidebar-mobile v-if="isMobile()" />
+        <w-sidebar-mobile v-if="isMobile" />
 
-        <ul v-if="!isMobile()">
+        <ul v-if="!isMobile">
           <li>
             <router-link :to="{ name: 'settings.profile' }">
               <fa icon="cog" fixed-width />
@@ -33,7 +33,7 @@
           </li>
         </ul>
 
-        <locale-dropdown v-if="isMobile()" position="top" />
+        <locale-dropdown v-if="isMobile" position="top" />
       </nav>
 
       <nav v-else>
@@ -73,7 +73,8 @@ export default {
     ...mapGetters({
       user: 'auth/user',
       userPhoto: 'auth/userPhoto',
-      navOpened: 'global/navOpened'
+      navOpened: 'global/navOpened',
+      isMobile: 'global/isMobile'
     })
   },
 
@@ -84,9 +85,6 @@ export default {
 
       // Redirect to login.
       this.$router.push({ name: 'login' })
-    },
-    isMobile () {
-      return document.documentElement.clientWidth <= 768
     },
     toggleNav () {
       this.$store.dispatch('global/toggleNav')
