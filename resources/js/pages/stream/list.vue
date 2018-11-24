@@ -1,8 +1,10 @@
 <template>
   <div class="home">
-    <h2 class="live">{{ $t('live_now') }}</h2>
+    <h2 class="live">
+      {{ $t('live_now') }}
+    </h2>
     <div class="content-wrapper">
-      <content-item
+      <ContentItem
         v-for="(item, key) in live"
         :key="key"
         :src="getTwitchThumbnail(item.twitch)"
@@ -14,9 +16,9 @@
         :online="item.online"
         :type="type"
       />
-      <infinite-loading :distance="0" spinner="spiral" @infinite="infiniteHandler">
+      <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
         <div slot="no-more" />
-      </infinite-loading>
+      </InfiniteLoading>
     </div>
   </div>
 </template>

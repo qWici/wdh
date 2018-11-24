@@ -4,7 +4,9 @@
       <router-link v-if="key !== lastIndex" :to="item.route">
         {{ item.title }}
       </router-link>
-      <span v-else>{{ item.title }}</span>
+      <span v-else>
+        {{ item.title }}
+      </span>
     </li>
   </ul>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div v-if="single !== undefined" class="article">
-    <aplayer :music="audioData" :volume="0.5" />
+    <Aplayer :music="audioData" :volume="0.5" />
 
     <h1>{{ single.title }}</h1>
     <div v-if="single !== undefined" class="article--body">

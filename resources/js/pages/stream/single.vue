@@ -1,6 +1,6 @@
 <template>
   <div class="stream">
-    <twitch-player
+    <TwitchPlayer
       :channel="this.$route.params.id"
       :width="playerOptions.width"
       :height="calculatePlayerHeight()"

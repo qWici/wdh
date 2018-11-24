@@ -1,12 +1,24 @@
 <template>
-  <header>
+  <header :class="{ 'nav-open': navOpened }">
     <div class="box">
+      <fa v-if="isMobile()" :icon="navOpened ? 'window-close' : 'bars'" fixed-width @click="toggleNav" />
+
       <router-link :to="{ name: user ? 'home' : 'welcome' }" class="logo">
         <img src="/img/logo.png" alt="WebDevHub Logo">
       </router-link>
 
+      <router-link v-if="isMobile() && !user" :to="{ name: 'login' }" active-class="active">
+        <fa icon="sign-out-alt" fixed-width />
+      </router-link>
+
+      <a v-if="isMobile() && user" href="#" @click.prevent="logout">
+        <fa icon="sign-out-alt" fixed-width />
+      </a>
+
       <nav v-if="user">
-        <ul>
+        <w-sidebar-mobile v-if="isMobile()" />
+
+        <ul v-if="!isMobile()">
           <li>
             <router-link :to="{ name: 'settings.profile' }">
               <fa icon="cog" fixed-width />
@@ -20,16 +32,12 @@
             </a>
           </li>
         </ul>
-        <locale-dropdown v-if="showLocalesOnTablets()" position="top" />
+
+        <locale-dropdown v-if="isMobile()" position="top" />
       </nav>
 
       <nav v-else>
         <ul>
-          <li>
-            <router-link :to="{ name: 'welcome' }" active-class="active">
-              {{ $t('home') }}
-            </router-link>
-          </li>
           <li>
             <router-link :to="{ name: 'login' }" active-class="active">
               {{ $t('login') }}
@@ -50,17 +58,24 @@
 <script>
 import { mapGetters } from 'vuex'
 import LocaleDropdown from './LocaleDropdown'
+import WSidebarMobile from './WSidebarMobile'
 
 export default {
   components: {
-    LocaleDropdown
+    LocaleDropdown,
+    WSidebarMobile
   },
-  data: () => ({}),
-
-  computed: mapGetters({
-    user: 'auth/user',
-    userPhoto: 'auth/userPhoto'
+  data: () => ({
+    iconClass: 'bars'
   }),
+
+  computed: {
+    ...mapGetters({
+      user: 'auth/user',
+      userPhoto: 'auth/userPhoto',
+      navOpened: 'global/navOpened'
+    })
+  },
 
   methods: {
     async logout () {
@@ -70,8 +85,11 @@ export default {
       // Redirect to login.
       this.$router.push({ name: 'login' })
     },
-    showLocalesOnTablets () {
+    isMobile () {
       return document.documentElement.clientWidth <= 768
+    },
+    toggleNav () {
+      this.$store.dispatch('global/toggleNav')
     }
   }
 }

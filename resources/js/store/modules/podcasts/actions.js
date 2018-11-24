@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchBySlug = async ({ commit }, { show, slug }) => {
   const { data } = await axios.get(`/api/podcasts/${show}/${slug}`)
 
-  commit(types.FETCH_BY_SLUG, data.data[0])
+  commit(types.FETCH_BY_SLUG, data)
 }
 
 export const fetchByShowSlug = async ({ commit }, { show, pageNumber = 1 }) => {
@@ -15,7 +15,7 @@ export const fetchByShowSlug = async ({ commit }, { show, pageNumber = 1 }) => {
 
 export const fetchPaginatePodcasts = async ({ commit }, pageNumber = 1) => {
   const { data } = await axios.get(`/api/podcasts/paginate?page=${pageNumber}`)
-  const podcasts = data.data.data
+  const podcasts = data.data
 
   let currentIndex = podcasts.length
   let temporaryValue, randomIndex

@@ -2,20 +2,27 @@
   <router-link :to="itemLink" class="content-item">
     <lang-flag v-if="lang !== null" :iso="lang" :squared="false" class="flag" />
 
-    <div v-if="stream" :class="online ? 'live' : 'offline'" class="status">{{ status }}</div>
+    <div v-if="stream" :class="online ? 'live' : 'offline'" class="status">
+      {{ status }}
+    </div>
 
     <div :style="'background-image: url(' + src + ')'" class="img-wrapper">
       <img :src="src" :alt="title" style="display: none">
     </div>
 
     <span class="item-info">
-      <span class="title">{{ trimmedTitle }}</span>
+      <span class="title">
+        {{ trimmedTitle }}
+      </span>
       <span class="data">
-        <span v-if="stream" class="date">{{ date }}</span>
-        <span class="author">{{ author }}</span>
+        <span v-if="stream" class="date">
+          {{ date }}
+        </span>
+        <span class="author">
+          {{ author }}
+        </span>
       </span>
     </span>
-
   </router-link>
 </template>
 

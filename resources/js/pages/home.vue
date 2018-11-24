@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="content-wrapper">
-      <content-item
+      <ContentItem
         v-for="(item, key) in items"
         :key="key"
         :src="item.img"

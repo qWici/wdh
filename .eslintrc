@@ -6,10 +6,11 @@
     "sourceType": "module"
   },
   "extends": [
-    "plugin:vue/recommended",
+    "plugin:vue/strongly-recommended",
     "standard"
   ],
   "rules": {
-    "vue/max-attributes-per-line": "off"
+    "vue/max-attributes-per-line": "off",
+    "vue/component-name-in-template-casing": ["off"]
   }
 }

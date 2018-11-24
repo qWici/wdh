@@ -63,6 +63,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../../sass/vars";
+
 .locales {
   position: relative;
   z-index: 1;
@@ -112,6 +114,34 @@ export default {
         span {
           margin-right: 10px;
         }
+      }
+    }
+  }
+}
+
+@media #{$mobile} {
+  .locales {
+    &.top {
+      margin: 0;
+      ul {
+        top: -130px;
+        width: 100%;
+        background: transparent;
+        padding: 0;
+        li {
+          margin: 0;
+          a {
+            padding: 20px;
+          }
+        }
+      }
+    }
+    margin: 0;
+    padding: 0;
+    a.current-locale {
+      padding: 20px;
+      &:after {
+        right: 20px;
       }
     }
   }

@@ -48,6 +48,7 @@ function createRouter () {
  * @param {Function} next
  */
 async function beforeEach (to, from, next) {
+  store.dispatch('global/toggleNav', false)
   // Get the matched components and resolve them.
   const components = await resolveComponents(
     router.getMatchedComponents({ ...to })

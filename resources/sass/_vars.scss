@@ -34,8 +34,8 @@ $gradient-crimson: linear-gradient(-45deg, #da1d52 0%, #FA4074 100%);
 /* Media Queries */
 
 /* Device type */
-$mobile       : "(min-width: 320px) and (max-width: 767px)";
-$sm-tablet    : "(min-width: 768px) and (max-width: 1023px)";
+$mobile       : "(min-width: 320px) and (max-width: 768px)";
+$sm-tablet    : "(min-width: 769px) and (max-width: 1023px)";
 $lg-tablet    : "(min-width: 1024px) and (max-width: 1200px)";
 $desktop      : "(min-width: 1201px) and (max-width: 1300px)";
 $extra        : "(min-width: 1301px) and (max-width: 1408px)";

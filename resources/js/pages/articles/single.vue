@@ -6,7 +6,9 @@
     <h1>{{ single.title }}</h1>
     <div class="article--body">
       <p>{{ single.description }}</p>
-      <a :href="single.link" rel="noreferrer" target="_blank">{{ $t('read_full_article') }}</a>
+      <a :href="single.link" rel="noreferrer" target="_blank">
+        {{ $t('read_full_article') }}
+      </a>
     </div>
     <footer v-if="single.author">
       <div class="article-author">

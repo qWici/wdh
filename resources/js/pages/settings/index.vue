@@ -87,4 +87,14 @@ export default {
     border-radius: 0 0 5px 5px;
   }
 }
+@media only screen and (max-width: 480px) {
+  .settings {
+    h1 {
+      font-size: 16px;
+    }
+    .tabs ul {
+      font-size: 14px;
+    }
+  }
+}
 </style>

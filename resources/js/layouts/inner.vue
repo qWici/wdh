@@ -1,7 +1,7 @@
 <template>
   <div class="main-layout">
     <w-header />
-    <main>
+    <main :class="{ 'nav-open': navOpened }">
       <div class="box">
         <w-sidebar />
         <div class="content left-sidebar">
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import WHeader from '~/components/WHeader'
 import WSidebar from '~/components/WSidebar'
 import WBreadcrumbs from '~/components/WBreadcrumbs'
@@ -25,6 +26,10 @@ export default {
     WHeader,
     WSidebar,
     WBreadcrumbs
-  }
+  },
+
+  computed: mapGetters({
+    navOpened: 'global/navOpened'
+  })
 }
 </script>
