@@ -3,13 +3,20 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\EarlyAccess;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Lang;
 
 class EarlyAccessController extends Controller
 {
-    public function store(Request $request)
+    /**
+     * Store new email
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function store(Request $request) : JsonResponse
     {
         $email = $request->get('email');
         $exist = EarlyAccess::where('email', $email)->first();

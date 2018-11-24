@@ -4,27 +4,62 @@ namespace App\Http\Controllers;
 
 use App\Models\Channel;
 use App\Models\Video;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class VideoController extends Controller
 {
-    public function paginate()
+    /**
+     * Get paginated videos
+     *
+     * @return JsonResponse
+     */
+    public function paginate() : JsonResponse
     {
-        $videos = Video::orderBy('published_at', 'desc')->with('channel')->paginate(9);
-        return response()->json(['data' => $videos]);
-    }
+        $videos = Video::orderBy('published_at', 'desc')
+            ->with('channel')
+            ->paginate(9);
 
-    public function byChannelSlug($slug)
-    {
-        $channel = Channel::where('slug', $slug)->get()->first();
-        $videos = Video::where('channel_id', $channel->id)->orderBy('published_at', 'desc')->with('channel')->paginate(9);
         return response()->json($videos);
     }
 
-    public function bySlug($channelSlug, $slug)
+    /**
+     * Get videos by channel slug
+     *
+     * @param string $slug
+     * @return JsonResponse
+     */
+    public function byChannelSlug(string $slug) : JsonResponse
     {
-        $channel = Channel::where('slug', $channelSlug)->get()->first();
-        $video = Video::where(['slug' => $slug, 'channel_id' => $channel->id])->with('channel')->get();
-        return response()->json(['data' => $video]);
+        $channel = Channel::where('slug', $slug)
+            ->get()
+            ->first();
+
+        $videos = Video::where('channel_id', $channel->id)
+            ->orderBy('published_at', 'desc')
+            ->with('channel')
+            ->paginate(9);
+
+        return response()->json($videos);
+    }
+
+    /**
+     * Get videos by channel & own slug
+     *
+     * @param string $channelSlug
+     * @param string $slug
+     * @return JsonResponse
+     */
+    public function bySlug(string $channelSlug, string $slug) : JsonResponse
+    {
+        $channel = Channel::where('slug', $channelSlug)
+            ->get()
+            ->first();
+
+        $video = Video::where(['slug' => $slug, 'channel_id' => $channel->id])
+            ->with('channel')
+            ->get()
+            ->first();
+
+        return response()->json($video);
     }
 }

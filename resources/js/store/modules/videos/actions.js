@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchBySlug = async ({ commit }, { channel, slug }) => {
   const { data } = await axios.get(`/api/videos/${channel}/${slug}`)
 
-  commit(types.FETCH_BY_SLUG, data.data[0])
+  commit(types.FETCH_BY_SLUG, data)
 }
 
 export const fetchByChannelSlug = async ({ commit }, { channel, pageNumber = 1 }) => {
@@ -15,7 +15,7 @@ export const fetchByChannelSlug = async ({ commit }, { channel, pageNumber = 1 }
 
 export const fetchPaginateVideos = async ({ commit }, pageNumber = 1) => {
   const { data } = await axios.get(`/api/videos/paginate?page=${pageNumber}`)
-  const videos = data.data.data
+  const videos = data.data
 
   let currentIndex = videos.length
   let temporaryValue, randomIndex
