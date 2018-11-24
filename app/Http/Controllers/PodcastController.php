@@ -11,7 +11,7 @@ class PodcastController extends Controller
     public function paginate()
     {
         $podcasts = Podcast::orderBy('published_at', 'desc')->with('show')->paginate(9);
-        return response()->json(['data' => $podcasts]);
+        return response()->json($podcasts);
     }
 
     public function byShowSlug($slug)
@@ -24,7 +24,7 @@ class PodcastController extends Controller
     public function bySlug($showSlug, $slug)
     {
         $show = PodcastShow::where('slug', $showSlug)->get()->first();
-        $podcast = Podcast::where(['slug' => $slug, 'podcast_show_id' => $show->id])->with('show')->get();
-        return response()->json(['data' => $podcast]);
+        $podcast = Podcast::where(['slug' => $slug, 'podcast_show_id' => $show->id])->with('show')->get()->first();
+        return response()->json($podcast);
     }
 }
