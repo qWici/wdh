@@ -10,7 +10,7 @@
       </label>
       <div class="control">
         <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password">
-        <HasError :form="form" field="password" />
+        <has-error :form="form" field="password" />
       </div>
     </div>
 
@@ -21,7 +21,7 @@
       </label>
       <div class="control">
         <input v-model="form.password_confirmation" :class="{ 'is-danger': form.errors.has('password_confirmation') }" class="input" type="password" name="password_confirmation">
-        <HasError :form="form" field="password_confirmation" />
+        <has-error :form="form" field="password_confirmation" />
       </div>
     </div>
 

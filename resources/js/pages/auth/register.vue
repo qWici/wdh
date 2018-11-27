@@ -13,7 +13,7 @@
           </span>
         </div>
         <p class="help is-danger">
-          <HasError :form="form" field="nickname" />
+          <has-error :form="form" field="nickname" />
         </p>
       </div>
 
@@ -29,7 +29,7 @@
           </span>
         </div>
         <p class="help is-danger">
-          <HasError :form="form" field="email" />
+          <has-error :form="form" field="email" />
         </p>
       </div>
 
@@ -45,7 +45,7 @@
           </span>
         </div>
         <p class="help is-danger">
-          <HasError :form="form" field="password" />
+          <has-error :form="form" field="password" />
         </p>
       </div>
 
@@ -61,7 +61,7 @@
           </span>
         </div>
         <p class="help is-danger">
-          <HasError :form="form" field="password_confirmation" />
+          <has-error :form="form" field="password_confirmation" />
         </p>
       </div>
 

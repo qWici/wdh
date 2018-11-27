@@ -16,7 +16,7 @@
           </span>
         </div>
         <p class="help is-danger">
-          <HasError :form="form" field="email" />
+          <has-error :form="form" field="email" />
         </p>
       </div>
 

@@ -63,9 +63,7 @@ export default {
       this.layout = layouts[layout]
     },
     resize () {
-      let status = document.documentElement.clientWidth <= 768
-      this.$store.dispatch('global/setMobileStatus', status)
-      console.log('reszie')
+      this.$store.dispatch('global/setMobileStatus', (document.documentElement.clientWidth <= 768))
     }
   }
 }

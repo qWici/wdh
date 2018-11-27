@@ -19,7 +19,7 @@
       </label>
       <div class="control">
         <input v-model="form.nickname" :class="{ 'is-danger': form.errors.has('nickname') }" class="input" type="text" name="nickname">
-        <HasError :form="form" field="nickname" />
+        <has-error :form="form" field="nickname" />
       </div>
     </div>
 
@@ -30,7 +30,7 @@
       </label>
       <div class="control">
         <input v-model="form.specialization" :class="{ 'is-danger': form.errors.has('specialization') }" class="input" type="text" name="specialization">
-        <HasError :form="form" field="specialization" />
+        <has-error :form="form" field="specialization" />
       </div>
     </div>
 
@@ -41,7 +41,7 @@
       </label>
       <div class="control">
         <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email">
-        <HasError :form="form" field="email" />
+        <has-error :form="form" field="email" />
       </div>
     </div>
 
