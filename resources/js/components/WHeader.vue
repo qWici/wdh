@@ -7,6 +7,8 @@
         <img src="/img/logo.png" alt="WebDevHub Logo">
       </router-link>
 
+      <w-search v-if="!isMobile && user" />
+
       <router-link v-if="isMobile && !user" :to="{ name: 'login' }" active-class="active">
         <fa icon="sign-out-alt" fixed-width />
       </router-link>
@@ -59,11 +61,13 @@
 import { mapGetters } from 'vuex'
 import LocaleDropdown from './LocaleDropdown'
 import WSidebarMobile from './WSidebarMobile'
+import WSearch from './WSearch'
 
 export default {
   components: {
     LocaleDropdown,
-    WSidebarMobile
+    WSidebarMobile,
+    WSearch
   },
   data: () => ({
     iconClass: 'bars'

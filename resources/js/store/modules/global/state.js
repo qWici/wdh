@@ -1,4 +1,5 @@
 export default {
   navOpened: false,
-  isMobile: false
+  isMobile: false,
+  search: []
 }

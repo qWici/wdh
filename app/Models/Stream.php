@@ -33,4 +33,9 @@ class Stream extends Model
     {
         return $this->belongsToMany(StreamTag::class, 'tags_to_stream', 'stream_id', 'tag_id');
     }
+
+    public function scopeOnline($query)
+    {
+        return $query->where('online', true);
+    }
 }
