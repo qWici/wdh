@@ -15,10 +15,10 @@
         :lang="item.show.language"
         :type="type"
       />
+      <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
+        <div slot="no-more" />
+      </InfiniteLoading>
     </div>
-    <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
-      <div slot="no-more" />
-    </InfiniteLoading>
   </div>
 </template>
 
