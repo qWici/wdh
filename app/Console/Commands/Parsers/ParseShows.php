@@ -5,6 +5,7 @@ namespace App\Console\Commands\Parsers;
 use App\Helpers\ParseResource;
 use App\Models\PodcastShow;
 use Illuminate\Console\Command;
+use Image;
 
 class ParseShows extends Command
 {
@@ -49,9 +50,20 @@ class ParseShows extends Command
         }
     }
 
+    /**
+     * Store show
+     *
+     * @param $show
+     */
     public function storeShow($show)
     {
         $show->slug = str_slug($show->title);
+
+        $imageURL = $show->image_url;
+        $imagePath = "/images/shows/" . $show->slug . ".webp";
+        Image::make($imageURL)->encode('webp', 75)->fit(350, 300)->save("public" . $imagePath);
+
+        $show->image_url = $imagePath;
         PodcastShow::create((array) $show);
     }
 }

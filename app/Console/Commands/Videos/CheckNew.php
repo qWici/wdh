@@ -85,7 +85,7 @@ class CheckNew extends Command
     public function storeVideoThumbnail(string $url, string $slug)
     {
         $imagePath = "/images/videos/" . $slug . ".webp";
-        Image::make($url)->encode('webp', 75)->save("public" . $imagePath);
+        Image::make($url)->encode('webp', 75)->fit(1050, 500)->save("public" . $imagePath);
         return $imagePath;
     }
 

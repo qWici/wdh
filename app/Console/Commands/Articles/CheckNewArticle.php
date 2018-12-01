@@ -146,7 +146,12 @@ class CheckNewArticle extends Command
             return str_replace('"', "", $imageSRC);
         }
 
-        return $site_url . str_replace('"', "", $imageSRC);
+//        @TODO: Generate thumbnails
+        $imageURL = $site_url . str_replace('"', "", $imageSRC);
+        $imagePath = "/images/articles/" . str_slug($title) . ".webp";
+        Image::make($imageURL)->encode('webp', 75)->fit(1050, 300)->save("public" . $imagePath);
+
+        return $imagePath;
     }
 
     /**
