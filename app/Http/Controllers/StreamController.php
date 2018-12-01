@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Stream;
 use App\Models\StreamTag;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class StreamController extends Controller
 {
@@ -21,11 +23,16 @@ class StreamController extends Controller
     /**
      * Get live streams
      *
+     * @param Request $request
      * @return JsonResponse
      */
-    public function online() : JsonResponse
+    public function online(Request $request) : JsonResponse
     {
-        $streams = Stream::where('online', true)->paginate(9);
+        $cachePageKey = 'streams' . $request->get('page');
+
+        $streams = Cache::remember($cachePageKey, 15, function () {
+            return Stream::where('online', true)->paginate(9);
+        });
 
         return response()->json($streams);
     }

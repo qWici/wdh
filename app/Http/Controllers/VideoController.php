@@ -5,19 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Channel;
 use App\Models\Video;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class VideoController extends Controller
 {
     /**
      * Get paginated videos
      *
+     * @param Request $request
      * @return JsonResponse
      */
-    public function paginate() : JsonResponse
+    public function paginate(Request $request) : JsonResponse
     {
-        $videos = Video::orderBy('published_at', 'desc')
-            ->with('channel')
-            ->paginate(9);
+        $cachePageKey = 'videos' . $request->get('page');
+
+        $videos = Cache::remember($cachePageKey, 60, function () {
+            return Video::orderBy('published_at', 'desc')
+                ->with('channel')
+                ->paginate(9);
+        });
 
         return response()->json($videos);
     }

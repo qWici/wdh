@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Article;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ArticleController extends Controller
 {
@@ -25,13 +27,18 @@ class ArticleController extends Controller
     /**
      * Get paginated articles
      *
+     * @param Request $request
      * @return JsonResponse
      */
-    public function paginate() : JsonResponse
+    public function paginate(Request $request) : JsonResponse
     {
-        $articles = Article::orderBy('date', 'desc')
-            ->with('author')
-            ->paginate(9);
+        $cachePageKey = 'articles' . $request->get('page');
+
+        $articles = Cache::remember($cachePageKey, 60, function () {
+            return Article::orderBy('date', 'desc')
+                ->with('author')
+                ->paginate(9);
+        });
 
         return response()->json($articles);
     }
