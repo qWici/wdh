@@ -51,5 +51,6 @@
   "offline": "Offline",
   "last_publications": "Last publications",
   "position": "Position",
-  "read_full_article": "Read full article"
+  "read_full_article": "Read full article",
+  "search_placeholder": "Quick find..."
 }

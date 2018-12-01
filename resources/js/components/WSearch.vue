@@ -1,20 +1,19 @@
 <template>
-  <div class="search" v-click-outside="hide">
-    <div class="search-input">
-      <input ref="input" type="text" placeholder="Quick find..."
-             :class="{ 'fill' : showResults }"
+  <div class="search">
+    <div class="search-input" v-click-outside="clear">
+      <input ref="input" type="text" :placeholder="$t('search_placeholder')"
+             :class="{ 'fill' : showResults && results.resultsCount > 0 }"
              v-model="query"
-             @input="handleInput()"
-             @blur="handleInput()"
+             @keyup="handleInput"
       >
-      <fa v-if="validatedInput" icon="times-circle" fixed-width class="clearquery" @click="clear()" />
+      <fa v-if="validatedInput" icon="times-circle" fixed-width class="clearquery" @click="clear" />
     </div>
 
     <div class="results" v-if="results.resultsCount > 0 && showResults && validatedInput">
-      <SearchResultsGroup :query="query" :data="results.data.articles" :title="'Articles'" :type="'article'" />
-      <SearchResultsGroup :query="query" :data="results.data.videos" :title="'Videos'" :type="'video'" />
-      <SearchResultsGroup :query="query" :data="results.data.streams" :title="'Streams'" :type="'stream'" />
-      <SearchResultsGroup :query="query" :data="results.data.podcasts" :title="'Podcasts'" :type="'podcast'" />
+      <SearchResultsGroup :query="query" :data="results.data.articles" :title="$t('articles')" :type="'article'" />
+      <SearchResultsGroup :query="query" :data="results.data.videos" :title="$t('videos')" :type="'video'" />
+      <SearchResultsGroup :query="query" :data="results.data.streams" :title="$t('streams')" :type="'stream'" />
+      <SearchResultsGroup :query="query" :data="results.data.podcasts" :title="$t('podcasts')" :type="'podcast'" />
     </div>
   </div>
 </template>
@@ -55,14 +54,11 @@ export default {
         this.showResults = false
         return false
       }
+      console.log('handleInput')
 
       this.$store.dispatch('global/search', this.query).then(() => {
         this.showResults = true
       })
-    },
-    hide () {
-      this.query = ''
-      this.showResults = false
     },
     clear () {
       this.query = ''
