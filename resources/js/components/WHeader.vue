@@ -7,15 +7,13 @@
         <img src="/img/logo.png" alt="WebDevHub Logo">
       </router-link>
 
-      <w-search v-if="!isMobile && user" />
+      <w-search v-if="user" @close="onCloseSearch" :class="{ 'mobile' : isMobile, 'visible' : searchVisible }" />
 
       <router-link v-if="isMobile && !user" :to="{ name: 'login' }" active-class="active">
         <fa icon="sign-out-alt" fixed-width />
       </router-link>
 
-      <a v-if="isMobile && user" href="#" @click.prevent="logout">
-        <fa icon="sign-out-alt" fixed-width />
-      </a>
+      <fa v-if="isMobile && user" icon="search" fixed-width @click="showSearch" />
 
       <nav v-if="user">
         <w-sidebar-mobile v-if="isMobile" />
@@ -70,7 +68,8 @@ export default {
     WSearch
   },
   data: () => ({
-    iconClass: 'bars'
+    iconClass: 'bars',
+    searchVisible: false
   }),
 
   computed: {
@@ -88,10 +87,16 @@ export default {
       await this.$store.dispatch('auth/logout')
 
       // Redirect to login.
-      this.$router.push({ name: 'login' })
+      this.$router.push({ name: 'welcome' })
     },
     toggleNav () {
       this.$store.dispatch('global/toggleNav')
+    },
+    showSearch () {
+      this.searchVisible = true
+    },
+    onCloseSearch () {
+      this.searchVisible = false
     }
   }
 }

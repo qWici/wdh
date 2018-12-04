@@ -46,7 +46,8 @@ export default {
 
   mounted () {
     this.$loading = this.$refs.loading
-    window.addEventListener('resize', this.resize)
+    this.checkMobile()
+    window.addEventListener('resize', this.checkMobile)
   },
 
   methods: {
@@ -62,7 +63,7 @@ export default {
 
       this.layout = layouts[layout]
     },
-    resize () {
+    checkMobile () {
       this.$store.dispatch('global/setMobileStatus', (document.documentElement.clientWidth <= 768))
     }
   }

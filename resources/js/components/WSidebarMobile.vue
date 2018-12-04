@@ -65,6 +65,16 @@
               </span>
             </router-link>
           </li>
+          <li>
+            <a href="#" @click.prevent="logout" class="content-nav__category">
+              <span class="content-nav__category__icon gradient-clear">
+                <fa icon="sign-out-alt" fixed-width />
+              </span>
+              <span class="content-nav__category__title">
+                {{ $t('logout') }}
+              </span>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -80,7 +90,17 @@ export default {
   computed: mapGetters({
     user: 'auth/user',
     userPhoto: 'auth/userPhoto'
-  })
+  }),
+
+  methods: {
+    async logout () {
+      // Log out the user.
+      await this.$store.dispatch('auth/logout')
+
+      // Redirect to login.
+      this.$router.push({ name: 'welcome' })
+    }
+  }
 }
 </script>
 

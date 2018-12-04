@@ -40,9 +40,6 @@ export default {
           : title.indexOf((this.query.toLowerCase()))
         : title.indexOf(this.query)
 
-      console.log(title)
-      console.log(this.query)
-
       const queryLength = this.query.length
       const firstPart = title.substr(0, queryPosition)
       const lastPart = title.substr(queryPosition + queryLength, title.length)

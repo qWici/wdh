@@ -11,6 +11,11 @@ header {
     height: 80px;
     padding: 0 40px;
     align-items: center;
+    .nav-search {
+      svg:first-child {
+        margin-right: 15px;
+      }
+    }
     nav {
       display: flex;
       ul {
