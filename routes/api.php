@@ -51,6 +51,11 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/{slug}', 'PodcastController@byShowSlug');
         Route::get('/{show}/{slug}', 'PodcastController@bySlug');
     });
+
+    Route::prefix('bookmark')->group(function () {
+        Route::post('toggle', 'BookmarkController@toggle');
+        Route::post('get', 'BookmarkController@get');
+    });
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

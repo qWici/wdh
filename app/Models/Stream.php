@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
 
 class Stream extends Model
 {
+    use Favoriteable;
+
     /**
      * The attributes that are mass assignable.
      *

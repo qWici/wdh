@@ -153,6 +153,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Alaouy\Youtube\YoutubeServiceProvider::class,
+        ChristianKuri\LaravelFavorite\FavoriteServiceProvider::class,
 
         /*
          * Package Service Providers...
