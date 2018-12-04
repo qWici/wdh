@@ -186,6 +186,14 @@ export default {
   }
 }
 
+@media #{$mobile} {
+  .article {
+    h1 {
+      font-size: 24px;
+    }
+  }
+}
+
 @keyframes animateButton {
   0%   {
     background: linear-gradient(to right, #9857D4 0%, #6546CC 100%);

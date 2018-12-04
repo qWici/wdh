@@ -202,4 +202,12 @@ export default {
     }
   }
 }
+
+@media #{$mobile} {
+  .article {
+    h1 {
+      font-size: 24px;
+    }
+  }
+}
 </style>
