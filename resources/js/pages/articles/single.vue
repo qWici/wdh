@@ -1,6 +1,6 @@
 <template>
   <div v-if="single" class="article">
-    <bookmark :bookmarked="single.bookmarked" :id="single.id" type="article"/>
+    <bookmark :bookmarked="single.bookmarked" :id="single.id" type="article" />
     <div :style="'background-image: url(' + single.image_src + ')'" class="article--image">
       <img :src="single.image_src" :alt="single.title" style="display: none">
     </div>

@@ -1,6 +1,6 @@
 <template>
   <div v-if="single !== undefined" class="article">
-    <bookmark :bookmarked="single.bookmarked" :id="single.id" type="podcast"/>
+    <bookmark :bookmarked="single.bookmarked" :id="single.id" type="podcast" />
     <Aplayer :music="audioData" :volume="0.5" />
 
     <h1>{{ single.title }}</h1>

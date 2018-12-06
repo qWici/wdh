@@ -1,6 +1,6 @@
 <template>
   <div v-if="single" class="article">
-    <bookmark :bookmarked="single.bookmarked" :id="single.id" type="video"/>
+    <bookmark :bookmarked="single.bookmarked" :id="single.id" type="video" />
     <iframe id="ytplayer" :src="youtubeLink" type="text/html" width="100%" :height="calculatePlayerHeight()"
             frameborder="0" allowfullscreen style="margin-bottom: -10px;"
     />
