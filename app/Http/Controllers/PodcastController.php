@@ -37,9 +37,7 @@ class PodcastController extends Controller
      */
     public function byShowSlug(string $slug) : JsonResponse
     {
-        $show = PodcastShow::where('slug', $slug)
-            ->get()
-            ->first();
+        $show = PodcastShow::where('slug', $slug)->first();
 
         $podcasts = Podcast::where('podcast_show_id', $show->id)
             ->orderBy('published_at', 'desc')
@@ -58,14 +56,13 @@ class PodcastController extends Controller
      */
     public function bySlug(string $showSlug, string $slug) : JsonResponse
     {
-        $show = PodcastShow::where('slug', $showSlug)
-            ->get()
-            ->first();
+        $show = PodcastShow::where('slug', $showSlug)->first();
 
         $podcast = Podcast::where(['slug' => $slug, 'podcast_show_id' => $show->id])
             ->with('show')
-            ->get()
             ->first();
+
+        $podcast->bookmarked = $podcast->isFavorited();
 
         return response()->json($podcast);
     }

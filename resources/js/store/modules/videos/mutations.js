@@ -16,5 +16,8 @@ export default {
   [types.CLEAR_VIDEOS] (state) {
     state.paginate = []
     state.channel = []
+  },
+  [types.TOGGLE_BOOKMARK] (state, status) {
+    state.single = Object.assign(state.single, { bookmarked: status })
   }
 }

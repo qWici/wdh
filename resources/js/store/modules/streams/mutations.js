@@ -17,5 +17,11 @@ export default {
   },
   [types.CLEAR_STREAMS] (state) {
     state.online = []
+  },
+  [types.FETCH_BY_SLUG] (state, data) {
+    state.single = data
+  },
+  [types.TOGGLE_BOOKMARK] (state, status) {
+    state.single = Object.assign(state.single, { bookmarked: status })
   }
 }

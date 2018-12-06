@@ -51,9 +51,7 @@ class ArticleController extends Controller
      */
     public function byAuthorSlug(string $slug) : JsonResponse
     {
-        $author = Author::where('slug', $slug)
-            ->get()
-            ->first();
+        $author = Author::where('slug', $slug)->first();
 
         $articles = Article::where('author_id', $author->id)
             ->orderBy('date', 'desc')
@@ -72,14 +70,13 @@ class ArticleController extends Controller
      */
     public function bySlug(string $author, string $slug) : JsonResponse
     {
-        $author = Author::where('slug', $author)
-            ->get()
-            ->first();
+        $author = Author::where('slug', $author)->first();
 
         $article = Article::where(['slug' => $slug, 'author_id' => $author->id])
             ->with('author')
-            ->get()
             ->first();
+
+        $article->bookmarked = $article->isFavorited();
 
         return response()->json($article);
     }

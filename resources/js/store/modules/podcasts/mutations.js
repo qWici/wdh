@@ -16,5 +16,8 @@ export default {
   [types.CLEAR_PODCASTS] (state) {
     state.paginate = []
     state.show = []
+  },
+  [types.TOGGLE_BOOKMARK] (state, status) {
+    state.single = Object.assign(state.single, { bookmarked: status })
   }
 }

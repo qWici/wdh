@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('lastonline', 'StreamController@lastonline');
         Route::get('tag/{tag}', 'StreamController@byTag');
         Route::get('tags/{twitchname}', 'StreamController@tags');
+        Route::get('/{slug}', 'StreamController@bySlug');
     });
 
     Route::prefix('articles')->group(function () {

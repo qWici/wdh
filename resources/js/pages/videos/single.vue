@@ -1,5 +1,6 @@
 <template>
   <div v-if="single" class="article">
+    <bookmark :bookmarked="single.bookmarked" :id="single.id" type="video"/>
     <iframe id="ytplayer" :src="youtubeLink" type="text/html" width="100%" :height="calculatePlayerHeight()"
             frameborder="0" allowfullscreen style="margin-bottom: -10px;"
     />
@@ -27,13 +28,16 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Bookmark from '../../components/Bookmark'
 
 export default {
   middleware: 'auth',
   layout: 'inner',
   name: 'VideoSingle',
 
-  components: {},
+  components: {
+    Bookmark
+  },
 
   metaInfo () {
     return {
@@ -125,8 +129,8 @@ export default {
   background: $gradient-default;
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
   color: #FFF;
+  position: relative;
   &--image {
     background-size: cover;
     background-position: center;

@@ -1,5 +1,6 @@
 <template>
   <div class="stream">
+    <bookmark :bookmarked="single.bookmarked" :id="single.id" type="stream" />
     <TwitchPlayer
       :channel="this.$route.params.id"
       :width="playerOptions.width"
@@ -24,6 +25,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import TwitchPlayer from '../../components/TwitchPlayer'
+import Bookmark from '../../components/Bookmark'
 
 export default {
   middleware: 'auth',
@@ -31,7 +33,8 @@ export default {
   name: 'StreamSingle',
 
   components: {
-    TwitchPlayer
+    TwitchPlayer,
+    Bookmark
   },
 
   metaInfo () {
@@ -63,17 +66,20 @@ export default {
   }),
 
   computed: mapGetters({
-    tags: 'streams/tags'
+    tags: 'streams/tags',
+    single: 'streams/single'
   }),
 
   created () {
-    this.$store.dispatch('streams/fetchStreamTags', this.$route.params.id).then(() => {
-      let breadcrumbs = [
-        { title: this.$t('streams'), route: { name: 'stream' } },
-        { title: this.$route.params.id, route: { name: 'stream.single', params: { id: this.$route.params.id } } }
-      ]
+    this.$store.dispatch('streams/fetchStreamBySlug', this.$route.params.id).then(() => {
+      this.$store.dispatch('streams/fetchStreamTags', this.$route.params.id).then(() => {
+        let breadcrumbs = [
+          { title: this.$t('streams'), route: { name: 'stream' } },
+          { title: this.$route.params.id, route: { name: 'stream.single', params: { id: this.$route.params.id } } }
+        ]
 
-      this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+      })
     })
   },
 
@@ -92,10 +98,11 @@ export default {
 @import "../../../sass/vars";
 
 .stream {
-  padding-top: 20px;
+  margin-top: 20px;
   width: 100%;
   height: calc(100vh - 204px);
   display: block;
+  position: relative;
   &--tags {
     margin-top: -16px;
     background: linear-gradient(to left, #423a6f 0%, #272c5a 100%);

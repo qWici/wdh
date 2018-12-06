@@ -1,5 +1,6 @@
 <template>
   <div v-if="single" class="article">
+    <bookmark :bookmarked="single.bookmarked" :id="single.id" type="article"/>
     <div :style="'background-image: url(' + single.image_src + ')'" class="article--image">
       <img :src="single.image_src" :alt="single.title" style="display: none">
     </div>
@@ -28,13 +29,16 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Bookmark from '../../components/Bookmark'
 
 export default {
   middleware: 'auth',
   layout: 'inner',
   name: 'ArticleSingle',
 
-  components: {},
+  components: {
+    Bookmark
+  },
 
   metaInfo () {
     return {
@@ -106,7 +110,7 @@ export default {
   background: $gradient-default;
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
+  position: relative;
   color: #FFF;
   &--image {
     width: 100%;

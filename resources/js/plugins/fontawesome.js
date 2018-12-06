@@ -3,12 +3,12 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import {
-  faNewspaper
+  faNewspaper, faBookmark
 } from '@fortawesome/free-regular-svg-icons'
 
 import {
   faUser, faLock, faSignOutAlt, faCog, faCheck, faEnvelope, faUserLock, faTv, faMicrophone, faUpload, faBars,
-  faWindowClose, faSearch, faTimesCircle
+  faWindowClose, faSearch, faTimesCircle, faBookmark as fasBookmark
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -17,7 +17,7 @@ import {
 
 library.add(
   faUser, faLock, faSignOutAlt, faCog, faGithub, faCheck, faEnvelope, faUserLock, faNewspaper, faTv, faYoutube,
-  faNewspaper, faMicrophone, faUpload, faBars, faWindowClose, faSearch, faTimesCircle
+  faNewspaper, faMicrophone, faUpload, faBars, faWindowClose, faSearch, faTimesCircle, faBookmark, fasBookmark
 )
 
 Vue.component('fa', FontAwesomeIcon)

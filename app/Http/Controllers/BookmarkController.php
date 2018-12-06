@@ -18,9 +18,10 @@ class BookmarkController extends Controller
 
         $model = $this->getModel($type);
 
-        $model::where('id', $itemID)->get()->first()->toggleFavorite();
+        $item = $model::where('id', $itemID)->get()->first();
+        $item->toggleFavorite();
 
-        return response()->json([],200);
+        return response()->json(["status" => $item->isFavorited()],200);
     }
 
     public function get(Request $request)

@@ -15,8 +15,31 @@ export const search = async ({ commit }, query) => {
   commit(types.SEARCH, data)
 }
 
+export const toggleBookmarked = async ({ commit }, { id, type }) => {
+  const { data } = await axios.post('/api/bookmark/toggle', {
+    id: id,
+    type: type
+  })
+
+  switch (type) {
+    case 'article':
+      commit('articles/TOGGLE_BOOKMARK', data.status, { root: true })
+      break
+    case 'stream':
+      commit('streams/TOGGLE_BOOKMARK', data.status, { root: true })
+      break
+    case 'video':
+      commit('videos/TOGGLE_BOOKMARK', data.status, { root: true })
+      break
+    case 'podcast':
+      commit('podcasts/TOGGLE_BOOKMARK', data.status, { root: true })
+      break
+  }
+}
+
 export default {
   toggleNav,
   setMobileStatus,
-  search
+  search,
+  toggleBookmarked
 }

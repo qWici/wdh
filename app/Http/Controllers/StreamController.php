@@ -28,11 +28,11 @@ class StreamController extends Controller
      */
     public function online(Request $request) : JsonResponse
     {
-        $cachePageKey = 'streams' . $request->get('page');
+        $streams = Stream::where('online', true)->paginate(9);
 
-        $streams = Cache::remember($cachePageKey, 15, function () {
-            return Stream::where('online', true)->paginate(9);
-        });
+        foreach ($streams as $stream) {
+            $stream->bookmarked = $stream->isFavorited();
+        }
 
         return response()->json($streams);
     }
@@ -63,7 +63,6 @@ class StreamController extends Controller
     {
         $stream = Stream::where('twitch', $twitchname)
             ->with('tags')
-            ->get()
             ->first();
 
         return response()->json($stream->tags);
@@ -79,9 +78,23 @@ class StreamController extends Controller
     {
         $tag = StreamTag::where('tag', $tag)
             ->with('stream')
-            ->get()
             ->first();
 
         return response()->json($tag->stream);
+    }
+
+    /**
+     * Fetch stream info by twitch name slug
+     *
+     * @param string $slug
+     * @return JsonResponse
+     */
+    public function bySlug(string $slug) : JsonResponse
+    {
+        $stream = Stream::where('twitch', $slug)->first();
+
+        $stream->bookmarked = $stream->isFavorited();
+
+        return response()->json($stream);
     }
 }

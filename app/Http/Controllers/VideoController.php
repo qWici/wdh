@@ -37,9 +37,7 @@ class VideoController extends Controller
      */
     public function byChannelSlug(string $slug) : JsonResponse
     {
-        $channel = Channel::where('slug', $slug)
-            ->get()
-            ->first();
+        $channel = Channel::where('slug', $slug)->first();
 
         $videos = Video::where('channel_id', $channel->id)
             ->orderBy('published_at', 'desc')
@@ -58,14 +56,13 @@ class VideoController extends Controller
      */
     public function bySlug(string $channelSlug, string $slug) : JsonResponse
     {
-        $channel = Channel::where('slug', $channelSlug)
-            ->get()
-            ->first();
+        $channel = Channel::where('slug', $channelSlug)->first();
 
         $video = Video::where(['slug' => $slug, 'channel_id' => $channel->id])
             ->with('channel')
-            ->get()
             ->first();
+
+        $video->bookmarked = $video->isFavorited();
 
         return response()->json($video);
     }

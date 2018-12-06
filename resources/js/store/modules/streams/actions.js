@@ -25,6 +25,12 @@ export const fetchStreamsByTag = async ({ commit }, tag) => {
   commit(types.FETCH_STREAM_BY_TAG, data)
 }
 
+export const fetchStreamBySlug = async ({ commit }, slug) => {
+  const { data } = await axios.get(`/api/streams/${slug}`)
+
+  commit(types.FETCH_BY_SLUG, data)
+}
+
 export const clearState = async ({ commit }) => {
   commit(types.CLEAR_STREAMS)
 }
@@ -34,5 +40,6 @@ export default {
   fetchLastOnline,
   fetchStreamTags,
   fetchStreamsByTag,
+  fetchStreamBySlug,
   clearState
 }

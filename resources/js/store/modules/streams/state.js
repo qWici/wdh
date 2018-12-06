@@ -2,5 +2,6 @@ export default {
   online: [],
   lastOnline: [],
   tags: [],
-  byTag: []
+  byTag: [],
+  single: {}
 }

@@ -1,5 +1,6 @@
 <template>
   <div v-if="single !== undefined" class="article">
+    <bookmark :bookmarked="single.bookmarked" :id="single.id" type="podcast"/>
     <Aplayer :music="audioData" :volume="0.5" />
 
     <h1>{{ single.title }}</h1>
@@ -25,6 +26,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import Aplayer from 'vue-aplayer'
+import Bookmark from '../../components/Bookmark'
 
 export default {
   middleware: 'auth',
@@ -32,7 +34,8 @@ export default {
   name: 'PodcastSingle',
 
   components: {
-    Aplayer
+    Aplayer,
+    Bookmark
   },
 
   metaInfo () {

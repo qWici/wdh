@@ -16,5 +16,8 @@ export default {
   [types.CLEAR_ARTICLES] (state) {
     state.paginate = []
     state.author = []
+  },
+  [types.TOGGLE_BOOKMARK] (state, status) {
+    state.single = Object.assign(state.single, { bookmarked: status })
   }
 }
