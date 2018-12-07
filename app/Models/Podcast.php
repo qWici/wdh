@@ -24,6 +24,15 @@ class Podcast extends Model
         'audio_url',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'published_at' => 'date:j M Y'
+    ];
+
     public function show()
     {
         return $this->belongsTo(PodcastShow::class, 'podcast_show_id', 'id');

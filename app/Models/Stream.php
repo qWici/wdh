@@ -30,6 +30,7 @@ class Stream extends Model
         'title' => 'string',
         'language' => 'string',
         'logo' => 'string',
+        'updated_at' => 'date:j M Y'
     ];
 
     public function tags()

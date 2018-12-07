@@ -18,13 +18,9 @@ class PodcastController extends Controller
      */
     public function paginate(Request $request) : JsonResponse
     {
-        $cachePageKey = 'podcasts' . $request->get('page');
-
-        $podcasts = Cache::remember($cachePageKey, 60, function () {
-            return Podcast::orderBy('published_at', 'desc')
-                ->with('show')
-                ->paginate(9);
-        });
+        $podcasts = Podcast::orderBy('published_at', 'desc')
+            ->with('show')
+            ->paginate(9);
 
         return response()->json($podcasts);
     }

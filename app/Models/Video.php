@@ -25,6 +25,15 @@ class Video extends Model
         'published_at'
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'published_at' => 'date:j M Y'
+    ];
+
     public function channel()
     {
         return $this->belongsTo(Channel::class);
