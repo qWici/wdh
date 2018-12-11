@@ -54,5 +54,6 @@
   "read_full_article": "Read full article",
   "search_placeholder": "Quick find...",
   "bookmarks": "Bookmarks",
-  "latest_updates": "Latest updates"
+  "latest_updates": "Latest updates",
+  "empty_bookmarks":"Looks like you don't have any bookmarks yet"
 }

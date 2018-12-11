@@ -54,5 +54,6 @@
   "read_full_article": "Читать дальше",
   "search_placeholder": "Быстрый поиск...",
   "bookmarks": "Закладки",
-  "latest_updates": "Последние обновления"
+  "latest_updates": "Последние обновления",
+  "empty_bookmarks":"Похоже у вас еще нет закладок"
 }

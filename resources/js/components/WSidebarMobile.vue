@@ -7,9 +7,9 @@
           <span class="user__name">
             {{ user.nickname }}
           </span>
-          <span v-show="user.specialization" class="user__specs">
-            {{ user.specialization }}
-          </span>
+          <router-link :to="{ name: 'bookmarks' }" class="user__bookmarks" active-class="active">
+            {{ $t('bookmarks') }}
+          </router-link>
         </div>
       </div>
       <nav class="content-nav">

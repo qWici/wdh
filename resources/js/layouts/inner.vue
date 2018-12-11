@@ -30,7 +30,7 @@ export default {
 
   computed: {
     exceptedRoutes () {
-      const exceptedRoutes = ['home', 'stream', 'article', 'video', 'podcast']
+      const exceptedRoutes = ['home', 'stream', 'article', 'video', 'podcast', 'bookmarks']
 
       return exceptedRoutes.indexOf(this.$route.name) === -1
     },

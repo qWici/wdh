@@ -3,8 +3,12 @@
     <h2 class="live">
       {{ $t('bookmarks') }}
     </h2>
-    <div class="content-wrapper" v-if="user">
-      <!--@TODO: Add infinity loader-->
+    <div class="empty-bookmarks" v-if="user.bookmarks.length === 0">
+      <img src="/img/sad_box.svg" alt="">
+      <h2>{{ $t('error_alert_title') }}</h2>
+      <h3>{{ $t('empty_bookmarks') }}</h3>
+    </div>
+    <div class="content-wrapper" v-if="user && user.bookmarks.length > 0">
       <ContentItem
         v-for="(item, key) in user.bookmarks"
         :key="key"
@@ -42,7 +46,9 @@ export default {
     })
   },
 
-  data: () => ({}),
+  created () {
+    this.$store.dispatch('auth/fetchUser')
+  },
 
   methods: {
     getItemLink (item) {
@@ -97,4 +103,31 @@ export default {
 
 <style scoped lang="scss">
 @import "../../sass/elements/home";
+@import "../../sass/vars";
+
+.empty-bookmarks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  & img {
+    max-width: 250px;
+    margin-bottom: 50px;
+  }
+  h3 {
+    color: $pink;
+  }
+}
+@media #{$mobile} {
+  .empty-bookmarks {
+    & img {
+      max-width: 150px;
+    }
+    h3 {
+      font-size: 20px;
+    }
+  }
+}
 </style>
