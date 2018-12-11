@@ -7,13 +7,23 @@
           <span class="user__name">
             {{ user.nickname }}
           </span>
-          <span v-show="user.specialization" class="user__specs">
-            {{ user.specialization }}
-          </span>
+          <router-link :to="{ name: 'bookmarks' }" class="user__bookmarks"  active-class="active">
+            {{ $t('bookmarks') }}
+          </router-link>
         </div>
       </div>
       <nav class="content-nav">
         <ul>
+          <li>
+            <router-link :to="{ name: 'home' }" class="content-nav__category" active-class="active">
+              <span class="content-nav__category__icon gradient-green">
+                <fa :icon="['fas', 'home']" fixed-width />
+              </span>
+              <span class="content-nav__category__title">
+                {{ $t('home') }}
+              </span>
+            </router-link>
+          </li>
           <li>
             <router-link :to="{ name: 'article' }" class="content-nav__category" active-class="active">
               <span class="content-nav__category__icon gradient-pink">

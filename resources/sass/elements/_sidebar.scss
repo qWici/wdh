@@ -20,9 +20,19 @@ aside.sidebar {
       font-weight: bold;
       font-size: 16px;
     }
-    &__specs {
+    &__bookmarks {
       color: #FFF;
       font-size: 13px;
+      border: 1px dashed #999;
+      padding: 3px 5px;
+      &:hover {
+        color: $pink;
+        border-color: $pink;
+      }
+      &.active {
+        color: $pink;
+        border-color: $pink;
+      }
     }
   }
   .content-nav {

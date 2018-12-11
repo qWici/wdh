@@ -1,18 +1,21 @@
 <template>
   <div class="home">
+    <h2 class="live">
+      {{ $t('bookmarks') }}
+    </h2>
     <div class="content-wrapper" v-if="user">
-      last feed
-      <!--<ContentItem-->
-        <!--v-for="(item, key) in user.bookmarks"-->
-        <!--:key="key"-->
-        <!--:src="getItemImage(item)"-->
-        <!--:link="getItemLink(item)"-->
-        <!--:title="item.title"-->
-        <!--:author="getItemAuthor(item)"-->
-        <!--:date="getItemDate(item)"-->
-        <!--:type="item.type"-->
-        <!--:online="item.online ? item.online : false"-->
-      <!--/>-->
+      <!--@TODO: Add infinity loader-->
+      <ContentItem
+        v-for="(item, key) in user.bookmarks"
+        :key="key"
+        :src="getItemImage(item)"
+        :link="getItemLink(item)"
+        :title="item.title"
+        :author="getItemAuthor(item)"
+        :date="getItemDate(item)"
+        :type="item.type"
+        :online="item.online ? item.online : false"
+      />
     </div>
   </div>
 </template>
@@ -30,7 +33,7 @@ export default {
   },
 
   metaInfo () {
-    return { title: this.$t('home') }
+    return { title: this.$t('bookmarks') }
   },
 
   computed: {

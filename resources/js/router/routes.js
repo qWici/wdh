@@ -6,6 +6,7 @@ const PasswordReset = () => import('~/pages/auth/password/reset').then(m => m.de
 const NotFound = () => import('~/pages/errors/404').then(m => m.default || m)
 
 const Home = () => import('~/pages/home').then(m => m.default || m)
+const Bookmarks = () => import('~/pages/bookmarks').then(m => m.default || m)
 
 const StreamIndex = () => import('~/pages/stream/index').then(m => m.default || m)
 const StreamList = () => import('~/pages/stream/list').then(m => m.default || m)
@@ -41,6 +42,8 @@ export default [
   { path: '/password/reset/:token', name: 'password.reset', component: PasswordReset },
 
   { path: '/home', name: 'home', component: Home },
+
+  { path: '/bookmarks', name: 'bookmarks', component: Bookmarks },
 
   {
     path: '/streams',
