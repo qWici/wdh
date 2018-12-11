@@ -2,17 +2,17 @@
   <div class="home">
     <div class="content-wrapper" v-if="user">
       last feed
-      <!--<ContentItem-->
-        <!--v-for="(item, key) in user.bookmarks"-->
-        <!--:key="key"-->
-        <!--:src="getItemImage(item)"-->
-        <!--:link="getItemLink(item)"-->
-        <!--:title="item.title"-->
-        <!--:author="getItemAuthor(item)"-->
-        <!--:date="getItemDate(item)"-->
-        <!--:type="item.type"-->
-        <!--:online="item.online ? item.online : false"-->
-      <!--/>-->
+      <ContentItem
+        v-for="(item, key) in user.bookmarks"
+        :key="key"
+        :src="getItemImage(item)"
+        :link="getItemLink(item)"
+        :title="item.title"
+        :author="getItemAuthor(item)"
+        :date="getItemDate(item)"
+        :type="item.type"
+        :online="item.online ? item.online : false"
+      />
     </div>
   </div>
 </template>

@@ -7,7 +7,7 @@
           <span class="user__name">
             {{ user.nickname }}
           </span>
-          <router-link :to="{ name: 'bookmarks' }" class="user__bookmarks"  active-class="active">
+          <router-link :to="{ name: 'bookmarks' }" class="user__bookmarks" active-class="active">
             {{ $t('bookmarks') }}
           </router-link>
         </div>
