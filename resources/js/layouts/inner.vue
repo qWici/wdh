@@ -5,7 +5,7 @@
       <div class="box">
         <w-sidebar />
         <div class="content left-sidebar">
-          <w-breadcrumbs />
+          <w-breadcrumbs v-if="exceptedRoutes" />
           <child />
         </div>
       </div>
@@ -28,8 +28,15 @@ export default {
     WBreadcrumbs
   },
 
-  computed: mapGetters({
-    navOpened: 'global/navOpened'
-  })
+  computed: {
+    exceptedRoutes () {
+      const exceptedRoutes = ['home', 'stream', 'article', 'video', 'podcast']
+
+      return exceptedRoutes.indexOf(this.$route.name) === -1
+    },
+    ...mapGetters({
+      navOpened: 'global/navOpened'
+    })
+  }
 }
 </script>

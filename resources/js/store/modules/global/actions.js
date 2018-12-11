@@ -37,9 +37,16 @@ export const toggleBookmarked = async ({ commit }, { id, type }) => {
   }
 }
 
+export const getLatestItems = async ({ commit }, pageNumber = 0) => {
+  const { data } = await axios.get(`/api/last?page=${pageNumber}`)
+
+  commit(types.GET_LATEST_ITEMS, data)
+}
+
 export default {
   toggleNav,
   setMobileStatus,
   search,
-  toggleBookmarked
+  toggleBookmarked,
+  getLatestItems
 }

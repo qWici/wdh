@@ -1,9 +1,11 @@
 export const TOGGLE_NAV = 'TOGGLE_NAV'
 export const SET_MOBILE_STATUS = 'SET_MOBILE_STATUS'
 export const SEARCH = 'SEARCH'
+export const GET_LATEST_ITEMS = 'GET_LATEST_ITEMS'
 
 export default {
   TOGGLE_NAV,
   SET_MOBILE_STATUS,
-  SEARCH
+  SEARCH,
+  GET_LATEST_ITEMS
 }

@@ -23,6 +23,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('settings/profile/photo', 'Settings\ProfileController@updatePhoto');
     Route::patch('settings/password', 'Settings\PasswordController@update');
 
+    Route::get('/last', 'GlobalController@getLast');
+
     Route::prefix('streams')->group(function () {
         Route::get('all', 'StreamController@all');
         Route::get('online', 'StreamController@online');

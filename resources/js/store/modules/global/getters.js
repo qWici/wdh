@@ -1,5 +1,6 @@
 export default {
   navOpened: state => state.navOpened,
   isMobile: state => state.isMobile,
-  search: state => state.search
+  search: state => state.search,
+  latest: state => state.latest
 }

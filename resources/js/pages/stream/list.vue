@@ -74,11 +74,7 @@ export default {
   methods: {
     infiniteHandler ($state) {
       this.infinityState = $state
-      this.$store.dispatch('streams/fetchOnlineStreams', this.page + 1).then(() => {
-        let breadcrumbs = [{ title: this.$t('streams'), route: { name: 'stream' } }]
-
-        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
-      })
+      this.$store.dispatch('streams/fetchOnlineStreams', this.page + 1)
     },
     getTwitchThumbnail (twitchNickname) {
       return `https://static-cdn.jtvnw.net/previews-ttv/live_user_${twitchNickname}-600x340.jpg`

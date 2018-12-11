@@ -73,11 +73,7 @@ export default {
   methods: {
     infiniteHandler ($state) {
       this.infinityState = $state
-      this.$store.dispatch('podcasts/fetchPaginatePodcasts', this.page + 1).then(() => {
-        let breadcrumbs = [{ title: 'Podcasts', route: { name: 'podcast' } }]
-
-        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
-      })
+      this.$store.dispatch('podcasts/fetchPaginatePodcasts', this.page + 1)
     },
     getPodcastLink (podcast) {
       return { show: podcast.show.slug, slug: podcast.slug }

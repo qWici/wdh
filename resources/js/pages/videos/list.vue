@@ -73,11 +73,7 @@ export default {
   methods: {
     infiniteHandler ($state) {
       this.infinityState = $state
-      this.$store.dispatch('videos/fetchPaginateVideos', this.page + 1).then(() => {
-        let breadcrumbs = [{ title: this.$t('videos'), route: { name: 'video' } }]
-
-        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
-      })
+      this.$store.dispatch('videos/fetchPaginateVideos', this.page + 1)
     },
     getVideoLink (video) {
       return { channel: video.channel.slug, slug: video.slug }

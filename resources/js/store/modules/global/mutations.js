@@ -15,5 +15,8 @@ export default {
   },
   [types.SEARCH] (state, data) {
     state.search = data
+  },
+  [types.GET_LATEST_ITEMS] (state, data) {
+    state.latest = [...state.latest, ...data]
   }
 }

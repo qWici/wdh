@@ -1,18 +1,23 @@
 <template>
   <div class="home">
+    <h2 v-show="latest.length > 0">
+      {{ $t('latest_updates') }}
+    </h2>
     <div class="content-wrapper" v-if="user">
-      last feed
       <ContentItem
-        v-for="(item, key) in user.bookmarks"
+        v-for="(item, key) in latest"
         :key="key"
         :src="getItemImage(item)"
         :link="getItemLink(item)"
         :title="item.title"
         :author="getItemAuthor(item)"
         :date="getItemDate(item)"
-        :type="item.type"
+        :type="getItemType(item)"
         :online="item.online ? item.online : false"
       />
+      <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
+        <div slot="no-more" />
+      </InfiniteLoading>
     </div>
   </div>
 </template>
@@ -20,13 +25,15 @@
 <script>
 import { mapGetters } from 'vuex'
 import ContentItem from '../components/ContentItem'
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   middleware: 'auth',
   layout: 'inner',
 
   components: {
-    ContentItem
+    ContentItem,
+    InfiniteLoading
   },
 
   metaInfo () {
@@ -35,58 +42,85 @@ export default {
 
   computed: {
     ...mapGetters({
-      user: 'auth/user'
+      user: 'auth/user',
+      latest: 'global/latest'
     })
   },
 
-  data: () => ({}),
+  data: () => ({
+    page: 0,
+    countItems: 0,
+    infinityState: null
+  }),
+
+  watch: {
+    latest (newItems) {
+      if (this.infinityState === null) { return false }
+
+      this.page += 1
+      if (this.countItems === newItems.length) {
+        this.infinityState.complete()
+      } else {
+        this.countItems = newItems.length
+        this.infinityState.loaded()
+      }
+    }
+  },
 
   methods: {
+    infiniteHandler ($state) {
+      this.infinityState = $state
+      this.$store.dispatch('global/getLatestItems', this.page)
+    },
     getItemLink (item) {
-      switch (item.type) {
+      let type = this.getItemType(item)
+      switch (type) {
         case 'article':
           return { author: item.author.slug, slug: item.slug }
         case 'video':
           return { channel: item.channel.slug, slug: item.slug }
-        case 'podcast':
-          return { show: item.show.slug, slug: item.slug }
         default:
-          return item.twitch
+          return { show: item.show.slug, slug: item.slug }
       }
     },
     getItemImage (item) {
-      switch (item.type) {
-        case 'stream':
-          const nickname = item.twitch
-          return `https://static-cdn.jtvnw.net/previews-ttv/live_user_${nickname}-600x340.jpg`
-        case 'podcast':
-          return item.show.image_url
-        default:
-          return item.image_src
+      let type = this.getItemType(item)
+      if (type === 'podcast') {
+        return item.show.image_url
       }
+
+      return item.image_src
     },
     getItemAuthor (item) {
-      switch (item.type) {
+      let type = this.getItemType(item)
+      switch (type) {
         case 'article':
           return item.author.name
         case 'podcast':
           return item.show.title
-        case 'stream':
-          return item.name
         default:
           return item.channel.title
       }
     },
     getItemDate (item) {
-      if (item.type === 'podcast' || item.type === 'video') {
+      let type = this.getItemType(item)
+      if (type === 'podcast' || type === 'video') {
         return item.published_at
       }
 
-      if (item.type === 'stream') {
-        return item.updated_at
-      }
-
       return item.date
+    },
+    getItemType (item) {
+      const types = {
+        article: 'author_id',
+        podcast: 'podcast_show_id',
+        video: 'channel_id'
+      }
+      for (let type in types) {
+        if (item.hasOwnProperty(types[type])) {
+          return type
+        }
+      }
     }
   }
 }
