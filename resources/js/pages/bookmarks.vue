@@ -3,14 +3,14 @@
     <h2 class="live">
       {{ $t('bookmarks') }}
     </h2>
-    <div class="empty-bookmarks" v-if="user.bookmarks.length === 0">
+    <div class="empty-bookmarks" v-if="bookmarks.length === 0">
       <img src="/img/sad_box.svg" alt="">
       <h2>{{ $t('error_alert_title') }}</h2>
       <h3>{{ $t('empty_bookmarks') }}</h3>
     </div>
-    <div class="content-wrapper" v-if="user && user.bookmarks.length > 0">
+    <div class="content-wrapper">
       <ContentItem
-        v-for="(item, key) in user.bookmarks"
+        v-for="(item, key) in bookmarks"
         :key="key"
         :src="getItemImage(item)"
         :link="getItemLink(item)"
@@ -20,6 +20,9 @@
         :type="item.type"
         :online="item.online ? item.online : false"
       />
+      <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
+        <div slot="no-more" />
+      </InfiniteLoading>
     </div>
   </div>
 </template>
@@ -27,13 +30,36 @@
 <script>
 import { mapGetters } from 'vuex'
 import ContentItem from '../components/ContentItem'
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   middleware: 'auth',
   layout: 'inner',
 
   components: {
-    ContentItem
+    ContentItem,
+    InfiniteLoading
+  },
+
+  data: () => ({
+    page: 0,
+    countItems: 0,
+    infinityState: null
+  }),
+
+  watch: {
+    bookmarks (newItems) {
+      if (this.infinityState === null) { return false }
+
+      this.page += 1
+
+      if (this.countItems === newItems.length) {
+        this.infinityState.complete()
+      } else {
+        this.countItems = newItems.length
+        this.infinityState.loaded()
+      }
+    }
   },
 
   metaInfo () {
@@ -42,15 +68,19 @@ export default {
 
   computed: {
     ...mapGetters({
-      user: 'auth/user'
+      bookmarks: 'global/bookmarks'
     })
   },
 
-  created () {
-    this.$store.dispatch('auth/fetchUser')
+  destroyed () {
+    this.$store.dispatch('global/clearState')
   },
 
   methods: {
+    infiniteHandler ($state) {
+      this.infinityState = $state
+      this.$store.dispatch('global/getUserBookmarks', this.page)
+    },
     getItemLink (item) {
       switch (item.type) {
         case 'article':

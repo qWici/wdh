@@ -43,10 +43,22 @@ export const getLatestItems = async ({ commit }, pageNumber = 0) => {
   commit(types.GET_LATEST_ITEMS, data)
 }
 
+export const getUserBookmarks = async ({ commit }, pageNumber = 0) => {
+  const { data } = await axios.get(`/api/bookmark/user?page=${pageNumber}`)
+
+  commit(types.GET_USER_BOOKMARKS, data)
+}
+
+export const clearState = async ({ commit }) => {
+  commit(types.CLEAR_GLOBAL)
+}
+
 export default {
   toggleNav,
   setMobileStatus,
   search,
   toggleBookmarked,
-  getLatestItems
+  getLatestItems,
+  getUserBookmarks,
+  clearState
 }

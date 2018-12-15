@@ -55,7 +55,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::prefix('bookmark')->group(function () {
         Route::post('toggle', 'BookmarkController@toggle');
-        Route::post('get', 'BookmarkController@get');
+        Route::post('type', 'BookmarkController@byType');
+        Route::get('user', 'BookmarkController@forUser');
     });
 });
 

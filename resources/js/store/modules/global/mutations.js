@@ -18,5 +18,11 @@ export default {
   },
   [types.GET_LATEST_ITEMS] (state, data) {
     state.latest = [...state.latest, ...data]
+  },
+  [types.GET_USER_BOOKMARKS] (state, data) {
+    state.bookmarks = [...state.bookmarks, ...data]
+  },
+  [types.CLEAR_GLOBAL] (state) {
+    state.bookmarks = []
   }
 }
