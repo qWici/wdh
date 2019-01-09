@@ -2,8 +2,8 @@
 
 // URL to files with JSON resources
 return [
-    'authors' => 'https://gitlab.com/api/v4/projects/8927048/repository/files/authors.min.json/raw?ref=master',
-    'channels' => 'https://gitlab.com/api/v4/projects/8927048/repository/files/channels.min.json/raw?ref=master',
-    'streamers' => 'https://gitlab.com/api/v4/projects/8927048/repository/files/streamers.min.json/raw?ref=master',
-    'podcasts' => 'https://gitlab.com/api/v4/projects/8927048/repository/files/podcasts.min.json/raw?ref=master',
+    'authors' => 'https://raw.githubusercontent.com/qWici/wdh-resources/master/authors.min.json',
+    'channels' => 'https://raw.githubusercontent.com/qWici/wdh-resources/master/channels.min.json',
+    'streamers' => 'https://raw.githubusercontent.com/qWici/wdh-resources/master/streamers.min.json',
+    'podcasts' => 'https://raw.githubusercontent.com/qWici/wdh-resources/master/podcasts.min.json',
 ];
