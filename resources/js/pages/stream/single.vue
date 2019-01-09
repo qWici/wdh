@@ -102,7 +102,13 @@ export default {
   width: 100%;
   height: calc(100vh - 204px);
   display: block;
-  position: relative;
+  overflow-y: scroll;
+  overflow-x: visible;
+  padding-bottom: 20px;
+  &::-webkit-scrollbar {
+    width: 10px;
+    display: none;
+  }
   &--tags {
     margin-top: -16px;
     background: linear-gradient(to left, #423a6f 0%, #272c5a 100%);

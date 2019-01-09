@@ -70,6 +70,7 @@ $content-width: calc(100% - #{$sidebar-width} - #{$content-sidebar-gap});
 .content {
   width: $content-width;
   margin-right: $content-sidebar-gap;
+  position: relative;
   &.left-sidebar {
     margin-right: initial;
     margin-left: $content-sidebar-gap;

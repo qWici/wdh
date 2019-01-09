@@ -58,6 +58,10 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::post('type', 'BookmarkController@byType');
         Route::get('user', 'BookmarkController@forUser');
     });
+
+    Route::prefix('suggestion')->group(function () {
+        Route::post('add', 'SuggestionController@add');
+    });
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

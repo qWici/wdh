@@ -6,6 +6,7 @@
         <w-sidebar />
         <div class="content left-sidebar">
           <w-breadcrumbs v-if="exceptedRoutes" />
+          <w-suggestion />
           <child />
         </div>
       </div>
@@ -18,6 +19,7 @@ import { mapGetters } from 'vuex'
 import WHeader from '~/components/WHeader'
 import WSidebar from '~/components/WSidebar'
 import WBreadcrumbs from '~/components/WBreadcrumbs'
+import WSuggestion from '~/components/WSuggestion'
 
 export default {
   name: 'InnerLayout',
@@ -25,7 +27,8 @@ export default {
   components: {
     WHeader,
     WSidebar,
-    WBreadcrumbs
+    WBreadcrumbs,
+    WSuggestion
   },
 
   computed: {

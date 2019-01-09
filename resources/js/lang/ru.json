@@ -55,5 +55,8 @@
   "search_placeholder": "Быстрый поиск...",
   "bookmarks": "Закладки",
   "latest_updates": "Последние обновления",
-  "empty_bookmarks":"Похоже у вас еще нет закладок"
+  "empty_bookmarks":"Похоже у вас еще нет закладок",
+  "submit_suggestion": "Отправить предложение",
+  "field_isnt_filled": "Поле не заполнено",
+  "tnx_u_very_much": "Весьма благодарны"
 }

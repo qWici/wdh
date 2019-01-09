@@ -85,6 +85,7 @@ export default {
     position: relative;
     min-height: 300px;
     max-height: 300px;
+    box-shadow: 0 6px 20px 0 rgba(0,0,0,.19), 0 8px 17px 0 rgba(0,0,0,.2);
     &:hover .item-info{
         bottom: 0;
         transition: all .2s ease-in;

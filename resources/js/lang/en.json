@@ -55,5 +55,8 @@
   "search_placeholder": "Quick find...",
   "bookmarks": "Bookmarks",
   "latest_updates": "Latest updates",
-  "empty_bookmarks":"Looks like you don't have any bookmarks yet"
+  "empty_bookmarks":"Looks like you don't have any bookmarks yet",
+  "submit_suggestion": "Submit a proposal",
+  "field_isnt_filled": "Field is not filled",
+  "tnx_u_very_much": "Thank you very much"
 }

@@ -41,7 +41,7 @@ export default {
 <style scoped lang="scss">
 .bookmark {
     position: absolute;
-    top: 0;
+    top: 62px;
     right: -50px;
     width: 50px;
     height: 50px;

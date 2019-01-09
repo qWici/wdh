@@ -4,6 +4,7 @@ aside.sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: calc(100vh - 80px);
   .user {
     display: flex;
     margin-bottom: 35px;

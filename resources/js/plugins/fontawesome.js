@@ -8,7 +8,7 @@ import {
 
 import {
   faUser, faLock, faSignOutAlt, faCog, faCheck, faEnvelope, faUserLock, faTv, faMicrophone, faUpload, faBars,
-  faWindowClose, faSearch, faTimesCircle, faBookmark as fasBookmark, faHome
+  faWindowClose, faSearch, faTimesCircle, faBookmark as fasBookmark, faHome, faMagic
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -17,7 +17,8 @@ import {
 
 library.add(
   faUser, faLock, faSignOutAlt, faCog, faGithub, faCheck, faEnvelope, faUserLock, faNewspaper, faTv, faYoutube,
-  faNewspaper, faMicrophone, faUpload, faBars, faWindowClose, faSearch, faTimesCircle, faBookmark, fasBookmark, faHome
+  faNewspaper, faMicrophone, faUpload, faBars, faWindowClose, faSearch, faTimesCircle, faBookmark, fasBookmark, faHome,
+  faMagic
 )
 
 Vue.component('fa', FontAwesomeIcon)
