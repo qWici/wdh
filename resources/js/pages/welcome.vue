@@ -94,6 +94,9 @@
             <a href="#" target="_blank">
               <fa :icon="['fab', 'instagram']" />
             </a>
+            <a href="https://www.patreon.com/webdevhub" target="_blank">
+              <fa :icon="['fab', 'patreon']" />
+            </a>
           </div>
           <div class="footer-menu">
             <nav>

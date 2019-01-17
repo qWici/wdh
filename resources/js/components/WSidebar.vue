@@ -64,6 +64,12 @@
               </span>
             </router-link>
           </li>
+          <hr>
+          <li>
+            <a href="https://www.patreon.com/bePatron?u=16249136" class="patron" target="_blank">
+              <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" alt="Become a Patron!">
+            </a>
+          </li>
         </ul>
       </nav>
     </div>

@@ -56,6 +56,12 @@
           </li>
           <hr>
           <li>
+            <a href="https://www.patreon.com/bePatron?u=16249136" class="patron" target="_blank">
+              <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" alt="Become a Patron!">
+            </a>
+          </li>
+          <hr>
+          <li>
             <router-link :to="{ name: 'settings.profile' }" active-class="active" class="content-nav__category">
               <span class="content-nav__category__icon gradient-clear">
                 <fa icon="cog" fixed-width />
@@ -108,6 +114,11 @@ export default {
 @import "../../sass/vars";
 
 @media #{$mobile} {
+    .patron img {
+      height: 35px;
+      margin: 0 auto;
+      display: block;
+    }
     aside.sidebar {
         &.mobile {
             display: flex;

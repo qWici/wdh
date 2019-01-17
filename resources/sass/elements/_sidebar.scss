@@ -5,6 +5,14 @@ aside.sidebar {
   flex-direction: column;
   justify-content: space-between;
   height: calc(100vh - 80px);
+  hr {
+    background-color: #1e1f3f;
+  }
+  .patron img {
+    height: 35px;
+    margin: 0 auto;
+    display: block;
+  }
   .user {
     display: flex;
     margin-bottom: 35px;
