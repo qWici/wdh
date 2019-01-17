@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Author;
 use Illuminate\Console\Command;
 use Image;
+use Cache;
 
 class CheckNewArticle extends Command
 {
@@ -52,6 +53,7 @@ class CheckNewArticle extends Command
         }
 
         $this->info(date('Y-m-d H:i:s') . " Articles Updated");
+        Cache::flush();
     }
 
     /**
@@ -146,10 +148,10 @@ class CheckNewArticle extends Command
             return str_replace('"', "", $imageSRC);
         }
 
-//        @TODO: Generate thumbnails
         $imageURL = $site_url . str_replace('"', "", $imageSRC);
-        $imagePath = "/images/articles/" . str_slug($title) . ".webp";
-        Image::make($imageURL)->encode('webp', 75)->fit(1050, 300)->save("public" . $imagePath);
+        $imagePath = "/images/articles/" . str_slug($title) . ".jpg";
+
+        Image::make($imageURL)->encode('jpg', 75)->fit(1050, 300)->save("public" . $imagePath);
 
         return $imagePath;
     }
