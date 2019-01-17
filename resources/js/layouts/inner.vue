@@ -43,3 +43,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  main {
+    overflow-y: hidden;
+    margin-top: 80px;
+  }
+</style>

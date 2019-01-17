@@ -39,7 +39,7 @@
   "contact_about_access": "We'll contact you as soon as we unveil it",
   "get_access": "Get access",
   "follow_everything": "All that is interesting to you in one place",
-  "faster_easier": "Faster. Easier. In a unique way.",
+  "faster_easier": "Articles. Videos. Streams. Podcasts.",
   "success": "Success",
   "articles": "Articles",
   "streams": "Live Streams",
@@ -58,5 +58,32 @@
   "empty_bookmarks":"Looks like you don't have any bookmarks yet",
   "submit_suggestion": "Submit a proposal",
   "field_isnt_filled": "Field is not filled",
-  "tnx_u_very_much": "Thank you very much"
+  "tnx_u_very_much": "Thank you very much",
+  "more": "Read more",
+  "about": {
+    "title": "About project",
+    "allinone": {
+      "title": "All in one",
+      "description": "It's an aggregator of articles, videos, podcasts, and streams about web development"
+    },
+    "simple": {
+      "title": "Simply",
+      "description": "We are parse RSS feeds interesting for you sources, from some through the API. An actual list of sources is located in our",
+      "repo": "repository"
+    },
+    "free" : {
+      "title": "Free",
+      "description": "At the moment, the service is free. It exists only through",
+      "donate" : "donations"
+    }
+  },
+  "stats": {
+    "videos": "videos",
+    "articles": "articles",
+    "streams": "streams",
+    "podcasts": "podcasts"
+  },
+  "terms_conditions": "Terms &amp; Conditions",
+  "privacy_policy": "Privacy Policy",
+  "contact": "Contact"
 }

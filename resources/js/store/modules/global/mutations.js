@@ -22,6 +22,9 @@ export default {
   [types.GET_USER_BOOKMARKS] (state, data) {
     state.bookmarks = [...state.bookmarks, ...data]
   },
+  [types.GET_BASE_STATS] (state, data) {
+    state.stats = data
+  },
   [types.CLEAR_GLOBAL] (state) {
     state.bookmarks = []
   }

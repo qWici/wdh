@@ -1,60 +1,63 @@
 <template>
-  <Card :title="$t('reset_password')" :side_image_src="side_image_src">
-    <form @submit.prevent="reset" @keydown="form.onKeydown($event)">
-      <!-- Email -->
-      <div class="field">
-        <label class="label">
-          {{ $t('email') }}
-        </label>
-        <div class="control has-icons-left has-icons-right">
-          <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email">
-          <span class="icon is-small is-left">
-            <fa :icon="'envelope'" fixed-width />
-          </span>
+  <div class="box">
+    <Card :title="$t('reset_password')" :side_image_src="side_image_src">
+      <form @submit.prevent="reset" @keydown="form.onKeydown($event)">
+        <!-- Email -->
+        <div class="field">
+          <label class="label">
+            {{ $t('email') }}
+          </label>
+          <div class="control has-icons-left has-icons-right">
+            <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" class="input" type="email" name="email">
+            <span class="icon is-small is-left">
+              <fa :icon="'envelope'" fixed-width />
+            </span>
+          </div>
+          <p class="help is-danger">
+            <has-error :form="form" field="email" />
+          </p>
         </div>
-        <p class="help is-danger">
-          <has-error :form="form" field="email" />
-        </p>
-      </div>
 
-      <!-- Password -->
-      <div :data-hint="$t('dont_reuse_bank_password')" class="field hint">
-        <label class="label">
-          {{ $t('password') }}
-        </label>
-        <div class="control has-icons-left has-icons-right">
-          <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password">
-          <span class="icon is-small is-left">
-            <fa :icon="'user-lock'" fixed-width />
-          </span>
+        <!-- Password -->
+        <div :data-hint="$t('dont_reuse_bank_password')" class="field hint">
+          <label class="label">
+            {{ $t('password') }}
+          </label>
+          <div class="control has-icons-left has-icons-right">
+            <input v-model="form.password" :class="{ 'is-danger': form.errors.has('password') }" class="input" type="password" name="password">
+            <span class="icon is-small is-left">
+              <fa :icon="'user-lock'" fixed-width />
+            </span>
+          </div>
+          <p class="help is-danger">
+            <has-error :form="form" field="password" />
+          </p>
         </div>
-        <p class="help is-danger">
-          <has-error :form="form" field="password" />
-        </p>
-      </div>
 
-      <!-- Password Confirmation -->
-      <div class="field">
-        <label class="label">
-          {{ $t('confirm_password') }}
-        </label>
-        <div class="control has-icons-left has-icons-right">
-          <input v-model="form.password_confirmation" :class="{ 'is-danger': form.errors.has('password_confirmation') }" class="input" type="password" name="password_confirmation">
-          <span class="icon is-small is-left">
-            <fa :icon="'user-lock'" fixed-width />
-          </span>
+        <!-- Password Confirmation -->
+        <div class="field">
+          <label class="label">
+            {{ $t('confirm_password') }}
+          </label>
+          <div class="control has-icons-left has-icons-right">
+            <input v-model="form.password_confirmation" :class="{ 'is-danger': form.errors.has('password_confirmation') }" class="input" type="password" name="password_confirmation">
+            <span class="icon is-small is-left">
+              <fa :icon="'user-lock'" fixed-width />
+            </span>
+          </div>
+          <p class="help is-danger">
+            <has-error :form="form" field="password_confirmation" />
+          </p>
         </div>
-        <p class="help is-danger">
-          <has-error :form="form" field="password_confirmation" />
-        </p>
-      </div>
 
-      <!-- Submit Button -->
-      <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth is-rounded">
-        {{ $t('reset_password') }}
-      </button>
-    </form>
-  </Card>
+        <!-- Submit Button -->
+        <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth is-rounded">
+          {{ $t('reset_password') }}
+        </button>
+      </form>
+    </Card>
+  </div>
+  <!-- /.box -->
 </template>
 
 <script>

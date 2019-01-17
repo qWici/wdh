@@ -1,22 +1,25 @@
 <template>
-  <div class="settings">
-    <h1>{{ $t('settings') }}</h1>
-    <div class="tabs">
-      <ul>
-        <li v-for="tab in tabs" :key="tab.route" class="nav-item">
-          <router-link :to="{ name: tab.route }" class="nav-link" active-class="active">
-            <fa :icon="tab.icon" fixed-width />
-            {{ tab.name }}
-          </router-link>
-        </li>
-      </ul>
-    </div>
-    <div class="tabs-content">
-      <transition name="fade" mode="out-in">
-        <router-view />
-      </transition>
+  <div class="box">
+    <div class="settings">
+      <h1>{{ $t('settings') }}</h1>
+      <div class="tabs">
+        <ul>
+          <li v-for="tab in tabs" :key="tab.route" class="nav-item">
+            <router-link :to="{ name: tab.route }" class="nav-link" active-class="active">
+              <fa :icon="tab.icon" fixed-width />
+              {{ tab.name }}
+            </router-link>
+          </li>
+        </ul>
+      </div>
+      <div class="tabs-content">
+        <transition name="fade" mode="out-in">
+          <router-view />
+        </transition>
+      </div>
     </div>
   </div>
+  <!-- /.box -->
 </template>
 
 <script>

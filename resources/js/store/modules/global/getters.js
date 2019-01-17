@@ -3,5 +3,6 @@ export default {
   isMobile: state => state.isMobile,
   search: state => state.search,
   latest: state => state.latest,
-  bookmarks: state => state.bookmarks
+  bookmarks: state => state.bookmarks,
+  stats: state => state.stats
 }

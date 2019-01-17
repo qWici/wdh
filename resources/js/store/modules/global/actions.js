@@ -49,6 +49,12 @@ export const getUserBookmarks = async ({ commit }, pageNumber = 0) => {
   commit(types.GET_USER_BOOKMARKS, data)
 }
 
+export const getBaseStats = async ({ commit }) => {
+  const { data } = await axios.get(`/api/stats`)
+
+  commit(types.GET_BASE_STATS, data)
+}
+
 export const clearState = async ({ commit }) => {
   commit(types.CLEAR_GLOBAL)
 }
@@ -60,5 +66,6 @@ export default {
   toggleBookmarked,
   getLatestItems,
   getUserBookmarks,
+  getBaseStats,
   clearState
 }

@@ -2,9 +2,7 @@
   <div class="main-layout">
     <w-header />
     <main :class="{ 'nav-open': navOpened }">
-      <div class="box">
-        <child />
-      </div>
+      <child />
     </main>
   </div>
 </template>
@@ -25,3 +23,10 @@ export default {
   })
 }
 </script>
+
+<style scoped>
+  main {
+    overflow-y: hidden;
+    margin-top: 80px;
+  }
+</style>

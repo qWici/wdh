@@ -1,31 +1,34 @@
 <template>
-  <form @submit.prevent="send" @keydown="form.onKeydown($event)">
-    <div class="wrapper">
-      <img src="/img/morty-forgot-password.png" alt="">
-      <h1>{{ $t('reset_password') }}</h1>
+  <div class="box">
+    <form @submit.prevent="send" @keydown="form.onKeydown($event)">
+      <div class="wrapper">
+        <img src="/img/morty-forgot-password.png" alt="">
+        <h1>{{ $t('reset_password') }}</h1>
 
-      <!-- Email -->
-      <div class="field">
-        <label class="label">
-          {{ $t('email') }}
-        </label>
-        <div class="control has-icons-left has-icons-right">
-          <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" :placeholder="$t('your_email')" class="input" type="email" name="email">
-          <span class="icon is-small is-left">
-            <fa :icon="'envelope'" fixed-width />
-          </span>
+        <!-- Email -->
+        <div class="field">
+          <label class="label">
+            {{ $t('email') }}
+          </label>
+          <div class="control has-icons-left has-icons-right">
+            <input v-model="form.email" :class="{ 'is-danger': form.errors.has('email') }" :placeholder="$t('your_email')" class="input" type="email" name="email">
+            <span class="icon is-small is-left">
+              <fa :icon="'envelope'" fixed-width />
+            </span>
+          </div>
+          <p class="help is-danger">
+            <has-error :form="form" field="email" />
+          </p>
         </div>
-        <p class="help is-danger">
-          <has-error :form="form" field="email" />
-        </p>
-      </div>
 
-      <!-- Submit Button -->
-      <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth">
-        {{ $t('send_password_reset_link') }}
-      </button>
-    </div>
-  </form>
+        <!-- Submit Button -->
+        <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth">
+          {{ $t('send_password_reset_link') }}
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- /.box -->
 </template>
 
 <script>

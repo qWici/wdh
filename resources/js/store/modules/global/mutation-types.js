@@ -4,6 +4,7 @@ export const SEARCH = 'SEARCH'
 export const GET_LATEST_ITEMS = 'GET_LATEST_ITEMS'
 export const GET_USER_BOOKMARKS = 'GET_USER_BOOKMARKS'
 export const CLEAR_GLOBAL = 'CLEAR_GLOBAL'
+export const GET_BASE_STATS = 'GET_BASE_STATS'
 
 export default {
   TOGGLE_NAV,
@@ -11,5 +12,6 @@ export default {
   SEARCH,
   GET_LATEST_ITEMS,
   GET_USER_BOOKMARKS,
-  CLEAR_GLOBAL
+  CLEAR_GLOBAL,
+  GET_BASE_STATS
 }

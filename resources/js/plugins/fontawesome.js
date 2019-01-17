@@ -8,17 +8,17 @@ import {
 
 import {
   faUser, faLock, faSignOutAlt, faCog, faCheck, faEnvelope, faUserLock, faTv, faMicrophone, faUpload, faBars,
-  faWindowClose, faSearch, faTimesCircle, faBookmark as fasBookmark, faHome, faMagic
+  faWindowClose, faSearch, faTimesCircle, faBookmark as fasBookmark, faHome, faMagic, faAtom, faFeather, faHandHoldingUsd
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
-  faGithub, faYoutube
+  faGithub, faYoutube, faFacebook, faTwitter, faInstagram
 } from '@fortawesome/free-brands-svg-icons'
 
 library.add(
   faUser, faLock, faSignOutAlt, faCog, faGithub, faCheck, faEnvelope, faUserLock, faNewspaper, faTv, faYoutube,
   faNewspaper, faMicrophone, faUpload, faBars, faWindowClose, faSearch, faTimesCircle, faBookmark, fasBookmark, faHome,
-  faMagic
+  faMagic, faAtom, faFeather, faHandHoldingUsd, faFacebook, faTwitter, faInstagram
 )
 
 Vue.component('fa', FontAwesomeIcon)

@@ -3,5 +3,6 @@ export default {
   isMobile: false,
   search: [],
   latest: [],
-  bookmarks: []
+  bookmarks: [],
+  stats: []
 }
