@@ -1,0 +1,45 @@
+@import "../vars";
+.Cookie--purple{
+  > div {
+    z-index: 1300;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #383567;
+    color: #FFF;
+    padding: 20px 15px;
+    .texts {
+      margin-right: 50px;
+    }
+    span {
+      font-size: 22px;
+      font-weight: bold;
+    }
+    p {
+      margin: 0;
+    }
+    button {
+      background-color: #fb397c;
+      padding: 10px 25px;
+      font-weight: bold;
+      color: #FFF;
+      &.agree {
+        background-color: $green;
+      }
+    }
+  }
+}
+
+@media #{$mobile} {
+  .js-cookie-consent {
+    flex-direction: column;
+    text-align: center;
+    span {
+      margin: 0 0 20px 0;
+    }
+  }
+}

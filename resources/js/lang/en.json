@@ -85,5 +85,11 @@
   },
   "terms_conditions": "Terms &amp; Conditions",
   "privacy_policy": "Privacy Policy",
-  "contact": "Contact"
+  "contact": "Contact",
+  "cookie": {
+    "title": "Heads up! We use cookies \uD83C\uDF6A",
+    "message": "At WebDevHub, we use cookies to improve your experience on our website",
+    "agree": "Allow cookies",
+    "ignore": "Ignore me"
+  }
 }

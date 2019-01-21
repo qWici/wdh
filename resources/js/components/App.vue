@@ -5,11 +5,14 @@
     <transition name="page" mode="out-in">
       <component :is="layout" v-if="layout" />
     </transition>
+
+    <notification-about-cookie />
   </div>
 </template>
 
 <script>
 import Loading from './Loading'
+import NotificationAboutCookie from './NotificationAboutCookie'
 
 // Load layout components dynamically.
 const requireContext = require.context('~/layouts', false, /.*\.vue$/)
@@ -27,7 +30,8 @@ export default {
   el: '#app',
 
   components: {
-    Loading
+    Loading,
+    NotificationAboutCookie
   },
 
   data: () => ({
