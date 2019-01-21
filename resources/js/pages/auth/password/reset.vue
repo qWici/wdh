@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <Card :title="$t('reset_password')" :side_image_src="side_image_src">
+    <Card :title="$t('reset_password')" :image="side_image_src">
       <form @submit.prevent="reset" @keydown="form.onKeydown($event)">
         <!-- Email -->
         <div class="field">
