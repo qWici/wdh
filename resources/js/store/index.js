@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPlugin from 'logrocket-vuex'
+import LogRocket from 'logrocket'
 
 import auth from './modules/auth'
 import global from './modules/global'
@@ -12,6 +14,8 @@ import breadcrumbs from './modules/breadcrumbs'
 
 Vue.use(Vuex)
 
+const logrocketPlugin = createPlugin(LogRocket)
+
 export default new Vuex.Store({
   modules: {
     auth,
@@ -22,5 +26,6 @@ export default new Vuex.Store({
     videos,
     podcasts,
     breadcrumbs
-  }
+  },
+  plugins: [logrocketPlugin]
 })

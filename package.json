@@ -27,6 +27,7 @@
     "jquery": "^3.3.1",
     "js-cookie": "^2.2.0",
     "logrocket": "^0.6.19",
+    "logrocket-vuex": "^0.0.3",
     "popper.js": "^1.14.3",
     "sweetalert2": "^7.19.3",
     "vform": "^1.0.0",
