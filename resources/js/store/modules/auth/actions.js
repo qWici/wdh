@@ -1,5 +1,6 @@
 import * as types from './mutation-types'
 import axios from 'axios'
+import LogRocket from 'logrocket'
 
 export const saveToken = ({ commit, dispatch }, payload) => {
   commit(types.SAVE_TOKEN, payload)
@@ -10,6 +11,11 @@ export const fetchUser = async ({ commit }) => {
     const { data } = await axios.get('/api/user')
 
     commit(types.FETCH_USER_SUCCESS, { user: data })
+
+    LogRocket.identify(data.id, {
+      nickname: data.nickname,
+      email: data.email
+    })
   } catch (e) {
     commit(types.FETCH_USER_FAILURE)
   }
