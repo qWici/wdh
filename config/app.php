@@ -152,12 +152,13 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Alaouy\Youtube\YoutubeServiceProvider::class,
-        ChristianKuri\LaravelFavorite\FavoriteServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
+        Alaouy\Youtube\YoutubeServiceProvider::class,
+        ChristianKuri\LaravelFavorite\FavoriteServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
         /*
          * Application Service Providers...
