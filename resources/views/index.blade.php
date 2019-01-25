@@ -36,6 +36,16 @@ $polyfills = [
   <meta name="msapplication-TileImage" content="{{ asset('/favicon/mstile-144x144.png') }}">
   <meta name="theme-color" content="#423a6f">
   <meta name="google-site-verification" content="LWP-U6P36fIbkm2SR4V6uAvCkaEkN7IeGLtfqWu2iI8" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132670287-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132670287-2');
+  </script>
+
 </head>
 <body>
   <div id="app"></div>
