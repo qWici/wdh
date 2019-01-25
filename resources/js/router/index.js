@@ -4,9 +4,11 @@ import Meta from 'vue-meta'
 import routes from './routes'
 import Router from 'vue-router'
 import { sync } from 'vuex-router-sync'
+import RouterPrefetch from 'vue-router-prefetch'
 
 Vue.use(Meta)
 Vue.use(Router)
+Vue.use(RouterPrefetch)
 
 // The middleware for every page of the application.
 const globalMiddleware = ['locale', 'check-auth']

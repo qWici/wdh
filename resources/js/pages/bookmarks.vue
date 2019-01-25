@@ -21,7 +21,8 @@
         :online="item.online ? item.online : false"
       />
       <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
-        <div slot="no-more" />
+        <span slot="no-results"></span>
+        <span slot="no-more"></span>
       </InfiniteLoading>
     </div>
   </div>
