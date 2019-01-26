@@ -25,10 +25,17 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('check:articles')->hourlyAt(15);
-        $schedule->command('check:podcasts')->hourlyAt(30);
-        $schedule->command('check:videos')->hourlyAt(45);
-        $schedule->command('check:streams')->everyFifteenMinutes();
+        $schedule->command('check:articles')->hourlyAt(15)
+            ->appendOutputTo('/var/log/webdevhub.log');
+
+        $schedule->command('check:podcasts')->hourlyAt(30)
+            ->appendOutputTo('/var/log/webdevhub.log');
+
+        $schedule->command('check:videos')->hourlyAt(45)
+            ->appendOutputTo('/var/log/webdevhub.log');
+
+        $schedule->command('check:streams')->everyFifteenMinutes()
+            ->appendOutputTo('/var/log/webdevhub.log');
     }
 
     /**

@@ -52,7 +52,7 @@ class CheckNewArticle extends Command
             }
         }
 
-        \Log::info(date('Y-m-d H:i:s') . " Articles Updated");
+        \Log::info("Articles Updated");
         Cache::flush();
     }
 
