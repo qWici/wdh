@@ -5,6 +5,7 @@ namespace App\Console\Commands\Podcasts;
 use App\Models\Podcast;
 use App\Models\PodcastShow;
 use Illuminate\Console\Command;
+use Laravie\Parser\InvalidContentException;
 use Orchestra\Parser\Xml\Facade as XmlParser;
 
 class CheckNewPodcasts extends Command
@@ -50,7 +51,11 @@ class CheckNewPodcasts extends Command
 
     public function getPodcasts($url, $showID)
     {
-        $xml = XmlParser::load($url);
+        try {
+            $xml = XmlParser::load($url);
+        } catch (InvalidContentException $exception) {
+            $xml = XmlParser::extract($url);
+        }
 
         $items = $xml->rebase('channel')->parse([
             'items'  => ['uses' => 'item[title,pubDate,enclosure::url]'],
