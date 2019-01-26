@@ -46,7 +46,7 @@ class CheckNewPodcasts extends Command
             $this->storePodcasts($podcasts);
         }
 
-        $this->info(date('Y-m-d H:i:s') . " Podcasts Updated");
+        \Log::info(date('Y-m-d H:i:s') . " Podcasts Updated");
     }
 
     public function getPodcasts($url, $showID)

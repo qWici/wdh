@@ -46,7 +46,7 @@ class CheckNew extends Command
             $this->check($videoList, $channel->id);
         }
 
-        $this->info(date('Y-m-d H:i:s') . " Videos Updated");
+        \Log::info(date('Y-m-d H:i:s') . " Videos Updated");
     }
 
     public function check(array $videoList, string $channelID)

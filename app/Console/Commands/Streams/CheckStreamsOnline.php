@@ -57,7 +57,7 @@ class CheckStreamsOnline extends Command
                 Stream::where('id', $stream->id)->update(['online' => false]);
             }
         }
-        $this->info(date('Y-m-d H:i:s') . " Streams Updated");
+        \Log::info(date('Y-m-d H:i:s') . " Streams Updated");
     }
 
 
