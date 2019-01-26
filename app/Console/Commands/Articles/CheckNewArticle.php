@@ -45,7 +45,7 @@ class CheckNewArticle extends Command
             $articles = $this->getArticles($author->feed_url);
             $articles = array_slice($articles, 0, 5);
             foreach ($articles as $article) {
-                if(Article::where(['slug' => str_slug($article['title']), 'author_id' => $author->id])->exists()) {
+                if(Article::where(['slug' => str_slug($article['title'])])->exists()) {
                     continue;
                 }
                 $this->storeArticle($article, $author->id, $author->site_url);
