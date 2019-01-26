@@ -3,7 +3,7 @@
     <h2 v-show="latest.length > 0">
       {{ $t('latest_updates') }}
     </h2>
-    <div class="content-wrapper" v-if="user">
+    <div class="content-wrapper">
       <ContentItem
         v-for="(item, key) in latest"
         :key="key"
@@ -28,7 +28,6 @@ import ContentItem from '../components/ContentItem'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
-  middleware: 'auth',
   layout: 'inner',
 
   components: {

@@ -1,13 +1,13 @@
 <template>
   <aside class="sidebar">
     <div class="main">
-      <div v-if="user" class="user">
-        <img :src="userPhoto" :alt="user.nickname" class="user__img">
+      <div class="user">
+        <img :src="userPhoto" :alt="user === null ? 'Guest' : user.nickname" class="user__img">
         <div>
           <span class="user__name">
-            {{ user.nickname }}
+            {{ user === null ? 'Guest' : user.nickname }}
           </span>
-          <router-link :to="{ name: 'bookmarks' }" class="user__bookmarks" active-class="active">
+          <router-link :to="{ name: 'bookmarks' }" v-if="user" class="user__bookmarks" active-class="active">
             {{ $t('bookmarks') }}
           </router-link>
         </div>

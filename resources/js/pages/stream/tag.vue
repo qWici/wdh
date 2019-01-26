@@ -25,7 +25,6 @@ import { mapGetters } from 'vuex'
 import ContentItem from '../../components/ContentItem'
 
 export default {
-  middleware: 'auth',
   layout: 'inner',
   name: 'StreamTag',
 

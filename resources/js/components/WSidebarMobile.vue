@@ -1,19 +1,29 @@
 <template>
   <aside class="sidebar mobile">
     <div class="main">
-      <div v-if="user" class="user">
-        <img :alt="user.nickname" :src="userPhoto" class="user__img">
+      <div class="user">
+        <img :src="userPhoto" :alt="user === null ? 'Guest' : user.nickname" class="user__img">
         <div>
           <span class="user__name">
-            {{ user.nickname }}
+            {{ user === null ? 'Guest' : user.nickname }}
           </span>
-          <router-link :to="{ name: 'bookmarks' }" class="user__bookmarks" active-class="active">
+          <router-link :to="{ name: 'bookmarks' }" v-if="user" class="user__bookmarks" active-class="active">
             {{ $t('bookmarks') }}
           </router-link>
         </div>
       </div>
       <nav class="content-nav">
         <ul>
+          <li>
+            <router-link :to="{ name: 'home' }" class="content-nav__category" active-class="active">
+              <span class="content-nav__category__icon gradient-green">
+                <fa :icon="['fas', 'home']" fixed-width />
+              </span>
+              <span class="content-nav__category__title">
+                {{ $t('home') }}
+              </span>
+            </router-link>
+          </li>
           <li>
             <router-link :to="{ name: 'article' }" active-class="active" class="content-nav__category">
               <span class="content-nav__category__icon gradient-pink">
@@ -60,8 +70,8 @@
               <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" alt="Become a Patron!">
             </a>
           </li>
-          <hr>
-          <li>
+          <hr v-if="user !== null">
+          <li v-if="user !== null">
             <router-link :to="{ name: 'settings.profile' }" active-class="active" class="content-nav__category">
               <span class="content-nav__category__icon gradient-clear">
                 <fa icon="cog" fixed-width />
@@ -71,7 +81,7 @@
               </span>
             </router-link>
           </li>
-          <li>
+          <li v-if="user !== null">
             <a href="#" @click.prevent="logout" class="content-nav__category">
               <span class="content-nav__category__icon gradient-clear">
                 <fa icon="sign-out-alt" fixed-width />
@@ -104,7 +114,7 @@ export default {
       await this.$store.dispatch('auth/logout')
 
       // Redirect to login.
-      this.$router.push({ name: 'welcome' })
+      this.$router.push({ name: 'home' })
     }
   }
 }

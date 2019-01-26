@@ -29,7 +29,6 @@ import ContentItem from '../../components/ContentItem'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
-  middleware: 'auth',
   layout: 'inner',
   name: 'StreamList',
 

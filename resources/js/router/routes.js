@@ -31,17 +31,16 @@ const PodcastSingle = () => import('~/pages/podcasts/single').then(m => m.defaul
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
 const SettingsProfile = () => import('~/pages/settings/profile').then(m => m.default || m)
 const SettingsPassword = () => import('~/pages/settings/password').then(m => m.default || m)
-// @TODO: Add tab for feedback
 
 export default [
-  { path: '/', name: 'welcome', component: Welcome },
+  { path: '', name: 'home', component: Home },
 
   { path: '/login', name: 'login', component: Login },
   { path: '/register', name: 'register', component: Register },
   { path: '/password/reset', name: 'password.request', component: PasswordEmail },
   { path: '/password/reset/:token', name: 'password.reset', component: PasswordReset },
 
-  { path: '/home', name: 'home', component: Home },
+  // { path: '/home', name: 'home', component: Home },
 
   { path: '/bookmarks', name: 'bookmarks', component: Bookmarks },
 

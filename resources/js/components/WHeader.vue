@@ -3,11 +3,11 @@
     <div class="box">
       <fa v-if="isMobile" :icon="navOpened ? 'window-close' : 'bars'" fixed-width @click="toggleNav" />
 
-      <router-link :to="{ name: user ? 'home' : 'welcome' }" class="logo">
+      <router-link :to="{ name: 'home' }" class="logo">
         <img src="/img/logo.png" alt="WebDevHub Logo">
       </router-link>
 
-      <w-search v-if="user" @close="onCloseSearch" :class="{ 'mobile' : isMobile, 'visible' : searchVisible }" />
+      <w-search @close="onCloseSearch" :class="{ 'mobile' : isMobile, 'visible' : searchVisible }" />
 
       <router-link v-if="isMobile && !user" :to="{ name: 'login' }" active-class="active">
         <fa icon="sign-out-alt" fixed-width />
@@ -15,10 +15,10 @@
 
       <fa v-if="isMobile && user" icon="search" fixed-width @click="showSearch" />
 
-      <nav v-if="user">
+      <nav>
         <w-sidebar-mobile v-if="isMobile" />
 
-        <ul v-if="!isMobile">
+        <ul v-if="!isMobile && user !== null">
           <li>
             <router-link :to="{ name: 'settings.profile' }">
               <fa icon="cog" fixed-width />
@@ -33,11 +33,7 @@
           </li>
         </ul>
 
-        <locale-dropdown v-if="isMobile" position="top" />
-      </nav>
-
-      <nav v-else>
-        <ul>
+        <ul v-else-if="!isMobile">
           <li>
             <router-link :to="{ name: 'login' }" active-class="active">
               {{ $t('login') }}
@@ -49,7 +45,8 @@
             </router-link>
           </li>
         </ul>
-        <locale-dropdown position="top" />
+
+        <locale-dropdown v-if="isMobile" position="top" />
       </nav>
     </div>
   </header>
@@ -87,7 +84,7 @@ export default {
       await this.$store.dispatch('auth/logout')
 
       // Redirect to login.
-      this.$router.push({ name: 'welcome' })
+      this.$router.push({ name: 'home' })
     },
     toggleNav () {
       this.$store.dispatch('global/toggleNav')

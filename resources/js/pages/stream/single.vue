@@ -28,7 +28,6 @@ import TwitchPlayer from '../../components/TwitchPlayer'
 import Bookmark from '../../components/Bookmark'
 
 export default {
-  middleware: 'auth',
   layout: 'inner',
   name: 'StreamSingle',
 

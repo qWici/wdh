@@ -29,7 +29,6 @@ import Aplayer from 'vue-aplayer'
 import Bookmark from '../../components/Bookmark'
 
 export default {
-  middleware: 'auth',
   layout: 'inner',
   name: 'PodcastSingle',
 

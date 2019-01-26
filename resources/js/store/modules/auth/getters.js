@@ -4,7 +4,7 @@ export default {
   check: state => state.user !== null,
   userPhoto: state => {
     if (state.user === null) {
-      return false
+      return '/img/user_default.png'
     }
     if (state.user.image_src) {
       if (state.user.image_src.includes('githubusercontent')) {

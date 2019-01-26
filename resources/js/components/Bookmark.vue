@@ -1,10 +1,12 @@
 <template>
-  <div class="bookmark" :title="actionTitle" @click="toggleBookmarked">
+  <div v-if="user !== null" class="bookmark" :title="actionTitle" @click="toggleBookmarked">
     <fa :icon="[actionIconType, 'bookmark']" fixed-width />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Bookmark',
 
@@ -27,7 +29,10 @@ export default {
     },
     actionIconType () {
       return this.bookmarked ? 'fas' : 'far'
-    }
+    },
+    ...mapGetters({
+      user: 'auth/user'
+    })
   },
 
   methods: {

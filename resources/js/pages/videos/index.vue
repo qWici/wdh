@@ -6,7 +6,6 @@
 
 <script>
 export default {
-  middleware: 'auth',
   layout: 'inner',
   name: 'VideoIndex'
 }

@@ -56,9 +56,9 @@ aside.sidebar {
       &.router-link-exact-active {
         background: $gradient-default;
       }
-      &.active {
-        background: $gradient-default;
-      }
+      //&.active {
+      //  background: $gradient-default;
+      //}
       &__icon {
         display: flex;
         justify-content: center;

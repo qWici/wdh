@@ -32,7 +32,6 @@ import { mapGetters } from 'vuex'
 import Bookmark from '../../components/Bookmark'
 
 export default {
-  middleware: 'auth',
   layout: 'inner',
   name: 'ArticleSingle',
 
