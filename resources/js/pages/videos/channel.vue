@@ -84,7 +84,7 @@ export default {
       })
     },
     getVideoLink (video) {
-      return { author: video.channel.slug, slug: video.slug }
+      return { channel: video.channel.slug, slug: video.slug }
     },
     getPageTitle () {
       if (this.items.length > 0) {
