@@ -14,6 +14,7 @@
         :date="getItemDate(item)"
         :type="getItemType(item)"
         :online="item.online ? item.online : false"
+        :lang="getItemLang(item)"
       />
       <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
         <div slot="no-more" />
@@ -127,6 +128,19 @@ export default {
       }
 
       return item.date
+    },
+    getItemLang (item) {
+      let type = this.getItemType(item)
+      switch (type) {
+        case 'video':
+          return item.channel.country.toLowerCase()
+        case 'article':
+          return item.author.language
+        case 'podcast':
+          return item.show.language
+        default:
+          return item.language
+      }
     },
     getItemType (item) {
       const types = {
