@@ -36,7 +36,26 @@ export default {
   },
 
   metaInfo () {
-    return { title: this.$t('home') }
+    return {
+      title: ('Aggregator of web development content | ' + this.$t('home')),
+      meta: [
+        { name: 'description', content: 'It is an aggregator of articles, videos, podcasts, and streams about web development' },
+        { property: 'og:title', content: ('Aggregator of web development content | ' + this.$t('home')) },
+        { property: 'og:site_name', content: 'WebDevHub' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: window.location.href },
+        { property: 'og:image', content: '/img/mockup.png' },
+        { property: 'og:description', content: 'It is an aggregator of articles, videos, podcasts, and streams about web development' },
+        { name: 'twitter:card', content: 'summary' },
+        { name: 'twitter:site', content: window.location.href },
+        { name: 'twitter:title', content: ('Aggregator of web development content | ' + this.$t('home')) },
+        { name: 'twitter:description', content: 'It is an aggregator of articles, videos, podcasts, and streams about web development' },
+        { name: 'twitter:image:src', content: '/img/mockup.png' },
+        { itemprop: 'name', content: ('Aggregator of web development content | ' + this.$t('home')) },
+        { itemprop: 'description', content: 'It is an aggregator of articles, videos, podcasts, and streams about web development' },
+        { itemprop: 'image', content: '/img/mockup.png' }
+      ]
+    }
   },
 
   computed: {
