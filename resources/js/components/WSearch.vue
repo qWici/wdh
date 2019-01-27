@@ -41,7 +41,7 @@ export default {
 
   computed: {
     validatedInput () {
-      return this.query.length >= 3
+      return this.query.trim().length >= 3
     },
     ...mapGetters({
       results: 'global/search',
@@ -56,7 +56,7 @@ export default {
         return false
       }
 
-      this.$store.dispatch('global/search', this.query).then(() => {
+      this.$store.dispatch('global/search', this.query.trim()).then(() => {
         this.showResults = true
       })
     },
