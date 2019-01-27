@@ -41,7 +41,7 @@ export default {
   },
 
   data: () => ({
-    type: 'article',
+    type: 'video',
     page: 0,
     countItems: 0,
     infinityState: null
