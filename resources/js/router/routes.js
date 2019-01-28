@@ -1,4 +1,4 @@
-const Welcome = () => import('~/pages/welcome').then(m => m.default || m)
+// const Welcome = () => import('~/pages/welcome').then(m => m.default || m)
 const Login = () => import('~/pages/auth/login').then(m => m.default || m)
 const Register = () => import('~/pages/auth/register').then(m => m.default || m)
 const PasswordEmail = () => import('~/pages/auth/password/email').then(m => m.default || m)

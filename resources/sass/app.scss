@@ -24,13 +24,12 @@ main {
   }
 }
 
-body {
+html {
   font-size: 16px;
   min-width: 320px;
   position: relative;
   line-height: 1.6;
   font-family: $base-font;
-  overflow-x: hidden;
   opacity: 1;
   background: $gradient-default;
   color: $text-color;
@@ -44,6 +43,11 @@ body {
   -moz-font-feature-settings: "pnum";
   font-feature-settings: "pnum";
   font-variant-numeric: proportional-nums;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
   &::-webkit-scrollbar {
     width: 10px;
     background: #0e1430;
@@ -72,6 +76,4 @@ body {
 @import 'elements/buttons';
 @import 'elements/transitions';
 @import '~sweetalert2/src/sweetalert2';
-@import "../css/bulma.min.css";
-
 
