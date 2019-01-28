@@ -144,6 +144,7 @@ export default {
     }
     > p {
       margin: 0;
+      white-space: pre-wrap;
     }
     > a {
       display: block;
