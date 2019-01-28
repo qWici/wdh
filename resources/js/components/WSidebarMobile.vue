@@ -15,7 +15,7 @@
       <nav class="content-nav">
         <ul>
           <li>
-            <router-link :to="{ name: 'home' }" class="content-nav__category" active-class="active">
+            <router-link :to="{ name: 'home' }" class="content-nav__category" active-class="active" exact>
               <span class="content-nav__category__icon gradient-green">
                 <fa :icon="['fas', 'home']" fixed-width />
               </span>
