@@ -141,8 +141,8 @@ export default {
             height: 100%;
             top: 0;
             position: absolute;
-            background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.85)));
-            background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.85));
+            background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 1)));
+            background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1));
         }
     }
     .item-info {
@@ -166,6 +166,7 @@ export default {
             line-height: 1.6;
             display: block;
             color: #FFF;
+            font-weight: bold;
         }
     }
 }
