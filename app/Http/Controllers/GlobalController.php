@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use App\Models\Podcast;
-use App\Models\Video;
+use App\Models\Content;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -19,40 +17,41 @@ class GlobalController extends Controller
             $cachePageKey = 'last_' . $request->get('page');
 
             $last = Cache::remember($cachePageKey, 60, function () {
-                return $this->getLatestSortedItems();
+                $items = Content::orderBy('updated_at', 'desc')->paginate(9);
+                return $this->getItemsAuthor($items);
             });
-        } else {
-            $last = $this->getLatestSortedItems();
+
+            return response()->json($last);
         }
 
-        $result = $last->chunk(9)->toArray();
+        $items = Content::orderBy('updated_at', 'desc')->paginate(9);
 
-        return response()->json(array_values($result[$request->get('page')]));
+        return response()->json($this->getItemsAuthor($items));
     }
 
-    private function getLatestSortedItems()
+    private function getItemsAuthor($items)
     {
-        $articles = Article::orderBy('date', 'desc')
-            ->with('author')
-            ->get()
-            ->take(25);
+        $content = collect();
 
-        $podcasts = Podcast::orderBy('published_at', 'desc')
-            ->with('show')
-            ->get()
-            ->take(25);
+        foreach ($items as $item) {
+            $content->push($this->getItemWithAuthor($item->contentable));
+        }
 
-        $videos = Video::orderBy('published_at', 'desc')
-            ->with('channel')
-            ->get()
-            ->take(25);
+        return $content;
+    }
 
-        return $articles->concat($podcasts)->concat($videos)->sortBy(function ($item) {
-            if (isset($item['published_at'])) {
-                return -strtotime($item->published_at);
-            }
+    private function getItemWithAuthor($item)
+    {
+        if (collect($item)->has('author_id')) {
+            return $item->load('author');
+        }
 
-            return -strtotime($item->date);
-        });
+        if (collect($item)->has('podcast_show_id')) {
+            return $item->load('show');
+        }
+
+        if (collect($item)->has('channel_id')) {
+            return $item->load('channel');
+        }
     }
 }

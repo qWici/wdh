@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use ChristianKuri\LaravelFavorite\Traits\Favoriteable;
+use App\Traits\Contentable;
 
 class Article extends Model
 {
-    use Favoriteable;
+    use Favoriteable, Contentable;
 
     /**
      * The attributes that are mass assignable.
