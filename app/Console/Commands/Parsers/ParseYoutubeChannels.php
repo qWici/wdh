@@ -111,6 +111,6 @@ class ParseYoutubeChannels extends Command
             return $channel->snippet->$property;
         }
 
-        return null;
+        return "EN";
     }
 }
