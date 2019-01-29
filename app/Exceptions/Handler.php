@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use App\Events\HandleErrorEvent;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -26,17 +27,19 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+
     /**
      * Report or log an exception.
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
-     * @param  \Exception  $exception
-     * @return void
+     * @param Exception $exception
+     * @return mixed|void
+     * @throws Exception
      */
     public function report(Exception $exception)
     {
         parent::report($exception);
+        event(new HandleErrorEvent($exception));
     }
 
     /**

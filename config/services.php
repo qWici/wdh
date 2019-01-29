@@ -40,4 +40,7 @@ return [
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
     ],
 
+    'telegram-bot-api' => [
+        'token' => env('TELEGRAM_BOT_TOKEN', '')
+    ],
 ];

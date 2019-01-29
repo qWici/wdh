@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\OAuthProvider;
+use App\Events\UserRegisteredEvent;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use ChristianKuri\LaravelFavorite\Traits\Favoriteability;
@@ -12,6 +13,15 @@ use App\Notifications\ResetPassword as ResetPasswordNotification;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable, Favoriteability;
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => UserRegisteredEvent::class
+    ];
 
     /**
      * The attributes that are mass assignable.
