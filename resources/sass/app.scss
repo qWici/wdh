@@ -29,7 +29,6 @@ html {
   min-width: 320px;
   position: relative;
   line-height: 1.6;
-  font-family: $base-font;
   opacity: 1;
   background: $gradient-default;
   color: $text-color;
@@ -48,6 +47,7 @@ html {
 body {
   overflow-x: hidden;
   margin: 0;
+  font-family: $base-font;
   &::-webkit-scrollbar {
     width: 10px;
     background: #0e1430;
@@ -67,7 +67,6 @@ body {
 
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700&subset=cyrillic-ext');
-
 @import "elements/cookie-notification";
 @import 'elements/card';
 @import 'elements/header';
@@ -76,4 +75,5 @@ body {
 @import 'elements/buttons';
 @import 'elements/transitions';
 @import '~sweetalert2/src/sweetalert2';
+@import "../css/bulma.min.css";
 
