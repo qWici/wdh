@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App;
 use Exception;
 use App\Events\HandleErrorEvent;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -39,7 +40,9 @@ class Handler extends ExceptionHandler
     public function report(Exception $exception)
     {
         parent::report($exception);
-        event(new HandleErrorEvent($exception));
+        if (App::environment('prod')) {
+            event(new HandleErrorEvent($exception));
+        }
     }
 
     /**

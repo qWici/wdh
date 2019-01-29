@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App;
 use App\Events\UserRegisteredEvent;
 use App\Notifications\UserRegisteredNotification;
 
@@ -16,6 +17,8 @@ class UserRegisteredListener
      */
     public function handle(UserRegisteredEvent $event)
     {
-        $event->user->notify(new UserRegisteredNotification($event->user->nickname));
+        if (App::environment('prod')) {
+            $event->user->notify(new UserRegisteredNotification($event->user->nickname));
+        }
     }
 }
