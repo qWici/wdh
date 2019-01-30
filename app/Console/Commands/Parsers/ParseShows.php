@@ -60,8 +60,8 @@ class ParseShows extends Command
         $show->slug = str_slug($show->title);
 
         $imageURL = $show->image_url;
-        $imagePath = "/images/shows/" . $show->slug . ".webp";
-        Image::make($imageURL)->encode('webp', 75)->fit(350, 300)->save("public" . $imagePath);
+        $imagePath = "/images/shows/" . $show->slug . ".png";
+        Image::make($imageURL)->encode('png', 75)->fit(350, 300)->save("public" . $imagePath);
 
         $show->image_url = $imagePath;
         PodcastShow::create((array) $show);

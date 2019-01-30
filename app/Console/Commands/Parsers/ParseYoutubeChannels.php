@@ -90,8 +90,8 @@ class ParseYoutubeChannels extends Command
     public function storeAndUpdateLogo($channel)
     {
         $imageURL = $channel->image_src;
-        $imagePath = "/images/channels/" . $channel->slug . ".webp";
-        Image::make($imageURL)->encode('webp', 75)->save("public" . $imagePath);
+        $imagePath = "/images/channels/" . $channel->slug . ".png";
+        Image::make($imageURL)->encode('png', 75)->save("public" . $imagePath);
         $channel->image_src = $imagePath;
         $channel->save();
     }

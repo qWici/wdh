@@ -63,8 +63,8 @@ class ParseAuthors extends Command
     public function storeAndUpdateLogo($author)
     {
         $imageURL = $author->logo;
-        $imagePath = "/images/authors/" . $author->slug . ".webp";
-        Image::make($imageURL)->encode('webp', 75)->save("public" . $imagePath);
+        $imagePath = "/images/authors/" . $author->slug . ".png";
+        Image::make($imageURL)->encode('png', 75)->save("public" . $imagePath);
         $author->logo = $imagePath;
         $author->save();
     }
