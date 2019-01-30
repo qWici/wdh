@@ -86,7 +86,7 @@ class CheckNewPodcasts extends Command
             }
 
             Podcast::create($podcast);
-            Podcast::where('slug', $podcast['slug'])->addContent($podcast['published_at']);
+            Podcast::where('slug', $podcast['slug'])->first()->addContent($podcast['published_at']);
         }
     }
 }
