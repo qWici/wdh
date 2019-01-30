@@ -118,6 +118,7 @@ class CheckNewArticle extends Command
 
         try{
             $newArticle->save();
+            $newArticle->addContent($newArticle->date);
         } catch (\Exception $e) {}
     }
 
