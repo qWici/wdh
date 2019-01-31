@@ -1,8 +1,11 @@
 <template>
   <div class="home">
-    <h2 v-show="items.length > 0">
-      {{ $t('last_publications') }}
-    </h2>
+    <div class="content-header">
+      <h2 v-show="items.length > 0">
+        {{ $t('last_publications') }}
+      </h2>
+      <content-filter />
+    </div>
     <div class="content-wrapper">
       <ContentItem
         v-for="(item, key) in items"
@@ -25,6 +28,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import ContentItem from '../../components/ContentItem'
+import ContentFilter from '../../components/ContentFilter'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -33,6 +37,7 @@ export default {
 
   components: {
     ContentItem,
+    ContentFilter,
     InfiniteLoading
   },
 

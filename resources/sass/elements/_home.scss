@@ -9,6 +9,15 @@
     margin-bottom: 20px;
   }
 }
+.content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  h2 {
+    margin: 0;
+  }
+}
 .content-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
