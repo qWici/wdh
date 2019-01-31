@@ -63,15 +63,15 @@ class CheckNewPodcasts extends Command
         ]);
 
         $podcasts = [];
-        for($i = 0; $i < 20; $i++) {
+        foreach (array_slice($items['items'],0, 20) as $i => $item) {
             $podcasts[] = [
                 'podcast_show_id' => $showID,
-                'title' => $items['items'][$i]['title'],
-                'slug' => str_slug($items['items'][$i]['title']),
+                'title' => $item['title'],
+                'slug' => str_slug($item['title']),
                 'description' => $items['media'][$i]['summary'],
                 'duration' => $items['media'][$i]['duration'],
-                'published_at' => date("Y-m-d H:i:s", strtotime($items['items'][$i]['pubDate'])),
-                'audio_url' => $items['items'][$i]['enclosure::url'],
+                'published_at' => date("Y-m-d H:i:s", strtotime($item['pubDate'])),
+                'audio_url' => $item['enclosure::url'],
             ];
         }
 
