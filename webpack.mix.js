@@ -45,5 +45,8 @@ mix.webpackConfig({
     chunkFilename: 'js/[name].[chunkhash].js',
     publicPath: mix.config.hmr ? '//localhost:8080' : '/'
   },
+  watchOptions: {
+    poll: true
+  },
   externals: 'hls.js'
 })
