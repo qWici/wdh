@@ -21,22 +21,8 @@ export const fetchBySlug = async ({ commit }, { author, slug }) => {
 
 export const fetchPaginateArticles = async ({ commit }, pageNumber = 1) => {
   const { data } = await axios.get(`/api/articles/paginate?page=${pageNumber}`)
-  const articles = data.data
 
-  let currentIndex = articles.length
-  let temporaryValue, randomIndex
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex -= 1
-
-    // And swap it with the current element.
-    temporaryValue = articles[currentIndex]
-    articles[currentIndex] = articles[randomIndex]
-    articles[randomIndex] = temporaryValue
-  }
-
-  commit(types.FETCH_PAGINATE, articles)
+  commit(types.FETCH_PAGINATE, data.data)
 }
 
 export const clearState = async ({ commit }) => {
