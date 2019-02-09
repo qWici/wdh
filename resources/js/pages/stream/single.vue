@@ -1,13 +1,21 @@
 <template>
   <div class="stream">
     <bookmark :bookmarked="single.bookmarked" :id="single.id" type="stream" />
-    <TwitchPlayer
-      :channel="this.$route.params.id"
-      :width="playerOptions.width"
-      :height="calculatePlayerHeight()"
-      :autoplay="playerOptions.autoplay"
-      :volume="playerOptions.volume"
-    />
+    <div class="thumbnail-wrapper">
+      <TwitchPlayer
+        v-if="playerVisible"
+        :channel="this.$route.params.id"
+        :width="playerOptions.width"
+        :height="calculatePlayerHeight()"
+        :autoplay="playerOptions.autoplay"
+        :volume="playerOptions.volume"
+      />
+      <div v-else class="thumbnail" :style="getStreamThumbnail()" @click="showPlayer">
+        <button @click="showPlayer">
+          <fa :icon="['fas', 'play']" size="3x" />
+        </button>
+      </div>
+    </div>
     <div class="stream--tags">
       <ul>
         <li v-for="(item, key) in tags"
@@ -57,9 +65,10 @@ export default {
   },
 
   data: () => ({
+    playerVisible: false,
     playerOptions: {
       width: '100%',
-      autoplay: false,
+      autoplay: true,
       volume: 0.5
     }
   }),
@@ -88,6 +97,12 @@ export default {
       let contentWidth = parseInt(window.getComputedStyle(content).getPropertyValue('width'))
       let pixelsPerPointRatio = contentWidth / 16
       return (pixelsPerPointRatio * 9) + 'px'
+    },
+    getStreamThumbnail () {
+      return `background-image: url("https://static-cdn.jtvnw.net/previews-ttv/live_user_${this.$route.params.id}-600x340.jpg"); height:` + this.calculatePlayerHeight()
+    },
+    showPlayer () {
+      this.playerVisible = true
     }
   }
 }
@@ -107,6 +122,45 @@ export default {
   &::-webkit-scrollbar {
     width: 10px;
     display: none;
+  }
+  .thumbnail {
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    position: relative;
+    &:before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+    }
+    &:hover {
+      cursor: pointer;
+      button{
+        transform: scale(1.3);
+        cursor: pointer;
+        transition: all .3s;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.7);
+      }
+    }
+    button {
+      margin: auto;
+      z-index: 2;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(#6441A4, #423a6f);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s;
+      svg path {
+        fill: #FFF;
+      }
+    }
   }
   &--tags {
     margin-top: -16px;
