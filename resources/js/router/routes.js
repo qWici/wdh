@@ -93,5 +93,5 @@ export default [
     ]
   },
 
-  { path: '*', component: NotFound }
+  { path: '*', name: '404', component: NotFound }
 ]
