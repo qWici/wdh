@@ -70,7 +70,7 @@ class PodcastController extends Controller
 
         $podcast = Podcast::where(['slug' => $slug, 'podcast_show_id' => $show->id])
             ->with('show')
-            ->first();
+            ->firstOrFail();
 
         $podcast->bookmarked = $podcast->isFavorited();
 
