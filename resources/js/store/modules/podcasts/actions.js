@@ -15,22 +15,8 @@ export const fetchByShowSlug = async ({ commit }, { show, pageNumber = 1 }) => {
 
 export const fetchPaginatePodcasts = async ({ commit }, pageNumber = 1) => {
   const { data } = await axios.get(`/api/podcasts/paginate?page=${pageNumber}`)
-  const podcasts = data.data
 
-  let currentIndex = podcasts.length
-  let temporaryValue, randomIndex
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex -= 1
-
-    // And swap it with the current element.
-    temporaryValue = podcasts[currentIndex]
-    podcasts[currentIndex] = podcasts[randomIndex]
-    podcasts[randomIndex] = temporaryValue
-  }
-
-  commit(types.FETCH_PAGINATE, podcasts)
+  commit(types.FETCH_PAGINATE, data.data)
 }
 
 export const clearState = async ({ commit }) => {

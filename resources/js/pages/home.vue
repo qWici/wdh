@@ -67,7 +67,7 @@ export default {
   },
 
   data: () => ({
-    page: 0,
+    page: 1,
     countItems: 0,
     infinityState: null
   }),

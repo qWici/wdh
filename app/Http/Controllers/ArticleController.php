@@ -32,13 +32,23 @@ class ArticleController extends Controller
      */
     public function paginate(Request $request) : JsonResponse
     {
-        $cachePageKey = 'articles' . $request->get('page');
+        $paginationPage = $request->get('page');
 
-        $articles = Cache::remember($cachePageKey, 60, function () {
-            return Article::orderBy('date', 'desc')
-                ->with('author')
-                ->paginate(9);
-        });
+        if ($paginationPage <= 3) {
+            $cachePageKey = 'articles_' . $paginationPage;
+
+            $articles = Cache::remember($cachePageKey, 60, function () {
+                return Article::orderBy('date', 'desc')
+                    ->with('author')
+                    ->paginate(9);
+            });
+
+            return response()->json($articles);
+        }
+
+        $articles = Article::orderBy('date', 'desc')
+            ->with('author')
+            ->paginate(9);
 
         return response()->json($articles);
     }

@@ -1,8 +1,15 @@
 <template>
   <div v-if="single" class="article">
     <bookmark :bookmarked="single.bookmarked" :id="single.id" type="video" />
-    <iframe id="ytplayer" :src="youtubeLink" type="text/html" width="100%" :height="calculatePlayerHeight()"
-            frameborder="0" allowfullscreen style="margin-bottom: -10px;"/>
+    <div class="thumbnail-wrapper">
+      <iframe v-if="playerVisible" id="ytplayer" :src="youtubeLink" type="text/html" width="100%" :height="calculatePlayerHeight()"
+              frameborder="0" allowfullscreen style="margin-bottom: -10px;"/>
+      <div v-else class="thumbnail" :style="getVideoThumbnail()" @click="showPlayer">
+        <button @click="showPlayer">
+          <fa :icon="['fab', 'youtube']" size="5x" />
+        </button>
+      </div>
+    </div>
     <h1>{{ single.title }}</h1>
     <div v-if="single !== undefined" class="article--body">
       <p v-for="(item, key) in preparedDescription(single.description)" :key="key">
@@ -11,7 +18,7 @@
     </div>
     <footer v-if="single.channel">
       <div class="article-author">
-        <div :style="getBackgroundImage(single)" class="author-logo">
+        <div :style="getChannelImage()" class="author-logo">
           <img :src="single.channel.image_src" :alt="single.channel.title" style="display: none;">
         </div>
         <div class="article-author-info">
@@ -60,11 +67,13 @@ export default {
     }
   },
 
-  data: () => ({}),
+  data: () => ({
+    playerVisible: false
+  }),
 
   computed: {
     youtubeLink () {
-      return 'https://www.youtube.com/embed/' + this.single.youtube_id
+      return 'https://www.youtube.com/embed/' + this.single.youtube_id + '?autoplay=1&mute=1'
     },
     ...mapGetters({
       single: 'videos/single'
@@ -99,14 +108,20 @@ export default {
       let replacedEntersText = text.replace(new RegExp(/\n\n/, 'g'), '\n')
       return replacedEntersText.match(/(.*?)\n/g)
     },
-    getBackgroundImage (video) {
-      return `background-image: url("${video.channel.image_src}")`
+    getChannelImage () {
+      return `background-image: url("${this.single.channel.image_src}")`
+    },
+    getVideoThumbnail () {
+      return `background-image: url("${this.single.image_src}"); height:` + this.calculatePlayerHeight()
     },
     calculatePlayerHeight () {
       let content = document.querySelector('.content')
       let contentWidth = parseInt(window.getComputedStyle(content).getPropertyValue('width'))
       let pixelsPerPointRatio = contentWidth / 16
       return (pixelsPerPointRatio * 9) + 'px'
+    },
+    showPlayer () {
+      this.playerVisible = true
     }
   }
 }
@@ -141,6 +156,49 @@ export default {
     background-position: center;
     width: 100%;
     height: 500px;
+  }
+  .thumbnail {
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    position: relative;
+    &:before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+    }
+    &:hover {
+      cursor: pointer;
+      button{
+        transform: scale(1.3);
+        cursor: pointer;
+        transition: all .3s;
+      }
+    }
+    button {
+      margin: auto;
+      z-index: 2;
+      position: relative;
+      transition: all .3s;
+      &:before {
+        content: '';
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: #FFF;
+        z-index: -1;
+      }
+      svg path {
+        fill: #cd201f;
+      }
+    }
   }
   h1 {
     color: #FFF;

@@ -18,13 +18,24 @@ class VideoController extends Controller
      */
     public function paginate(Request $request) : JsonResponse
     {
-        $cachePageKey = 'videos' . $request->get('page');
+        $paginationPage = $request->get('page');
 
-        $videos = Cache::remember($cachePageKey, 60, function () {
-            return Video::orderBy('published_at', 'desc')
-                ->with('channel')
-                ->paginate(9);
-        });
+        if ($paginationPage <= 3) {
+            $cachePageKey = 'videos_' . $paginationPage;
+
+            $videos = Cache::remember($cachePageKey, 60, function () {
+                return Video::orderBy('published_at', 'desc')
+                    ->with('channel')
+                    ->paginate(9);
+            });
+
+            return response()->json($videos);
+        }
+
+
+        $videos = Video::orderBy('published_at', 'desc')
+            ->with('channel')
+            ->paginate(9);
 
         return response()->json($videos);
     }
