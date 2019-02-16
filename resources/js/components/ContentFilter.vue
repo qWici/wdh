@@ -1,24 +1,30 @@
 <template>
   <div class="content-filters-wrapper">
-    <button class="content-filters--button" :class="{ active: visible }" @click="toggleFiltersVisibility">Filters</button>
+    <button class="content-filters--button" :class="{ active: visible }" @click="toggleFiltersVisibility">
+      <fa icon="filter"/>
+      Filters
+    </button>
     <div class="content-filters-available" v-if="visible" v-click-outside="hide">
-      <div class="content-filters-group" v-for="(item, key) in availableFilters" :key="key">
+      <div class="content-filters-group" v-for="(item, keyGroup) in availableFilters" :key="keyGroup">
         <span>{{ item.title }}</span>
         <ul>
           <li v-for="(value, key) in item.values"
               :key="key"
               :class="{ active: filterSelected(value.val) }"
-              @click.self="selectFilter({ type: item.type, value: value.val })">
+              @click.self="selectFilter({ type: item.type, value: value.val, title: value.title })">
             {{ value.title }}
-            <button v-if="filterSelected(value.val)"  @click.self="removeFilter(item.type)"></button>
+            <button v-if="filterSelected(value.val)" @click.self="removeFilter(item.type)"></button>
           </li>
         </ul>
       </div>
+      <button v-if="isFilterSelected" @click="clearFilters" class="clear-filters">
+        Clear filters
+      </button>
     </div>
   </div>
 </template>
 <!--
-@TODO: Filter current state then make request for more data
+@TODO: Filter current state then make request for more data. Infinity loading + backup state
 -->
 <script>
 import ClickOutside from 'vue-click-outside'
@@ -30,6 +36,10 @@ export default {
     ClickOutside
   },
 
+  props: {
+    contentType: { type: String, default: null, required: true }
+  },
+
   data: () => ({
     visible: false,
     availableFilters: [
@@ -39,6 +49,18 @@ export default {
     selectedFilters: []
   }),
 
+  computed: {
+    isFilterSelected () {
+      return this.selectedFilters.length > 0
+    }
+  },
+
+  watch: {
+    selectedFilters (filters) {
+      this.updateContentState(filters)
+    }
+  },
+
   methods: {
     toggleFiltersVisibility () {
       this.visible = !this.visible
@@ -46,20 +68,38 @@ export default {
     hide () {
       this.visible = false
     },
+    generateFiltersTitle () {
+      if (this.selectedFilters.length === 0) { return null }
+
+      if (this.selectedFilters.length > 1) {
+        let initTitle = ''
+        return this.selectedFilters.reduce((acc, curr) => {
+          return acc + curr.title + ' '
+        }, initTitle)
+      }
+
+      return this.selectedFilters[0].title
+    },
     selectFilter (item) {
-      console.log('select')
       this.selectedFilters = [item, ...this.selectedFilters.filter(filter => filter.type !== item.type)]
+      this.$emit('updateTitle', this.generateFiltersTitle())
     },
     removeFilter (type) {
-      console.log('remove')
-      console.log(type)
-      console.log(this.selectedFilters)
       this.selectedFilters = this.selectedFilters.filter(test => test.type !== type)
+      this.$emit('updateTitle', this.generateFiltersTitle())
     },
     filterSelected (filter) {
       return this.selectedFilters.some(item => {
         return item.value === filter
       })
+    },
+    clearFilters () {
+      this.selectedFilters = []
+      this.$emit('updateTitle', null)
+    },
+    updateContentState (actualFilters) {
+      console.log(actualFilters)
+      console.log(this.contentType)
     }
   }
 }
@@ -81,10 +121,9 @@ export default {
   }
   &--button {
     height: 35px;
-    background-color: #207eff;
     color: #FFF;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 15px;
     padding: 10px 20px;
     border-radius: 5px;
     transition: all .3s;
@@ -109,12 +148,25 @@ export default {
     border-radius: 5px;
     box-shadow: 0 0 20px rgba(0,0,0,0.7);
     overflow: hidden;
+    & .clear-filters {
+      display: block;
+      width: 100%;
+      color: #FFF;
+      background-color: #ce202073;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 10px 0;
+      &:hover {
+        background-color: #ce2020;
+        cursor: pointer;
+      }
+    }
   }
   &-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-    &:last-child {
+    &:last-of-type {
       margin-bottom: 0;
     }
     span {
@@ -156,13 +208,13 @@ export default {
           outline: 0;
           position: relative;
           vertical-align: top;
-          height: 16px;
-          max-height: 16px;
-          max-width: 16px;
-          min-height: 16px;
-          min-width: 16px;
-          width: 16px;
-          margin: 0 5px;
+          height: 20px;
+          max-height: 20px;
+          max-width: 20px;
+          min-height: 20px;
+          min-width: 20px;
+          width: 20px;
+          margin: 0 15px 0 0;
           &:after, &:before {
             background-color: #fff;
             content: "";

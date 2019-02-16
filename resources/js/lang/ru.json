@@ -49,7 +49,7 @@
   "live": "Онлайн",
   "last_online" : "Последние онлайн",
   "offline": "Оффлайн",
-  "last_publications": "Последние публикации",
+  "last_publications": "Последние публикации | Последние {filters} публикации",
   "position": "Должность",
   "read_full_article": "Читать дальше",
   "search_placeholder": "Быстрый поиск...",

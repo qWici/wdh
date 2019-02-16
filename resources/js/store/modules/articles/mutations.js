@@ -12,6 +12,7 @@ export default {
   },
   [types.FETCH_PAGINATE] (state, data) {
     state.paginate = [...state.paginate, ...data]
+    state.backup = state.paginate
   },
   [types.CLEAR_ARTICLES] (state) {
     state.paginate = []
@@ -19,5 +20,8 @@ export default {
   },
   [types.TOGGLE_BOOKMARK] (state, status) {
     state.single = Object.assign(state.single, { bookmarked: status })
+  },
+  [types.FILTER_ARTICLES] (state, filters) {
+    // state.paginate
   }
 }

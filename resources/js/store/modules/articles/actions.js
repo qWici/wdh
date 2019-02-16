@@ -25,6 +25,10 @@ export const fetchPaginateArticles = async ({ commit }, pageNumber = 1) => {
   commit(types.FETCH_PAGINATE, data.data)
 }
 
+export const filterState = async ({ commit }, filters) => {
+  commit(types.FILTER_ARTICLES, filters)
+}
+
 export const clearState = async ({ commit }) => {
   commit(types.CLEAR_ARTICLES)
 }
