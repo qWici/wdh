@@ -71,14 +71,13 @@ export default {
     generateFiltersTitle () {
       if (this.selectedFilters.length === 0) { return null }
 
-      if (this.selectedFilters.length > 1) {
-        let initTitle = ''
-        return this.selectedFilters.reduce((acc, curr) => {
-          return acc + curr.title + ' '
-        }, initTitle)
+      if (this.selectedFilters.length === 1) {
+        return this.selectedFilters[0].title
       }
 
-      return this.selectedFilters[0].title
+      return this.selectedFilters.reduce((acc, curr) => {
+        return acc + curr.title + ' '
+      }, '')
     },
     selectFilter (item) {
       this.selectedFilters = [item, ...this.selectedFilters.filter(filter => filter.type !== item.type)]

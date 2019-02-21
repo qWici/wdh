@@ -19,14 +19,15 @@ export const fetchBySlug = async ({ commit }, { author, slug }) => {
   commit(types.FETCH_BY_SLUG, data)
 }
 
-export const fetchPaginateArticles = async ({ commit }, pageNumber = 1) => {
-  const { data } = await axios.get(`/api/articles/paginate?page=${pageNumber}`)
+export const fetchPaginateArticles = async ({ commit }, pageNumber = 1, filters = []) => {
+  const filtersToString = Object.keys(filters).map(key => key + '=' + filters[key]).join('&')
+  const requestURL = filtersToString.length > 0
+    ? `/api/articles/paginate?page=${pageNumber}&filters=${filtersToString}`
+    : `/api/articles/paginate?page=${pageNumber}`
+
+  const { data } = await axios.get(requestURL)
 
   commit(types.FETCH_PAGINATE, data.data)
-}
-
-export const filterState = async ({ commit }, filters) => {
-  commit(types.FILTER_ARTICLES, filters)
 }
 
 export const clearState = async ({ commit }) => {
