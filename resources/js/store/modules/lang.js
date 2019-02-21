@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import * as types from '../mutation-types'
+import axios from 'axios'
 
 const { locale, locales } = window.config
 
@@ -25,6 +26,7 @@ export const mutations = {
 // actions
 export const actions = {
   setLocale ({ commit }, { locale }) {
+    axios.get('/api/locale/' + locale)
     commit(types.SET_LOCALE, { locale })
 
     Cookies.set('locale', locale, { expires: 365 })

@@ -3,12 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Content;
+use App\Helpers\MetaGenerator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class GlobalController extends Controller
 {
+    public function index(Request $request)
+    {
+        $metas = MetaGenerator::generate($request->getPathInfo());
+
+        return view('index', compact('metas'));
+    }
+
+    public function changeLocale($locale)
+    {
+        \App::setLocale($locale);
+
+        return response()->json();
+    }
+
     public function getLast(Request $request) : JsonResponse
     {
         $page = $request->get('page');

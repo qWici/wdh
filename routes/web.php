@@ -12,6 +12,4 @@
 */
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
-Route::get('{path}', function () {
-    return view('index');
-})->where('path', '(.*)');
+Route::get('{path}', 'GlobalController@index')->where('path', '(.*)');
