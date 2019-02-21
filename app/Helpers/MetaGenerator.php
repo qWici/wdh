@@ -77,7 +77,7 @@ class MetaGenerator
         $title = "Web development live streams";
         $description = "Live streams about development websites";
 
-        if (isset($stream)) {
+        if (isset($stream) && $stream !== "undefined") {
             $streamData = Stream::where('slug', $stream)->first();
             $title = $streamData->twitch . "live streams";
             $description = $streamData->title;
@@ -121,7 +121,7 @@ class MetaGenerator
         $title = "Web development articles";
         $description = "Articles about development websites";
 
-        if(isset($article)) {
+        if(isset($article) && $article !== 'undefined') {
             $articleData = Article::where('slug', $article)->first();
 
             $title = $articleData->title;
@@ -192,7 +192,7 @@ class MetaGenerator
         $title = "Web development videos";
         $description = "Videos about development websites";
 
-        if (isset($video)) {
+        if (isset($video) && $video !== "undefined") {
             $videoData = Video::where('slug', $video)->first();
             $title = $videoData->title;
             $description = self::substrwords($videoData->description, 155);
@@ -260,7 +260,7 @@ class MetaGenerator
         $title = "Web development podcasts";
         $description = "Podcasts about development websites";
 
-        if (isset($podcast)) {
+        if (isset($podcast) && $podcast !== "undefined") {
             $podcastData = Podcast::where('slug', $podcast)->first();
             $title = $podcastData->title;
             $description = self::substrwords($podcastData->description, 155);
