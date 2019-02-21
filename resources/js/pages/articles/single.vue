@@ -1,10 +1,15 @@
 <template>
-  <div v-if="single" class="article">
+  <div v-if="single" class="article" itemscope itemtype="http://schema.org/BlogPosting">
     <bookmark :bookmarked="single.bookmarked" :id="single.id" type="article" />
-    <div :style="'background-image: url(' + single.image_src + ')'" class="article--image">
-      <img :src="single.image_src" :alt="single.title" style="display: none">
+    <div :style="'background-image: url(' + single.image_src + ')'" class="article--image" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+      <img itemprop="url" :src="single.image_src" :alt="single.title" style="display: none">
+      <meta itemprop="width" content="1050"/>
+      <meta itemprop="height" content="500"/>
     </div>
-    <h1>{{ single.title }}</h1>
+    <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" :itemid="'https://webdevhub.net' + this.$route.fullPath"/>
+    <meta itemprop="datePublished" :content="single.created_at"/>
+    <meta itemprop="dateModified" :content="single.updated_at"/>
+    <h1 itemprop="headline">{{ single.title }}</h1>
     <div class="article--body">
       <p>{{ single.description }}</p>
       <a :href="single.link" rel="noreferrer" target="_blank">
@@ -17,10 +22,18 @@
           <img :src="single.author.logo" :alt="single.author.name" style="display: none;">
         </div>
         <div class="article-author-info">
-          <router-link :to="{name: 'article.author', params: { author: single.author.slug }}">
-            {{ single.author.name }}
+          <router-link :to="{name: 'article.author', params: { author: single.author.slug }}" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <b temprop="name">{{ single.author.name }}</b>
           </router-link>
           <p>{{ single.author.about }}</p>
+        </div>
+      </div>
+      <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization" style="display: none">
+        <meta itemprop="name" content="WebDevHub"/>
+        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+          <img itemprop="url" src="https://webdevhub.net/img/logo.png"/>
+          <meta itemprop="width" content="182"/>
+          <meta itemprop="height" content="24"/>
         </div>
       </div>
     </footer>
