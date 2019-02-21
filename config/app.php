@@ -159,6 +159,7 @@ return [
         Alaouy\Youtube\YoutubeServiceProvider::class,
         ChristianKuri\LaravelFavorite\FavoriteServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Nutsweb\LaravelPrerender\LaravelPrerenderServiceProvider::class,
 
         /*
          * Application Service Providers...
