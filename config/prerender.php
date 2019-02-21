@@ -146,7 +146,7 @@
         // we support _escaped_fragment_ and want to ensure people aren't
         // penalized for cloaking.
 
-         'googlebot',
+//         'googlebot',
         // 'yahoo',
         // 'bingbot',
         'baiduspider',
