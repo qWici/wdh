@@ -78,7 +78,7 @@ class MetaGenerator
         $description = "Live streams about development websites";
 
         if (isset($stream) && $stream !== "undefined") {
-            $streamData = Stream::where('slug', $stream)->first();
+            $streamData = Stream::where('twitch', $stream)->first();
             $title = $streamData->twitch . "live streams";
             $description = $streamData->title;
 
