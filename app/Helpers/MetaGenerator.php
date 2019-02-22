@@ -323,6 +323,8 @@ class MetaGenerator
     }
 
     private static function substrwords($text, $maxchar, $end='...') {
+        if (strlen($text) < 1) { return ''; }
+
         if (strlen($text) > $maxchar || $text == '') {
             $words = preg_split('/\s/', $text);
             $output = '';
