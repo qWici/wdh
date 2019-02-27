@@ -68,7 +68,7 @@ class CheckNewPodcasts extends Command
                 'podcast_show_id' => $showID,
                 'title' => $item['title'],
                 'slug' => str_slug($item['title']),
-                'description' => $items['media'][$i]['summary'],
+                'description' => html_entity_decode($items['media'][$i]['summary']),
                 'duration' => $items['media'][$i]['duration'],
                 'published_at' => date("Y-m-d H:i:s", strtotime($item['pubDate'])),
                 'audio_url' => $item['enclosure::url'],

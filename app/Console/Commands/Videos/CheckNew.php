@@ -69,7 +69,7 @@ class CheckNew extends Command
         $newVideo->youtube_id = $videoID;
         $newVideo->title = $video->snippet->title;
         $newVideo->slug = str_slug($video->snippet->title);
-        $newVideo->description = $video->snippet->description;
+        $newVideo->description = html_entity_decode($video->snippet->description);
 
         $thumbnail = $this->storeVideoThumbnail(
             $video->snippet->thumbnails->high->url,
