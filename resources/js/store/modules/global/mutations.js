@@ -13,6 +13,9 @@ export default {
   [types.SET_MOBILE_STATUS] (state, status) {
     state.isMobile = status
   },
+  [types.SET_COOKIE_ACCEPTED] (state) {
+    state.cookieAccepted = true
+  },
   [types.SEARCH] (state, data) {
     state.search = data
   },

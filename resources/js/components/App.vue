@@ -6,7 +6,7 @@
       <component :is="layout" v-if="layout" />
     </transition>
 
-    <notification-about-cookie />
+    <notification-about-cookie ref="cookieAccepted"/>
   </div>
 </template>
 
@@ -50,6 +50,7 @@ export default {
 
   mounted () {
     this.$loading = this.$refs.loading
+    this.$cookieAccepted = this.$refs.cookieAccepted
     this.checkMobile()
     window.addEventListener('resize', this.checkMobile)
   },

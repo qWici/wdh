@@ -5,6 +5,10 @@ export const toggleNav = ({ commit }, status) => {
   commit(types.TOGGLE_NAV, status)
 }
 
+export const setCookieAccepted = ({ commit }) => {
+  commit(types.SET_COOKIE_ACCEPTED)
+}
+
 export const setMobileStatus = ({ commit }, status) => {
   commit(types.SET_MOBILE_STATUS, status)
 }
@@ -63,6 +67,7 @@ export default {
   toggleNav,
   setMobileStatus,
   search,
+  setCookieAccepted,
   toggleBookmarked,
   getLatestItems,
   getUserBookmarks,
