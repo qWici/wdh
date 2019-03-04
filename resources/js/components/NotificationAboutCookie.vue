@@ -30,3 +30,7 @@ export default {
   components: { CookieLaw }
 }
 </script>
+
+<style lang="scss">
+  @import '../../sass/elements/cookie-notification';
+</style>

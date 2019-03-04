@@ -8,10 +8,18 @@ aside.sidebar {
   hr {
     border: 1px solid #201c44
   }
-  .patron img {
-    height: 35px;
-    margin: 0 auto;
-    display: block;
+  .patron {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      margin-top: 35px;
+    }
+    img {
+      height: 35px;
+      margin: 0 auto;
+      display: block;
+    }
   }
   .user {
     display: flex;

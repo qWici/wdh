@@ -1,11 +1,13 @@
 <template>
   <div class="search">
     <div class="search-input" v-click-outside="clickOut">
-      <input ref="input" type="text" :placeholder="$t('search_placeholder')"
-             :class="{ 'fill' : showResults && results.resultsCount > 0 }"
-             v-model="query"
-             @keyup="handleInput"
-      >
+      <label for="search">
+        <input ref="input" type="text" :placeholder="$t('search_placeholder')"
+               :class="{ 'fill' : showResults && results.resultsCount > 0 }"
+               v-model="query"
+               @keyup="handleInput"
+               id="search" aria-label="search">
+      </label>
       <fa v-if="validatedInput || isMobile" icon="times-circle" fixed-width class="clearquery" @click="clear" />
     </div>
 
