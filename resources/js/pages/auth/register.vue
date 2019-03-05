@@ -66,6 +66,8 @@
           </p>
         </div>
 
+        <p>{{ $t('aggrement') }} <br> <a target="_blank" href="https://www.websitepolicies.com/policies/view/ikcTjD9M">{{ $t('terms_conditions') }}</a> {{ $t('and') }} <a target="_blank" href="https://www.websitepolicies.com/policies/view/KpEDSl0F">{{ $t('privacy_policy') }}</a></p>
+
         <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth is-rounded">
           {{ $t('register') }}
         </button>
@@ -132,6 +134,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+form p {
+  color: #FFF;
+  text-align: center;
+  a {
+    color: #FD7FB6;
+  }
+}
 .field.hint {
   position: relative;
   &:before {

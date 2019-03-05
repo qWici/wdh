@@ -4,7 +4,7 @@
       <div slot-scope="props">
         <div class="texts">
           <span>{{ $t('cookie.title') }}</span>
-          <p>{{ $t('cookie.message') }}</p>
+          <p>{{ $t('cookie.message') }}. {{ $t('more') }} <a target="_blank" href="https://www.websitepolicies.com/policies/view/DEp1vxNI">Cookie policy</a></p>
         </div>
         <!-- /.texts -->
         <div class="Cookie-buttons">
