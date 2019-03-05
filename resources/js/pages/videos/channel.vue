@@ -15,10 +15,10 @@
         :lang="item.lang"
         :type="type"
       />
+      <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
+        <div slot="no-more" />
+      </InfiniteLoading>
     </div>
-    <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
-      <div slot="no-more" />
-    </InfiniteLoading>
   </div>
 </template>
 
@@ -53,6 +53,8 @@ export default {
 
   watch: {
     items (newItems) {
+      if (this.infinityState === null) { return false }
+
       this.page += 1
       if (this.countItems === newItems.length) {
         this.infinityState.complete()
