@@ -98,4 +98,7 @@ export default {
 
 <style scoped lang="scss">
   @import "../../../sass/elements/home";
+  .home {
+    height: calc(100vh - 142px);
+  }
 </style>

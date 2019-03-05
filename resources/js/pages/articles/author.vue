@@ -16,7 +16,7 @@
         :type="type"
       />
     </div>
-    <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
+    <InfiniteLoading :distance="0" spinner="spiral" ref="infinityLoader" @infinite="infiniteHandler">
       <div slot="no-more" />
     </InfiniteLoading>
   </div>
@@ -98,4 +98,7 @@ export default {
 
 <style scoped lang="scss">
   @import "../../../sass/elements/home";
+  .home {
+    height: calc(100vh - 142px);
+  }
 </style>
