@@ -1,8 +1,14 @@
 <template>
   <div class="home">
-    <h2 v-show="items.length > 0">
-      {{ getPageTitle() }}
-    </h2>
+    <w-author-info
+      v-if="show"
+      :name="show.title"
+      :about="show.description"
+      :logo="show.image_url"
+      :site-url="show.site_url"
+      :id="show.id"
+      :type="type"
+    />
     <div class="content-wrapper">
       <ContentItem
         v-for="(item, key) in items"
@@ -25,6 +31,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import ContentItem from '../../components/ContentItem'
+import WAuthorInfo from '../../components/WAuthorInfo'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -33,6 +40,7 @@ export default {
 
   components: {
     ContentItem,
+    WAuthorInfo,
     InfiniteLoading
   },
 
@@ -44,7 +52,8 @@ export default {
     type: 'podcast',
     page: 0,
     countItems: 0,
-    infinityState: null
+    infinityState: null,
+    show: null
   }),
 
   computed: mapGetters({
@@ -82,7 +91,9 @@ export default {
           { title: this.items[0].show.title, route: { name: 'podcast.show', params: { author: this.$route.params.show } } }
         ]
 
-        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs).then(() => {
+          this.show = this.items[0].show
+        })
       })
     },
     getPodcastLink (podcast) {

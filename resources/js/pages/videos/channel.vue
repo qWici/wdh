@@ -1,8 +1,14 @@
 <template>
   <div class="home">
-    <h2 v-show="items.length > 0">
-      {{ getPageTitle() }}
-    </h2>
+    <w-author-info
+      v-if="channel"
+      :name="channel.title"
+      :about="channel.description"
+      :logo="channel.image_src"
+      :site-url="'https://youtube.com/' + channel.custom_url"
+      :id="channel.id"
+      :type="type"
+    />
     <div class="content-wrapper">
       <ContentItem
         v-for="(item, key) in items"
@@ -25,6 +31,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import ContentItem from '../../components/ContentItem'
+import WAuthorInfo from '../../components/WAuthorInfo'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -33,6 +40,7 @@ export default {
 
   components: {
     ContentItem,
+    WAuthorInfo,
     InfiniteLoading
   },
 
@@ -44,7 +52,8 @@ export default {
     type: 'video',
     page: 0,
     countItems: 0,
-    infinityState: null
+    infinityState: null,
+    channel: null
   }),
 
   computed: mapGetters({
@@ -82,7 +91,9 @@ export default {
           { title: this.items[0].channel.title, route: { name: 'video.channel', params: { channel: this.$route.params.channel } } }
         ]
 
-        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs).then(() => {
+          this.channel = this.items[0].channel
+        })
       })
     },
     getVideoLink (video) {
