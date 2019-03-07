@@ -67,17 +67,8 @@ $polyfills = [
       ]
     }
   </script>
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "LibrarySystem",
-      "name": "WebDevHub",
-      "alternateName": "WDH",
-      "url": "https://webdevhub.net",
-      "logo": "https://webdevhub.net/img/logo.png",
-      "sameAs": "https://www.facebook.com/webdevhub.official/"
-    }
-</script>
+
+  {!! $breadcrumbsSchema  !!}
 
 </head>
 <body>

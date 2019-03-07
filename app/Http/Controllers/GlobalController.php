@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Spatie\SchemaOrg\Schema;
 use App\Models\Content;
 use App\Helpers\MetaGenerator;
 use Illuminate\Http\JsonResponse;
@@ -13,8 +14,12 @@ class GlobalController extends Controller
     public function index(Request $request)
     {
         $metas = MetaGenerator::generate($request->getPathInfo());
+        $breadcrumbs = Schema::breadcrumbList()->itemListElement($metas['breadcrumbs']);
+        unset($metas['breadcrumbs']);
 
-        return view('index', compact('metas'));
+        $breadcrumbsSchema = $breadcrumbs->toScript();
+
+        return view('index', compact('metas', 'breadcrumbsSchema'));
     }
 
     public function changeLocale($locale)

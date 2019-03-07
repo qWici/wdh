@@ -19,6 +19,7 @@
         "orchestra/parser": "^3.7",
         "rap2hpoutre/laravel-log-viewer": "^1.0",
         "spatie/laravel-sitemap": "^5.2",
+        "spatie/schema-org": "^2.1",
         "tymon/jwt-auth": "^1.0.0-rc.2"
     },
     "require-dev": {
