@@ -14,10 +14,13 @@ class GlobalController extends Controller
     public function index(Request $request)
     {
         $metas = MetaGenerator::generate($request->getPathInfo());
-        $breadcrumbs = Schema::breadcrumbList()->itemListElement($metas['breadcrumbs']);
-        unset($metas['breadcrumbs']);
+        $breadcrumbsSchema = '';
+        if (isset($metas['breadcrumbs'])) {
+            $breadcrumbs = Schema::breadcrumbList()->itemListElement($metas['breadcrumbs']);
+            unset($metas['breadcrumbs']);
 
-        $breadcrumbsSchema = $breadcrumbs->toScript();
+            $breadcrumbsSchema = $breadcrumbs->toScript();
+        }
 
         return view('index', compact('metas', 'breadcrumbsSchema'));
     }
