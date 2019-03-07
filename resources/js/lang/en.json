@@ -6,7 +6,7 @@
   "token_expired_alert_title": "Session Expired!",
   "token_expired_alert_text": "Please log in again to continue.",
   "login": "Log In",
-  "register": "Register",
+  "register": "Sign up",
   "page_not_found": "Page Not Found",
   "go_home": "Go Home",
   "logout": "Logout",
@@ -83,8 +83,10 @@
     "streams": "streams",
     "podcasts": "podcasts"
   },
-  "terms_conditions": "Terms &amp; Conditions",
+  "terms_conditions": "Terms of Service",
   "privacy_policy": "Privacy Policy",
+  "aggrement": "By signing up, you agree to the ",
+  "and": "and",
   "contact": "Contact",
   "cookie": {
     "title": "Heads up! We use cookies \uD83C\uDF6A",

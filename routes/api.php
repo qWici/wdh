@@ -21,7 +21,8 @@ Route::post('early-access', 'Auth\EarlyAccessController@store');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-Route::get('/last', 'GlobalController@getLast');
+Route::get('last', 'GlobalController@getLast');
+Route::get('locale/{locale}', 'GlobalController@changeLocale');
 
 Route::prefix('streams')->group(function () {
     Route::get('all', 'StreamController@all');

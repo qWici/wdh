@@ -169,7 +169,7 @@ class CheckNewArticle extends Command
         $preparedDescription = mb_convert_encoding(htmlspecialchars_decode(strip_tags($description)), "UTF-8");
         $descriptionSlices = empty($description) ?: substr($preparedDescription,0,500);
 
-        return trim($descriptionSlices);
+        return html_entity_decode(trim($descriptionSlices));
     }
 
     /**

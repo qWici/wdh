@@ -24,8 +24,15 @@ $polyfills = [
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>{{ config('app.name') }}</title>
+  @if(isset($metas['title']))
+  <title>{{ $metas['title'] }}</title>
+  @else
+    <title>{{ config('app.name') }}</title>
+  @endif
 
+  @foreach($metas as $name => $content)
+    <meta name="{{ $name }}" content="{{ $content }}">
+  @endforeach
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/favicon/apple-touch-icon.png') }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon/favicon-32x32.png') }}">
@@ -45,6 +52,23 @@ $polyfills = [
 
     gtag('config', 'UA-132670287-2');
   </script>
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "WebSite",
+      "name": "WebDevHub",
+      "alternateName": "WDH",
+      "url": "https://webdevhub.net",
+      "image": "https://webdevhub.net/img/logo.png",
+      "sameAs": [
+        "https://www.facebook.com/webdevhub.official/",
+        "https://twitter.com/wdh_official",
+        "https://vk.com/webdevhub"
+      ]
+    }
+  </script>
+
+  {!! $breadcrumbsSchema  !!}
 
 </head>
 <body>

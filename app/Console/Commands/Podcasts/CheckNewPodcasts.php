@@ -68,7 +68,7 @@ class CheckNewPodcasts extends Command
                 'podcast_show_id' => $showID,
                 'title' => $item['title'],
                 'slug' => str_slug($item['title']),
-                'description' => $items['media'][$i]['summary'],
+                'description' => $this->prepareDescription($items['media'][$i]['summary']),
                 'duration' => $items['media'][$i]['duration'],
                 'published_at' => date("Y-m-d H:i:s", strtotime($item['pubDate'])),
                 'audio_url' => $item['enclosure::url'],
@@ -76,6 +76,21 @@ class CheckNewPodcasts extends Command
         }
 
         return $podcasts;
+    }
+
+    /**
+     * Remove html tags and slice to 500 symbols
+     *
+     * @param $description
+     * @return string
+     */
+    public function prepareDescription($description)
+    {
+        $description = str_replace('><', '> <', $description);
+        $preparedDescription = mb_convert_encoding(htmlspecialchars_decode(strip_tags($description)), "UTF-8");
+        $descriptionSlices = empty($description) ?: substr($preparedDescription,0,500);
+
+        return html_entity_decode(trim($descriptionSlices));
     }
 
     public function storePodcasts($podcasts)

@@ -1,10 +1,16 @@
 <template>
-  <div v-if="single !== undefined" class="article">
+  <div v-if="this.single.show" class="article">
     <bookmark :bookmarked="single.bookmarked" :id="single.id" type="podcast" />
-    <Aplayer :music="audioData" :volume="0.5" />
+    <Aplayer :music="{
+      title: this.single.title,
+      artist: this.single.show.title,
+      src: this.single.audio_url,
+      pic: this.single.show.image_url
+    }" :volume="0.5"
+    />
 
     <h1>{{ single.title }}</h1>
-    <div v-if="single !== undefined" class="article--body">
+    <div class="article--body">
       <p>{{ single.description }}</p>
     </div>
     <footer v-if="single.show">

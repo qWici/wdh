@@ -11,7 +11,7 @@ Vue.use(Router)
 Vue.use(RouterPrefetch)
 
 // The middleware for every page of the application.
-const globalMiddleware = ['locale', 'check-auth']
+const globalMiddleware = ['locale', 'check-auth', 'close-mob-nav', 'check-cookie-accept']
 
 // Load middleware modules dynamically.
 const routeMiddleware = resolveMiddleware(
@@ -50,7 +50,6 @@ function createRouter () {
  * @param {Function} next
  */
 async function beforeEach (to, from, next) {
-  store.dispatch('global/toggleNav', false)
   // Get the matched components and resolve them.
   const components = await resolveComponents(
     router.getMatchedComponents({ ...to })
