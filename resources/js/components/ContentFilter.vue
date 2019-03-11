@@ -1,10 +1,10 @@
 <template>
-  <div class="content-filters-wrapper">
+  <div class="content-filters-wrapper" v-click-outside="hide">
     <button class="content-filters--button" :class="{ active: visible }" @click="toggleFiltersVisibility">
       <fa icon="filter"/>
       Filters
     </button>
-    <div class="content-filters-available" v-if="visible" v-click-outside="hide">
+    <div class="content-filters-available" v-if="visible">
       <div class="content-filters-group" v-for="(item, keyGroup) in availableFilters" :key="keyGroup">
         <span>{{ item.title }}</span>
         <ul>
@@ -63,6 +63,7 @@ export default {
 
   methods: {
     toggleFiltersVisibility () {
+      console.log('toggle')
       this.visible = !this.visible
     },
     hide () {
@@ -141,7 +142,7 @@ export default {
     top: 35px;
     right: 0;
     z-index: 2;
-    background: linear-gradient(to right, #423A6F 0%, #323660 100%);
+    background-color: #FFF;
     width: 250px;
     padding: 15px 0 0;
     border-radius: 5px;
@@ -151,12 +152,13 @@ export default {
       display: block;
       width: 100%;
       color: #FFF;
-      background-color: #ce202073;
+      background-color: #e0382f;
       font-size: 16px;
       font-weight: bold;
       padding: 10px 0;
+      border-radius: 0 0 5px 5px;
       &:hover {
-        background-color: #ce2020;
+        background-color: darken(#207eff, 15%);
         cursor: pointer;
       }
     }
@@ -169,7 +171,7 @@ export default {
       margin-bottom: 0;
     }
     span {
-      color: #FFF;
+      color: #005cd6;
       font-weight: bold;
       display: block;
       margin-bottom: 10px;
@@ -180,7 +182,7 @@ export default {
       margin: 0;
       li {
         width: 100%;
-        color: #FFF;
+        color: #000;
         padding: 5px 0 5px 15px;
         margin: 0;
         display: flex;
@@ -188,14 +190,14 @@ export default {
         justify-content: space-between;
         &:hover {
           cursor: pointer;
-          background-color: #25294e;
+          background-color: rgba(0, 91, 211, 0.2);
         }
         &.active {
-          background-color: #08a370;
+          background-color: rgba(0, 181, 134, 0.4);
         }
         button {
           -webkit-appearance: none;
-          background-color: rgba(10,10,10,.2);
+          background-color: #59ad99;
           border: none;
           border-radius: 290486px;
           cursor: pointer;
