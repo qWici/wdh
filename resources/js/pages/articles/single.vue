@@ -212,6 +212,9 @@ export default {
     h1 {
       font-size: 24px;
     }
+    &--image {
+      height: 250px;
+    }
   }
 }
 
