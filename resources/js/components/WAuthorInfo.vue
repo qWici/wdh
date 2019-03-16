@@ -75,7 +75,7 @@ export default {
     }
     a {
       display: inline-block;
-      background-color: #13193b;
+      background-color: #394480;
       padding: 5px 10px;
       font-size: 14px;
       color: #FFF;

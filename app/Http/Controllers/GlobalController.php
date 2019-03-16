@@ -40,14 +40,14 @@ class GlobalController extends Controller
             $cachePageKey = 'last_' . $request->get('page');
 
             $last = Cache::remember($cachePageKey, 60, function () {
-                $items = Content::orderBy('updated_at', 'desc')->paginate(9);
+                $items = Content::orderBy('updated_at', 'desc')->paginate(15);
                 return $this->getItemsAuthor($items);
             });
 
             return response()->json($last);
         }
 
-        $items = Content::orderBy('updated_at', 'desc')->paginate(9);
+        $items = Content::orderBy('updated_at', 'desc')->paginate(15);
 
         return response()->json($this->getItemsAuthor($items));
     }

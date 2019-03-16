@@ -123,7 +123,7 @@ export default {
 <style scoped lang="scss">
 @import "../../sass/vars";
 
-@media #{$mobile} {
+@media #{$w991} {
     .patron img {
       height: 35px;
       margin: 0 auto;
@@ -135,6 +135,9 @@ export default {
             background-image: none;
             background: transparent;
             box-shadow: none;
+            position: relative;
+            height: 100%;
+            top: 0;
             .content-nav ul {
                 flex-direction: column;
                 width: 100%;

@@ -1,7 +1,7 @@
 @import "../vars";
 
 header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -43,7 +43,7 @@ header {
   }
 }
 
-@media #{$mobile} {
+@media #{$w991} {
   header {
     transition: all .2s ease-out;
     &.nav-open {
@@ -79,7 +79,7 @@ header {
 
 @media only screen and (max-width: 480px) {
   header .box {
-    padding: 0;
+    padding: 0 20px;
   }
 }
 

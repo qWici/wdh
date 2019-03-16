@@ -38,7 +38,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin: 20px 0 0 20px;
+  margin: 20px 0 0;
   &:not(:last-child) {
     margin-bottom: 0;
   }

@@ -120,10 +120,7 @@ export default {
 .stream {
   margin-top: 20px;
   width: 100%;
-  height: calc(100vh - 204px);
   display: block;
-  overflow-y: scroll;
-  overflow-x: visible;
   padding-bottom: 20px;
   &::-webkit-scrollbar {
     width: 10px;

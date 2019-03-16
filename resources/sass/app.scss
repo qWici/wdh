@@ -4,12 +4,10 @@
 #app, .main-layout {
   width: 100vw;
   height: 100%;
+  position: relative;
 }
 
 main {
-  height: calc(100% - 80px);
-  margin-top: 0;
-  transition: all .2s ease-out;
   &.nav-open {
     transform: translateX(20rem);
     transition: all .2s ease-in;
@@ -30,7 +28,7 @@ html {
   position: relative;
   line-height: 1.6;
   opacity: 1;
-  background: $gradient-default;
+  background-color: $purple-dark;
   color: $text-color;
   margin: 0;
   z-index: 0;

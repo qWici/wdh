@@ -69,7 +69,7 @@ export default {
       this.layout = layouts[layout]
     },
     checkMobile () {
-      this.$store.dispatch('global/setMobileStatus', (document.documentElement.clientWidth <= 768))
+      this.$store.dispatch('global/setMobileStatus', (document.documentElement.clientWidth <= 991))
     }
   }
 }

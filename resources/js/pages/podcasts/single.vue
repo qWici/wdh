@@ -131,9 +131,6 @@ export default {
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
   color: #FFF;
-  height: calc(100vh - 162px);
-  overflow-y: scroll;
-  overflow-x: visible;
   padding-bottom: 20px;
   &::-webkit-scrollbar {
     width: 10px;

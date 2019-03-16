@@ -83,12 +83,14 @@ export default {
     border-radius: 5px;
     overflow: hidden;
     position: relative;
-    min-height: 300px;
-    max-height: 300px;
-    box-shadow: 0 6px 20px 0 rgba(0,0,0,.19), 0 8px 17px 0 rgba(0,0,0,.2);
-    &:hover .item-info{
-        bottom: 0;
-        transition: all .2s ease-in;
+    /*width: 265px;*/
+    /*min-height: 265px;*/
+    /*max-height: 265px;*/
+    &:hover {
+      box-shadow: 0 6px 20px 0 rgba(0,0,0,.19), 0 8px 17px 0 rgba(0,0,0,.2);
+      .item-info .title {
+        color: #ff80bb;
+      }
     }
     .flag {
       position: absolute;
@@ -130,12 +132,13 @@ export default {
       }
     }
     .img-wrapper {
-        height: 340px;
+        height: 164px;
         overflow: hidden;
         background-size: cover;
         background-position: center;
         position: relative;
         &:after {
+            display: none;
             content: '';
             width: calc(100% + 1px);
             height: 100%;
@@ -146,21 +149,18 @@ export default {
         }
     }
     .item-info {
-        position: absolute;
-        bottom: -40px;
-        left: 0;
-        padding: 10px 20px 20px;
+        padding: 10px 20px 10px;
         color: #FFF;
         width: 100%;
-        transition: all .2s ease-out;
+        display: block;
         .data {
             display: flex;
             justify-content: space-between;
             opacity: .6;
-            font-size: 13px;
+            font-size: 11px;
         }
         .title {
-            font-size: 18px;
+            font-size: 14px;
             margin: 0 0 15px;
             padding: 0;
             line-height: 1.6;
