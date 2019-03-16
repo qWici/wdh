@@ -131,6 +131,7 @@ export default {
     }
     aside.sidebar {
         &.mobile {
+            width: 100%;
             display: flex;
             background-image: none;
             background: transparent;
