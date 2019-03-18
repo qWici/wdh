@@ -12,7 +12,7 @@
 
     <span class="item-info">
       <span class="title">
-        {{ trimmedTitle }}
+        {{ title }}
       </span>
       <span class="data">
         <span v-if="stream" class="date">
@@ -54,13 +54,6 @@ export default {
     status: function () {
       return this.online ? this.$t('live') : this.$t('offline')
     },
-    trimmedTitle: function () {
-      if (this.title.length >= 50) {
-        return this.title.substr(0, 47) + '...'
-      }
-
-      return this.title
-    },
     itemLink: function () {
       if (this.type === 'article') {
         return { name: 'article.single', params: { author: this.link.author, slug: this.link.slug } }
@@ -83,9 +76,6 @@ export default {
     border-radius: 5px;
     overflow: hidden;
     position: relative;
-    /*width: 265px;*/
-    /*min-height: 265px;*/
-    /*max-height: 265px;*/
     &:hover {
       box-shadow: 0 6px 20px 0 rgba(0,0,0,.19), 0 8px 17px 0 rgba(0,0,0,.2);
       .item-info .title {
@@ -167,6 +157,8 @@ export default {
             display: block;
             color: #FFF;
             font-weight: bold;
+            max-height: 44px;
+            overflow: hidden;
         }
     }
 }
