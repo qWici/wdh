@@ -30,9 +30,12 @@ $polyfills = [
     <title>{{ config('app.name') }}</title>
   @endif
 
-  @foreach($metas as $name => $content)
-    <meta name="{{ $name }}" content="{{ $content }}">
-  @endforeach
+  @if(!empty($metas))
+    @foreach($metas as $name => $content)
+      <meta name="{{ $name }}" content="{{ $content }}">
+    @endforeach
+  @endif
+
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/favicon/apple-touch-icon.png') }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon/favicon-32x32.png') }}">

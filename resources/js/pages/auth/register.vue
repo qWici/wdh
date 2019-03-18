@@ -147,21 +147,12 @@ form p {
     content: attr(data-hint);
     position: absolute;
     top: 50%;
-    right: 320px;
+    left: 320px;
     text-align: right;
     color: #FFF;
     font-style: italic;
     font-size: 14px;
     width: 300px;
-    transform: rotate(3deg) translateY(-50%);
-  }
-}
-@media only screen and (max-width: 1600px) {
-  .field.hint:before {
-    right: 0;
-    left: 288px;
-    background: linear-gradient(to right, rgba(49, 43, 84, 0) 0%, #191d3b 100%);
-    padding: 20px;
     transform: rotate(-3deg) translateY(-50%);
   }
 }

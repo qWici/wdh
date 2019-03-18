@@ -17,6 +17,9 @@ class MetaGenerator
 
     public static function generate($url)
     {
+        if (substr($url, -1) === '/') {
+            $url = substr($url, 0, (strlen($url) - 1));
+        }
         self::$url = $url;
         $params = explode('/', substr(self::$url,1));
 
@@ -88,6 +91,28 @@ class MetaGenerator
     {
         $title = "Web development live streams";
         $description = "Live streams about development websites";
+
+        if ($stream === 'tag') {
+            return [
+                "title" => $title . " | WebDevHub",
+                "description" => $description,
+                "og:title" => $title,
+                "og:site_name" => "WebDevHub",
+                "og:type" => "website",
+                "og:url" => config("app.url") . substr(self::$url,1),
+                "og:image" => config("app.url") . "img/mockup.png",
+                "og:description" => $description,
+                "twitter:card" => "summary_large_image",
+                "twitter:site" => config("app.url") . substr(self::$url,1),
+                "twitter:title" => $title,
+                "twitter:description" => $description,
+                "twitter:image:src" => config("app.url") . "img/mockup.png",
+                "breadcrumbs" => self::breadcrumbs([
+                    ["name" => "Home", "url" => config("app.url")],
+                    ["name" => "Streams", "url" => config("app.url") . 'streams']
+                ])
+            ];
+        }
 
         if (isset($stream) && $stream !== "undefined") {
             $streamData = Stream::where('twitch', $stream)->first();

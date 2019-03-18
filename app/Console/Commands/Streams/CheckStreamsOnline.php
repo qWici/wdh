@@ -44,7 +44,7 @@ class CheckStreamsOnline extends Command
             $nickname = $stream->twitch;
             $live = $this->check($nickname);
 
-            if($live) {
+            if($live && !$stream->online) {
                 Stream::where('id', $stream->id)->update([
                     'online' => true,
                     'title' => $live->title,
@@ -76,6 +76,9 @@ class CheckStreamsOnline extends Command
         ];
         $url = "https://api.twitch.tv/helix/streams?user_login=${streamNickname}";
         $response = RemoteRequest::getRemoteContent($url, $additionalParams);
+        if ($response['error']) {
+            return false;
+        }
         try {
             $data = json_decode($response['data']);
             if(! empty($data->data)) {

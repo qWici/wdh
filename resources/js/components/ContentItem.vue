@@ -12,7 +12,7 @@
 
     <span class="item-info">
       <span class="title">
-        {{ trimmedTitle }}
+        {{ title }}
       </span>
       <span class="data">
         <span v-if="stream" class="date">
@@ -54,13 +54,6 @@ export default {
     status: function () {
       return this.online ? this.$t('live') : this.$t('offline')
     },
-    trimmedTitle: function () {
-      if (this.title.length >= 50) {
-        return this.title.substr(0, 47) + '...'
-      }
-
-      return this.title
-    },
     itemLink: function () {
       if (this.type === 'article') {
         return { name: 'article.single', params: { author: this.link.author, slug: this.link.slug } }
@@ -83,12 +76,11 @@ export default {
     border-radius: 5px;
     overflow: hidden;
     position: relative;
-    min-height: 300px;
-    max-height: 300px;
-    box-shadow: 0 6px 20px 0 rgba(0,0,0,.19), 0 8px 17px 0 rgba(0,0,0,.2);
-    &:hover .item-info{
-        bottom: 0;
-        transition: all .2s ease-in;
+    &:hover {
+      box-shadow: 0 6px 20px 0 rgba(0,0,0,.19), 0 8px 17px 0 rgba(0,0,0,.2);
+      .item-info .title {
+        color: #ff80bb;
+      }
     }
     .flag {
       position: absolute;
@@ -130,12 +122,13 @@ export default {
       }
     }
     .img-wrapper {
-        height: 340px;
+        height: 164px;
         overflow: hidden;
         background-size: cover;
         background-position: center;
         position: relative;
         &:after {
+            display: none;
             content: '';
             width: calc(100% + 1px);
             height: 100%;
@@ -146,27 +139,26 @@ export default {
         }
     }
     .item-info {
-        position: absolute;
-        bottom: -40px;
-        left: 0;
-        padding: 10px 20px 20px;
+        padding: 10px 20px 10px;
         color: #FFF;
         width: 100%;
-        transition: all .2s ease-out;
+        display: block;
         .data {
             display: flex;
             justify-content: space-between;
             opacity: .6;
-            font-size: 13px;
+            font-size: 11px;
         }
         .title {
-            font-size: 18px;
+            font-size: 14px;
             margin: 0 0 15px;
             padding: 0;
             line-height: 1.6;
             display: block;
             color: #FFF;
             font-weight: bold;
+            max-height: 44px;
+            overflow: hidden;
         }
     }
 }
