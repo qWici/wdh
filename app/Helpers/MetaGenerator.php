@@ -17,6 +17,9 @@ class MetaGenerator
 
     public static function generate($url)
     {
+        if (substr($url, -1) === '/') {
+            $url = substr($url, 0, (strlen($url) - 1));
+        }
         self::$url = $url;
         $params = explode('/', substr(self::$url,1));
 
