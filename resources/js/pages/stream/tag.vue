@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h2 class="live">
-      {{ this.$route.params.id }}
+      {{ getTitle() }}
     </h2>
     <div v-show="streams.length > 0" class="content-wrapper">
       <ContentItem
@@ -33,19 +33,21 @@ export default {
   },
 
   metaInfo () {
-    return { title: this.$route.params.id + ' streams' }
+    return { title: this.getTitle() + ' streams' }
   },
 
   data: () => ({
     type: 'stream'
   }),
 
-  computed: mapGetters({
-    streams: 'streams/byTag'
-  }),
+  computed: {
+    ...mapGetters({
+      streams: 'streams/byTag'
+    })
+  },
 
   created () {
-    this.$store.dispatch('streams/fetchStreamsByTag', this.$route.params.id).then(() => {
+    this.$store.dispatch('streams/fetchStreamsByTag', this.$route.params.slug).then(() => {
       let breadcrumbs = [
         { title: this.$t('streams'), route: { name: 'stream' } },
         { title: this.$route.params.id, route: { name: 'stream.tag', params: { id: this.$route.params.id } } }
@@ -60,6 +62,9 @@ export default {
       return stream.online
         ? `https://static-cdn.jtvnw.net/previews-ttv/live_user_${stream.name}-600x340.jpg`
         : stream.logo
+    },
+    getTitle () {
+      return this.$route.params.slug.charAt(0).toUpperCase() + this.$route.params.slug.slice(1)
     }
   }
 }

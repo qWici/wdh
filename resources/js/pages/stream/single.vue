@@ -21,7 +21,7 @@
         <li v-for="(item, key) in tags"
             :key="key"
         >
-          <router-link :to="{ name: 'stream.tag', params: { id: item.tag }}">
+          <router-link :to="{ name: 'stream.tag', params: { slug: item.slug }}">
             {{ item.tag }}
           </router-link>
         </li>

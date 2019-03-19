@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 class StreamTag extends Model
 {
     protected $fillable = [
-        'tag'
+        'tag', 'slug'
     ];
 
     public function stream()

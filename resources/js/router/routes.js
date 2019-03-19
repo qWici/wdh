@@ -50,7 +50,7 @@ export default [
     children: [
       { path: '', name: 'stream', component: StreamList },
       { path: ':id/', name: 'stream.single', component: StreamSingle },
-      { path: 'tag/:id/', name: 'stream.tag', component: StreamTag }
+      { path: 'tag/:slug/', name: 'stream.tag', component: StreamTag }
     ]
   },
 

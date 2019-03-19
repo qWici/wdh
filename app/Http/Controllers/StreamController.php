@@ -76,7 +76,7 @@ class StreamController extends Controller
      */
     public function byTag(string $tag) : JsonResponse
     {
-        $tag = StreamTag::where('tag', $tag)
+        $tag = StreamTag::where('slug', $tag)
             ->with('stream')
             ->first();
 
