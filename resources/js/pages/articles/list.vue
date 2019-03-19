@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <div class="content-header">
-      <h2 v-show="items.length > 0">
-        {{ pageTitle }}
+      <h2>
+        {{ $t('last_publications') }}
       </h2>
-      <content-filter @updateTitle="updateTitle" @filter="filter" content-type="articles" />
+      <content-filter @filter="filter" content-type="articles" />
     </div>
     <div class="content-wrapper">
       <ContentItem
@@ -24,8 +24,6 @@
     </div>
   </div>
 </template>
-
-<!--@TODO: Refresh title with filters on change locale-->
 
 <script>
 import { mapGetters } from 'vuex'
@@ -51,17 +49,12 @@ export default {
     type: 'article',
     page: 0,
     countItems: 0,
-    infinityState: null,
-    pageTitle: ''
+    infinityState: null
   }),
 
   computed: mapGetters({
     items: 'articles/paginate'
   }),
-
-  mounted () {
-    this.pageTitle = this.$tc('last_publications')
-  },
 
   watch: {
     items (newItems) {
@@ -88,14 +81,6 @@ export default {
     },
     getArticleLink (article) {
       return { author: article.author.slug, slug: article.slug }
-    },
-    updateTitle (filters) {
-      if (filters) {
-        this.pageTitle = this.$tc('last_publications', null, { filters: filters })
-        return
-      }
-
-      this.pageTitle = this.$tc('last_publications')
     },
     filter (filters) {
       console.log(filters)

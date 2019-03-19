@@ -72,7 +72,7 @@ export default {
   },
 
   mounted () {
-    this.pageTitle = this.$tc('last_publications')
+    this.pageTitle = this.$t('last_publications')
   },
 
   destroyed () {
@@ -93,7 +93,7 @@ export default {
         return
       }
 
-      this.pageTitle = this.$tc('last_publications')
+      this.pageTitle = this.$t('last_publications')
     },
     filter (filters) {
       console.log(filters)

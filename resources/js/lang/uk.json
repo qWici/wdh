@@ -49,7 +49,7 @@
   "live": "Онлайн",
   "last_online" : "Останні онлайн",
   "offline": "Оффлайн",
-  "last_publications": "Останні публікації | Останні {filters} публікації",
+  "last_publications": "Останні публікації",
   "position": "Посада",
   "read_full_article": "Читати дальше",
   "search_placeholder": "Швидкий пошук...",
@@ -93,5 +93,6 @@
     "message": "У WebDevHub ми використовуємо файли cookie, щоб покращити ваш досвід роботи на нашому сайті",
     "agree": "Дозволити",
     "ignore": "Ігнорувати"
-  }
+  },
+  "remove_filter": "Видалити фільтр"
 }

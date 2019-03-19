@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Author, Stream, StreamTag, Channel, PodcastShow};
+use App\Models\{Article, Author, Stream, StreamTag, Channel, PodcastShow};
 use Illuminate\Http\Request;
 use Psy\Util\Str;
 
@@ -15,8 +15,26 @@ class FilterController extends Controller
         return response()->json($filters);
     }
 
-    public function filter()
+    public function filter($type, Request $request)
     {
+        $filters = $request->get('filters');
+        switch ($type) {
+            case 'articles':
+                return $this->filterArticles($filters);
+                break;
+            case 'streams':
+                return $this->getStreamFilters();
+                break;
+            case 'videos':
+                return $this->getVideoFilters();
+                break;
+            case 'podcasts':
+                return $this->getPodcastFilters();
+                break;
+            default:
+                return [];
+                break;
+        }
         return response()->json([]);
     }
 
@@ -69,8 +87,7 @@ class FilterController extends Controller
         }
 
         foreach (StreamTag::cursor() as $tag) {
-            // @TODO: Add slug to StreamTag (migration + seeder for update current)
-            $tags[] = [ "val"=> $tag->tag, "title" => $tag->tag ];
+            $tags[] = [ "val"=> $tag->slug, "title" => $tag->tag ];
         }
 
         return [
@@ -108,5 +125,20 @@ class FilterController extends Controller
             [ "title" => 'Language', "type" => 'lang', "values" => array_values($languages) ],
             [ "title" => 'Show', "type" => 'author', "values" => $shows ],
         ];
+    }
+
+    // @TODO: Recognize articles language for exist & feature
+    private function filterArticles($filters)
+    {
+        foreach ($filters as $filter) {
+            if ($filter->type === 'author') {
+                $author = Author::where('slug', $filter->value)->firstOrFail();
+                return Article::where('author_id', $author->id)->paginate(15);
+            }
+
+            if ($filter->type === 'lang') {
+                $authors = Author::where('language', $filter->value)->get();
+            }
+        }
     }
 }

@@ -26,6 +26,7 @@ Route::get('locale/{locale}', 'GlobalController@changeLocale');
 
 Route::prefix('filters')->group(function () {
     Route::get('get/{type}', 'FilterController@possible');
+    Route::post('filter/{type}', 'FilterController@filter');
 });
 
 Route::prefix('streams')->group(function () {

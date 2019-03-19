@@ -1,25 +1,38 @@
 <template>
   <div class="content-filters-wrapper" v-click-outside="hide">
+    <div class="active-filters">
+      <w-tag v-for="(item) in selectedFilters"
+             :key="item.value"
+             :title="item.title"
+             :val="item.type"
+             @removeTag="removeFilter"
+      />
+    </div>
     <button class="content-filters--button" :class="{ active: visible }" @click="toggleFiltersVisibility">
       <fa icon="filter"/>
       Filters
     </button>
     <div class="content-filters-available" v-if="visible">
-      <div class="content-filters-group" v-for="(item, keyGroup) in availableFilters" :key="keyGroup">
-        <span>{{ item.title }}</span>
-        <ul>
-          <li v-for="(value, key) in item.values"
-              :key="key"
-              :class="{ active: filterSelected(value.val) }"
-              @click.self="selectFilter({ type: item.type, value: value.val, title: value.title })">
-            {{ value.title }}
-            <button v-if="filterSelected(value.val)" @click.self="removeFilter(item.type)"></button>
-          </li>
-        </ul>
+      <div v-if="filtersIsLoaded">
+        <div class="content-filters-group" v-for="(item, keyGroup) in availableFilters" :key="keyGroup">
+          <span>{{ item.title }}</span>
+          <ul>
+            <li v-for="(value, key) in item.values"
+                :key="key"
+                :class="{ active: filterSelected(value.val) }"
+                @click.self="selectFilter({ type: item.type, value: value.val, title: value.title })">
+              {{ value.title }}
+              <button v-if="filterSelected(value.val)" @click.self="removeFilter(item.type)"></button>
+            </li>
+          </ul>
+        </div>
+        <button v-if="isFilterSelected" @click="clearFilters" class="clear-filters">
+          Clear filters
+        </button>
       </div>
-      <button v-if="isFilterSelected" @click="clearFilters" class="clear-filters">
-        Clear filters
-      </button>
+      <div v-else class="loading">
+        <img src="/img/loader.gif" alt="Loading">
+      </div>
     </div>
   </div>
 </template>
@@ -27,9 +40,14 @@
 <script>
 import axios from 'axios'
 import ClickOutside from 'vue-click-outside'
+import WTag from './WTag'
 
 export default {
   name: 'ContentFilter',
+
+  components: {
+    WTag
+  },
 
   directives: {
     ClickOutside
@@ -48,6 +66,9 @@ export default {
   computed: {
     isFilterSelected () {
       return this.selectedFilters.length > 0
+    },
+    filtersIsLoaded () {
+      return this.availableFilters.length > 0
     }
   },
 
@@ -72,24 +93,11 @@ export default {
         this.availableFilters = res.data
       })
     },
-    generateFiltersTitle () {
-      if (this.selectedFilters.length === 0) { return null }
-
-      if (this.selectedFilters.length === 1) {
-        return this.selectedFilters[0].title
-      }
-
-      return this.selectedFilters.reduce((acc, curr) => {
-        return acc + curr.title + ' '
-      }, '')
-    },
     selectFilter (item) {
       this.selectedFilters = [item, ...this.selectedFilters.filter(filter => filter.type !== item.type)]
-      this.$emit('updateTitle', this.generateFiltersTitle())
     },
     removeFilter (type) {
-      this.selectedFilters = this.selectedFilters.filter(test => test.type !== type)
-      this.$emit('updateTitle', this.generateFiltersTitle())
+      this.selectedFilters = this.selectedFilters.filter(filter => filter.type !== type)
     },
     filterSelected (filter) {
       return this.selectedFilters.some(item => {
@@ -98,7 +106,6 @@ export default {
     },
     clearFilters () {
       this.selectedFilters = []
-      this.$emit('updateTitle', null)
     },
     updateContentState (actualFilters) {
       this.$emit('filter', actualFilters)
@@ -114,6 +121,16 @@ export default {
     justify-content: center;
     align-items: center;
     position: relative;
+    .active-filters {
+      display: flex;
+      margin-right: 30px;
+      div {
+        margin-left: 10px;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
   }
   &-list {
     display: flex;
@@ -130,8 +147,9 @@ export default {
     border-radius: 5px;
     transition: all .3s;
     line-height: 1;
+    background-color: darken(#207eff, 15%);
     &:hover {
-      background-color: darken(#207eff, 15%);
+      background-color: darken(#207eff, 25%);
       transition: all .3s;
       cursor: pointer;
     }
@@ -150,6 +168,15 @@ export default {
     border-radius: 5px;
     box-shadow: 0 0 20px rgba(0,0,0,0.7);
     overflow: hidden;
+    & .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 15px;
+      img {
+        width: 32px;
+      }
+    }
     & .clear-filters {
       display: block;
       width: 100%;

@@ -19,6 +19,12 @@ export const fetchBySlug = async ({ commit }, { author, slug }) => {
   commit(types.FETCH_BY_SLUG, data)
 }
 
+export const filter = async ({ commit }, filters) => {
+  const { data } = await axios.post(`/api/filters/filter/articles`, { filters: filters })
+  // @TODO: Make mutations etc
+  commit(types.FETCH_BY_SLUG, data)
+}
+
 export const fetchPaginateArticles = async ({ commit }, pageNumber = 1, filters = []) => {
   const filtersToString = Object.keys(filters).map(key => key + '=' + filters[key]).join('&')
   const requestURL = filtersToString.length > 0

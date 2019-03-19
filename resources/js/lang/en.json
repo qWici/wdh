@@ -49,7 +49,7 @@
   "live": "Live",
   "last_online" : "Last online",
   "offline": "Offline",
-  "last_publications": "Last publications | Last {filters} publications",
+  "last_publications": "Last publications",
   "position": "Position",
   "read_full_article": "Read full article",
   "search_placeholder": "Quick find...",
@@ -93,5 +93,6 @@
     "message": "At WebDevHub, we use cookies to improve your experience on our website",
     "agree": "Allow cookies",
     "ignore": "Ignore me"
-  }
+  },
+  "remove_filter": "Remove filter"
 }
