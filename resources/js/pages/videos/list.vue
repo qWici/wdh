@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <!-- @TODO: Add filters -->
     <h2 v-show="items.length > 0">
       {{ $t('last_publications') }}
     </h2>

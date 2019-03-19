@@ -1,8 +1,11 @@
 <template>
   <div class="home">
-    <h2 v-show="items.length > 0">
-      {{ $t('last_publications') }}
-    </h2>
+    <div class="content-header">
+      <h2 v-show="items.length > 0">
+        {{ pageTitle }}
+      </h2>
+      <content-filter @updateTitle="updateTitle" @filter="filter" content-type="podcasts" />
+    </div>
     <div class="content-wrapper">
       <ContentItem
         v-for="(item, key) in items"
@@ -25,6 +28,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import ContentItem from '../../components/ContentItem'
+import ContentFilter from '../../components/ContentFilter'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -33,6 +37,7 @@ export default {
 
   components: {
     ContentItem,
+    ContentFilter,
     InfiniteLoading
   },
 
@@ -44,7 +49,8 @@ export default {
     type: 'podcast',
     page: 0,
     countItems: 0,
-    infinityState: null
+    infinityState: null,
+    pageTitle: ''
   }),
 
   computed: mapGetters({
@@ -65,6 +71,10 @@ export default {
     }
   },
 
+  mounted () {
+    this.pageTitle = this.$tc('last_publications')
+  },
+
   destroyed () {
     this.$store.dispatch('podcasts/clearState')
   },
@@ -76,6 +86,17 @@ export default {
     },
     getPodcastLink (podcast) {
       return { show: podcast.show.slug, slug: podcast.slug }
+    },
+    updateTitle (filters) {
+      if (filters) {
+        this.pageTitle = this.$tc('last_publications', null, { filters: filters })
+        return
+      }
+
+      this.pageTitle = this.$tc('last_publications')
+    },
+    filter (filters) {
+      console.log(filters)
     }
   }
 }

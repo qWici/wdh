@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <!-- @TODO: Add filters & before make able $tc('live_now')-->
     <h2 class="live">
       {{ $t('live_now') }}
     </h2>

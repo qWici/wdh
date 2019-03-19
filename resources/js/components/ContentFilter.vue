@@ -23,10 +23,9 @@
     </div>
   </div>
 </template>
-<!--
-@TODO: Filter current state then make request for more data. Infinity loading + backup state
--->
+
 <script>
+import axios from 'axios'
 import ClickOutside from 'vue-click-outside'
 
 export default {
@@ -42,10 +41,7 @@ export default {
 
   data: () => ({
     visible: false,
-    availableFilters: [
-      { title: 'Language', type: 'lang', values: [{ val: 'en', title: 'EN' }, { val: 'ru', title: 'RU' }] },
-      { title: 'Author', type: 'author', values: [{ val: 'test-one', title: 'Test One' }, { val: 'test-two', title: 'Test Twi' }] }
-    ],
+    availableFilters: [],
     selectedFilters: []
   }),
 
@@ -63,11 +59,18 @@ export default {
 
   methods: {
     toggleFiltersVisibility () {
-      console.log('toggle')
       this.visible = !this.visible
+      if (this.visible) {
+        this.getPossibleFilters()
+      }
     },
     hide () {
       this.visible = false
+    },
+    getPossibleFilters () {
+      axios.get(`/api/filters/get/${this.contentType}`).then((res) => {
+        this.availableFilters = res.data
+      })
     },
     generateFiltersTitle () {
       if (this.selectedFilters.length === 0) { return null }
@@ -98,8 +101,7 @@ export default {
       this.$emit('updateTitle', null)
     },
     updateContentState (actualFilters) {
-      console.log(actualFilters)
-      console.log(this.contentType)
+      this.$emit('filter', actualFilters)
     }
   }
 }
@@ -190,14 +192,14 @@ export default {
         justify-content: space-between;
         &:hover {
           cursor: pointer;
-          background-color: rgba(0, 91, 211, 0.2);
+          background-color: rgba(67, 194, 255, 0.4);
         }
         &.active {
-          background-color: rgba(0, 181, 134, 0.4);
+          background-color: rgba(67, 194, 255, 0.4);
         }
         button {
           -webkit-appearance: none;
-          background-color: #59ad99;
+          background-color: #5982ad;
           border: none;
           border-radius: 290486px;
           cursor: pointer;

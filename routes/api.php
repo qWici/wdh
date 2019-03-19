@@ -24,6 +24,10 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('last', 'GlobalController@getLast');
 Route::get('locale/{locale}', 'GlobalController@changeLocale');
 
+Route::prefix('filters')->group(function () {
+    Route::get('get/{type}', 'FilterController@possible');
+});
+
 Route::prefix('streams')->group(function () {
     Route::get('all', 'StreamController@all');
     Route::get('online', 'StreamController@online');

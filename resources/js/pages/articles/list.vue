@@ -4,7 +4,7 @@
       <h2 v-show="items.length > 0">
         {{ pageTitle }}
       </h2>
-      <content-filter @updateTitle="updateTitle" content-type="articles" />
+      <content-filter @updateTitle="updateTitle" @filter="filter" content-type="articles" />
     </div>
     <div class="content-wrapper">
       <ContentItem
@@ -96,6 +96,9 @@ export default {
       }
 
       this.pageTitle = this.$tc('last_publications')
+    },
+    filter (filters) {
+      console.log(filters)
     }
   }
 }
