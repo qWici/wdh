@@ -150,7 +150,7 @@ class CheckNewArticle extends Command
             $imageSRC = $matches[0][2];
         }
 
-        if(empty($imageSRC)) {
+        if(empty($imageSRC) || strpos($imageSRC, './') !== false) {
             return $this->generateImage($title);
         }
 
