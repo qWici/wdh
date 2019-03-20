@@ -9,6 +9,7 @@ use App\Models\Podcast;
 use App\Models\PodcastShow;
 use App\Models\Stream;
 use App\Models\Video;
+use Spatie\SchemaOrg\Schema;
 
 class MetaGenerator
 {
@@ -16,6 +17,9 @@ class MetaGenerator
 
     public static function generate($url)
     {
+        if (substr($url, -1) === '/') {
+            $url = substr($url, 0, (strlen($url) - 1));
+        }
         self::$url = $url;
         $params = explode('/', substr(self::$url,1));
 
@@ -32,6 +36,16 @@ class MetaGenerator
             case 3:
                 return self::type($params[0], $params[1], $params[2]); // articles/author/article
         }
+    }
+
+    private static function breadcrumbs($links)
+    {
+        $breadcrumbs = [];
+        foreach ($links as $index => $link) {
+            $breadcrumbs[] = Schema::listItem()->position($index + 1)->name($link["name"])->item($link['url']);
+        }
+
+        return $breadcrumbs;
     }
 
     private static function home()
@@ -52,7 +66,8 @@ class MetaGenerator
             "twitter:site" => config("app.url"),
             "twitter:title" => $title,
             "twitter:description" => $description,
-            "twitter:image:src" => config("app.url") . "img/mockup.png"
+            "twitter:image:src" => config("app.url") . "img/mockup.png",
+            "breadcrumbs" => self::breadcrumbs([["name" => "Home", "url" => config("app.url")]])
         ];
     }
 
@@ -77,9 +92,32 @@ class MetaGenerator
         $title = "Web development live streams";
         $description = "Live streams about development websites";
 
+        if ($stream === 'tag') {
+            return [
+                "title" => $title . " | WebDevHub",
+                "description" => $description,
+                "og:title" => $title,
+                "og:site_name" => "WebDevHub",
+                "og:type" => "website",
+                "og:url" => config("app.url") . substr(self::$url,1),
+                "og:image" => config("app.url") . "img/mockup.png",
+                "og:description" => $description,
+                "twitter:card" => "summary_large_image",
+                "twitter:site" => config("app.url") . substr(self::$url,1),
+                "twitter:title" => $title,
+                "twitter:description" => $description,
+                "twitter:image:src" => config("app.url") . "img/mockup.png",
+                "breadcrumbs" => self::breadcrumbs([
+                    ["name" => "Home", "url" => config("app.url")],
+                    ["name" => "Streams", "url" => config("app.url") . 'streams']
+                ])
+            ];
+        }
+
         if (isset($stream) && $stream !== "undefined") {
             $streamData = Stream::where('twitch', $stream)->first();
-            $title = $streamData->twitch . "live streams";
+            $twitch = $streamData->twitch;
+            $title = $twitch . "live streams";
             $description = $streamData->title;
 
             return [
@@ -95,7 +133,12 @@ class MetaGenerator
                 "twitter:site" => config("app.url") . substr(self::$url,1),
                 "twitter:title" => $title,
                 "twitter:description" => $description,
-                "twitter:image:src" => config("app.url") . "img/mockup.png"
+                "twitter:image:src" => config("app.url") . "img/mockup.png",
+                "breadcrumbs" => self::breadcrumbs([
+                    ["name" => "Home", "url" => config("app.url")],
+                    ["name" => "Streams", "url" => config("app.url") . 'streams'],
+                    ["name" => $twitch, "url" => config("app.url") . 'streams/' . $twitch],
+                ])
             ];
         }
 
@@ -112,7 +155,11 @@ class MetaGenerator
             "twitter:site" => config("app.url") . substr(self::$url,1),
             "twitter:title" => $title,
             "twitter:description" => $description,
-            "twitter:image:src" => config("app.url") . "img/mockup.png"
+            "twitter:image:src" => config("app.url") . "img/mockup.png",
+            "breadcrumbs" => self::breadcrumbs([
+                ["name" => "Home", "url" => config("app.url")],
+                ["name" => "Streams", "url" => config("app.url") . 'streams']
+            ])
         ];
     }
 
@@ -122,7 +169,7 @@ class MetaGenerator
         $description = "Articles about development websites";
 
         if(isset($article) && $article !== 'undefined') {
-            $articleData = Article::where('slug', $article)->first();
+            $articleData = Article::where('slug', $article)->with('author')->first();
 
             $title = $articleData->title;
             $description = self::substrwords($articleData->description, 155);
@@ -143,7 +190,19 @@ class MetaGenerator
                 "twitter:site" => config("app.url") . substr(self::$url,1),
                 "twitter:title" => $title,
                 "twitter:description" => $description,
-                "twitter:image:src" => $image
+                "twitter:image:src" => $image,
+                "breadcrumbs" => self::breadcrumbs([
+                    ["name" => "Home", "url" => config("app.url")],
+                    ["name" => "Articles", "url" => config("app.url") . 'articles'],
+                    [
+                        "name" => $articleData->author->name,
+                        "url" => config("app.url") . 'articles/' . $articleData->author->slug
+                    ],
+                    [
+                        "name" => $articleData->title,
+                        "url" => config("app.url") . 'articles/' . $articleData->author->slug . "/" . $articleData->slug
+                    ]
+                ])
             ];
         }
 
@@ -166,7 +225,15 @@ class MetaGenerator
                 "twitter:site" => config("app.url") . substr(self::$url,1),
                 "twitter:title" => $title,
                 "twitter:description" => $description,
-                "twitter:image:src" => config("app.url") . "img/mockup.png"
+                "twitter:image:src" => config("app.url") . "img/mockup.png",
+                "breadcrumbs" => self::breadcrumbs([
+                    ["name" => "Home", "url" => config("app.url")],
+                    ["name" => "Articles", "url" => config("app.url") . 'articles'],
+                    [
+                        "name" => $articleAuthor->name,
+                        "url" => config("app.url") . 'articles/' . $articleAuthor->slug
+                    ]
+                ])
             ];
         }
 
@@ -183,7 +250,11 @@ class MetaGenerator
             "twitter:site" => config("app.url") . substr(self::$url,1),
             "twitter:title" => $title,
             "twitter:description" => $description,
-            "twitter:image:src" => config("app.url") . "img/mockup.png"
+            "twitter:image:src" => config("app.url") . "img/mockup.png",
+            "breadcrumbs" => self::breadcrumbs([
+                ["name" => "Home", "url" => config("app.url")],
+                ["name" => "Articles", "url" => config("app.url") . 'articles']
+            ])
         ];
     }
 
@@ -193,7 +264,7 @@ class MetaGenerator
         $description = "Videos about development websites";
 
         if (isset($video) && $video !== "undefined") {
-            $videoData = Video::where('slug', $video)->first();
+            $videoData = Video::where('slug', $video)->with('channel')->first();
             $title = $videoData->title;
             $description = self::substrwords($videoData->description, 155);
             $image = config('app.url') . substr($videoData->image_src,1);
@@ -211,7 +282,19 @@ class MetaGenerator
                 "twitter:site" => config("app.url") . substr(self::$url,1),
                 "twitter:title" => $title,
                 "twitter:description" => $description,
-                "twitter:image:src" => $image
+                "twitter:image:src" => $image,
+                "breadcrumbs" => self::breadcrumbs([
+                    ["name" => "Home", "url" => config("app.url")],
+                    ["name" => "Videos", "url" => config("app.url") . 'videos'],
+                    [
+                        "name" => $videoData->channel->title,
+                        "url" => config("app.url") . 'videos/' . $videoData->channel->slug
+                    ],
+                    [
+                        "name" => $videoData->title,
+                        "url" => config("app.url") . 'videos/' . $videoData->channel->slug . "/" . $videoData->slug
+                    ]
+                ])
             ];
         }
 
@@ -234,7 +317,15 @@ class MetaGenerator
                 "twitter:site" => config("app.url") . substr(self::$url,1),
                 "twitter:title" => $title,
                 "twitter:description" => $description,
-                "twitter:image:src" => $image
+                "twitter:image:src" => $image,
+                "breadcrumbs" => self::breadcrumbs([
+                    ["name" => "Home", "url" => config("app.url")],
+                    ["name" => "Videos", "url" => config("app.url") . 'videos'],
+                    [
+                        "name" => $channelData->title,
+                        "url" => config("app.url") . 'videos/' . $channelData->slug
+                    ]
+                ])
             ];
         }
 
@@ -251,7 +342,11 @@ class MetaGenerator
             "twitter:site" => config("app.url") . substr(self::$url,1),
             "twitter:title" => $title,
             "twitter:description" => $description,
-            "twitter:image:src" => config("app.url") . "img/mockup.png"
+            "twitter:image:src" => config("app.url") . "img/mockup.png",
+            "breadcrumbs" => self::breadcrumbs([
+                ["name" => "Home", "url" => config("app.url")],
+                ["name" => "Videos", "url" => config("app.url") . 'videos']
+            ])
         ];
     }
 
@@ -261,7 +356,7 @@ class MetaGenerator
         $description = "Podcasts about development websites";
 
         if (isset($podcast) && $podcast !== "undefined") {
-            $podcastData = Podcast::where('slug', $podcast)->first();
+            $podcastData = Podcast::where('slug', $podcast)->with('show')->first();
             $title = $podcastData->title;
             $description = self::substrwords($podcastData->description, 155);
 
@@ -278,7 +373,19 @@ class MetaGenerator
                 "twitter:site" => config("app.url") . substr(self::$url,1),
                 "twitter:title" => $title,
                 "twitter:description" => $description,
-                "twitter:image:src" => config("app.url") . "img/mockup.png"
+                "twitter:image:src" => config("app.url") . "img/mockup.png",
+                "breadcrumbs" => self::breadcrumbs([
+                    ["name" => "Home", "url" => config("app.url")],
+                    ["name" => "Podcasts", "url" => config("app.url") . 'podcasts'],
+                    [
+                        "name" => $podcastData->show->title,
+                        "url" => config("app.url") . 'podcasts/' . $podcastData->show->slug
+                    ],
+                    [
+                        "name" => $podcastData->title,
+                        "url" => config("app.url") . 'podcasts/' . $podcastData->show->slug . "/" . $podcastData->slug
+                    ]
+                ])
             ];
         }
 
@@ -301,7 +408,15 @@ class MetaGenerator
                 "twitter:site" => config("app.url") . substr(self::$url,1),
                 "twitter:title" => $title,
                 "twitter:description" => $description,
-                "twitter:image:src" => $image
+                "twitter:image:src" => $image,
+                "breadcrumbs" => self::breadcrumbs([
+                    ["name" => "Home", "url" => config("app.url")],
+                    ["name" => "Podcasts", "url" => config("app.url") . 'podcasts'],
+                    [
+                        "name" => $showData->title,
+                        "url" => config("app.url") . 'podcasts/' . $showData->slug
+                    ]
+                ])
             ];
         }
 
@@ -318,7 +433,11 @@ class MetaGenerator
             "twitter:site" => config("app.url") . substr(self::$url,1),
             "twitter:title" => $title,
             "twitter:description" => $description,
-            "twitter:image:src" => config("app.url") . "img/mockup.png"
+            "twitter:image:src" => config("app.url") . "img/mockup.png",
+            "breadcrumbs" => self::breadcrumbs([
+                ["name" => "Home", "url" => config("app.url")],
+                ["name" => "Podcasts", "url" => config("app.url") . 'podcasts']
+            ])
         ];
     }
 

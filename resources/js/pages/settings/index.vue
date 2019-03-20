@@ -61,6 +61,7 @@ export default {
     margin-bottom: 0;
     ul {
       border-bottom: none;
+      display: flex;
     }
     li {
       width: 100%;
@@ -73,6 +74,9 @@ export default {
       a {
         color: #FFF;
         background: $gradient-article;
+        display: block;
+        text-align: center;
+        padding: 10px;
         svg {
           margin-right: 10px;
         }

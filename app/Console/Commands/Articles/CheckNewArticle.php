@@ -7,6 +7,7 @@ use App\Models\Author;
 use Illuminate\Console\Command;
 use Image;
 use Cache;
+use Mockery\Exception;
 
 class CheckNewArticle extends Command
 {
@@ -43,6 +44,10 @@ class CheckNewArticle extends Command
     {
         foreach(Author::cursor() as $author) {
             $articles = $this->getArticles($author->feed_url);
+            if (count($articles) <= 0) {
+                continue;
+            }
+
             $articles = array_slice($articles, 0, 5);
             foreach ($articles as $article) {
                 if(Article::where(['slug' => str_slug($article['title'])])->exists()) {
@@ -64,8 +69,12 @@ class CheckNewArticle extends Command
      */
     public function getArticles($url)
     {
-        $rss = new \DOMDocument();
-        $rss->load($url);
+        try {
+            $rss = new \DOMDocument();
+            $rss->load($url);
+        } catch (\Exception $exception) {
+            return [];
+        }
         $feed = [];
         foreach ($rss->getElementsByTagName('item') as $node) {
             $date = null;

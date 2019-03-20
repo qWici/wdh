@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2 v-show="latest.length > 0">
+    <h2>
       {{ $t('latest_updates') }}
     </h2>
     <div class="content-wrapper">

@@ -1,8 +1,14 @@
 <template>
   <div class="home">
-    <h2 v-show="items.length > 0">
-      {{ getPageTitle() }}
-    </h2>
+    <w-author-info
+      v-if="author"
+      :name="author.name"
+      :about="author.about"
+      :logo="author.logo"
+      :site-url="author.site_url"
+      :id="author.id"
+      :type="type"
+    />
     <div class="content-wrapper">
       <ContentItem
         v-for="(item, key) in items"
@@ -15,16 +21,17 @@
         :lang="item.author.language"
         :type="type"
       />
+      <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
+        <div slot="no-more" />
+      </InfiniteLoading>
     </div>
-    <InfiniteLoading :distance="0" spinner="spiral" @infinite="infiniteHandler">
-      <div slot="no-more" />
-    </InfiniteLoading>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import ContentItem from '../../components/ContentItem'
+import WAuthorInfo from '../../components/WAuthorInfo'
 import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
@@ -33,6 +40,7 @@ export default {
 
   components: {
     ContentItem,
+    WAuthorInfo,
     InfiniteLoading
   },
 
@@ -44,7 +52,8 @@ export default {
     type: 'article',
     page: 0,
     countItems: 0,
-    infinityState: null
+    infinityState: null,
+    author: null
   }),
 
   computed: mapGetters({
@@ -53,6 +62,8 @@ export default {
 
   watch: {
     items (newItems) {
+      if (this.infinityState === null) { return false }
+
       this.page += 1
       if (this.countItems === newItems.length) {
         this.infinityState.complete()
@@ -80,7 +91,9 @@ export default {
           { title: this.items[0].author.name, route: { name: 'article.author', params: { author: this.$route.params.author } } }
         ]
 
-        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs)
+        this.$store.dispatch('breadcrumbs/setBreadcrumbs', breadcrumbs).then(() => {
+          this.author = this.items[0].author
+        })
       })
     },
     getArticleLink (article) {
@@ -98,4 +111,7 @@ export default {
 
 <style scoped lang="scss">
   @import "../../../sass/elements/home";
+  .home {
+    height: calc(100vh - 142px);
+  }
 </style>

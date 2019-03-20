@@ -1,10 +1,16 @@
 <template>
-  <div v-if="single !== undefined" class="article">
+  <div v-if="this.single.show" class="article">
     <bookmark :bookmarked="single.bookmarked" :id="single.id" type="podcast" />
-    <Aplayer :music="audioData" :volume="0.5" />
+    <Aplayer :music="{
+      title: this.single.title,
+      artist: this.single.show.title,
+      src: this.single.audio_url,
+      pic: this.single.show.image_url
+    }" :volume="0.5"
+    />
 
     <h1>{{ single.title }}</h1>
-    <div v-if="single !== undefined" class="article--body">
+    <div class="article--body">
       <p>{{ single.description }}</p>
     </div>
     <footer v-if="single.show">
@@ -125,9 +131,6 @@ export default {
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
   color: #FFF;
-  height: calc(100vh - 162px);
-  overflow-y: scroll;
-  overflow-x: visible;
   padding-bottom: 20px;
   &::-webkit-scrollbar {
     width: 10px;

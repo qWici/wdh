@@ -38,7 +38,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin: 20px 0 0 20px;
+  margin: 20px 0 0;
   &:not(:last-child) {
     margin-bottom: 0;
   }
@@ -79,7 +79,7 @@ export default {
 
 @media only screen and (max-width: 768px) {
   .breadcrumbs {
-    margin-top: 0;
+    margin-top: 20px;
     margin-bottom: 20px;
     &:not(:last-child) {
       margin-bottom: 20px;

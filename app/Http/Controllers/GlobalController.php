@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Spatie\SchemaOrg\Schema;
 use App\Models\Content;
 use App\Helpers\MetaGenerator;
 use Illuminate\Http\JsonResponse;
@@ -13,8 +14,15 @@ class GlobalController extends Controller
     public function index(Request $request)
     {
         $metas = MetaGenerator::generate($request->getPathInfo());
+        $breadcrumbsSchema = '';
+        if (isset($metas['breadcrumbs'])) {
+            $breadcrumbs = Schema::breadcrumbList()->itemListElement($metas['breadcrumbs']);
+            unset($metas['breadcrumbs']);
 
-        return view('index', compact('metas'));
+            $breadcrumbsSchema = $breadcrumbs->toScript();
+        }
+
+        return view('index', compact('metas', 'breadcrumbsSchema'));
     }
 
     public function changeLocale($locale)
@@ -32,14 +40,14 @@ class GlobalController extends Controller
             $cachePageKey = 'last_' . $request->get('page');
 
             $last = Cache::remember($cachePageKey, 60, function () {
-                $items = Content::orderBy('updated_at', 'desc')->paginate(9);
+                $items = Content::orderBy('updated_at', 'desc')->paginate(15);
                 return $this->getItemsAuthor($items);
             });
 
             return response()->json($last);
         }
 
-        $items = Content::orderBy('updated_at', 'desc')->paginate(9);
+        $items = Content::orderBy('updated_at', 'desc')->paginate(15);
 
         return response()->json($this->getItemsAuthor($items));
     }

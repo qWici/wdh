@@ -108,16 +108,19 @@ export default {
 }
 </script>
 
+<style lang="scss">
+#player {
+  display: flex;
+}
+</style>
+
 <style scoped lang="scss">
 @import "../../../sass/vars";
 
 .stream {
   margin-top: 20px;
   width: 100%;
-  height: calc(100vh - 204px);
   display: block;
-  overflow-y: scroll;
-  overflow-x: visible;
   padding-bottom: 20px;
   &::-webkit-scrollbar {
     width: 10px;
@@ -163,7 +166,6 @@ export default {
     }
   }
   &--tags {
-    margin-top: -16px;
     background: linear-gradient(to left, #423a6f 0%, #272c5a 100%);
     border-radius: 0 0 5px 5px;
     box-shadow: 0 0 3px rgba(0,0,0,.3);

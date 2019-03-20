@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\UserRegistered;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,6 +32,7 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
+        \Mail::to($request->user())->queue(new UserRegistered($user));
         return $user;
     }
 
