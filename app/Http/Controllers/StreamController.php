@@ -106,5 +106,6 @@ class StreamController extends Controller
         }
 
         \Log::info(json_decode($streams));
+        return response()->json([]);
     }
 }

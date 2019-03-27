@@ -23,6 +23,9 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('last', 'GlobalController@getLast');
 Route::get('locale/{locale}', 'GlobalController@changeLocale');
+Route::prefix('update')->group(function () {
+    Route::get('stream', 'StreamController@change');
+});
 
 Route::prefix('streams')->group(function () {
     Route::get('all', 'StreamController@all');
@@ -30,7 +33,6 @@ Route::prefix('streams')->group(function () {
     Route::get('lastonline', 'StreamController@lastonline');
     Route::get('tag/{tag}', 'StreamController@byTag');
     Route::get('tags/{twitchname}', 'StreamController@tags');
-    Route::any('/change', 'StreamController@change');
     Route::get('/{slug}', 'StreamController@bySlug');
 });
 
