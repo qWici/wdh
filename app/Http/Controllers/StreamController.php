@@ -97,4 +97,14 @@ class StreamController extends Controller
 
         return response()->json($stream);
     }
+
+    public function change(Request $request)
+    {
+        $streams = $request->get('data');
+        if (empty($streams)) {
+            return false;
+        }
+
+        \Log::info(json_decode($streams));
+    }
 }

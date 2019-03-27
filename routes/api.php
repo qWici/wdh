@@ -30,6 +30,7 @@ Route::prefix('streams')->group(function () {
     Route::get('lastonline', 'StreamController@lastonline');
     Route::get('tag/{tag}', 'StreamController@byTag');
     Route::get('tags/{twitchname}', 'StreamController@tags');
+    Route::any('/change', 'StreamController@change');
     Route::get('/{slug}', 'StreamController@bySlug');
 });
 
