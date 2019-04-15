@@ -14,7 +14,7 @@ class ParseAuthors extends Command
      *
      * @var string
      */
-    protected $signature = 'parse:authors';
+    protected $signature = 'parse:authors {update?}';
 
     /**
      * The console command description.
@@ -43,15 +43,11 @@ class ParseAuthors extends Command
         $authors = ParseResource::getData('authors');
 
         foreach ($authors as $author) {
-            $authorSlug = str_slug($author->name);
-            $author->slug = $authorSlug;
+            $author->slug = str_slug($author->name);
+            $author = json_decode(json_encode($author), true); // Convert stdClass to array
 
-            if(Author::where('slug', $author->slug)->exists()) {
-                continue;
-            }
-
-            $newAuthor = Author::create((array) $author);
-            $this->storeAndUpdateLogo($newAuthor);
+            $author = Author::updateOrCreate(["slug" => $author['slug']], $author);
+            $this->storeAndUpdateLogo($author);
         }
     }
 
