@@ -40,7 +40,7 @@ class Handler extends ExceptionHandler
     public function report(Exception $exception)
     {
         if (App::environment('prod')) {
-            event(new HandleErrorEvent($exception));
+//            event(new HandleErrorEvent($exception)); // Telegram notification
             if (app()->bound('sentry') && $this->shouldReport($exception)){
                 app('sentry')->captureException($exception);
             }
