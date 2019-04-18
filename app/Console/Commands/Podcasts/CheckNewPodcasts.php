@@ -88,9 +88,8 @@ class CheckNewPodcasts extends Command
     {
         $description = str_replace('><', '> <', $description);
         $preparedDescription = mb_convert_encoding(htmlspecialchars_decode(strip_tags($description)), "UTF-8");
-        $descriptionSlices = empty($description) ?: substr($preparedDescription,0,500);
 
-        return html_entity_decode(trim($descriptionSlices));
+        return html_entity_decode(trim($preparedDescription));
     }
 
     public function storePodcasts($podcasts)
