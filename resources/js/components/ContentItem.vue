@@ -11,7 +11,7 @@
     </div>
 
     <span class="item-info">
-      <span class="title">
+      <span class="title" :title="title">
         {{ title }}
       </span>
       <span class="data">
