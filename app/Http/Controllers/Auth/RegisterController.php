@@ -32,7 +32,7 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        \Mail::to($request->user())->queue(new UserRegistered($user));
+//        \Mail::to($request->user())->queue(new UserRegistered($user));
         return $user;
     }
 
