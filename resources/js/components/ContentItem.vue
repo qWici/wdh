@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="itemLink" class="content-item">
+  <router-link :to="itemLink" class="content-item" :title="title">
     <lang-flag v-if="lang !== null" :iso="lang" :squared="false" class="flag" />
 
     <div v-if="stream" :class="online ? 'live' : 'offline'" class="status">
@@ -11,7 +11,7 @@
     </div>
 
     <span class="item-info">
-      <span class="title" :title="title">
+      <span class="title">
         {{ title }}
       </span>
       <span class="data">
