@@ -6,7 +6,7 @@
       <component :is="layout" v-if="layout" />
     </transition>
 
-    <notification-about-cookie ref="cookieAccepted"/>
+    <notification-about-cookie ref="cookieAccepted" />
   </div>
 </template>
 

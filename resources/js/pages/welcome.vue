@@ -90,35 +90,35 @@
             </a>
             <!-- @TODO: Add twitter & instagram links-->
             <!--<a href="#" target="_blank">-->
-              <!--<fa :icon="['fab', 'twitter']" />-->
+            <!--<fa :icon="['fab', 'twitter']" />-->
             <!--</a>-->
             <!--<a href="#" target="_blank">-->
-              <!--<fa :icon="['fab', 'instagram']" />-->
+            <!--<fa :icon="['fab', 'instagram']" />-->
             <!--</a>-->
             <a href="https://www.patreon.com/webdevhub" target="_blank">
               <fa :icon="['fab', 'patreon']" />
             </a>
           </div>
           <!--<div class="footer-menu">-->
-            <!--<nav>-->
-              <!--<ul>-->
-                <!--<li>-->
-                  <!--<a href="#">-->
-                    <!--{{ $t('terms_conditions') }}-->
-                  <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                  <!--<a href="#">-->
-                    <!--{{ $t('privacy_policy') }}-->
-                  <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                  <!--<a href="#">-->
-                    <!--{{ $t('contact') }}-->
-                  <!--</a>-->
-                <!--</li>-->
-              <!--</ul>-->
-            <!--</nav>-->
+          <!--<nav>-->
+          <!--<ul>-->
+          <!--<li>-->
+          <!--<a href="#">-->
+          <!--{{ $t('terms_conditions') }}-->
+          <!--</a>-->
+          <!--</li>-->
+          <!--<li>-->
+          <!--<a href="#">-->
+          <!--{{ $t('privacy_policy') }}-->
+          <!--</a>-->
+          <!--</li>-->
+          <!--<li>-->
+          <!--<a href="#">-->
+          <!--{{ $t('contact') }}-->
+          <!--</a>-->
+          <!--</li>-->
+          <!--</ul>-->
+          <!--</nav>-->
           <!--</div>-->
 
           <div class="copyright-text">

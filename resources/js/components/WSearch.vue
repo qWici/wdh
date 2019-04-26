@@ -6,7 +6,8 @@
                :class="{ 'fill' : showResults && results.resultsCount > 0 }"
                v-model="query"
                @keyup="handleInput"
-               id="search" aria-label="search">
+               id="search" aria-label="search"
+        >
       </label>
       <fa v-if="validatedInput || isMobile" icon="times-circle" fixed-width class="clearquery" @click="clear" />
     </div>

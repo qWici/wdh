@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use Spatie\SchemaOrg\Schema;
 use App\Models\Content;
 use App\Helpers\MetaGenerator;
@@ -11,6 +12,13 @@ use Illuminate\Support\Facades\Cache;
 
 class GlobalController extends Controller
 {
+    public function authors() : JsonResponse
+    {
+        $authors = Author::all();
+
+        return response()->json($authors);
+    }
+
     public function index(Request $request)
     {
         $metas = MetaGenerator::generate($request->getPathInfo());

@@ -16,6 +16,7 @@ const StreamSingle = () => import('~/pages/stream/single').then(m => m.default |
 const ArticleIndex = () => import('~/pages/articles/index').then(m => m.default || m)
 const ArticleList = () => import('~/pages/articles/list').then(m => m.default || m)
 const ArticleAuthor = () => import('~/pages/articles/author').then(m => m.default || m)
+const ArticleAuthors = () => import('~/pages/articles/authors').then(m => m.default || m)
 const ArticleSingle = () => import('~/pages/articles/single').then(m => m.default || m)
 
 const VideoIndex = () => import('~/pages/videos/index').then(m => m.default || m)
@@ -41,7 +42,7 @@ export default [
   { path: '/password/reset/:token', name: 'password.reset', component: PasswordReset },
 
   // { path: '/home', name: 'home', component: Home },
-
+  { path: '/authors', name: 'authors', component: ArticleAuthors },
   { path: '/bookmarks', name: 'bookmarks', component: Bookmarks },
 
   {

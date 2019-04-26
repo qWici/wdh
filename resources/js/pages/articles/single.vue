@@ -3,13 +3,15 @@
     <bookmark :bookmarked="single.bookmarked" :id="single.id" type="article" />
     <div :style="'background-image: url(' + single.image_src + ')'" class="article--image" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
       <img itemprop="url" :src="single.image_src" :alt="single.title" style="display: none">
-      <meta itemprop="width" content="1050"/>
-      <meta itemprop="height" content="500"/>
+      <meta itemprop="width" content="1050">
+      <meta itemprop="height" content="500">
     </div>
-    <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" :itemid="'https://webdevhub.net' + this.$route.fullPath"/>
-    <meta itemprop="datePublished" :content="single.created_at"/>
-    <meta itemprop="dateModified" :content="single.updated_at"/>
-    <h1 itemprop="headline">{{ single.title }}</h1>
+    <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" :itemid="'https://webdevhub.net' + this.$route.fullPath">
+    <meta itemprop="datePublished" :content="single.created_at">
+    <meta itemprop="dateModified" :content="single.updated_at">
+    <h1 itemprop="headline">
+      {{ single.title }}
+    </h1>
     <div class="article--body">
       <p>{{ single.description }}</p>
       <a :href="single.link" rel="noreferrer" target="_blank">
@@ -29,11 +31,11 @@
         </div>
       </div>
       <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization" style="display: none">
-        <meta itemprop="name" content="WebDevHub"/>
+        <meta itemprop="name" content="WebDevHub">
         <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-          <img itemprop="url" src="https://webdevhub.net/img/logo.png"/>
-          <meta itemprop="width" content="182"/>
-          <meta itemprop="height" content="24"/>
+          <img itemprop="url" src="https://webdevhub.net/img/logo.png">
+          <meta itemprop="width" content="182">
+          <meta itemprop="height" content="24">
         </div>
       </div>
     </footer>

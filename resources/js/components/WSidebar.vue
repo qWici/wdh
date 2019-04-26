@@ -14,56 +14,7 @@
       </div>
       <nav class="content-nav">
         <ul>
-          <li>
-            <router-link :to="{ name: 'home' }" class="content-nav__category" active-class="active" exact>
-              <span class="content-nav__category__icon gradient-green">
-                <fa :icon="['fas', 'home']" fixed-width />
-              </span>
-              <span class="content-nav__category__title">
-                {{ $t('home') }}
-              </span>
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'article' }" class="content-nav__category" active-class="active">
-              <span class="content-nav__category__icon gradient-pink">
-                <fa :icon="['far', 'newspaper']" fixed-width />
-              </span>
-              <span class="content-nav__category__title">
-                {{ $t('articles') }}
-              </span>
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'stream' }" class="content-nav__category" active-class="active">
-              <span class="content-nav__category__icon gradient-purple-to-pink">
-                <fa :icon="'tv'" fixed-width />
-              </span>
-              <span class="content-nav__category__title">
-                {{ $t('streams') }}
-              </span>
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'video' }" class="content-nav__category" active-class="active">
-              <span class="content-nav__category__icon gradient-blue">
-                <fa :icon="['fab', 'youtube']" fixed-width />
-              </span>
-              <span class="content-nav__category__title">
-                {{ $t('videos') }}
-              </span>
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'podcast' }" class="content-nav__category" active-class="active">
-              <span class="content-nav__category__icon gradient-crimson">
-                <fa :icon="['fas', 'microphone']" fixed-width />
-              </span>
-              <span class="content-nav__category__title">
-                {{ $t('podcasts') }}
-              </span>
-            </router-link>
-          </li>
+          <w-sidebar-nav-item v-for="(link, key) in links" :key="key" :item="prepareLink(link)" />
           <li class="patron">
             <a href="https://www.patreon.com/bePatron?u=16249136" target="_blank" rel="noreferrer">
               <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" alt="Become a Patron!">
@@ -83,18 +34,80 @@
 <script>
 import { mapGetters } from 'vuex'
 import LocaleDropdown from './LocaleDropdown'
+import WSidebarNavItem from './WSidebarNavItem'
+import WSidebarNavItemType from '../types/ui/WSidebarNavItemType'
 
 export default {
   components: {
-    LocaleDropdown
+    LocaleDropdown,
+    WSidebarNavItem
   },
+
+  data: () => ({
+    links: [
+      {
+        text: 'home',
+        link: 'home',
+        faIcon: ['fas', 'home'],
+        iconGradientClass: 'gradient-green'
+      },
+      {
+        text: 'articles',
+        link: 'article',
+        faIcon: ['far', 'newspaper'],
+        iconGradientClass: 'gradient-pink',
+        children: [
+          { text: 'All articles', link: 'article' },
+          { text: 'Authors', link: 'article' },
+          { text: 'Suggest author', link: 'article' }
+        ]
+      },
+      {
+        text: 'streams',
+        link: 'stream',
+        faIcon: 'tv',
+        iconGradientClass: 'gradient-purple-to-pink',
+        children: [
+          { text: 'Live streams', link: 'stream' },
+          { text: 'Suggest streamer', link: 'stream' }
+        ]
+      },
+      {
+        text: 'videos',
+        link: 'video',
+        faIcon: ['fab', 'youtube'],
+        iconGradientClass: 'gradient-purple-to-pink',
+        children: [
+          { text: 'All videos', link: 'video' },
+          { text: 'Channels', link: 'video' },
+          { text: 'Suggest channel', link: 'video' }
+        ]
+      },
+      {
+        text: 'podcasts',
+        link: 'podcast',
+        faIcon: ['fas', 'microphone'],
+        iconGradientClass: 'gradient-crimson',
+        children: [
+          { text: 'All podcasts', link: 'podcast' },
+          { text: 'Shows', link: 'podcast' },
+          { text: 'Suggest show', link: 'podcast' }
+        ]
+      }
+    ]
+  }),
+
   computed: mapGetters({
     user: 'auth/user',
     userPhoto: 'auth/userPhoto'
   }),
+
   methods: {
     showLocalesOnTablets () {
       return document.documentElement.clientWidth > 768
+    },
+    prepareLink (item) {
+      return new WSidebarNavItemType(item)
     }
   }
 }

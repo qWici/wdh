@@ -25,6 +25,12 @@ export const fetchPaginateArticles = async ({ commit }, pageNumber = 1) => {
   commit(types.FETCH_PAGINATE, data.data)
 }
 
+export const fetchAuthors = async ({ commit }) => {
+  const { data } = await axios.get(`/api/authors`)
+
+  commit(types.FETCH_AUTHORS, data)
+}
+
 export const clearState = async ({ commit }) => {
   commit(types.CLEAR_ARTICLES)
 }
@@ -34,5 +40,6 @@ export default {
   fetchPaginateArticles,
   clearState,
   fetchByAuthorSlug,
-  fetchBySlug
+  fetchBySlug,
+  fetchAuthors
 }

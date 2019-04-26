@@ -55,39 +55,47 @@ aside.sidebar {
       }
     }
   }
-  .content-nav {
-    &__category {
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-      &:hover {
-        background: $gradient-default;
-        cursor: pointer;
-      }
-      &.active {
-        background: $gradient-default;
-      }
-      &__icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 30px;
-        height: 30px;
-        border-radius: 50% 50% 0 50%;
-        margin-right: 20px;
-        svg {
-          font-size: 13px;
-          path {
-            fill: #FFF;
-          }
-        }
-      }
-      &__title {
-        color: #FFF;
-        font-weight: bold;
-      }
-    }
-  }
+  //.content-nav {
+  //  &__category {
+  //    display: flex;
+  //    align-items: center;
+  //    padding: 10px 20px;
+  //    &:hover {
+  //      background: $gradient-default;
+  //      cursor: pointer;
+  //    }
+  //    &.active {
+  //      background: $gradient-default;
+  //    }
+  //    &__icon {
+  //      display: flex;
+  //      justify-content: center;
+  //      align-items: center;
+  //      width: 30px;
+  //      height: 30px;
+  //      border-radius: 50% 50% 0 50%;
+  //      margin-right: 20px;
+  //      svg {
+  //        font-size: 13px;
+  //        path {
+  //          fill: #FFF;
+  //        }
+  //      }
+  //    }
+  //    &__title {
+  //      color: #FFF;
+  //      font-weight: bold;
+  //    }
+  //  }
+  //  &__subcategories {
+  //    a {
+  //      color: #FFF;
+  //      font-weight: normal;
+  //      padding: 10px 20px 10px 70px;
+  //      font-size: 14px;
+  //    }
+  //  }
+  //}
   footer {
     padding: 0 20px 20px;
     .lang {
