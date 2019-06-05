@@ -95,7 +95,7 @@ class CheckNewArticle extends Command
 
             $item = [
                 'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
-                'link' => $node->getElementsByTagName('guid')->item(0)->nodeValue,
+                'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
                 'pubDate' => $date,
                 'description' => $description,
             ];
