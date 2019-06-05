@@ -14,4 +14,9 @@ trait Contentable
         $content = new Content(['updated_at' => $updated_at ?: $this->updated_at]);
         $this->contents()->save($content);
     }
+
+    public function removeContent()
+    {
+        $this->contents()->delete();
+    }
 }
