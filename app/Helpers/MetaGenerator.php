@@ -115,7 +115,7 @@ class MetaGenerator
         }
 
         if (isset($stream) && $stream !== "undefined") {
-            $streamData = Stream::where('twitch', $stream)->first();
+            $streamData = Stream::where('twitch', $stream)->firstOrFailOrFail();
             $twitch = $streamData->twitch;
             $title = $twitch . "live streams";
             $description = $streamData->title;
@@ -169,7 +169,7 @@ class MetaGenerator
         $description = "Articles about development websites";
 
         if(isset($article) && $article !== 'undefined') {
-            $articleData = Article::where('slug', $article)->with('author')->first();
+            $articleData = Article::where('slug', $article)->with('author')->firstOrFail();
 
             $title = $articleData->title;
             $description = self::substrwords($articleData->description, 155);
@@ -207,7 +207,7 @@ class MetaGenerator
         }
 
         if(isset($author)) {
-            $articleAuthor = Author::where('slug', $author)->first();
+            $articleAuthor = Author::where('slug', $author)->firstOrFail();
 
             $title = "Articles by " . $articleAuthor->name;
             $description = "Articles about development websites by " . $articleAuthor->name;
@@ -264,7 +264,7 @@ class MetaGenerator
         $description = "Videos about development websites";
 
         if (isset($video) && $video !== "undefined") {
-            $videoData = Video::where('slug', $video)->with('channel')->first();
+            $videoData = Video::where('slug', $video)->with('channel')->firstOrFail();
             $title = $videoData->title;
             $description = self::substrwords($videoData->description, 155);
             $image = config('app.url') . substr($videoData->image_src,1);
@@ -299,7 +299,7 @@ class MetaGenerator
         }
 
         if (isset($channel)) {
-            $channelData = Channel::where('slug', $channel)->first();
+            $channelData = Channel::where('slug', $channel)->firstOrFail();
             $title = "Videos by " . $channelData->title;
             $description = self::substrwords($channelData->description, 155);
             $image = config('app.url') . substr($channelData->image_src,1);
@@ -356,7 +356,7 @@ class MetaGenerator
         $description = "Podcasts about development websites";
 
         if (isset($podcast) && $podcast !== "undefined") {
-            $podcastData = Podcast::where('slug', $podcast)->with('show')->first();
+            $podcastData = Podcast::where('slug', $podcast)->with('show')->firstOrFail();
             $title = $podcastData->title;
             $description = self::substrwords($podcastData->description, 155);
 
@@ -390,7 +390,7 @@ class MetaGenerator
         }
 
         if (isset($show)) {
-            $showData = PodcastShow::where('slug', $show)->first();
+            $showData = PodcastShow::where('slug', $show)->firstOrFail();
             $title = "Web development podcasts by " . $showData->title;
             $description = self::substrwords($showData->description, 155);
             $image = config('app.url') . substr($showData->image_url,1);
