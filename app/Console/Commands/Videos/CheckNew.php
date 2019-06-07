@@ -42,7 +42,13 @@ class CheckNew extends Command
     public function handle()
     {
         foreach (Channel::cursor() as $channel) {
-            $videoList = Youtube::listChannelVideos($channel->youtube_id, 10, 'date');
+            try {
+                $videoList = Youtube::listChannelVideos($channel->youtube_id, 10, 'date');
+            } catch (\Exception $exception) {
+                \Log::error("Videos for ID: ". $channel->id ." NOT Updated. ". $exception->getMessage());
+                return false;
+            }
+
             $this->check($videoList, $channel->id);
         }
 
