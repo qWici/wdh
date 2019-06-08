@@ -23,7 +23,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.1",
     "@sentry/browser": "^4.6.4",
     "@sentry/integrations": "^5.4.1",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "js-cookie": "^2.2.0",
     "logrocket": "^0.6.19",
     "logrocket-vuex": "^0.0.3",
