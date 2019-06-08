@@ -56,6 +56,6 @@
     "laravel-mix": "^2.1.11",
     "vue-template-compiler": "^2.5.16",
     "vue-twitch-player": "^1.0.8",
-    "webpack-bundle-analyzer": "^2.11.2"
+    "webpack-bundle-analyzer": "^3.3.2"
   }
 }
