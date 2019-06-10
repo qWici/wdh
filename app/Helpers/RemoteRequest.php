@@ -13,6 +13,7 @@ class RemoteRequest
         'timeout' => 14,
         'delay' => 2500,
         'headers' => [
+            'Cache-Control' => 'no-cache',
             'User-Agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.172 Safari/537.36 Vivaldi/2.5.1525.48',
         ]
     ];
