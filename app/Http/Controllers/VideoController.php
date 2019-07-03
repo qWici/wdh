@@ -43,12 +43,12 @@ class VideoController extends Controller
     /**
      * Get videos by channel slug
      *
-     * @param string $slug
+     * @param string $channelSlug
      * @return JsonResponse
      */
-    public function byChannelSlug(string $slug) : JsonResponse
+    public function byChannelSlug(string $channelSlug) : JsonResponse
     {
-        $channel = Channel::where('slug', $slug)->first();
+        $channel = Channel::where('slug', $channelSlug)->firstOrFail();
 
         $videos = Video::where('channel_id', $channel->id)
             ->orderBy('published_at', 'desc')
@@ -62,16 +62,16 @@ class VideoController extends Controller
      * Get videos by channel & own slug
      *
      * @param string $channelSlug
-     * @param string $slug
+     * @param string $videoSlug
      * @return JsonResponse
      */
-    public function bySlug(string $channelSlug, string $slug) : JsonResponse
+    public function bySlug(string $channelSlug, string $videoSlug) : JsonResponse
     {
-        $channel = Channel::where('slug', $channelSlug)->first();
+        $channel = Channel::where('slug', $channelSlug)->firstOrFail();
 
-        $video = Video::where(['slug' => $slug, 'channel_id' => $channel->id])
+        $video = Video::where(['slug' => $videoSlug, 'channel_id' => $channel->id])
             ->with('channel')
-            ->first();
+            ->firstOrFail();
 
         $video->bookmarked = $video->isFavorited();
 

@@ -63,7 +63,7 @@ class StreamController extends Controller
     {
         $stream = Stream::where('twitch', $twitchname)
             ->with('tags')
-            ->first();
+            ->firstOrFail();
 
         return response()->json($stream->tags);
     }
@@ -78,7 +78,7 @@ class StreamController extends Controller
     {
         $tag = StreamTag::where('slug', $tag)
             ->with('stream')
-            ->first();
+            ->firstOrFail();
 
         return response()->json($tag->stream);
     }
@@ -86,15 +86,26 @@ class StreamController extends Controller
     /**
      * Fetch stream info by twitch name slug
      *
-     * @param string $slug
+     * @param string $twitchname
      * @return JsonResponse
      */
-    public function bySlug(string $slug) : JsonResponse
+    public function bySlug(string $twitchname) : JsonResponse
     {
-        $stream = Stream::where('twitch', $slug)->first();
+        $stream = Stream::where('twitch', $twitchname)->firstOrFail();
 
         $stream->bookmarked = $stream->isFavorited();
 
         return response()->json($stream);
+    }
+
+    public function change(Request $request)
+    {
+        $streams = $request->get('data');
+        if (empty($streams)) {
+            return false;
+        }
+
+        \Log::info(json_decode($streams));
+        return response()->json([]);
     }
 }

@@ -13,8 +13,8 @@ class RemoteRequest
         'timeout' => 14,
         'delay' => 2500,
         'headers' => [
-            'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) 
-                             Chrome/45.0.2454.93 Safari/537.36',
+            'Cache-Control' => 'no-cache',
+            'User-Agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.172 Safari/537.36 Vivaldi/2.5.1525.48',
         ]
     ];
 
@@ -38,7 +38,8 @@ class RemoteRequest
             return [
                 'error' => 3,
                 'message' => "400 Bad Request | URL: {$url}",
-                "exception" => $e];
+                "exception" => $e
+            ];
         }
     }
 

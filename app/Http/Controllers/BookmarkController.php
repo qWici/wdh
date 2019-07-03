@@ -21,7 +21,7 @@ class BookmarkController extends Controller
 
         $model = $this->getModel($type);
 
-        $item = $model::where('id', $itemID)->get()->first();
+        $item = $model::where('id', $itemID)->get()->firstOrFail();
         $item->toggleFavorite();
 
         return response()->json(["status" => $item->isFavorited()],200);
@@ -103,11 +103,11 @@ class BookmarkController extends Controller
     {
         switch ($item->type) {
             case 'article':
-                return $item->author = Author::where('id', $item->author_id)->first();
+                return $item->author = Author::where('id', $item->author_id)->firstOrFail();
             case 'podcast':
-                return $item->show = PodcastShow::where('id', $item->podcast_show_id)->first();
+                return $item->show = PodcastShow::where('id', $item->podcast_show_id)->firstOrFail();
             case 'video':
-                return $item->channel = Channel::where('id', $item->channel_id)->first();
+                return $item->channel = Channel::where('id', $item->channel_id)->firstOrFail();
         }
     }
 }

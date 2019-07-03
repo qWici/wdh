@@ -56,12 +56,12 @@ class ArticleController extends Controller
     /**
      * Get articles by author slug
      *
-     * @param string $slug
+     * @param string $authorSlug
      * @return JsonResponse
      */
-    public function byAuthorSlug(string $slug) : JsonResponse
+    public function byAuthorSlug(string $authorSlug) : JsonResponse
     {
-        $author = Author::where('slug', $slug)->first();
+        $author = Author::where('slug', $authorSlug)->firstOrFail();
 
         $articles = Article::where('author_id', $author->id)
             ->orderBy('date', 'desc')
@@ -74,17 +74,17 @@ class ArticleController extends Controller
     /**
      * Get article by author & own slug
      *
-     * @param string $author
-     * @param string $slug
+     * @param string $authorSlug
+     * @param string $articleSlug
      * @return JsonResponse
      */
-    public function bySlug(string $author, string $slug) : JsonResponse
+    public function bySlug(string $authorSlug, string $articleSlug) : JsonResponse
     {
-        $author = Author::where('slug', $author)->first();
+        $author = Author::where('slug', $authorSlug)->firstOrFail();
 
-        $article = Article::where(['slug' => $slug, 'author_id' => $author->id])
+        $article = Article::where(['slug' => $articleSlug, 'author_id' => $author->id])
             ->with('author')
-            ->first();
+            ->firstOrFail();
 
         $article->bookmarked = $article->isFavorited();
 

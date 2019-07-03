@@ -8,7 +8,7 @@ class ParseResource
 {
     /**
      * Get resource data from Gitlab storage
-     * https://gitlab.com/qWici/webdev-resources
+     * https://github.com/qWici/wdh-resources
      *
      * @param $resourceType
      * @return mixed
@@ -17,7 +17,6 @@ class ParseResource
     {
         $response = RemoteRequest::getRemoteContent(config('resources.' .$resourceType));
         if(! array_key_exists("data", $response)) {
-            var_dump($response);
             return self::getData($resourceType);
         }
 
