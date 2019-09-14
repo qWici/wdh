@@ -90,4 +90,37 @@ class ArticleController extends Controller
 
         return response()->json($article);
     }
+
+    /**
+     * Get filtered articles
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function filtered(Request $request) : JsonResponse
+    {
+        if ($request->has('author') && !$request->has('language')) {
+            $articles = Article::where('author_id', $request->get('author'))->get();
+            return response()->json($articles);
+        }
+
+        if ($request->has('language') && !$request->has('author')) {
+            $language = strtolower($request->get('language'));
+            $authors = Author::where('language', $language)->get()->pluck('id')->toArray();
+            $articles = Article::whereIn('author_id', $authors)->with('author')->get();
+        }
+    
+        $where = [];
+
+        foreach($filters as $filter) {
+            if($filter->type === 'author') {
+                $author = Author::where('id', $filter->value)->firstOrFail();
+            }
+            $where[$filter->type] = $filter->value;
+        }
+
+        $articles = Article::where($where)->get();
+
+        return response()->json($articles);
+    }
 }

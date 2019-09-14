@@ -20,6 +20,7 @@
             <li v-for="(value, key) in item.values"
                 :key="key"
                 :class="{ active: filterSelected(value.val) }"
+                :title="value.title"
                 @click.self="selectFilter({ type: item.type, value: value.val, title: value.title })">
               {{ value.title }}
               <button v-if="filterSelected(value.val)" @click.self="removeFilter(item.type)"></button>
@@ -95,6 +96,11 @@ export default {
     },
     selectFilter (item) {
       this.selectedFilters = [item, ...this.selectedFilters.filter(filter => filter.type !== item.type)]
+      let filtersForRequest = [];
+      this.selectedFilters.map(item => {
+        filtersForRequest[item.type] = item.value;
+      })
+      console.log(filtersForRequest);
     },
     removeFilter (type) {
       this.selectedFilters = this.selectedFilters.filter(filter => filter.type !== type)
@@ -214,9 +220,10 @@ export default {
         color: #000;
         padding: 5px 0 5px 15px;
         margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
         &:hover {
           cursor: pointer;
           background-color: rgba(67, 194, 255, 0.4);

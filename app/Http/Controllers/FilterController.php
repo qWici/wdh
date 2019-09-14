@@ -64,13 +64,13 @@ class FilterController extends Controller
         $authors = [];
         $languages = [];
         foreach (Author::cursor() as $author) {
-            $authors[] = [ "val" => $author->slug, "title" => $author->name ];
+            $authors[] = [ "val" => $author->id, "title" => str_replace('[', ' [', $author->name) ];
             if(isset($languages[$author->language])) continue;
             $languages[$author->language] = [ "val" => $author->language, "title" => strtoupper($author->language) ];
         }
 
         return [
-            [ "title" => 'Language', "type" => 'lang', "values" => array_values($languages) ],
+            [ "title" => 'Language', "type" => 'language', "values" => array_values($languages) ],
             [ "title" => 'Author', "type" => 'author', "values" => $authors ],
         ];
     }

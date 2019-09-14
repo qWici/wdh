@@ -58,6 +58,9 @@ export default {
     height: 100%;
     margin-left: 10px;
     background-color: #E8E8E8;
+    svg {
+      font-size: 12px;
+    }
     svg path {
       fill: #adadad;
     }
