@@ -37,10 +37,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('check:streams')->everyFifteenMinutes()
             ->appendOutputTo('/var/log/webdevhub.log');
 
-        $schedule->command('generate:sitemap')->daily()
+        $schedule->command('youtube:update')->daily()
             ->appendOutputTo('/var/log/webdevhub.log');
 
-        $schedule->command('youtube:update')->daily()
+        // Always at the end
+        $schedule->command('generate:sitemap')->daily()
             ->appendOutputTo('/var/log/webdevhub.log');
     }
 
