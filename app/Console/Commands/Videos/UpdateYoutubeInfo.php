@@ -56,11 +56,15 @@ class UpdateYoutubeInfo extends Command
 
     public function updateVideoInfo(Video $video)
     {
-        $newInfo = Youtube::getVideoInfo($video->youtube_id);
-        $video->title = $newInfo->snippet->title;
-        $video->slug = str_slug($newInfo->snippet->title);
-        $video->description = html_entity_decode($newInfo->snippet->description);
-        $video->updated_at = Carbon::now()->toDateTimeString();
-        $video->update();
+        try {
+            $newInfo = Youtube::getVideoInfo($video->youtube_id);
+            $video->title = $newInfo->snippet->title;
+            $video->slug = str_slug($newInfo->snippet->title);
+            $video->description = html_entity_decode($newInfo->snippet->description);
+            $video->updated_at = Carbon::now()->toDateTimeString();
+            $video->update();
+        } catch (\ErrorException $e) {
+            \Log::error('Update Youtube | VideoID: ' . $video->id . ' | YoutubeID: ' . $video->youtube_id);
+        }
     }
 }
