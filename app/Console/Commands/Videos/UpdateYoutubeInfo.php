@@ -52,6 +52,8 @@ class UpdateYoutubeInfo extends Command
         foreach ($videos as $video) {
             $this->updateVideoInfo($video);
         }
+
+        \Log::info('Update Youtube | Videos updated | Count: ' . $videos->count());
     }
 
     public function updateVideoInfo(Video $video)
@@ -64,7 +66,8 @@ class UpdateYoutubeInfo extends Command
             $video->updated_at = Carbon::now()->toDateTimeString();
             $video->update();
         } catch (\ErrorException $e) {
-            \Log::error('Update Youtube | VideoID: ' . $video->id . ' | YoutubeID: ' . $video->youtube_id);
+            \Log::error('Update Youtube | Video deleted | YoutubeID: ' . $video->youtube_id);
+            $video->delete();
         }
     }
 }
