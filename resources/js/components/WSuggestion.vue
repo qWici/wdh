@@ -1,7 +1,7 @@
 <template>
   <div class="suggestion">
     <button @click="submitSuggestion" name="suggestion" aria-label="suggestion">
-      <fa :icon="'magic'" fixed-width alt="suggestion"/>
+      <fa :icon="'magic'" fixed-width alt="suggestion" />
     </button>
   </div>
 </template>

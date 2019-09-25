@@ -3,7 +3,8 @@
     <bookmark :bookmarked="single.bookmarked" :id="single.id" type="video" />
     <div class="thumbnail-wrapper">
       <iframe v-if="playerVisible" id="ytplayer" :src="youtubeLink" type="text/html" width="100%" :height="calculatePlayerHeight()"
-              frameborder="0" allowfullscreen style="margin-bottom: -10px;"/>
+              frameborder="0" allowfullscreen style="margin-bottom: -10px;"
+      />
       <div v-else class="thumbnail" :style="getVideoThumbnail()" @click="showPlayer">
         <button @click="showPlayer">
           <fa :icon="['fab', 'youtube']" size="5x" />
@@ -12,8 +13,8 @@
     </div>
     <h1>{{ single.title }}</h1>
     <div class="additional-info">
-      <span>Published at: <b>{{single.published_at}}</b></span>
-      <span>Updated at: <b>{{single.updated_at}}</b></span>
+      <span>Published at: <b>{{ single.published_at }}</b></span>
+      <span>Updated at: <b>{{ single.updated_at }}</b></span>
     </div>
     <div v-if="single !== undefined" class="article--body">
       <p v-for="(item, key) in preparedDescription(single.description)" :key="key">
