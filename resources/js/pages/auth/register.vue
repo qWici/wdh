@@ -66,7 +66,16 @@
           </p>
         </div>
 
-        <p>{{ $t('aggrement') }} <br> <a target="_blank" href="https://www.websitepolicies.com/policies/view/ikcTjD9M">{{ $t('terms_conditions') }}</a> {{ $t('and') }} <a target="_blank" href="https://www.websitepolicies.com/policies/view/KpEDSl0F">{{ $t('privacy_policy') }}</a></p>
+        <p>
+          {{ $t('aggrement') }} <br>
+          <router-link :to="{ name: 'terms-and-conditions' }" target="_blank">
+            {{ $t('terms_conditions') }}
+          </router-link>
+          {{ $t('and') }}
+          <router-link :to="{ name: 'privacy-policy' }" target="_blank">
+            {{ $t('privacy_policy') }}
+          </router-link>
+        </p>
 
         <button :disabled="form.busy" type="submit" class="button is-link is-medium is-fullwidth is-rounded">
           {{ $t('register') }}

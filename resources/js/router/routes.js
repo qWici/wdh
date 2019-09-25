@@ -5,6 +5,10 @@ const PasswordEmail = () => import('~/pages/auth/password/email').then(m => m.de
 const PasswordReset = () => import('~/pages/auth/password/reset').then(m => m.default || m)
 const NotFound = () => import('~/pages/errors/404').then(m => m.default || m)
 
+// TermsAndConditions && PP
+const TermsAndConditions = () => import('~/pages/terms-and-conditions').then(m => m.default || m)
+const PrivacyPolicy = () => import('~/pages/privacy-policy').then(m => m.default || m)
+
 const Home = () => import('~/pages/home').then(m => m.default || m)
 const Bookmarks = () => import('~/pages/bookmarks').then(m => m.default || m)
 
@@ -37,6 +41,8 @@ export default [
 
   { path: '/login', name: 'login', component: Login },
   { path: '/register', name: 'register', component: Register },
+  { path: '/terms-and-conditions', name: 'terms-and-conditions', component: TermsAndConditions },
+  { path: '/privacy-policy', name: 'privacy-policy', component: PrivacyPolicy },
   { path: '/password/reset', name: 'password.request', component: PasswordEmail },
   { path: '/password/reset/:token', name: 'password.reset', component: PasswordReset },
 
