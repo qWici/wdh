@@ -2,11 +2,11 @@
   <ul v-show="lastIndex !== 0" class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
     <li v-for="(item, key) in breadcrumbs" :key="key" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
       <meta itemprop="position" :content="key + 1">
-      <router-link v-if="key !== lastIndex" :to="item.route" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+      <router-link v-if="key !== lastIndex" :to="item.route" itemscope itemtype="http://schema.org/Thing" itemprop="item" :id="key">
         <b itemprop="name">{{ item.title }}</b>
       </router-link>
-      <span v-else>
-        {{ item.title }}
+      <span v-else itemscope="itemscope" itemtype="http://schema.org/Thing" itemprop="item" :id="'breadcrumb_' + key">
+        <b itemprop="name">{{ item.title }}</b>
       </span>
     </li>
   </ul>

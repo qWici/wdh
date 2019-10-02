@@ -12,6 +12,10 @@
       </div>
     </div>
     <h1>{{ single.title }}</h1>
+    <div class="additional-info">
+      <span>Published at: <b>{{ single.published_at }}</b></span>
+      <span>Updated at: <b>{{ single.updated_at }}</b></span>
+    </div>
     <div v-if="single !== undefined" class="article--body">
       <p v-for="(item, key) in preparedDescription(single.description)" :key="key">
         {{ item }}
@@ -204,6 +208,17 @@ export default {
     padding: 20px;
     background-color: $default-black;
     text-align: center;
+  }
+  .additional-info {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    width: 100%;
+    align-items: flex-end;
+    padding: 10px;
+    b {
+      color: $pink;
+    }
   }
   &--body {
     padding: 20px 20px 0;

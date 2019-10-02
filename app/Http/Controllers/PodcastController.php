@@ -42,12 +42,12 @@ class PodcastController extends Controller
     /**
      * Get podcasts by show slug
      *
-     * @param string $slug
+     * @param string $showSlug
      * @return JsonResponse
      */
-    public function byShowSlug(string $slug) : JsonResponse
+    public function byShowSlug(string $showSlug) : JsonResponse
     {
-        $show = PodcastShow::where('slug', $slug)->first();
+        $show = PodcastShow::where('slug', $showSlug)->firstOrFail();
 
         $podcasts = Podcast::where('podcast_show_id', $show->id)
             ->orderBy('published_at', 'desc')
@@ -61,14 +61,14 @@ class PodcastController extends Controller
      * Get podcasts by show & own slug
      *
      * @param string $showSlug
-     * @param string $slug
+     * @param string $podcastSlug
      * @return JsonResponse
      */
-    public function bySlug(string $showSlug, string $slug) : JsonResponse
+    public function bySlug(string $showSlug, string $podcastSlug) : JsonResponse
     {
-        $show = PodcastShow::where('slug', $showSlug)->first();
+        $show = PodcastShow::where('slug', $showSlug)->firstOrFail();
 
-        $podcast = Podcast::where(['slug' => $slug, 'podcast_show_id' => $show->id])
+        $podcast = Podcast::where(['slug' => $podcastSlug, 'podcast_show_id' => $show->id])
             ->with('show')
             ->firstOrFail();
 

@@ -54,7 +54,8 @@ class CheckNewPodcasts extends Command
         try {
             $xml = XmlParser::load($url);
         } catch (InvalidContentException $exception) {
-            $xml = XmlParser::extract($url);
+            \Log::error("Error parse podcast | " . $url);
+            return [];
         }
 
         $items = $xml->rebase('channel')->parse([
