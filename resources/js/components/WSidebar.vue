@@ -52,46 +52,46 @@ export default {
         iconGradientClass: 'gradient-green'
       },
       {
-        text: 'articles',
+        text: 'articles.articles',
         link: 'article',
         faIcon: ['far', 'newspaper'],
         iconGradientClass: 'gradient-pink',
         children: [
-          { text: 'All articles', link: 'article' },
-          { text: 'Authors', link: 'article' },
-          { text: 'Suggest author', link: 'article' }
+          { text: 'articles.all', link: 'article' },
+          { text: 'articles.authors', link: 'authors' },
+          { text: 'articles.suggest', link: 'suggest.type', params: { type: 'author' } }
         ]
       },
       {
-        text: 'streams',
+        text: 'streams.streams',
         link: 'stream',
         faIcon: 'tv',
         iconGradientClass: 'gradient-purple-to-pink',
         children: [
-          { text: 'Live streams', link: 'stream' },
-          { text: 'Suggest streamer', link: 'stream' }
+          { text: 'streams.live', link: 'stream' },
+          { text: 'streams.suggest', link: 'suggest.type', params: { type: 'stream' } }
         ]
       },
       {
-        text: 'videos',
+        text: 'videos.videos',
         link: 'video',
         faIcon: ['fab', 'youtube'],
-        iconGradientClass: 'gradient-purple-to-pink',
+        iconGradientClass: 'gradient-blue',
         children: [
-          { text: 'All videos', link: 'video' },
-          { text: 'Channels', link: 'video' },
-          { text: 'Suggest channel', link: 'video' }
+          { text: 'videos.all', link: 'video' },
+          { text: 'videos.channels', link: 'video' }, // @TODO: channels
+          { text: 'videos.suggest', link: 'suggest.type', params: { type: 'channel' } }
         ]
       },
       {
-        text: 'podcasts',
+        text: 'podcasts.podcasts',
         link: 'podcast',
         faIcon: ['fas', 'microphone'],
         iconGradientClass: 'gradient-crimson',
         children: [
-          { text: 'All podcasts', link: 'podcast' },
-          { text: 'Shows', link: 'podcast' },
-          { text: 'Suggest show', link: 'podcast' }
+          { text: 'podcasts.all', link: 'podcast' },
+          { text: 'podcasts.shows', link: 'podcast' }, // @TODO: shows
+          { text: 'podcasts.suggest', link: 'suggest.type', params: { type: 'show' } }
         ]
       }
     ]

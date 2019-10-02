@@ -1,16 +1,16 @@
 <template>
-  <div class="home">
+  <div class="authors">
+<!--    @TODO: Adaptive-->
     <h2>
-      {{ $t('authors') }}
+      {{ $t('articles.authors') }}
     </h2>
     <div class="content-wrapper">
-      <ContentItem
+      <AuthorItem
         v-for="(item, key) in authors"
         :key="key"
         :src="item.logo"
         :link="getAuthorLink(item)"
         :title="item.name"
-        :author="item.name"
         :lang="item.language"
         :type="type"
       />
@@ -20,14 +20,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ContentItem from '../../components/ContentItem'
+import AuthorItem from '../../components/AuthorItem'
 
 export default {
   layout: 'inner',
   name: 'AuthorsList',
 
   components: {
-    ContentItem
+    AuthorItem
   },
 
   metaInfo () {
@@ -35,7 +35,7 @@ export default {
   },
 
   data: () => ({
-    type: 'author'
+    type: 'article'
   }),
 
   computed: mapGetters({
@@ -55,5 +55,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    @import "../../../sass/elements/home";
+@import "../../../sass/elements/home";
+.authors {
+  margin: 0 0 20px;
+  h2 {
+    margin: 20px 0 20px;
+    color: #FFF;
+  }
+  .content-wrapper {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+}
 </style>

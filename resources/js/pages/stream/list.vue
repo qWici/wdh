@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+<!--    @TODO: If empty - show "Suggest channel" button-->
     <h2 class="live">
       {{ $t('live_now') }}
     </h2>
@@ -38,7 +39,7 @@ export default {
   },
 
   metaInfo () {
-    return { title: this.$t('streams') }
+    return { title: this.$t('streams.streams') }
   },
 
   data: () => ({

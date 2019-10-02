@@ -5,6 +5,8 @@ const PasswordEmail = () => import('~/pages/auth/password/email').then(m => m.de
 const PasswordReset = () => import('~/pages/auth/password/reset').then(m => m.default || m)
 const NotFound = () => import('~/pages/errors/404').then(m => m.default || m)
 
+const Suggest = () => import('~/pages/suggest').then(m => m.default || m)
+
 // TermsAndConditions && PP
 const TermsAndConditions = () => import('~/pages/terms-and-conditions').then(m => m.default || m)
 const PrivacyPolicy = () => import('~/pages/privacy-policy').then(m => m.default || m)
@@ -49,6 +51,16 @@ export default [
 
   // { path: '/home', name: 'home', component: Home },
   { path: '/authors', name: 'authors', component: ArticleAuthors },
+
+  {
+    path: '/suggest',
+    component: Suggest,
+    children: [
+      { path: '', name: 'suggest', component: Suggest },
+      { path: ':type/', name: 'suggest.type', component: Suggest }
+    ]
+  },
+
   { path: '/bookmarks', name: 'bookmarks', component: Bookmarks },
 
   {

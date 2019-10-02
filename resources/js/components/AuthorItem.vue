@@ -1,26 +1,10 @@
 <template>
-  <router-link :to="itemLink" class="content-item" :title="title">
+  <router-link :to="itemLink" class="content-item" :title="title" :style="'background-image: url(' + src + ')'">
     <lang-flag v-if="lang !== null" :iso="lang" :squared="false" class="flag" />
-
-    <div v-if="stream" :class="online ? 'live' : 'offline'" class="status">
-      {{ status }}
-    </div>
-
-    <div :style="'background-image: url(' + src + ')'" class="img-wrapper">
-      <img :src="src" :alt="title" style="display: none">
-    </div>
 
     <span class="item-info">
       <span class="title">
         {{ title }}
-      </span>
-      <span class="data">
-        <span v-if="stream" class="date">
-          {{ date }}
-        </span>
-        <span class="author">
-          {{ author }}
-        </span>
       </span>
     </span>
   </router-link>
@@ -28,14 +12,12 @@
 
 <script>
 export default {
-  name: 'ContentItem',
+  name: 'AuthorItem',
 
   props: {
     src: { type: String, default: '/img/no_image.webp' },
     title: { type: String, required: true },
     link: { type: [String, Number, Object], required: true },
-    author: { type: String, required: true },
-    date: { type: String, default: null },
     lang: { type: String, default: null },
     online: { type: Boolean, default: false },
     type: {
@@ -48,15 +30,9 @@ export default {
   },
 
   computed: {
-    stream: function () {
-      return this.type === 'stream'
-    },
-    status: function () {
-      return this.online ? this.$t('live') : this.$t('offline')
-    },
     itemLink: function () {
       if (this.type === 'article') {
-        return { name: 'article.single', params: { author: this.link.author, slug: this.link.slug } }
+        return { name: 'article.author', params: { author: this.link.author } }
       }
       if (this.type === 'video') {
         return { name: 'video.single', params: { channel: this.link.channel, slug: this.link.slug } }
@@ -72,4 +48,41 @@ export default {
 
 <style scoped lang="scss">
 @import "../../sass/elements/content-item";
+.content-item {
+  min-height: 320px;
+  background-size: 81%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #FFF;
+  .item-info {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s;
+    &:hover {
+      background: linear-gradient(30deg, rgba(22,191,253,0.95), rgba(203,48,102,0.95));
+      transition: all .3s;
+      span.title {
+        color: #FFF;
+        transition: all .3s;
+      }
+    }
+    span {
+      &.title {
+        margin: 0;
+        font-size: 22px;
+        max-height: fit-content;
+        color: transparent;
+        transition: all .3s;
+        text-align: center;
+      }
+    }
+  }
+}
 </style>

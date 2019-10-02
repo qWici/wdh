@@ -41,10 +41,29 @@
   "follow_everything": "All that is interesting to you in one place",
   "faster_easier": "Articles. Videos. Streams. Podcasts.",
   "success": "Success",
-  "articles": "Articles",
-  "streams": "Live Streams",
-  "videos": "Videos",
-  "podcasts": "Podcasts",
+  "articles": {
+    "articles": "Articles",
+    "all": "All articles",
+    "authors": "Authors",
+    "suggest": "Suggest author"
+  },
+  "streams": {
+    "streams": "Live Streams",
+    "live": "Live now",
+    "suggest": "Suggest channel"
+  },
+  "videos": {
+    "videos": "Videos",
+    "all": "All videos",
+    "channels": "Channels",
+    "suggest": "Suggest channel"
+  },
+  "podcasts": {
+    "podcasts": "Podcasts",
+    "all": "All podcasts",
+    "shows": "Shows",
+    "suggest": "Suggest show"
+  },
   "live_now": "Live now",
   "live": "Live",
   "last_online" : "Last online",
@@ -94,5 +113,12 @@
     "agree": "Allow cookies",
     "ignore": "Ignore me"
   },
-  "authors": "Authors"
+  "suggest": {
+    "i_suggest": "I suggest",
+    "articles_author": "Articles author",
+    "podcast_show": "Podcast Show",
+    "youtube_channel": "Youtube Channel",
+    "twitch_channel": "Twitch Channel",
+    "suggest": "Suggest"
+  }
 }

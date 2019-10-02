@@ -41,10 +41,29 @@
   "follow_everything": "Все що вам цікаво в одному місці",
   "faster_easier": "Статті. Відео. Прямі трансляції. Підкасти.",
   "success": "Успішно",
-  "articles": "Статті",
-  "streams": "Прямі трансляції",
-  "videos": "Відео",
-  "podcasts": "Підкасти",
+  "articles": {
+    "articles": "Статті",
+    "all": "Всі статті",
+    "authors": "Автори",
+    "suggest": "Запропонувати автора"
+  },
+  "streams": {
+    "streams": "Прямі трансляції",
+    "live": "Зараз в ефірі",
+    "suggest": "Запропонувати канал"
+  },
+  "videos": {
+    "videos": "Відео",
+    "all": "Всі відео",
+    "channels": "Канали",
+    "suggest": "Запропонувати канал"
+  },
+  "podcasts": {
+    "podcasts": "Підкасти",
+    "all": "Всі підкасти",
+    "shows": "Шоу",
+    "suggest": "Запропонувати шоу"
+  },
   "live_now": "Зараз онлайн",
   "live": "Онлайн",
   "last_online" : "Останні онлайн",
@@ -94,5 +113,12 @@
     "agree": "Дозволити",
     "ignore": "Ігнорувати"
   },
-  "authors": "Автори"
+  "suggest": {
+    "i_suggest": "Я пропоную",
+    "articles_author": "Автора статтей",
+    "podcast_show": "Підкаст шоу",
+    "youtube_channel": "Youtube канал",
+    "twitch_channel": "Twitch канал",
+    "suggest": "Запропонувати"
+  }
 }

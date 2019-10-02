@@ -11,8 +11,8 @@
       </span>
       <ul class="wsidebar-nav-item__subcategories" v-if="isChildrenVisible">
         <li v-for="(children, key) in item.children" :key="key">
-          <router-link :to="{ name: children.link }" active-class="active" class="wsidebar-nav-item">
-            {{ children.text }}
+          <router-link :to="preparedLink(children)" active-class="active" class="wsidebar-nav-item">
+            {{ $t(children.text) }}
           </router-link>
         </li>
       </ul>
@@ -64,6 +64,13 @@ export default {
     hide () {
       if (!this.isChildrenExist) { return false }
       this.isChildrenVisible = false
+    },
+    preparedLink (item) {
+      if (item.params) {
+       return { name: item.link, params: item.params }
+      }
+
+      return { name: item.link }
     }
   }
 }
