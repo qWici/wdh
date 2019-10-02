@@ -46,43 +46,12 @@ $polyfills = [
   <meta name="msapplication-TileImage" content="{{ asset('/favicon/mstile-144x144.png') }}">
   <meta name="theme-color" content="#423a6f">
   <meta name="google-site-verification" content="LWP-U6P36fIbkm2SR4V6uAvCkaEkN7IeGLtfqWu2iI8" />
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132670287-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-132670287-2');
-  </script>
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org/",
-      "@type": "WebSite",
-      "name": "WebDevHub",
-      "alternateName": "WDH",
-      "url": "https://webdevhub.net",
-      "image": "https://webdevhub.net/img/logo.png",
-      "sameAs": [
-        "https://www.facebook.com/webdevhub.official/",
-        "https://twitter.com/wdh_official",
-        "https://vk.com/webdevhub"
-      ]
-    }
-  </script>
+  @include('components.gtag')
+  @include('components.website-schema')
 
   {!! $breadcrumbsSchema  !!}
-  <!-- Hotjar Tracking Code for https://webdevhub.net/ -->
-    <script>
-     (function(h,o,t,j,a,r){
-      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-      h._hjSettings={hjid:1494475,hjsv:6};
-      a=o.getElementsByTagName('head')[0];
-      r=o.createElement('script');r.async=1;
-      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-      a.appendChild(r);
-     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+  @include('components.hotjar')
+  @include('components.adsense')
 </head>
 <body>
   <div id="app"></div>
