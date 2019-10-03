@@ -45,7 +45,7 @@ class Stream extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'twitch', 'online', 'title', 'language', 'logo'
+        'name', 'twitch', 'online', 'title', 'language', 'logo', 'twitch_id'
     ];
 
     /**
