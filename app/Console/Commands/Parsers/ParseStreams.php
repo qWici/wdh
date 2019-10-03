@@ -24,6 +24,10 @@ class ParseStreams extends Command
      */
     protected $description = 'Parse streams';
 
+    private $twitchNicknames = [];
+
+    private $streamsWithId = [];
+
     /**
      * Create a new command instance.
      *
@@ -41,15 +45,60 @@ class ParseStreams extends Command
      */
     public function handle()
     {
-        $streamers = ParseResource::getData('streamers');
+        $streamers = collect(ParseResource::getData('streamers'));
 
         foreach ($streamers as $stream) {
             if(Stream::where('name', $stream->twitch)->exists()) {
                 continue;
             }
 
+            $this->twitchNicknames[] = $stream->twitch;
+        }
+
+        $twitchBaseData = $this->collectTwitchIds();
+
+        foreach ($twitchBaseData as $baseDatum) {
+            $defaultData = $streamers->firstWhere('twitch', $baseDatum->login);
+            if (empty($defaultData)) {
+                $defaultData = $streamers->firstWhere('twitch', $baseDatum->display_name);
+            }
+
+            $defaultData->twitch_id = $baseDatum->id;
+
+            $this->streamsWithId[] = $defaultData;
+        }
+
+        foreach ($this->streamsWithId as $stream) {
             $this->getStreamDataFromTwitch($stream);
         }
+    }
+
+    public function collectTwitchIds()
+    {
+        $additionalParams = [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'Client-ID' => 'y9i5ff8ov1scsxlf15d9oya5oqxjzi',
+            ]
+        ];
+
+        $query = implode('&login=', $this->twitchNicknames);
+
+        $url = 'https://api.twitch.tv/helix/users?login=' . $query;
+        $data = [];
+        try {
+            $response = RemoteRequest::getRemoteContent($url, $additionalParams);
+            $data = json_decode($response['data']);
+        } catch (\ErrorException $e) {
+            $this->error("Error when try to get twitch ids");
+        }
+
+        if (count($data->data) > 0) {
+            return $data->data;
+        }
+
+        return [];
     }
 
     /**
@@ -61,17 +110,25 @@ class ParseStreams extends Command
     {
         $additionalParams = [
             'headers' => [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
+                'Accept' => 'application/vnd.twitchtv.v5+json',
                 'Client-ID' => 'y9i5ff8ov1scsxlf15d9oya5oqxjzi'
             ]
         ];
-        $url = "https://api.twitch.tv/kraken/channels/" . $stream->twitch;
-        $response = RemoteRequest::getRemoteContent($url, $additionalParams);
+
+        $data = [];
         try {
+            $url = "https://api.twitch.tv/kraken/channels/" . $stream->twitch_id;
+            $response = RemoteRequest::getRemoteContent($url, $additionalParams);
+
             $data = json_decode($response['data']);
+        } catch (\ErrorException $e) {
+            $this->error("Error get Twitch full data | Twitch nickname: " . $stream->twitch_id);
+            $this->error($e->getMessage());
+        }
+
+        if (! empty($data)) {
             $this->storeNewStream($data, $stream->tags);
-        } catch (\ErrorException $e) {}
+        }
     }
 
     /**
@@ -85,12 +142,14 @@ class ParseStreams extends Command
         $streamerData = [
             'name' => $stream->display_name,
             'twitch' => $stream->name,
+            'twitch_id' => $stream->_id,
             'title' => $stream->status,
             'language' => preg_replace('/(\-.*)/', '', $stream->language),
             'logo' => $stream->logo
         ];
 
         $newStream = Stream::create($streamerData);
+        $this->info('New streamer | ' . $newStream->name);
 
         foreach ($tags as $tag) {
             $tag = StreamTag::firstOrCreate(['tag' => $tag], ['tag' => $tag]);
