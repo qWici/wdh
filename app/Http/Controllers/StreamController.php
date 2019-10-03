@@ -30,11 +30,31 @@ class StreamController extends Controller
     {
         $streams = Stream::where('online', true)->paginate(9);
 
-        foreach ($streams as $stream) {
-            $stream->bookmarked = $stream->isFavorited();
+        if (count($streams) > 0) {
+            foreach ($streams as $stream) {
+                $stream->bookmarked = $stream->isFavorited();
+            }
+
+            return response()->json([
+                'live' => $streams,
+                'last_live' => []
+            ]);
         }
 
-        return response()->json($streams);
+        $lastLive = Stream::orderBy('updated_at', 'desc')
+            ->whereNotNull('title')
+            ->where('online', false)
+            ->take(5)
+            ->get();
+
+        foreach ($lastLive as $lastLiveStream) {
+            $lastLiveStream->bookmarked = $lastLiveStream->isFavorited();
+        }
+
+        return response()->json([
+            'live' => [],
+            'last_live' => $lastLive
+        ]);
     }
 
     /**

@@ -24,7 +24,7 @@ export default {
       type: String,
       default: null,
       validator: value => {
-        return ['article', 'stream', 'video', 'podcast'].indexOf(value) !== -1
+        return ['article', 'video', 'podcast'].indexOf(value) !== -1
       }
     }
   },
@@ -35,12 +35,13 @@ export default {
         return { name: 'article.author', params: { author: this.link.author } }
       }
       if (this.type === 'video') {
-        return { name: 'video.single', params: { channel: this.link.channel, slug: this.link.slug } }
+        return { name: 'video.channel', params: { channel: this.link.channel } }
       }
       if (this.type === 'podcast') {
-        return { name: 'podcast.single', params: { show: this.link.show, slug: this.link.slug } }
+        return { name: 'podcast.show', params: { show: this.link.show } }
       }
-      return { name: 'stream.single', params: { id: this.link } }
+
+      return { name: 'home' }
     }
   }
 }

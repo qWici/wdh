@@ -19,6 +19,12 @@ export const fetchPaginateVideos = async ({ commit }, pageNumber = 1) => {
   commit(types.FETCH_PAGINATE, data.data)
 }
 
+export const fetchChannels = async ({ commit }) => {
+  const { data } = await axios.get(`/api/channels`)
+
+  commit(types.FETCH_CHANNELS, data)
+}
+
 export const clearState = async ({ commit }) => {
   commit(types.CLEAR_VIDEOS)
 }
@@ -27,5 +33,6 @@ export default {
   fetchBySlug,
   fetchPaginateVideos,
   fetchByChannelSlug,
+  fetchChannels,
   clearState
 }

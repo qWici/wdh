@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-<!--    @TODO: If empty - show "Suggest channel" button-->
     <h2 class="live">
-      {{ $t('live_now') }}
+      {{ live > 0 ? $t('live_now') : 'Whoops'}}
     </h2>
+
     <div class="content-wrapper">
       <ContentItem
         v-for="(item, key) in live"

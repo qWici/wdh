@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Channel;
+use App\Models\PodcastShow;
 use Spatie\SchemaOrg\Schema;
 use App\Models\Content;
 use App\Helpers\MetaGenerator;
@@ -14,9 +16,17 @@ class GlobalController extends Controller
 {
     public function authors() : JsonResponse
     {
-        $authors = Author::all();
+        return response()->json(Author::all());
+    }
 
-        return response()->json($authors);
+    public function shows() : JsonResponse
+    {
+        return response()->json(PodcastShow::all());
+    }
+
+    public function channels() : JsonResponse
+    {
+        return response()->json(Channel::all());
     }
 
     public function index(Request $request)

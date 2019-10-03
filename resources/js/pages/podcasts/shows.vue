@@ -1,15 +1,15 @@
 <template>
   <div class="authors">
     <h2>
-      {{ $t('articles.authors') }}
+      {{ $t('podcasts.shows') }}
     </h2>
     <div class="production content-wrapper">
       <AuthorItem
-        v-for="(item, key) in authors"
+        v-for="(item, key) in shows"
         :key="key"
-        :src="item.logo"
-        :link="getAuthorLink(item)"
-        :title="item.name"
+        :src="item.image_url"
+        :link="getShowLink(item)"
+        :title="item.title"
         :lang="item.language"
         :type="type"
       />
@@ -23,31 +23,31 @@ import AuthorItem from '../../components/AuthorItem'
 
 export default {
   layout: 'inner',
-  name: 'AuthorsList',
+  name: 'ShowsList',
 
   components: {
     AuthorItem
   },
 
   metaInfo () {
-    return { title: this.$t('articles.authors') }
+    return { title: this.$t('podcasts.shows') }
   },
 
   data: () => ({
-    type: 'article'
+    type: 'podcast'
   }),
 
   computed: mapGetters({
-    authors: 'articles/authors'
+    shows: 'podcasts/shows'
   }),
 
   created () {
-    this.$store.dispatch('articles/fetchAuthors')
+    this.$store.dispatch('podcasts/fetchShows')
   },
 
   methods: {
-    getAuthorLink (author) {
-      return { author: author.slug }
+    getShowLink (show) {
+      return { show: show.slug }
     }
   }
 }

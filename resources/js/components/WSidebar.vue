@@ -79,7 +79,7 @@ export default {
         iconGradientClass: 'gradient-blue',
         children: [
           { text: 'videos.all', link: 'video' },
-          { text: 'videos.channels', link: 'video' }, // @TODO: channels
+          { text: 'videos.channels', link: 'channels' },
           { text: 'videos.suggest', link: 'suggest.type', params: { type: 'channel' } }
         ]
       },
@@ -90,7 +90,7 @@ export default {
         iconGradientClass: 'gradient-crimson',
         children: [
           { text: 'podcasts.all', link: 'podcast' },
-          { text: 'podcasts.shows', link: 'podcast' }, // @TODO: shows
+          { text: 'podcasts.shows', link: 'shows' },
           { text: 'podcasts.suggest', link: 'suggest.type', params: { type: 'show' } }
         ]
       }

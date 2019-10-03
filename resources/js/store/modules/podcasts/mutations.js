@@ -19,5 +19,8 @@ export default {
   },
   [types.TOGGLE_BOOKMARK] (state, status) {
     state.single = Object.assign(state.single, { bookmarked: status })
+  },
+  [types.FETCH_SHOWS] (state, data) {
+    state.shows = data
   }
 }

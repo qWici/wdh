@@ -28,11 +28,13 @@ const ArticleSingle = () => import('~/pages/articles/single').then(m => m.defaul
 const VideoIndex = () => import('~/pages/videos/index').then(m => m.default || m)
 const VideosList = () => import('~/pages/videos/list').then(m => m.default || m)
 const VideoChannel = () => import('~/pages/videos/channel').then(m => m.default || m)
+const VideoChannels = () => import('~/pages/videos/channels').then(m => m.default || m)
 const VideoSingle = () => import('~/pages/videos/single').then(m => m.default || m)
 
 const PodcastsIndex = () => import('~/pages/podcasts/index').then(m => m.default || m)
 const PodcastsList = () => import('~/pages/podcasts/list').then(m => m.default || m)
 const PodcastShow = () => import('~/pages/podcasts/show').then(m => m.default || m)
+const PodcastShows = () => import('~/pages/podcasts/shows').then(m => m.default || m)
 const PodcastSingle = () => import('~/pages/podcasts/single').then(m => m.default || m)
 
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
@@ -51,6 +53,8 @@ export default [
 
   // { path: '/home', name: 'home', component: Home },
   { path: '/authors', name: 'authors', component: ArticleAuthors },
+  { path: '/shows', name: 'shows', component: PodcastShows },
+  { path: '/channels', name: 'channels', component: VideoChannels },
 
   {
     path: '/suggest',
