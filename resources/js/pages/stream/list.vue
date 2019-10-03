@@ -1,7 +1,8 @@
 <template>
   <div class="home">
+<!--    @TODO: Button about suggest channel-->
     <h2 class="live">
-      {{ live > 0 ? $t('live_now') : 'Whoops'}}
+      {{ countItems > 0 ? $t('live_now') : 'Whoops'}}
     </h2>
 
     <div class="content-wrapper">
@@ -57,7 +58,6 @@ export default {
     live (newItems) {
       if (this.infinityState === null) { return false }
 
-      this.page += 1
       if (this.countItems === newItems.length) {
         this.infinityState.complete()
       } else {

@@ -2,15 +2,8 @@ import * as types from './mutation-types'
 
 export default {
   [types.FETCH_ONLINE] (state, data) {
-    if (data.live) {
-      state.online = data.live
-      state.lastOnline = []
-
-      return true
-    }
-
-    state.online = []
-    state.lastOnline = data.last_live
+    state.online = data.live.data
+    state.lastOnline = data.last_live.data
   },
   [types.FETCH_LAST_ONLINE] (state, data) {
     state.lastOnline = data
