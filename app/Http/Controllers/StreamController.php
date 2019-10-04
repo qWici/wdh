@@ -37,14 +37,14 @@ class StreamController extends Controller
 
             return response()->json([
                 'live' => $streams,
-                'last_live' => $emptyData
+                'last_live' => []
             ]);
         }
 
         $lastLive = Stream::orderBy('updated_at', 'desc')
             ->whereNotNull('title')
             ->where('online', false)
-            ->take(5)
+            ->take(4)
             ->get();
 
         foreach ($lastLive as $lastLiveStream) {

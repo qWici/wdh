@@ -17,7 +17,7 @@
   "remember_me": "Remember Me",
   "password": "Password",
   "forgot_password": "Forgot Your Password?",
-  "dont_reuse_bank_password" : "Don't reuse your bank password, we didn't spend a lot on security for this app",
+  "dont_reuse_bank_password": "Don't reuse your bank password, we didn't spend a lot on security for this app",
   "confirm_password": "Confirm Password",
   "nickname": "Nickname",
   "toggle_navigation": "Toggle navigation",
@@ -66,7 +66,7 @@
   },
   "live_now": "Live now",
   "live": "Live",
-  "last_online" : "Last online",
+  "last_online": "Last online",
   "offline": "Offline",
   "last_publications": "Last publications",
   "position": "Position",
@@ -74,7 +74,7 @@
   "search_placeholder": "Quick find...",
   "bookmarks": "Bookmarks",
   "latest_updates": "Latest updates",
-  "empty_bookmarks":"Looks like you don't have any bookmarks yet",
+  "empty_bookmarks": "Looks like you don't have any bookmarks yet",
   "submit_suggestion": "Submit a proposal",
   "field_isnt_filled": "Field is not filled",
   "tnx_u_very_much": "Thank you very much",
@@ -90,10 +90,10 @@
       "description": "We are parse RSS feeds interesting for you sources, from some through the API. An actual list of sources is located in our",
       "repo": "repository"
     },
-    "free" : {
+    "free": {
       "title": "Free",
       "description": "At the moment, the service is free. It exists only through",
-      "donate" : "donations"
+      "donate": "donations"
     }
   },
   "stats": {
@@ -119,6 +119,7 @@
     "podcast_show": "Podcast Show",
     "youtube_channel": "Youtube Channel",
     "twitch_channel": "Twitch Channel",
-    "suggest": "Suggest"
+    "suggest": "Suggest",
+    "thanks": "Thank you! We will consider your proposal"
   }
 }

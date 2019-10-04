@@ -1,8 +1,6 @@
 <template>
   <div class="authors">
-    <h2>
-      {{ $t('videos.channels') }}
-    </h2>
+    <h2>{{ $t('videos.channels') }}</h2>
     <div class="production content-wrapper">
       <AuthorItem
         v-for="(item, key) in channels"
@@ -13,6 +11,7 @@
         :lang="item.country"
         :type="type"
       />
+      <suggest-button type="channel" />
     </div>
   </div>
 </template>
@@ -20,13 +19,15 @@
 <script>
 import { mapGetters } from 'vuex'
 import AuthorItem from '../../components/AuthorItem'
+import SuggestButton from '../../components/SuggestButton'
 
 export default {
   layout: 'inner',
   name: 'ChannelsList',
 
   components: {
-    AuthorItem
+    AuthorItem,
+    SuggestButton
   },
 
   metaInfo () {

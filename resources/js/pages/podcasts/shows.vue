@@ -1,8 +1,6 @@
 <template>
   <div class="authors">
-    <h2>
-      {{ $t('podcasts.shows') }}
-    </h2>
+    <h2>{{ $t('podcasts.shows') }}</h2>
     <div class="production content-wrapper">
       <AuthorItem
         v-for="(item, key) in shows"
@@ -13,6 +11,7 @@
         :lang="item.language"
         :type="type"
       />
+      <suggest-button type="show" />
     </div>
   </div>
 </template>
@@ -20,13 +19,15 @@
 <script>
 import { mapGetters } from 'vuex'
 import AuthorItem from '../../components/AuthorItem'
+import SuggestButton from '../../components/SuggestButton'
 
 export default {
   layout: 'inner',
   name: 'ShowsList',
 
   components: {
-    AuthorItem
+    AuthorItem,
+    SuggestButton
   },
 
   metaInfo () {

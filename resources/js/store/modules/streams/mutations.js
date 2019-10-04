@@ -3,7 +3,7 @@ import * as types from './mutation-types'
 export default {
   [types.FETCH_ONLINE] (state, data) {
     state.online = data.live.data
-    state.lastOnline = data.last_live.data
+    state.lastOnline = data.last_live
   },
   [types.FETCH_LAST_ONLINE] (state, data) {
     state.lastOnline = data

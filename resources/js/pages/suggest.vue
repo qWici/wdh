@@ -1,38 +1,57 @@
 <template>
   <div class="suggest-page">
-<!--    @TODO: Adaptive-->
-<!--    @TODO: Server side-->
     <form>
       <h1>
         {{ $t('suggest.i_suggest') }}
-        <span class="inline-select" @click="showSelectOptions('type', $event)">{{ $t(typeTitle) }}</span>
+        <span
+          class="inline-select"
+          @click="showSelectOptions('type', $event)"
+        >{{ $t(typeTitle) }}</span>
       </h1>
 
-      <div class="dynamic-select" v-if="dynamicSelect.isVisible" :style="dynamicSelectStyles" ref="selectType">
+      <div
+        class="dynamic-select"
+        v-if="dynamicSelect.isVisible"
+        :style="dynamicSelectStyles"
+        ref="selectType"
+      >
         <ul>
-          <li v-for="(item, key) in dynamicSelect.items" @click="selectOption(item.type)" :key="key">
+          <li
+            v-for="(item, key) in dynamicSelect.items"
+            @click="selectOption(item.type)"
+            :key="key"
+          >
             {{ $t(item.title) }}
           </li>
         </ul>
       </div>
 
       <div class="input-group">
-        <input type="text" id="website" name="website" :placeholder="typePlaceholder">
-        <button>{{ $t('suggest.suggest')}}</button>
+        <input type="text" id="website" name="website" v-model="link" :placeholder="typePlaceholder">
+        <button @click="sendSuggestion">
+          {{ $t('suggest.suggest') }}
+        </button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import swal from 'sweetalert2'
+
 export default {
   layout: 'inner',
   name: 'Suggest',
 
   mounted () {
     this.type = this.$route.params.type ? this.$route.params.type : 'author'
-    this.typeTitle = this.typeTitles.filter(item => item.type === this.type)[0].title
-    this.typePlaceholder = this.typePlaceholders.filter(item => item.type === this.type)[0].value
+    this.typeTitle = this.typeTitles.filter(
+      item => item.type === this.type
+    )[0].title
+    this.typePlaceholder = this.typePlaceholders.filter(
+      item => item.type === this.type
+    )[0].value
   },
 
   components: {},
@@ -47,6 +66,7 @@ export default {
   },
 
   data: () => ({
+    link: '',
     type: 'author',
     typeTitle: 'suggest.articles_author',
     typePlaceholder: 'https://www.mycoolauthor.com/',
@@ -100,7 +120,9 @@ export default {
     },
     generateSelectItems (type) {
       if (type === 'type') {
-        this.dynamicSelect.items = this.typeTitles.filter(item => item.type !== this.type)
+        this.dynamicSelect.items = this.typeTitles.filter(
+          item => item.type !== this.type
+        )
       }
     },
     showSelect () {
@@ -119,8 +141,38 @@ export default {
     },
     updateType (type) {
       this.type = type
-      this.typeTitle = this.typeTitles.filter(item => item.type === this.type)[0].title
-      this.typePlaceholder = this.typePlaceholders.filter(item => item.type === this.type)[0].value
+      this.typeTitle = this.typeTitles.filter(
+        item => item.type === this.type
+      )[0].title
+      this.typePlaceholder = this.typePlaceholders.filter(
+        item => item.type === this.type
+      )[0].value
+    },
+    sendSuggestion (e) {
+      e.preventDefault()
+      const self = this
+      return axios
+        .post('/api/suggestion/add', { type: this.type, link: this.link })
+        .then(res => {
+          const errors = res.data.errors
+
+          if (Object.keys(res.data.errors).length > 0) {
+            return swal({
+              type: 'error',
+              title: this.$t('error_alert_title'),
+              text: errors[Object.keys(errors)[0]][0],
+              confirmButtonText: this.$t('ok')
+            })
+          }
+
+          self.link = ''
+          return swal({
+            type: 'success',
+            title: this.$t('success'),
+            text: this.$t('suggest.thanks'),
+            confirmButtonText: this.$t('ok')
+          })
+        })
     }
   }
 }
@@ -138,7 +190,7 @@ export default {
     margin: auto;
   }
   h1 {
-    color: #FFF;
+    color: #fff;
     text-transform: uppercase;
     margin: 0 0 20px;
     font-size: 36px;
@@ -162,14 +214,14 @@ export default {
       color: #000;
     }
     button {
-      color: #FFF;
+      color: #fff;
       font-weight: bold;
-      font-size: 20px;
-      padding: 10px 15px;
+      font-size: 16px;
+      padding: 15px 30px;
       border-radius: 0 5px 5px 0;
-      background: #33b585;
+      background: #3085d6;
       &:hover {
-        background: darken(#33b585, 10%);
+        background: #236baf;
         cursor: pointer;
       }
     }
@@ -179,7 +231,7 @@ export default {
     border: 2px dashed #ed3567;
     border-top: none;
     min-height: 30px;
-    transition: all .4s;
+    transition: all 0.4s;
     background-color: #191d3b;
     li {
       color: #fff;
@@ -190,6 +242,26 @@ export default {
       }
       &:last-child {
         margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .suggest-page {
+    h1 {
+      text-align: center;
+      margin-bottom: 46px;
+    }
+    .input-group {
+      flex-wrap: wrap;
+      input {
+        padding: 15px;
+        border-radius: 5px 5px 0 0;
+      }
+      button {
+        width: 100%;
+        border-radius: 0 0 5px 5px;
       }
     }
   }

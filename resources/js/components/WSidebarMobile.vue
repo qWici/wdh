@@ -56,9 +56,9 @@ import WSidebarNavItemType from '../types/ui/WSidebarNavItemType'
 export default {
   name: 'WSidebarMobile',
 
- components: {
-  WSidebarNavItem
- },
+  components: {
+    WSidebarNavItem
+  },
 
   computed: mapGetters({
     user: 'auth/user',

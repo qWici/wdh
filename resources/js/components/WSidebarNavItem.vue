@@ -67,7 +67,7 @@ export default {
     },
     preparedLink (item) {
       if (item.params) {
-       return { name: item.link, params: item.params }
+        return { name: item.link, params: item.params }
       }
 
       return { name: item.link }
