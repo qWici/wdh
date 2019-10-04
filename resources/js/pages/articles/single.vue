@@ -90,7 +90,7 @@ export default {
     }
     this.$store.dispatch('articles/fetchBySlug', article).then(() => {
       let breadcrumbs = [
-        { title: this.$t('articles'), route: { name: 'article' } },
+        { title: this.$t('articles.articles'), route: { name: 'article' } },
         { title: this.single.author.name, route: { name: 'article.author', params: { author: this.single.author.slug } } },
         { title: this.single.title,
           route: { name: 'article.single', params: { author: this.single.author.slug, slug: this.single.slug } }

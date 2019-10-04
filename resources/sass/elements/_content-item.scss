@@ -1,0 +1,98 @@
+.content-item {
+  background: linear-gradient(to right, #443B6D 0%, #36385F 100%);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  &:hover {
+    box-shadow: 0 6px 20px 0 rgba(0,0,0,.19), 0 8px 17px 0 rgba(0,0,0,.2);
+    .item-info .title {
+      color: #ff80bb;
+    }
+  }
+  .flag {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 22px;
+    height: 22px;
+    z-index: 1;
+  }
+  .status {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 10px 5px 26px;
+    border-radius: 3px;
+    z-index: 1;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    background-color: #36385F;
+    opacity: .8;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    &.live {
+      color: #FFF;
+      opacity: 1;
+      &:before {
+        background-color: #D92B4C;
+      }
+    }
+  }
+  .img-wrapper {
+    height: 164px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    &:after {
+      display: none;
+      content: '';
+      width: calc(100% + 1px);
+      height: 100%;
+      top: 0;
+      position: absolute;
+      background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 1)));
+      background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1));
+    }
+  }
+  .item-info {
+    padding: 10px 20px 10px;
+    color: #FFF;
+    width: 100%;
+    display: block;
+    .data {
+      display: flex;
+      justify-content: space-between;
+      opacity: .6;
+      font-size: 11px;
+    }
+    .title {
+      font-size: 14px;
+      margin: 0 0 15px;
+      padding: 0;
+      line-height: 1.6;
+      display: block;
+      color: #FFF;
+      font-weight: bold;
+      max-height: 44px;
+      overflow: hidden;
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .content-item {
+    .title {
+      font-size: 16px;
+    }
+  }
+}

@@ -23,6 +23,11 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('last', 'GlobalController@getLast');
 Route::get('locale/{locale}', 'GlobalController@changeLocale');
+
+Route::get('authors', 'GlobalController@authors');
+Route::get('shows', 'GlobalController@shows');
+Route::get('channels', 'GlobalController@channels');
+
 Route::prefix('update')->group(function () {
     Route::get('stream', 'StreamController@change');
 });

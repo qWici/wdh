@@ -41,10 +41,29 @@
   "follow_everything": "Все что вам интересно в одном месте",
   "faster_easier": "Статьи. Видео. Стримы. Подкасты.",
   "success": "Успешно",
-  "articles": "Статьи",
-  "streams": "Прямые трансляции",
-  "videos": "Видео",
-  "podcasts": "Подкасты",
+  "articles": {
+    "articles": "Статьи",
+    "all": "Все статьи",
+    "authors": "Авторы",
+    "suggest": "Предложить автора"
+  },
+  "streams": {
+    "streams": "Прямые трансляции",
+    "live": "Сейчас в эфире",
+    "suggest": "Предложить канал"
+  },
+  "videos": {
+    "videos": "Видео",
+    "all": "Все видео",
+    "channels": "Каналы",
+    "suggest": "Предложить канал"
+  },
+  "podcasts": {
+    "podcasts": "Подкасты",
+    "all": "Всe подкасты",
+    "shows": "Подкаст Шоу",
+    "suggest": "Предложить шоу"
+  },
   "live_now": "Сейчас онлайн",
   "live": "Онлайн",
   "last_online" : "Последние онлайн",
@@ -93,5 +112,14 @@
     "message": "В WebDevHub мы используем файлы cookie, чтобы улучшить вашу работу на нашем веб-сайте",
     "agree": "Разрешить",
     "ignore": "Игнорировать"
+  },
+  "suggest": {
+    "i_suggest": "Я предлагаю",
+    "articles_author": "Автора статтей",
+    "podcast_show": "Подкаст шоу",
+    "youtube_channel": "Youtube канал",
+    "twitch_channel": "Twitch канал",
+    "suggest": "Предложить",
+    "thanks": "Спасибо! Мы рассмотрим ваше предложение"
   }
 }

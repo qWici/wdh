@@ -19,6 +19,12 @@ export const fetchPaginatePodcasts = async ({ commit }, pageNumber = 1) => {
   commit(types.FETCH_PAGINATE, data.data)
 }
 
+export const fetchShows = async ({ commit }) => {
+  const { data } = await axios.get(`/api/shows`)
+
+  commit(types.FETCH_SHOWS, data)
+}
+
 export const clearState = async ({ commit }) => {
   commit(types.CLEAR_PODCASTS)
 }
@@ -27,5 +33,6 @@ export default {
   fetchBySlug,
   fetchPaginatePodcasts,
   fetchByShowSlug,
+  fetchShows,
   clearState
 }

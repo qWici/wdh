@@ -10,6 +10,9 @@ export default {
   [types.FETCH_BY_CHANNEL_SLUG] (state, data) {
     state.channel = [...state.channel, ...data]
   },
+  [types.FETCH_CHANNELS] (state, data) {
+    state.channels = data
+  },
   [types.FETCH_PAGINATE] (state, data) {
     state.paginate = [...state.paginate, ...data]
   },

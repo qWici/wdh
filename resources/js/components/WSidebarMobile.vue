@@ -14,56 +14,7 @@
       </div>
       <nav class="content-nav">
         <ul>
-          <li>
-            <router-link :to="{ name: 'home' }" class="content-nav__category" active-class="active" exact>
-              <span class="content-nav__category__icon gradient-green">
-                <fa :icon="['fas', 'home']" fixed-width />
-              </span>
-              <span class="content-nav__category__title">
-                {{ $t('home') }}
-              </span>
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'article' }" active-class="active" class="content-nav__category">
-              <span class="content-nav__category__icon gradient-pink">
-                <fa :icon="['far', 'newspaper']" fixed-width />
-              </span>
-              <span class="content-nav__category__title">
-                {{ $t('articles') }}
-              </span>
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'stream' }" active-class="active" class="content-nav__category">
-              <span class="content-nav__category__icon gradient-purple-to-pink">
-                <fa :icon="'tv'" fixed-width />
-              </span>
-              <span class="content-nav__category__title">
-                {{ $t('streams') }}
-              </span>
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'video' }" active-class="active" class="content-nav__category">
-              <span class="content-nav__category__icon gradient-blue">
-                <fa :icon="['fab', 'youtube']" fixed-width />
-              </span>
-              <span class="content-nav__category__title">
-                {{ $t('videos') }}
-              </span>
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'podcast' }" active-class="active" class="content-nav__category">
-              <span class="content-nav__category__icon gradient-crimson">
-                <fa :icon="['fas', 'microphone']" fixed-width />
-              </span>
-              <span class="content-nav__category__title">
-                {{ $t('podcasts') }}
-              </span>
-            </router-link>
-          </li>
+          <w-sidebar-nav-item v-for="(link, key) in links" :key="key" :item="prepareLink(link)" />
           <hr>
           <li>
             <a href="https://www.patreon.com/bePatron?u=16249136" class="patron" target="_blank">
@@ -99,13 +50,73 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import WSidebarNavItem from './WSidebarNavItem'
+import WSidebarNavItemType from '../types/ui/WSidebarNavItemType'
 
 export default {
   name: 'WSidebarMobile',
 
+  components: {
+    WSidebarNavItem
+  },
+
   computed: mapGetters({
     user: 'auth/user',
     userPhoto: 'auth/userPhoto'
+  }),
+
+  data: () => ({
+    links: [
+      {
+        text: 'home',
+        link: 'home',
+        faIcon: ['fas', 'home'],
+        iconGradientClass: 'gradient-green'
+      },
+      {
+        text: 'articles.articles',
+        link: 'article',
+        faIcon: ['far', 'newspaper'],
+        iconGradientClass: 'gradient-pink',
+        children: [
+          { text: 'articles.all', link: 'article' },
+          { text: 'articles.authors', link: 'authors' },
+          { text: 'articles.suggest', link: 'suggest.type', params: { type: 'author' } }
+        ]
+      },
+      {
+        text: 'streams.streams',
+        link: 'stream',
+        faIcon: 'tv',
+        iconGradientClass: 'gradient-purple-to-pink',
+        children: [
+          { text: 'streams.live', link: 'stream' },
+          { text: 'streams.suggest', link: 'suggest.type', params: { type: 'stream' } }
+        ]
+      },
+      {
+        text: 'videos.videos',
+        link: 'video',
+        faIcon: ['fab', 'youtube'],
+        iconGradientClass: 'gradient-blue',
+        children: [
+          { text: 'videos.all', link: 'video' },
+          { text: 'videos.channels', link: 'channels' },
+          { text: 'videos.suggest', link: 'suggest.type', params: { type: 'channel' } }
+        ]
+      },
+      {
+        text: 'podcasts.podcasts',
+        link: 'podcast',
+        faIcon: ['fas', 'microphone'],
+        iconGradientClass: 'gradient-crimson',
+        children: [
+          { text: 'podcasts.all', link: 'podcast' },
+          { text: 'podcasts.shows', link: 'shows' },
+          { text: 'podcasts.suggest', link: 'suggest.type', params: { type: 'show' } }
+        ]
+      }
+    ]
   }),
 
   methods: {
@@ -115,6 +126,9 @@ export default {
 
       // Redirect to login.
       this.$router.push({ name: 'home' })
+    },
+    prepareLink (item) {
+      return new WSidebarNavItemType(item)
     }
   }
 }

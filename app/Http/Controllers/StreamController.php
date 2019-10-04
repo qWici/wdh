@@ -29,12 +29,32 @@ class StreamController extends Controller
     public function online(Request $request) : JsonResponse
     {
         $streams = Stream::where('online', true)->paginate(9);
+        $emptyData = ['data' => []];
+        if (count($streams) > 0) {
+            foreach ($streams as $stream) {
+                $stream->bookmarked = $stream->isFavorited();
+            }
 
-        foreach ($streams as $stream) {
-            $stream->bookmarked = $stream->isFavorited();
+            return response()->json([
+                'live' => $streams,
+                'last_live' => []
+            ]);
         }
 
-        return response()->json($streams);
+        $lastLive = Stream::orderBy('updated_at', 'desc')
+            ->whereNotNull('title')
+            ->where('online', false)
+            ->take(4)
+            ->get();
+
+        foreach ($lastLive as $lastLiveStream) {
+            $lastLiveStream->bookmarked = $lastLiveStream->isFavorited();
+        }
+
+        return response()->json([
+            'live' => $emptyData,
+            'last_live' => $lastLive
+        ]);
     }
 
     /**

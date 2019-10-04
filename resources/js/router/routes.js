@@ -5,6 +5,8 @@ const PasswordEmail = () => import('~/pages/auth/password/email').then(m => m.de
 const PasswordReset = () => import('~/pages/auth/password/reset').then(m => m.default || m)
 const NotFound = () => import('~/pages/errors/404').then(m => m.default || m)
 
+const Suggest = () => import('~/pages/suggest').then(m => m.default || m)
+
 // TermsAndConditions && PP
 const TermsAndConditions = () => import('~/pages/terms-and-conditions').then(m => m.default || m)
 const PrivacyPolicy = () => import('~/pages/privacy-policy').then(m => m.default || m)
@@ -20,16 +22,19 @@ const StreamSingle = () => import('~/pages/stream/single').then(m => m.default |
 const ArticleIndex = () => import('~/pages/articles/index').then(m => m.default || m)
 const ArticleList = () => import('~/pages/articles/list').then(m => m.default || m)
 const ArticleAuthor = () => import('~/pages/articles/author').then(m => m.default || m)
+const ArticleAuthors = () => import('~/pages/articles/authors').then(m => m.default || m)
 const ArticleSingle = () => import('~/pages/articles/single').then(m => m.default || m)
 
 const VideoIndex = () => import('~/pages/videos/index').then(m => m.default || m)
 const VideosList = () => import('~/pages/videos/list').then(m => m.default || m)
 const VideoChannel = () => import('~/pages/videos/channel').then(m => m.default || m)
+const VideoChannels = () => import('~/pages/videos/channels').then(m => m.default || m)
 const VideoSingle = () => import('~/pages/videos/single').then(m => m.default || m)
 
 const PodcastsIndex = () => import('~/pages/podcasts/index').then(m => m.default || m)
 const PodcastsList = () => import('~/pages/podcasts/list').then(m => m.default || m)
 const PodcastShow = () => import('~/pages/podcasts/show').then(m => m.default || m)
+const PodcastShows = () => import('~/pages/podcasts/shows').then(m => m.default || m)
 const PodcastSingle = () => import('~/pages/podcasts/single').then(m => m.default || m)
 
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
@@ -47,6 +52,18 @@ export default [
   { path: '/password/reset/:token', name: 'password.reset', component: PasswordReset },
 
   // { path: '/home', name: 'home', component: Home },
+  { path: '/authors', name: 'authors', component: ArticleAuthors },
+  { path: '/shows', name: 'shows', component: PodcastShows },
+  { path: '/channels', name: 'channels', component: VideoChannels },
+
+  {
+    path: '/suggest',
+    component: Suggest,
+    children: [
+      { path: '', name: 'suggest', component: Suggest },
+      { path: ':type/', name: 'suggest.type', component: Suggest }
+    ]
+  },
 
   { path: '/bookmarks', name: 'bookmarks', component: Bookmarks },
 

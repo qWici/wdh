@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchOnlineStreams = async ({ commit }, pageNumber = 1) => {
   const { data } = await axios.get(`/api/streams/online?page=${pageNumber}`)
 
-  commit(types.FETCH_ONLINE, data.data)
+  commit(types.FETCH_ONLINE, data)
 }
 
 export const fetchLastOnline = async ({ commit }) => {

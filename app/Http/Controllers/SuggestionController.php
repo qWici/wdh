@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Suggestion;
 use Illuminate\Http\Request;
+use App\Models\Suggestion;
+use Illuminate\Support\Facades\Validator;
 
 class SuggestionController extends Controller
 {
     public function add(Request $request)
     {
-        $newSuggestion = new Suggestion();
-        $newSuggestion->text = $request->get('text');
+        $validator = Validator::make($request->all(), [
+            'type' => 'required|min:3|string',
+            'link' => 'required|active_url'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(["message" => "error", "errors" => $validator->errors()]);
+        }
+
+        $newSuggestion = new Suggestion($request->all());
         $newSuggestion->save();
 
-        return response()->json(["message" => "ok"]);
+        return response()->json(["message" => "ok", "errors" => []]);
     }
 }

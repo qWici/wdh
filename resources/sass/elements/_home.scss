@@ -9,11 +9,28 @@
     margin-bottom: 20px;
   }
 }
+
+.authors {
+  margin: 0 0 20px;
+  h2 {
+    margin: 20px 0 20px;
+    color: #FFF;
+  }
+}
+
 .content-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 5px;
   grid-row-gap: 15px;
+}
+
+@media only screen and (min-width: 1600px) {
+  .production.content-wrapper  {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
 }
 
 @media only screen and (max-width: 1600px) {

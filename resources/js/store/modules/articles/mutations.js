@@ -10,6 +10,9 @@ export default {
   [types.FETCH_BY_AUTHOR_SLUG] (state, data) {
     state.author = [...state.author, ...data]
   },
+  [types.FETCH_AUTHORS] (state, data) {
+    state.authors = data
+  },
   [types.FETCH_PAGINATE] (state, data) {
     state.paginate = [...state.paginate, ...data]
   },

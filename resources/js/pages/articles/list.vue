@@ -37,7 +37,7 @@ export default {
   },
 
   metaInfo () {
-    return { title: this.$t('articles') }
+    return { title: this.$t('articles.articles') }
   },
 
   data: () => ({

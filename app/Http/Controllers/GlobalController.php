@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
+use App\Models\Channel;
+use App\Models\PodcastShow;
 use Spatie\SchemaOrg\Schema;
 use App\Models\Content;
 use App\Helpers\MetaGenerator;
@@ -11,6 +14,21 @@ use Illuminate\Support\Facades\Cache;
 
 class GlobalController extends Controller
 {
+    public function authors() : JsonResponse
+    {
+        return response()->json(Author::all());
+    }
+
+    public function shows() : JsonResponse
+    {
+        return response()->json(PodcastShow::all());
+    }
+
+    public function channels() : JsonResponse
+    {
+        return response()->json(Channel::all());
+    }
+
     public function index(Request $request)
     {
         $metas = MetaGenerator::generate($request->getPathInfo());
