@@ -93,7 +93,7 @@ export default {
 
     this.$store.dispatch('videos/fetchBySlug', video).then(() => {
       let breadcrumbs = [
-        { title: this.$t('videos'), route: { name: 'video' } },
+        { title: this.$t('videos.videos'), route: { name: 'video' } },
         { title: this.single.channel.title, route: { name: 'video.channel', params: { channel: this.single.channel.slug } } },
         { title: this.single.title,
           route: { name: 'video.single', params: { channel: this.single.channel.slug, slug: this.single.slug } }

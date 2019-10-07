@@ -14,9 +14,9 @@
 
     <div class="results" v-if="results.resultsCount > 0 && showResults && validatedInput">
       <SearchResultsGroup :query="query" :data="results.data.articles" :title="$t('articles.articles')" :type="'article'" />
-      <SearchResultsGroup :query="query" :data="results.data.videos" :title="$t('videos')" :type="'video'" />
+      <SearchResultsGroup :query="query" :data="results.data.videos" :title="$t('videos.videos')" :type="'video'" />
       <SearchResultsGroup :query="query" :data="results.data.streams" :title="$t('streams.streams')" :type="'stream'" />
-      <SearchResultsGroup :query="query" :data="results.data.podcasts" :title="$t('podcasts')" :type="'podcast'" />
+      <SearchResultsGroup :query="query" :data="results.data.podcasts" :title="$t('podcasts.podcasts')" :type="'podcast'" />
     </div>
   </div>
 </template>
