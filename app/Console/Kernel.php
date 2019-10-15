@@ -34,9 +34,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('check:videos')->hourlyAt(45)
             ->appendOutputTo('/var/log/webdevhub.log');
 
-        $schedule->command('check:streams')->everyFifteenMinutes()
-            ->appendOutputTo('/var/log/webdevhub.log');
-
         $schedule->command('youtube:update')->daily()
             ->appendOutputTo('/var/log/webdevhub.log');
 

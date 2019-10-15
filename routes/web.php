@@ -11,5 +11,7 @@
 |
 */
 
+Route::get('/twitch/update/{twitch_id}', 'TwitchController@subscribe')->name('twitch.subscribe');
+Route::post('/twitch/update/{twitch_id}', 'TwitchController@update')->name('twitch.update');
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('{path}', 'GlobalController@index')->where('path', '(.*)');

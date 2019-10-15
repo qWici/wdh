@@ -16,13 +16,14 @@
         "laravel/framework": "5.7.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
+        "nesbot/carbon": "2.24.0 as 1.39.0",
         "orchestra/parser": "^3.7",
+        "predis/predis": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^1.0",
         "sentry/sentry-laravel": "1.0.0",
         "spatie/laravel-sitemap": "^5.2",
         "spatie/schema-org": "^2.1",
-        "tymon/jwt-auth": "^1.0.0-rc.2",
-        "nesbot/carbon": "2.24.0 as 1.39.0"
+        "tymon/jwt-auth": "^1.0.0-rc.2"
     },
     "require-dev": {
         "doctrine/dbal": "^2.9",
