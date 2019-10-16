@@ -70,7 +70,7 @@ class SubscribeStream extends Command
                     'hub.callback' => $callbackUrl,
                     'hub.mode' => 'subscribe',
                     'hub.topic' => 'https://api.twitch.tv/helix/streams?user_id=' . $twitchId,
-                    'hub.lease_seconds' => 0, // 240 hours - max of subscription duration
+                    'hub.lease_seconds' => 864000, // 240 hours - max of subscription duration
                     'hub.secret	' => env('TWITCH_CLIENT_SECRET')
                 ]
             ]);
