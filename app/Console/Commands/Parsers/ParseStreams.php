@@ -149,6 +149,7 @@ class ParseStreams extends Command
         ];
 
         $newStream = Stream::create($streamerData);
+        \Artisan::call('twitch:subscribe', ['twitch_id' => $stream->_id]);
         $this->info('New streamer | ' . $newStream->name);
 
         foreach ($tags as $tag) {
