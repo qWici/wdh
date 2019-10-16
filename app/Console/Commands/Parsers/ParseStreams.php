@@ -48,7 +48,7 @@ class ParseStreams extends Command
         $streamers = collect(ParseResource::getData('streamers'));
 
         foreach ($streamers as $stream) {
-            if(Stream::where('name', $stream->twitch)->exists()) {
+            if(Stream::where('twitch', $stream->twitch)->exists()) {
                 continue;
             }
 
