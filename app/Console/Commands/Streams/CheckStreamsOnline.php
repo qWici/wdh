@@ -53,7 +53,7 @@ class CheckStreamsOnline extends Command
                 continue;
             }
 
-            if($stream->online) {
+            if(!$live && $stream->online) {
                 Stream::where('id', $stream->id)->update(['online' => false]);
             }
         }
@@ -71,7 +71,7 @@ class CheckStreamsOnline extends Command
     {
         $additionalParams = [
             'headers' => [
-                'Client-ID' => env('TWITCH_CLIENT_SECRET')
+                'Client-ID' => env('TWITCH_CLIENT_ID')
             ]
         ];
         $url = "https://api.twitch.tv/helix/streams?user_login=${streamNickname}";

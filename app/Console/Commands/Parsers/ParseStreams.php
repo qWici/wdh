@@ -79,7 +79,7 @@ class ParseStreams extends Command
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
-                'Client-ID' => env('TWITCH_CLIENT_SECRET'),
+                'Client-ID' => env('TWITCH_CLIENT_ID'),
             ]
         ];
 
@@ -111,7 +111,7 @@ class ParseStreams extends Command
         $additionalParams = [
             'headers' => [
                 'Accept' => 'application/vnd.twitchtv.v5+json',
-                'Client-ID' => env('TWITCH_CLIENT_SECRET')
+                'Client-ID' => env('TWITCH_CLIENT_ID')
             ]
         ];
 
