@@ -71,7 +71,7 @@ class CheckStreamsOnline extends Command
     {
         $additionalParams = [
             'headers' => [
-                'Client-ID' => 'y9i5ff8ov1scsxlf15d9oya5oqxjzi'
+                'Client-ID' => env('TWITCH_CLIENT_SECRET')
             ]
         ];
         $url = "https://api.twitch.tv/helix/streams?user_login=${streamNickname}";

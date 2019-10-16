@@ -48,14 +48,14 @@ class UpdateTwitchStream implements ShouldQueue
 
         if (empty($this->twitchData)) {
             info('Twitch stream is going offline ID: ' .  $this->twitchId);
-            $stream->online = false;
-            return $stream->save();
+            return $stream->update(['online' => false]);
         }
 
-        $stream->online = true;
-        $stream->title = $this->twitchData[0]['title'];
-        $stream->language = $this->twitchData[0]['language'];
         info('Twitch stream is live | Data updated | ID: ' .  $this->twitchId);
-        return $stream->save();
+        return $stream->update([
+            'online' => true,
+            'title' => $this->twitchData[0]['title'],
+            'language' => $this->twitchData[0]['language']
+        ]);
     }
 }
