@@ -20,7 +20,6 @@ class TwitchController extends Controller
 
     public function update(Request $request, int $twitch_id)
     {
-        \Log::info('X-Hub-Signature: ' . $request->header('X-Hub-Signature'));
         UpdateTwitchStream::dispatch($request->get('data'), $twitch_id);
 
         return response('ok');
