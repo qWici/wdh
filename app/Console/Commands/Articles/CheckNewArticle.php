@@ -150,14 +150,17 @@ class CheckNewArticle extends Command
             $imageSRC = $matches[0][2];
         }
 
+        // If image not found - generate
         if(empty($imageSRC) || strpos($imageSRC, './') !== false) {
             return $this->generateImage($title);
         }
 
+        // If image has absolute path
         if(strpos($imageSRC, 'http') !== false) {
             return str_replace('"', "", $imageSRC);
         }
 
+        // If image has relative path
         $imageURL = $site_url . str_replace('"', "", $imageSRC);
         $imagePath = "/images/articles/" . str_slug($title) . ".jpg";
 
@@ -210,8 +213,8 @@ class CheckNewArticle extends Command
         }
 
 
-        $imagePath = "/images/articles/" . str_slug($title) . ".webp";
-        $img->encode('webp', 75)->fit(1050, 500)->save("public" . $imagePath);
+        $imagePath = "/images/articles/" . str_slug($title) . ".jpg";
+        $img->encode('jpg', 75)->fit(1050, 500)->save("public" . $imagePath);
 
         return $imagePath;
     }
