@@ -73,9 +73,12 @@ class ParseYoutubeChannels extends Command
         $newChannel->title = $channel->snippet->title;
         $newChannel->slug = str_slug($channel->snippet->title);
         $newChannel->description = $channel->snippet->description;
-        $newChannel->custom_url = $channel->snippet->customUrl;
+
+        if(property_exists($channel->snippet, 'customUrl')){
+            $newChannel->custom_url = $channel->snippet->customUrl;
+        }
         $newChannel->image_src = $channel->snippet->thumbnails->medium->url;
-        $newChannel->country = $this->checkExistProperty($channel, 'country');
+        $newChannel->country = $this->getCountryProp($channel);
         $newChannel->subscriber_count = $channel->statistics->subscriberCount;
         $newChannel->save();
 
@@ -102,13 +105,12 @@ class ParseYoutubeChannels extends Command
      * Now using for check country
      *
      * @param $channel
-     * @param string $property
      * @return null
      */
-    public function checkExistProperty($channel, string $property)
+    public function getCountryProp($channel)
     {
-        if(property_exists($channel->snippet, $property)){
-            return $channel->snippet->$property;
+        if(property_exists($channel->snippet, 'country')){
+            return $channel->snippet->country;
         }
 
         return "EN";
