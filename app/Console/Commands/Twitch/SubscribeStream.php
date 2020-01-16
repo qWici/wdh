@@ -48,6 +48,7 @@ class SubscribeStream extends Command
         }
 
         foreach (Stream::cursor() as $stream) {
+            sleep(3); // Twitch rate-limit for base access
             $this->subscribe($stream->twitch_id);
         }
     }
