@@ -42,10 +42,10 @@ class ParseShows extends Command
     {
         $shows = ParseResource::getData('podcasts');
         foreach ($shows as $show) {
-            if(PodcastShow::where('slug', str_slug($show->title))->exists()) {
-                continue;
-            }
+            $show->slug = str_slug($show->title);
+            $show = json_decode(json_encode($show), true); // Convert stdClass to array
 
+            $show = PodcastShow::updateOrCreate(["slug" => $show['slug']], $show);
             $this->storeShow($show);
         }
     }
@@ -57,13 +57,11 @@ class ParseShows extends Command
      */
     public function storeShow($show)
     {
-        $show->slug = str_slug($show->title);
-
         $imageURL = $show->image_url;
         $imagePath = "/images/shows/" . $show->slug . ".png";
         Image::make($imageURL)->encode('png', 75)->fit(350, 300)->save("public" . $imagePath);
 
         $show->image_url = $imagePath;
-        PodcastShow::create((array) $show);
+        $show->save();
     }
 }
